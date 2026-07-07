@@ -1,0 +1,63 @@
+# CI for the Everlane Realty PREVIEW site (engagement #149, wave 0 rail).
+# DORMANT until this repo is pushed to GitHub (sergeselenko/everlane-realty-preview).
+# Jobs: build + checks (sitemap XML well-formedness, JSON-LD parse, internal
+# links, noindex, form-inert) on every push/PR; deploy to GitHub Pages on main
+# (requires Pages enabled with Source: GitHub Actions — see README runbook).
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Checks (sitemap XML, JSON-LD, internal links, noindex, form-inert)
+        run: node scripts/check.mjs
+
+  deploy-preview:
+    # Publishes to https://sergeselenko.github.io/everlane-realty-preview/
+    # Skipped until Pages is enabled (Settings → Pages → Source: GitHub Actions).
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: build-and-check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      PATH_PREFIX: /everlane-realty-preview/
+      SITE_URL: https://sergeselenko.github.io/everlane-realty-preview
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install
+        run: npm ci
+      - name: Build (with Pages path prefix)
+        run: npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
