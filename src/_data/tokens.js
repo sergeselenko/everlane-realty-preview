@@ -1,46 +1,95 @@
 /**
  * ============================================================================
- * DESIGN TOKENS — PLACEHOLDER — AWAITING DESIGN CONVERGENCE ROUND 1 (plan §4)
+ * DESIGN TOKENS — LOCKED: C · ST. PETE EDITORIAL (operator lock 2026-07-07)
  * ============================================================================
- * The brand is OPEN by the operator's 2026-07-07 ruling. These values are the
- * current live site's palette carried over ONLY so the wave-0 scaffold renders
- * legibly; they match NO candidate identity (the live navy/gold appears neither
- * in the 2020 brand guide nor in any explored direction — plan §4). The
- * Design-System Builder replaces this entire file when convergence locks the
- * identity (direction C "St. Pete Editorial" is the operator's live lead).
+ * Source of truth: design-exploration/convergence-round-2/rationale.md §6
+ * (the lock list) + client-materials/operator-design-verdict-r2-2026-07-07.md.
+ * The 9 palette tokens below are C's round-1 palette carried verbatim through
+ * round 2; every text/ground pair in use is computed against WCAG AA in
+ * rationale §7 (35 pairs, 0 failures — contrast.py is the count of record).
  *
- * This file is compiled into /assets/tokens.css on every build
+ * This file compiles to /assets/tokens.css on every build
  * (src/assets/tokens.css.njk). Templates and CSS consume ONLY the custom
- * properties — swapping this file restyles the whole site.
+ * properties — this file stays the single swap point.
  *
- * One deliberate deviation from the live palette: `eyebrow` was #a9842f on
- * white = 3.48:1, a WCAG AA failure (audit §5.1). Placeholder uses slate
- * #486581 (6.08:1 on white, 5.50:1 on mist — computed 2026-07-07). AA
- * contrast is a hard constraint that survives ANY design direction (plan §4).
+ * ----------------------------------------------------------------------------
+ * TYPE — system faces with honest fallbacks (NO webfont ships in this build):
+ *   display  = Avenir Next Condensed (Apple system face). Windows/Android
+ *              visitors currently see Arial Narrow / a narrow grotesque —
+ *              the identity forks by OS, stated in rationale §5.2 and
+ *              accepted by the operator at the lock.
+ *   body     = Charter (Apple system face) → Bitstream Charter (Linux) →
+ *              Iowan Old Style → Georgia.
+ *
+ * DEFERRED FONT-LICENSE DECISION (operator verdict r2, judgment 2 — deferred,
+ * NOT declined): launch on the free path. Revisit the Avenir Next Condensed
+ * perpetual self-hosted web license (Monotype via Fontspring/MyFonts, Demi
+ * Bold + Bold, self-hosted WOFF2, ~50–80KB one-time — rationale §5.2) when
+ * device analytics show Windows/Android share; the operator wants to see the
+ * fallback himself on a real Android device first (the preview URL on any
+ * phone). Free close-alternative plan if the quote surprises: Archivo Narrow
+ * or Oswald (Google faces in the condensed register), SELF-HOSTED — closest
+ * flavor picked on preview. Either way the face lands below as a local
+ * @font-face; NEVER as an external request (zero-external-request posture).
+ *
+ *   -- @font-face slot (EMPTY by decision — fill only when the license lands) --
+ *   -- @font-face {
+ *   --   font-family: "Avenir Next Condensed";        (or the free alternative)
+ *   --   src: local files under /assets/fonts/ ONLY — woff2, self-hosted;
+ *   --        no Google Fonts CSS, no CDN, no external URL of any kind.
+ *   --   font-weight: 600 700; font-display: swap;
+ *   -- }
+ * ----------------------------------------------------------------------------
+ *
+ * COMPAT ALIASES: wave-0 stub pages and a few inline styles still reference
+ * the old token names (--navy, --slate, --accent, …). Those names now alias
+ * the locked palette (var() references, single-sourced) so every stub page
+ * inherits C's world with zero off-palette color. Aliases die as pages are
+ * rebuilt on the chassis — do not use them in new templates.
  */
 export default {
-  _status: "PLACEHOLDER — awaiting design convergence round 1 (plan §4; brand open, operator ruling 2026-07-07)",
+  _status:
+    "LOCKED — C · St. Pete Editorial (operator lock 2026-07-07; rationale.md §6; verify-byline amendment lands in templates, not tokens)",
   colors: {
-    "navy": "#102a43",
-    "navy-2": "#1c3d5a",
-    "ink": "#243b53",
-    "slate": "#486581",
-    "mist": "#f0f4f8",
-    "line": "#d9e2ec",
-    "accent": "#c9a24b",
-    "accent-dk": "#a9842f",
-    "eyebrow": "#486581",
-    "white": "#ffffff",
-    "ok": "#2f855a",
-    "err": "#c53030"
+    // ---- the 9 locked palette tokens (C, round-1 verbatim) ----
+    "c-bg": "#FAFAF6", // gallery ground (page background)
+    "c-ink": "#22261F", // ink (text, dark bands, footer ground)
+    "c-sub": "#5F6458", // secondary text on light grounds
+    "c-pink": "#C98A8F", // decorative pink — rules/underlines + dark-ground eyebrows ONLY
+    "c-pinkdeep": "#9E4A52", // deep pink — kickers/eyebrows on light grounds (AA-passing rung)
+    "c-palm": "#3E5C43", // palm — links, labels, primary button, booking band
+    "c-paper": "#F1EEE6", // paper card ground
+    "c-line": "#DDDACE", // hairlines / borders
+    "c-dark-sub": "#C2C6B8", // secondary text on dark (ink) grounds — incl. delta lines
+
+    // ---- legacy compat aliases (wave-0 stub markup; single-sourced via var()) ----
+    "navy": "var(--c-ink)",
+    "navy-2": "var(--c-palm)",
+    "ink": "var(--c-ink)",
+    "slate": "var(--c-sub)",
+    "mist": "var(--c-paper)",
+    "line": "var(--c-line)",
+    "accent": "var(--c-palm)",
+    "accent-dk": "var(--c-palm)",
+    "eyebrow": "var(--c-pinkdeep)",
+    "white": "var(--c-bg)",
+
+    // ---- functional states (form status only; render on their own tinted
+    //      grounds, computed 2026-07-07: #276749 on #E8F5EE = 6.00:1,
+    //      #9B2C2C on #FDEAEA = 6.50:1 — both pass AA) ----
+    "ok": "#276749",
+    "err": "#9B2C2C"
   },
   type: {
-    "font": '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    "font-display": '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+    "font":
+      'Charter, "Bitstream Charter", "Iowan Old Style", Georgia, "Times New Roman", serif',
+    "font-display":
+      '"Avenir Next Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif'
   },
   layout: {
-    "radius": "10px",
-    "shadow": "0 6px 24px rgba(16,42,67,.10)",
-    "wrap": "1140px"
+    // C's world is square-edged editorial: no radii, no drop shadows.
+    "radius": "0",
+    "shadow": "none",
+    "wrap": "1040px"
   }
 };

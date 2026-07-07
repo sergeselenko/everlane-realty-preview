@@ -1,28 +1,47 @@
-{#- Live-data band — WAVE-0 STUB (plan §2 #1: the operated-alive signal; R1 D4).
-    At wave 2 the feed mirror's `market_stats` fills these slots at build time
-    (stats computed by SQL, never by a model — plan §3a) and the band
-    regenerates on every deploy with a real timestamp.
+{#- Live-data band — LOCKED grammar §2 row 5 (design lock 2026-07-07).
+    C's dark editorial band: title + stamp, 4 stats with DELTA CONTEXT in the
+    band's QUIET LABEL COLOR (--c-dark-sub; 8.84:1 on ink — rationale §7).
+    Deliberately NO green/red valence palette (§4 migration rule: B's organ in
+    editorial dress; valence color is a wave-2 data-viz spec decision INSIDE
+    the locked system).
 
-    STUDIO-CREDIT LINE SLOT baked in per the loudness dial DECIDED at the gate
-    (plan §4a — the default: output-forward, label attached to the output,
-    linking to the /ai colophon). Exact bound copy below — do not paraphrase. -#}
-<section class="data-band" aria-label="St. Petersburg market snapshot">
-  <div class="wrap">
-    <dl class="data-band__stats">
-      <div class="data-band__stat">
-        <dt>Median sale price</dt>
-        <dd>$—<span class="stub-note">TODO(wave 2: market_stats)</span></dd>
+    DATA: while feed.marketStats is null (wave 2 wires the feed mirror,
+    SQL-computed — plan §3a), the band renders SAMPLE-labeled figures. The
+    caller may override via {% set band = {...} %} before including.
+
+    ART. 15 NOTICE SLOT (round-2 grade finding 9, bound in §6): at Build the
+    notice must name the ACTUAL period per stat surface — one "for the period
+    shown" line over mixed periods is a labeled-sample liberty a live page may
+    not take. The per-surface periods are therefore named IN the slot below.
+
+    STUDIO-CREDIT LINE — the §4a bound copy, exact, do not paraphrase. -#}
+{%- set band = band or {
+  title: "The market, plainly read — July",
+  stamp: "SAMPLE — at Build: computation timestamp",
+  stats: [
+    { num: "$412,500", lbl: "Median sale price",     delta: "▼ 1.8% vs June" },
+    { num: "34",       lbl: "Median days on market", delta: "▲ 3 vs June" },
+    { num: "1,284",    lbl: "Active listings",       delta: "▲ 37 this week" },
+    { num: "3.1 mo",   lbl: "Supply",                delta: "as of this morning" }
+  ],
+  art15: "[Art. 15 notice slot — at Build names the actual period per surface: median price + DOM (trailing 90 days), active listings + supply (point-in-time at computation)]"
+} -%}
+<section class="databand" data-sec="databand" aria-label="Market snapshot">
+  <div class="databand__in">
+    <div class="databand__head">
+      <h2>{{ band.title }}</h2>
+      <p class="databand__stamp">{{ band.stamp }}</p>
+    </div>
+    <div class="databand__stats">
+      {%- for s in band.stats %}
+      <div class="stat">
+        <p class="num">{{ s.num }}</p>
+        <p class="lbl">{{ s.lbl }}</p>
+        {%- if s.delta %}<p class="delta">{{ s.delta }}</p>{% endif %}
       </div>
-      <div class="data-band__stat">
-        <dt>Median days on market</dt>
-        <dd>—<span class="stub-note">TODO(wave 2: market_stats)</span></dd>
-      </div>
-      <div class="data-band__stat">
-        <dt>Homes on the market</dt>
-        <dd>—<span class="stub-note">TODO(wave 2: market_stats)</span></dd>
-      </div>
-    </dl>
-    <p class="data-band__updated">Updated <span class="stub-note">[feed-mirror sync timestamp — TODO wave 2]</span> &middot; St. Petersburg, FL &middot; <span class="stub-note">[Stellar Art. 15 derived-analytics notice — TODO wave 2 compliance lane]</span></p>
-    <p class="data-band__credit"><a href="/ai/">Computed and refreshed by Everlane&rsquo;s own studio automation &mdash; see how this site runs &rarr;</a></p>
+      {%- endfor %}
+    </div>
+    <p class="databand__note">SAMPLE FIGURES &mdash; at Build these compute daily from the live Stellar MLS feed &middot; {{ band.art15 }}</p>
+    <p class="databand__credit"><a href="/ai/">Computed and refreshed by Everlane&rsquo;s own studio automation &mdash; see how this site runs &rarr;</a></p>
   </div>
 </section>

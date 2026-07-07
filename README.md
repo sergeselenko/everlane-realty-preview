@@ -1,6 +1,7 @@
 # Everlane Realty — PREVIEW site
 
-**This is the rebuild preview, not the live site.** Engagement #149, Build wave 0 (the rail).
+**This is the rebuild preview, not the live site.** Engagement #149, Build wave 1 (the locked
+design system on the wave-0 rail).
 Every page is `noindex`, robots.txt is disallow-all, and the intake form is rendered disabled.
 Nothing here touches everlanerealty.com.
 
@@ -8,7 +9,9 @@ Nothing here touches everlanerealty.com.
 
 - [Eleventy 3](https://www.11ty.dev/) (plain JS config, Nunjucks templates, zero client-JS by default)
 - Design tokens: `src/_data/tokens.js` → build-generated `/assets/tokens.css`
-  (**placeholder values — awaiting design convergence round 1**, plan §4)
+  (**LOCKED: C · St. Pete Editorial**, operator lock 2026-07-07 — the round-2 rationale §6 lock
+  list + the verify-byline amendment. System faces only; the webfont license is deferred, the
+  plan lives in tokens.js)
 - Build-generated discovery layer: `sitemap.xml`, `robots.txt`, `llms.txt`, per-page JSON-LD
 
 ## Commands

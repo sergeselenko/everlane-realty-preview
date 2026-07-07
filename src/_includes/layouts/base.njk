@@ -44,21 +44,23 @@
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="preview-ribbon" role="note">PREVIEW — rebuild in progress. Not the live site. Forms disabled &middot; not indexable &middot; design tokens are placeholders awaiting convergence round&nbsp;1.</div>
+  <div class="preview-ribbon" role="note">PREVIEW — rebuild in progress. Not the live site. Forms disabled &middot; not indexable &middot; sample data labeled SAMPLE.</div>
 
+  {#- MASTHEAD — locked grammar §2 row 1 (design lock 2026-07-07): commerce-first
+      nav order + Book-a-consult CTA + phone in the mast (the audit §4.4 gap). -#}
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="/">
         <span class="brand__name">Everlane Realty</span>
-        <span class="brand__agent">Serge Osaulenko, REALTOR&reg;</span>
       </a>
       <button class="nav-toggle" aria-label="Menu" aria-expanded="false" data-nav-toggle>&#9776;</button>
       <nav class="nav" data-nav aria-label="Main">
         {%- for item in nav.header %}
         <a href="{{ item.url }}">{{ item.title }}</a>
         {%- endfor %}
-        <a class="btn btn--primary nav__cta" href="{{ nav.headerCta.url }}">{{ nav.headerCta.title }}</a>
+        <a class="nav__cta" href="{{ nav.headerCta.url }}">{{ nav.headerCta.title }}</a>
       </nav>
+      <span class="mast-issue">St. Petersburg, FL &middot; <a href="tel:{{ site.broker.phoneHref }}" style="color:inherit">{{ site.broker.phone }}</a></span>
     </div>
   </header>
 

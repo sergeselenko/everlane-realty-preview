@@ -1,0 +1,19 @@
+{#- Booking band — LOCKED grammar §2 row 10 (approved as-is by the operator's
+    r2 judgment 2: "easy to end up at the bottom… how it is right now is good").
+    Cal.com embeds here at wave 1's staged remainder (plan §2 #9); until then
+    the slots are SAMPLE-labeled inert buttons and the band links to /contact/.
+    Caller may override copy: {% set book = { title, lede } %}. -#}
+{%- set book = book or {
+  title: "Talk to Serge — pick a time",
+  lede: "No form-and-wait. The calendar is live, the consult is free, and the messy version of your situation is the right version to bring."
+} -%}
+<section class="book" data-sec="booking">
+  <h2>{{ book.title }}</h2>
+  <p>{{ book.lede }}</p>
+  <div class="slots" aria-label="Sample available times">
+    <button class="slot" type="button">Wed &middot; 10:30 am</button>
+    <button class="slot" type="button">Wed &middot; 2:00 pm</button>
+    <button class="slot" type="button">Thu &middot; 9:00 am</button>
+  </div>
+  <p class="fine">SAMPLE slots &mdash; the live calendar (Cal.com) embeds here at wave 1. Until then: <a href="/contact/" style="color:inherit">book through the contact page &rarr;</a></p>
+</section>

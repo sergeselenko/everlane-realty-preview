@@ -1,43 +1,38 @@
-{#- Site footer — ported from production index.html (fetched from
-    sergeselenko/everlane-realty-site@main, 2026-07-07), extended to the plan §2
-    IA. Headings use h2 (styled small) — kills the audit §2.5 h3-skip defect. -#}
+{#- Site footer — LOCKED grammar §2 row 10 (design lock 2026-07-07), C's dark
+    editorial footer: brandrow + nav, the bound §4a colophon line, then the
+    compliance grammar with its RESERVED slots (round-2 grade finding 6, now
+    part of the locked grammar): DMCA link (in nav), Equal Housing mark, MLS
+    attribution slot, Fair Housing statement slot (Plan §2 row 11).
+    Studio NAME stays a placeholder pending the operator's naming reconcile
+    (plan §11.5). Headings-free by design (nav landmarks carry structure). -#}
 <footer class="site-footer">
   <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand__name">Everlane Realty</div>
-        <div class="footer-brand__agent">{{ site.broker.name }}, {{ site.broker.title }}</div>
-        <p style="margin-top:12px">
-          {{ site.broker.street }}<br>
-          {{ site.broker.city }}, {{ site.broker.state }} {{ site.broker.zip }}<br>
-          <a href="mailto:{{ site.broker.email }}">{{ site.broker.email }}</a><br>
-          <a href="tel:{{ site.broker.phoneHref }}">{{ site.broker.phone }}</a>
-        </p>
-      </div>
-      <div class="footer">
-        <h2 class="footer-h">Explore</h2>
-        <ul>
-          {%- for item in nav.footerExplore %}
-          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
-          {%- endfor %}
-        </ul>
-      </div>
-      <div class="footer">
-        <h2 class="footer-h">The fine print</h2>
-        <ul>
-          {%- for item in nav.footerFinePrint %}
-          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
-          {%- endfor %}
-          <li>{{ site.mlsAttribution }}</li>
-          <li>License #{{ site.broker.license }}</li>
-        </ul>
-      </div>
+    <div class="footer-brandrow">
+      <span class="b">Everlane Realty</span>
+      <nav class="footer-nav" aria-label="Footer">
+        {%- for item in nav.footerExplore %}
+        <a href="{{ item.url }}">{{ item.title }}</a>
+        {%- endfor %}
+        {%- for item in nav.footerFinePrint %}
+        <a href="{{ item.url }}">{{ item.title }}</a>
+        {%- endfor %}
+      </nav>
     </div>
+    {#- The §4a bound colophon line — exact copy, do not paraphrase. -#}
+    <p class="footer__studio">Run by Everlane&rsquo;s own studio automation <span class="stub-note" title="studio name placeholder — operator naming reconcile pending (plan §11.5)">[studio-name TODO]</span> &mdash; every client-facing decision is the broker&rsquo;s. <a href="/ai/">See how this site runs &rarr;</a></p>
+    <p class="footer__nap">
+      Everlane Realty &middot; {{ site.broker.street }}, {{ site.broker.city }}, {{ site.broker.state }} {{ site.broker.zip }} &middot;
+      <a href="tel:{{ site.broker.phoneHref }}">{{ site.broker.phone }}</a> &middot;
+      <a href="mailto:{{ site.broker.email }}">{{ site.broker.email }}</a> &middot;
+      {{ site.broker.name }}, {{ site.broker.title }} &middot; License #{{ site.broker.license }}
+    </p>
     <div class="footer__legal">
-      <p class="fairhousing"><svg viewBox="0 0 24 24" width="18" height="18" role="img" aria-label="Equal Housing Opportunity logo" focusable="false" style="vertical-align:-3px;margin-right:7px;fill:none;stroke:currentColor;stroke-width:1.5"><path d="M3.5 11 L12 4 L20.5 11"/><path d="M5.5 9.7 V20 H18.5 V9.7"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="16" x2="15" y2="16"/></svg>Equal Housing Opportunity. All information deemed reliable but not guaranteed. We are committed to the letter and spirit of U.S. fair housing law.</p>
-      {#- Studio one-liner slot (plan §2 #8 + §4a loudness DEFAULT: footer line + /ai colophon). Studio NAME is a placeholder pending the operator's naming reconcile (plan §11.5). #}
-      <p class="footer__studio">This site runs on Everlane&rsquo;s own studio automation <span class="stub-note" title="studio name placeholder — operator naming reconcile pending (plan §11.5)">[studio-name TODO]</span> &mdash; data refreshes itself; every client-facing decision is the broker&rsquo;s. <a href="/ai/">See how this site runs &rarr;</a></p>
-      <p>&copy; <span data-year>2026</span> Everlane Realty. {{ site.broker.name }}, {{ site.broker.title }}. Brokerage identification per FREC 61J2&#8209;10.025. MLS listing content is provided by IDX Broker and the participating MLS, and is the property of the MLS.</p>
+      <p><span class="eh">EQUAL HOUSING</span>Equal Housing Opportunity. We are committed to the letter and spirit of U.S. fair housing law.</p>
+      {#- MLS attribution SLOT — interim production text; final Rules 22–24 text + icon land at the wave-2 compliance lane. -#}
+      <p>{{ site.mlsAttribution }} All information deemed reliable but not guaranteed. <span class="stub-note">[final MLS GRID attribution text + icon — wave-2 compliance lane]</span></p>
+      {#- Fair Housing statement SLOT — the bound compliance slot, Plan §2 row 11. -#}
+      <p><span class="stub-note">[Fair Housing statement lands here at Build — bound slot, Plan §2 row 11]</span></p>
+      <p>&copy; <span data-year>2026</span> Everlane Realty. Brokerage identification per FREC 61J2&#8209;10.025. MLS listing content is provided by IDX Broker and the participating MLS, and is the property of the MLS.</p>
     </div>
   </div>
 </footer>

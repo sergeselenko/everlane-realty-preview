@@ -1,25 +1,25 @@
-{#- Listing-card component — WAVE-0 STUB.
-    Consumed at wave 2 by every listing-bearing surface (home featured strip,
-    /search/, neighborhood inventory blocks), rendered from the feed mirror
+{#- Listing-card component — LOCKED editorial card (C, design lock 2026-07-07).
+    Consumed by every listing-bearing surface (home №2 strip, /search/,
+    neighborhood inventory blocks); at wave 2 rendered from the feed mirror
     (Supabase `listings`), never client-fetched.
 
     THE ATTRIBUTION BLOCK IS BAKED IN (MLS GRID IDX Rules 22–24, plan §5):
-    written once here, inherited by every surface — listing brokerage
-    attribution (R22), status display (R23), MLS-source disclaimer + data
-    timestamp (R24). Rendering a listing WITHOUT this block should be
-    impossible by construction.
+    listing brokerage attribution (R22), status display (R23), MLS-source
+    disclaimer + data timestamp (R24). Rendering a listing WITHOUT this block
+    is impossible by construction.
 
     Usage: {% set listing = { … } %}{% include "components/listing-card.njk" %}
-    All fields optional at wave 0; TODO slots render until the mirror exists. -#}
+    `listing.mediaVariant` picks a placeholder gradient (p1/p2/p3) until real
+    media lands at wave 2. All sample data must say so visibly. -#}
 <article class="listing-card">
-  <div class="listing-card__media" role="img" aria-label="Listing photo placeholder">
-    {{ listing.photoNote or "Photo — TODO(wave 2: feed-mirror media refs)" }}
+  <div class="listing-card__media{% if listing.mediaVariant %} listing-card__media--{{ listing.mediaVariant }}{% endif %}" role="img" aria-label="Listing photo placeholder">
+    {{ listing.photoNote or "photo placeholder" }}
   </div>
   <div class="listing-card__body">
     <p class="listing-card__price">{{ listing.price or "$—" }}</p>
-    <p class="listing-card__status">{{ listing.status or "Status: TODO (Active/Pending — Rule 23 display)" }}</p>
-    <p class="listing-card__address">{{ listing.address or "Address — TODO(feed mirror)" }}</p>
-    <p class="listing-card__meta">{{ listing.meta or "beds · baths · sqft — TODO(feed mirror)" }}</p>
+    <p class="listing-card__status">{{ listing.status or "Status — Rule 23 display slot" }}</p>
+    <p class="listing-card__address">{{ listing.address or "Address — feed-mirror slot (wave 2)" }}</p>
+    <p class="listing-card__meta">{{ listing.meta or "beds · baths · sqft — feed-mirror slot (wave 2)" }}</p>
   </div>
   <footer class="listing-card__attribution">
     <p>Listing courtesy of {{ listing.courtesyOf or "[listing brokerage — Rule 22 attribution slot]" }}</p>

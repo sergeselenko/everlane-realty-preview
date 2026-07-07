@@ -220,11 +220,69 @@ for (const r of required) {
   else fail("an HTML form action targets the live intake endpoint");
 }
 
-/* ---- 9 · tokens.css is build-generated with the placeholder marker ---- */
+/* ---- 9 · tokens.css is build-generated and carries the LOCKED system ---- */
 {
   const tokens = fs.readFileSync(path.join(SITE, "assets/tokens.css"), "utf8");
-  if (tokens.includes(":root") && tokens.includes("PLACEHOLDER")) ok("tokens.css generated from data file, marked PLACEHOLDER");
-  else fail("tokens.css missing :root or PLACEHOLDER status marker");
+  if (tokens.includes(":root") && tokens.includes("LOCKED")) ok("tokens.css generated from data file, marked LOCKED");
+  else fail("tokens.css missing :root or LOCKED status marker");
+  if (tokens.includes("PLACEHOLDER")) fail("tokens.css still carries the PLACEHOLDER marker — the system is locked");
+  else ok("tokens.css placeholder marker gone");
+  // The 9 locked palette tokens (C · St. Pete Editorial, rationale §6/§7):
+  const locked = ["#FAFAF6", "#22261F", "#5F6458", "#C98A8F", "#9E4A52", "#3E5C43", "#F1EEE6", "#DDDACE", "#C2C6B8"];
+  const missing = locked.filter((hex) => !tokens.includes(hex));
+  if (!missing.length) ok("all 9 locked palette tokens present in tokens.css");
+  else fail(`locked palette tokens missing from tokens.css: ${missing.join(", ")}`);
+}
+
+/* ---- 10 · WAVE 1: locked homepage grammar order (rationale §2 — BOUND) ---- */
+{
+  const home = fs.readFileSync(path.join(SITE, "index.html"), "utf8");
+  const order = ["hero", "verify", "doors", "databand", "listings", "hoods", "guides", "proof", "booking"];
+  const found = [...home.matchAll(/data-sec="([a-z]+)"/g)].map((m) => m[1]);
+  const filtered = found.filter((s) => order.includes(s));
+  if (JSON.stringify(filtered) === JSON.stringify(order)) {
+    ok(`homepage sections in the locked order: ${order.join(" → ")}`);
+  } else {
+    fail(`homepage section order broken — expected ${order.join(",")} got ${filtered.join(",")}`);
+  }
+  // mast + footer come from the layout on every page:
+  if (home.includes('class="site-header"') && home.includes('class="site-footer"')) ok("mast + footer present on home");
+  else fail("mast or footer missing on home");
+  // The amended verify byline (operator r2 amendment): split block present.
+  if (home.includes('class="verify"') && home.includes("verify__photo") && home.includes("verify__info")) {
+    ok("amended verify byline present (photo/info split block)");
+  } else fail("amended verify byline block missing on home");
+}
+
+/* ---- 11 · WAVE 1: synced-line build-coupling (real sync age or NOTHING) ---- */
+{
+  let leaked = 0;
+  for (const f of htmlFiles) {
+    if (fs.readFileSync(f, "utf8").includes("listings synced")) {
+      fail(`synced line rendered without a real feed value: ${rel(f)}`);
+      leaked++;
+    }
+  }
+  if (!leaked) ok("no 'listings synced' line in built HTML (coupling honored while feed value is null)");
+}
+
+/* ---- 12 · WAVE 1: no external font requests (license DEFERRED, free path) ---- */
+{
+  const cssFiles = [...walk(SITE)].filter((f) => f.endsWith(".css"));
+  let bad = 0;
+  for (const f of cssFiles) {
+    const css = fs.readFileSync(f, "utf8");
+    if (/@font-face/i.test(css)) { fail(`@font-face in built CSS (webfont decision is deferred): ${rel(f)}`); bad++; }
+    if (/url\s*\(/i.test(css)) { fail(`url() in built CSS (no external/asset fetches from CSS): ${rel(f)}`); bad++; }
+  }
+  for (const f of htmlFiles) {
+    const html = fs.readFileSync(f, "utf8");
+    if (/fonts\.googleapis|fonts\.gstatic|use\.typekit|fontspring\.com|myfonts\.com/i.test(html)) {
+      fail(`external font host referenced: ${rel(f)}`);
+      bad++;
+    }
+  }
+  if (!bad) ok(`no @font-face / url() in built CSS, no external font hosts in HTML (${cssFiles.length} css, ${htmlFiles.length} html)`);
 }
 
 console.log(`\n${passes} checks passed, ${failures} failed.`);

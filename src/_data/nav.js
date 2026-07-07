@@ -1,29 +1,31 @@
-/** Header + footer navigation (plan §2 IA — hub-and-spoke, everything ≤2 clicks from home). */
+/** Header + footer navigation (plan §2 IA — hub-and-spoke, everything ≤2 clicks from home).
+ *  Header order is the LOCKED masthead grammar (rationale §2 row 1, lock 2026-07-07):
+ *  Search homes · Home value · Neighborhoods · Guides · About · Book a consult (CTA).
+ *  /market/ stays reachable via the footer (and the data band's context at wave 2). */
 export default {
   header: [
-    { title: "Search Listings", url: "/search/" },
-    { title: "Home Value", url: "/valuation/" },
-    { title: "Market", url: "/market/" },
+    { title: "Search homes", url: "/search/" },
+    { title: "Home value", url: "/valuation/" },
     { title: "Neighborhoods", url: "/neighborhoods/" },
     { title: "Guides", url: "/guides/" },
     { title: "About", url: "/about/" }
   ],
-  headerCta: { title: "Get Started", url: "/contact/" },
+  headerCta: { title: "Book a consult", url: "/contact/" },
   footerExplore: [
-    { title: "Search Listings", url: "/search/" },
-    { title: "What's My Home Worth?", url: "/valuation/" },
-    { title: "Market Data", url: "/market/" },
+    { title: "Search homes", url: "/search/" },
+    { title: "Home value", url: "/valuation/" },
+    { title: "Market data", url: "/market/" },
     { title: "Neighborhoods", url: "/neighborhoods/" },
-    { title: "Buyer & Seller Guides", url: "/guides/" },
+    { title: "Guides", url: "/guides/" },
     { title: "Meet Serge", url: "/team/serge-osaulenko/" },
-    { title: "About Everlane", url: "/about/" },
+    { title: "About", url: "/about/" },
     { title: "Contact", url: "/contact/" }
   ],
   footerFinePrint: [
-    { title: "How this site runs", url: "/ai/" },
-    { title: "Privacy Policy", url: "/privacy/" },
-    { title: "Terms of Use", url: "/terms/" },
+    { title: "Privacy", url: "/privacy/" },
+    { title: "Terms", url: "/terms/" },
     { title: "DMCA", url: "/dmca/" },
-    { title: "Accessibility", url: "/accessibility/" }
+    { title: "Accessibility", url: "/accessibility/" },
+    { title: "/ai — how this site runs", url: "/ai/" }
   ]
 };

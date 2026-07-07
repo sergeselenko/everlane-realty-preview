@@ -5,35 +5,154 @@ permalink: /neighborhoods/old-northeast/
 crumbs:
   - { title: "Neighborhoods", url: "/neighborhoods/" }
 ---
-{#- SAMPLE neighborhood page — the wave-2 chassis: narrative + auto-stat block
-    + flood context + inventory link (plan §2 #5). All content below is
-    STUB/TODO; real narrative comes through the KB pipeline (kb/neighborhoods/
-    old-northeast.md), human-gated. -#}
+{#- NEIGHBORHOOD CHASSIS — THE INTERIOR TEMPLATE (design lock 2026-07-07;
+    rationale §3 organ set, BOUND for every neighborhood page):
+    breadcrumb → editorial hero + author/date byline → stat band (Art. 15
+    per-surface periods slot) → narrative → cost bands + flood box →
+    inventory w/ attribution + synced-line slot → read-next → consult band.
+    The wave-2 tranche (10 neighborhoods, operator ask #5) repeats this file's
+    shape with KB-pipeline content.
 
-<section class="page-hero">
-  <div class="wrap">
-    <p class="eyebrow">Neighborhood guide</p>
-    <h1>Old Northeast</h1>
-    <p class="lede"><span class="stub-note">TODO(wave 2)</span> Narrative lede from the KB pipeline &mdash; what this neighborhood is actually like, from a broker who works it (demonstrated winnable class, R2 §3).</p>
+    CHASSIS RULE — FAIR HOUSING (bound by the round-2 grade, finding 3):
+    narrative organs describe the PLACE — features, distances, housing
+    stock — NEVER the ideal resident. No "who it fits", no "perfect for
+    young families / walkers / retirees". Recast any such draft before it
+    ships. Every future chapter inherits this rule. -#}
+
+{#- breadcrumb is rendered by base.njk (before <main>) from front matter `crumbs` -#}
+<div class="hero-ed" data-sec="hero" style="border-bottom:0">
+  <div class="hero-ed__words">
+    <p class="kicker">The neighborhoods &middot; Chapter 01</p>
+    <h1 class="display">Old Northeast</h1>
+    <p class="sub">Brick streets, granite curbs, hex-block sidewalks &mdash; the city&rsquo;s most-loved grid,
+    and its tightest inventory.</p>
+    {#- E-E-A-T byline organ (R2 §1.4): named author + visible update date. -#}
+    <p class="byline">By <strong>Serge Osaulenko</strong>, Broker &middot; Updated July 7, 2026 &middot;
+    Stats refresh daily, narrative reviewed by the broker</p>
   </div>
-</section>
+  <div class="hero-ed__plate" role="img" aria-label="Photo placeholder — Coffee Pot Bayou in the morning">
+    <p class="plate-note">photo placeholder &mdash; Coffee Pot Bayou, morning</p>
+  </div>
+</div>
 
+{%- set band = {
+  title: "Old Northeast, by the numbers",
+  stamp: "SAMPLE — at Build: computation timestamp",
+  stats: [
+    { num: "$685,000", lbl: "Median sale price",     delta: "last 90 days" },
+    { num: "21",       lbl: "Median days on market", delta: "▼ 4 vs spring" },
+    { num: "43",       lbl: "Active listings",       delta: "▲ 5 this month" },
+    { num: "$418",     lbl: "Median $ / sqft",       delta: "▲ 2.1% YoY" }
+  ],
+  art15: "[Art. 15 notice slot — at Build names the actual period per surface: median price (trailing 90 days), DOM (trailing 90 days), active listings (point-in-time), $/sqft (trailing 12 months)]"
+} %}
 {% include "components/live-data-band.njk" %}
 
-<section class="section">
+<section class="section" data-sec="narrative">
   <div class="wrap">
-    <h2>The story</h2>
-    <div class="stub-block">
-      <p><span class="stub-note">TODO(wave 2)</span> Human-gated narrative: housing stock, streets, who it suits, trade-offs (kb/neighborhoods/old-northeast.md).</p>
-    </div>
-    <h2 style="margin-top:32px">The flood story</h2>
-    <div class="stub-block">
-      <p><span class="stub-note">TODO(wave 2)</span> Flood-zone context per kb/facts/flood.yaml &mdash; FEMA NFHL data + insurance reality, sourced and dated (the flagship guide class, plan §3b #1).</p>
-    </div>
-    <h2 style="margin-top:32px">On the market in Old Northeast</h2>
-    <div class="stub-block">
-      <p><span class="stub-note">TODO(wave 2)</span> Server-rendered listing cards from the feed mirror (components/listing-card.njk) + a saved-search link for this neighborhood.</p>
-      <p><a href="/search/">Search current listings &rarr;</a></p>
+    <div class="sec-head"><div><span class="no">The chapter</span><h2>The lay of the land</h2></div></div>
+    <div class="prose">
+      <p>Old Northeast is the neighborhood people picture when they picture St. Pete: a 1910s&ndash;1920s
+      grid of craftsman bungalows, Mediterranean revivals, and four-square colonials running from
+      downtown&rsquo;s edge to Coffee Pot Bayou. The brick streets and granite curbs aren&rsquo;t a marketing
+      line &mdash; they&rsquo;re city-protected, and they&rsquo;re a big part of why homes here hold value the way
+      they do.</p>
+      <p>What the listings don&rsquo;t tell you: inventory is structurally tight. Most owners stay for
+      decades, tear-downs are rare and contested, and the best blocks trade quietly &mdash; often before
+      a sign goes up. If you&rsquo;re buying here, being ready matters more than being patient.</p>
+      {#- Heading below is the bound recast of the fair-housing finding:
+          describe what living HERE is like (place), never who should live here. -#}
+      <h3>What it&rsquo;s like to live here</h3>
+      <p>Front porches face the street, the waterfront trail is ten minutes on foot, and
+      downtown&rsquo;s restaurants are fifteen. The trade: older homes mean older systems &mdash;
+      insurance, electrical, and sewer laterals belong on the inspection checklist, and the
+      flood box below covers what zone a block sits in before anyone falls in love.</p>
+      <p class="draftnote">DRAFT narrative, shown as sample &mdash; the shipped chapter is produced by the
+      KB pipeline from sourced facts and reviewed by the broker before it publishes (nothing
+      auto-publishes).</p>
     </div>
   </div>
 </section>
+
+<section class="section" data-sec="context" style="padding-top:0">
+  <div class="wrap">
+    <div class="duo">
+      <div class="costbox">
+        <h3>What it costs, honestly</h3>
+        <div class="costrow"><span>Bungalow, interior block (2&ndash;3 bd)</span><span class="v">$550K&ndash;$800K</span></div>
+        <div class="costrow"><span>Renovated four-square / Med revival</span><span class="v">$800K&ndash;$1.6M</span></div>
+        <div class="costrow"><span>Waterfront &amp; Coffee Pot frontage</span><span class="v">$1.5M+</span></div>
+        <p class="fine">SAMPLE RANGES &mdash; at Build these bands compute from closed sales in the
+        Stellar MLS feed for the trailing 12 months (honest ranges, never AVM point estimates &mdash;
+        R3 §3), with the same attribution notice as the stat band above.</p>
+      </div>
+      <div class="floodbox">
+        <span class="f-eyebrow">The flood question</span>
+        <h3>Answered straight, block by block</h3>
+        <p>Much of the interior grid sits in Zone X (flood insurance optional, often smart); the
+        blocks along Coffee Pot Bayou and the open bay carry AE ratings where coverage is required
+        and priced to the elevation certificate. Every listing here should be checked per-address &mdash;
+        we do it on the FEMA flood layer, free, before you offer. (SAMPLE summary &mdash; the per-address
+        lookup ships at Build.)</p>
+        <a href="/guides/flood-zones-insurance-st-pete/">Read the flood &amp; insurance guide &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-sec="listings" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="no">On the market</span><h2>For sale in Old Northeast right now</h2></div>
+      <div>
+        {%- if feed.listingsSyncedAgo %}
+        <span class="synced">listings synced {{ feed.listingsSyncedAgo }} ago</span> &nbsp;
+        {%- endif %}
+        {#- synced-line build-coupling: real feed-watcher value or nothing (rationale §6). -#}
+        <a class="more" href="/search/">Every Old Northeast listing</a>
+      </div>
+    </div>
+    <div class="cards">
+      {%- set listing = { mediaVariant: "p2", price: "$739,000", status: "Active · SAMPLE listing", address: "Old Northeast · 3 bd · 2 ba · 1,720 sqft", meta: "1924 craftsman, interior block — sample data, not a real listing", courtesyOf: "[listing brokerage — Rule 22 attribution slot]", dataTimestamp: "[feed-mirror sync timestamp — Rule 24 slot]" } %}
+      {%- include "components/listing-card.njk" %}
+      {%- set listing = { mediaVariant: "p1", price: "$1,395,000", status: "Active · SAMPLE listing", address: "Old Northeast · 4 bd · 3 ba · 2,610 sqft", meta: "Coffee Pot Bayou frontage · zone AE — sample data, not a real listing", courtesyOf: "[listing brokerage — Rule 22 attribution slot]", dataTimestamp: "[feed-mirror sync timestamp — Rule 24 slot]" } %}
+      {%- include "components/listing-card.njk" %}
+      {%- set listing = { mediaVariant: "p3", price: "$612,500", status: "Active · SAMPLE listing", address: "Old Northeast · 2 bd · 2 ba · 1,380 sqft", meta: "Corner bungalow, detached garage — sample data, not a real listing", courtesyOf: "[listing brokerage — Rule 22 attribution slot]", dataTimestamp: "[feed-mirror sync timestamp — Rule 24 slot]" } %}
+      {%- include "components/listing-card.njk" %}
+    </div>
+  </div>
+</section>
+
+<section class="section" data-sec="readnext" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="no">Keep reading</span><h2>Read next</h2></div></div>
+    <div class="readnext">
+      <article class="guide">
+        <span class="g-eyebrow">The flagship</span>
+        <h3>Flood zones &amp; insurance in St. Pete</h3>
+        <p>Zone by zone, carrier by carrier &mdash; what coverage really costs after the 2024 storms.</p>
+        <a href="/guides/flood-zones-insurance-st-pete/">Read the guide</a>
+      </article>
+      <article class="guide">
+        <span class="g-eyebrow">Neighborhood 02</span>
+        <h3>Snell Isle</h3>
+        <p>The island address next door &mdash; Mediterranean revivals, open water, and the insurance
+        question answered first.</p>
+        <a href="/neighborhoods/">Read the chapter</a>
+      </article>
+      <article class="guide">
+        <span class="g-eyebrow">Selling</span>
+        <h3>Pricing your home honestly</h3>
+        <p>Own here already? What Old Northeast&rsquo;s tight inventory means for your price &mdash; and why
+        the instant estimate misses.</p>
+        <a href="/guides/">Read the guide</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+{%- set book = {
+  title: "Buying or selling in Old Northeast?",
+  lede: "Talk to the broker who wrote the chapter. Fifteen minutes, free, and the messy version of your situation is the right version to bring."
+} %}
+{% include "components/booking-band.njk" %}
