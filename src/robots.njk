@@ -3,11 +3,15 @@ permalink: /robots.txt
 layout: false
 eleventyExcludeFromCollections: true
 ---
-{#- BUILD-GENERATED. PREVIEW POLICY: disallow-all — this preview must never be
-    crawled (belt) on top of per-page noindex (suspenders). The production
-    robots.txt (open to GPTBot/ClaudeBot/PerplexityBot deliberately — plan §3c)
-    is a wave-4 cutover artifact, not this file with a flag flipped. -#}
+{#- BUILD-GENERATED. PREVIEW POLICY: disallow-all. NOTE the interaction (audit
+    §2.1, gap-finder wave-0 finding 1): disallow-all means crawlers never fetch
+    pages, so the per-page noindex meta is unreadable — the two mechanisms
+    partially fight. Both are kept because the charter demands both, but this
+    file deliberately does NOT advertise the sitemap (no URL list handed to
+    crawlers on a containment-first preview). sitemap.xml still builds — it is
+    plumbing proof + a check target, consumed at wave-4, not advertised here.
+    The production robots.txt (open to GPTBot/ClaudeBot/PerplexityBot
+    deliberately — plan §3c) is a wave-4 cutover artifact, not this file with
+    a flag flipped. -#}
 User-agent: *
 Disallow: /
-
-Sitemap: {{ site.url }}/sitemap.xml

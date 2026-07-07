@@ -10,11 +10,15 @@
 import fs from "node:fs";
 import path from "node:path";
 import { XMLValidator } from "fast-xml-parser";
+import siteData from "../src/_data/site.js";
 
 const SITE = path.resolve(process.cwd(), "_site");
+// Deliberately a pinned literal (NOT read from the source it checks): if the
+// site's endpoint ever changes, this check must fail LOUDLY so the change is
+// re-reviewed against the never-POST / preserved-endpoint charter constraint.
 const INTAKE_ENDPOINT = "https://selenko.app.n8n.cloud/webhook/intake-everlane";
-// Must mirror src/_data/site.js — sitemap <loc> URLs are absolute against this base.
-const SITE_URL = (process.env.SITE_URL || "https://sergeselenko.github.io/everlane-realty-preview").replace(/\/$/, "");
+// Single-sourced from src/_data/site.js — sitemap <loc> URLs are absolute against this base.
+const SITE_URL = siteData.url;
 const BASE_PATH = new URL(SITE_URL + "/").pathname; // e.g. "/everlane-realty-preview/"
 
 let failures = 0;
