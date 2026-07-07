@@ -64,6 +64,7 @@ export default {
     "c-pinkdeep": "#9E4A52", // deep pink — kickers/eyebrows on light grounds (AA-passing rung)
     "c-palm": "#3E5C43", // palm — links, labels, primary button, booking band
     "c-paper": "#F1EEE6", // paper card ground
+    "c-paper-deep": "#E9E5D9", // deepened paper rung — card fills that must read against the gallery ground (operator feedback 7/7: hood cards blended in). AA on this ground, computed: ink 12.2 · sub 4.83 · palm 5.92 · pinkdeep 4.69 — all pass
     "c-line": "#DDDACE", // hairlines / borders
     "c-dark-sub": "#C2C6B8", // secondary text on dark (ink) grounds — incl. delta lines
 

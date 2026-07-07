@@ -136,7 +136,9 @@ p { margin: 0 0 1em; }
    HERO (locked grammar §2 row 2) + the AMENDED verify byline (row 3)
    ========================================================================== */
 .hero-ed { display: grid; grid-template-columns: 1.15fr .85fr; border-bottom: 1px solid var(--c-line); }
-.hero-ed__words { padding: 48px 36px 44px; }
+/* words column aligns to the PAGE GRID: left inset = the .wrap's content edge
+   (operator feedback 7/7: hero sat at the viewport edge, off the site grid) */
+.hero-ed__words { padding: 48px 36px 44px max(36px, calc((100vw - var(--wrap)) / 2 + 32px)); }
 @media (max-width: 600px) { .hero-ed__words { padding: 36px 20px 36px; } }
 .display {
   font-family: var(--font-display);
@@ -317,7 +319,7 @@ p { margin: 0 0 1em; }
    NEIGHBORHOOD STORIES (locked grammar §2 row 7)
    ========================================================================== */
 .stories { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border: 1px solid var(--c-line); }
-.story { padding: 26px 28px 30px; border-right: 1px solid var(--c-line); background: var(--c-bg); }
+.story { padding: 26px 28px 30px; border-right: 1px solid var(--c-line); background: var(--c-paper-deep); }
 .story:last-child { border-right: 0; }
 .story .n {
   font-family: var(--font-display);
@@ -372,13 +374,16 @@ p { margin: 0 0 1em; }
 /* ==========================================================================
    PROOF BLOCK (locked grammar §2 row 9 — the deep verify layer)
    ========================================================================== */
-.proof { display: grid; grid-template-columns: 280px 1fr; gap: 34px; align-items: start; }
+.proof { display: grid; grid-template-columns: 280px 1fr; gap: 34px; align-items: stretch; }
 @media (max-width: 760px) { .proof { grid-template-columns: 1fr; } }
 .proof__photo {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 3 / 4; /* stacked/mobile fallback */
   background: linear-gradient(165deg, #E4DFD2, #D3CBB8);
   border: 1px solid var(--c-line); position: relative;
 }
+/* desktop: the photo tracks the text column's height — same size as its
+   neighbor, growing with future testimonials (operator feedback 7/7) */
+@media (min-width: 761px) { .proof__photo { aspect-ratio: auto; height: 100%; min-height: 300px; } }
 .proof__photo small {
   position: absolute; bottom: 12px; left: 14px; right: 14px;
   font-size: .72rem; font-style: italic; color: var(--c-ink);
