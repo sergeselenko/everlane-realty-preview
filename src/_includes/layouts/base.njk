@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {% endif %}Everlane Realty — PREVIEW</title>
+  <meta name="description" content="{{ description or site.description }}">
+  {#- PREVIEW: unconditional noindex on EVERY page — the preview must never be indexable (charter hard requirement). The production flip is a wave-4 go-live decision, not a toggle here. #}
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="Everlane Realty">
+  <meta property="og:title" content="{{ title or site.name }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  {#- og:image TODO(wave 1): script-E submark / OG card lands with the identity (plan §2 plumbing, §8.1 wave 1) #}
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  {%- if preconnect %}{% for h in preconnect %}
+  <link rel="preconnect" href="{{ h }}">{% endfor %}{% endif %}
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/styles.css">
+  {#- ---- JSON-LD emission hooks: pages opt in via front matter `jsonld: [name, …]` (templates in _includes/jsonld/) ---- #}
+  {%- if jsonld %}{% for schema in jsonld %}
+  <script type="application/ld+json">{% include "jsonld/" + schema + ".njk" %}</script>
+  {%- endfor %}{% endif %}
+  {#- ---- BreadcrumbList JSON-LD: auto-emitted for any page declaring `crumbs` (matches the visible breadcrumb component) ---- #}
+  {%- if crumbs %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}/" }
+      {%- for c in crumbs %},
+      { "@type": "ListItem", "position": {{ loop.index + 1 }}, "name": "{{ c.title | safe }}", "item": "{{ site.url }}{{ c.url }}" }
+      {%- endfor %},
+      { "@type": "ListItem", "position": {{ crumbs.length + 2 }}, "name": "{{ title | safe }}", "item": "{{ site.url }}{{ page.url }}" }
+    ]
+  }
+  </script>
+  {%- endif %}
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="preview-ribbon" role="note">PREVIEW — rebuild in progress. Not the live site. Forms disabled &middot; not indexable &middot; design tokens are placeholders awaiting convergence round&nbsp;1.</div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <span class="brand__name">Everlane Realty</span>
+        <span class="brand__agent">Serge Osaulenko, REALTOR&reg;</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" data-nav-toggle>&#9776;</button>
+      <nav class="nav" data-nav aria-label="Main">
+        {%- for item in nav.header %}
+        <a href="{{ item.url }}">{{ item.title }}</a>
+        {%- endfor %}
+        <a class="btn btn--primary nav__cta" href="{{ nav.headerCta.url }}">{{ nav.headerCta.title }}</a>
+      </nav>
+    </div>
+  </header>
+
+  {%- if crumbs %}
+  {% include "components/breadcrumb.njk" %}
+  {%- endif %}
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  {% include "components/footer.njk" %}
+
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

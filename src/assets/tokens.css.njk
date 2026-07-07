@@ -1,0 +1,20 @@
+---
+permalink: /assets/tokens.css
+layout: false
+eleventyExcludeFromCollections: true
+---
+/* ==========================================================================
+   DESIGN TOKENS — BUILD-GENERATED from src/_data/tokens.js. DO NOT EDIT.
+   STATUS: {{ tokens._status }}
+   ========================================================================== */
+:root {
+{%- for name, value in tokens.colors %}
+  --{{ name }}: {{ value | safe }};
+{%- endfor %}
+{%- for name, value in tokens.type %}
+  --{{ name }}: {{ value | safe }};
+{%- endfor %}
+{%- for name, value in tokens.layout %}
+  --{{ name }}: {{ value | safe }};
+{%- endfor %}
+}

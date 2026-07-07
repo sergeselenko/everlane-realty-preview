@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+
+# build output (regenerated every build — never committed)
+_site/
+
+# environment / secrets (none should ever exist in this repo)
+.env
+.env.*
+
+# OS noise
+.DS_Store
+*.log

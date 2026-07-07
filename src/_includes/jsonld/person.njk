@@ -1,0 +1,28 @@
+{#- Person JSON-LD for /team/serge-osaulenko/ (plan §2: license, sameAs
+    corroboration stack — the winners' pattern, R2 §1.2). TODO slots land at
+    wave 1 with the proof surface. -#}
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ site.broker.name }}",
+  "jobTitle": "{{ site.broker.title }}",
+  "url": "{{ site.url }}/team/serge-osaulenko/",
+  "worksFor": {
+    "@type": "RealEstateAgent",
+    "name": "Everlane Realty",
+    "url": "{{ site.url }}/"
+  },
+  "telephone": "+1-727-490-8037",
+  "email": "{{ site.broker.email }}",
+  "identifier": "FL Real Estate Broker License #{{ site.broker.license }}",
+  "knowsLanguage": [
+    { "@type": "Language", "name": "English" },
+    { "@type": "Language", "name": "Russian" }
+  ],
+  "image": "TODO(wave 1): headshot URL (received 2026-07-07, ships with proof surface)",
+  "sameAs": [
+    "TODO(wave 1): LinkedIn URL",
+    "TODO(wave 1): Zillow profile URL",
+    "TODO(wave 1): FL DBPR license-lookup URL"
+  ]
+}

@@ -1,0 +1,23 @@
+{#- Article JSON-LD for guide pages (plan §2: named human author E-E-A-T —
+    R2 §1.4). Dates are TODO until the wave-2 content tranche publishes real
+    guides through the KB pipeline. -#}
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ title | safe }}",
+  "description": "{{ description | safe }}",
+  "url": "{{ site.url }}{{ page.url }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.broker.name }}",
+    "jobTitle": "{{ site.broker.title }}",
+    "url": "{{ site.url }}/team/serge-osaulenko/"
+  },
+  "publisher": {
+    "@type": "RealEstateAgent",
+    "name": "Everlane Realty",
+    "url": "{{ site.url }}/"
+  },
+  "datePublished": "TODO(wave 2: KB pipeline publish date)",
+  "dateModified": "TODO(wave 2: KB pipeline last-verified date)"
+}

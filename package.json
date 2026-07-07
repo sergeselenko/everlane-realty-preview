@@ -1,0 +1,17 @@
+{
+  "name": "everlane-realty-preview",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Everlane Realty rebuild — PREVIEW site (engagement #149, Build wave 0: the rail). Not the live site: noindex everywhere, robots disallow-all, forms disabled.",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "check": "npm run build && node scripts/check.mjs",
+    "clean": "rm -rf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.0",
+    "fast-xml-parser": "^5.0.0"
+  }
+}

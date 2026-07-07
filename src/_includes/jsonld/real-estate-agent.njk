@@ -1,0 +1,36 @@
+{#- RealEstateAgent JSON-LD (plan §2 entity/schema layer, W1).
+    Confirmed data from production; TODO slots filled at wave 1 by the
+    Content/KB Engineer + Proof/Trust Curator. NO listing schema until the
+    compliance lane clears it (R2 §1.2 caveat). -#}
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Everlane Realty",
+  "url": "{{ site.url }}/",
+  "telephone": "+1-727-490-8037",
+  "email": "{{ site.broker.email }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ site.broker.street }}",
+    "addressLocality": "{{ site.broker.city }}",
+    "addressRegion": "{{ site.broker.state }}",
+    "postalCode": "{{ site.broker.zip }}",
+    "addressCountry": "US"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "St. Petersburg, FL" },
+    { "@type": "AdministrativeArea", "name": "Tampa Bay, FL — TODO(wave 1: confirm service-area list with operator)" }
+  ],
+  "sameAs": [
+    "TODO(wave 1): Google Business Profile URL",
+    "TODO(wave 1): Zillow profile URL",
+    "TODO(wave 1): LinkedIn URL",
+    "TODO(wave 1): FL DBPR license-lookup URL"
+  ],
+  "employee": {
+    "@type": "Person",
+    "name": "{{ site.broker.name }}",
+    "jobTitle": "{{ site.broker.title }}",
+    "identifier": "FL License #{{ site.broker.license }}"
+  }
+}

@@ -1,0 +1,28 @@
+{#- Listing-card component — WAVE-0 STUB.
+    Consumed at wave 2 by every listing-bearing surface (home featured strip,
+    /search/, neighborhood inventory blocks), rendered from the feed mirror
+    (Supabase `listings`), never client-fetched.
+
+    THE ATTRIBUTION BLOCK IS BAKED IN (MLS GRID IDX Rules 22–24, plan §5):
+    written once here, inherited by every surface — listing brokerage
+    attribution (R22), status display (R23), MLS-source disclaimer + data
+    timestamp (R24). Rendering a listing WITHOUT this block should be
+    impossible by construction.
+
+    Usage: {% set listing = { … } %}{% include "components/listing-card.njk" %}
+    All fields optional at wave 0; TODO slots render until the mirror exists. -#}
+<article class="listing-card">
+  <div class="listing-card__media" role="img" aria-label="Listing photo placeholder">
+    {{ listing.photoNote or "Photo — TODO(wave 2: feed-mirror media refs)" }}
+  </div>
+  <div class="listing-card__body">
+    <p class="listing-card__price">{{ listing.price or "$—" }}</p>
+    <p class="listing-card__status">{{ listing.status or "Status: TODO (Active/Pending — Rule 23 display)" }}</p>
+    <p class="listing-card__address">{{ listing.address or "Address — TODO(feed mirror)" }}</p>
+    <p class="listing-card__meta">{{ listing.meta or "beds · baths · sqft — TODO(feed mirror)" }}</p>
+  </div>
+  <footer class="listing-card__attribution">
+    <p>Listing courtesy of {{ listing.courtesyOf or "[listing brokerage — Rule 22 attribution slot]" }}</p>
+    <p>Listing data courtesy of Stellar MLS as distributed by MLS GRID. All information deemed reliable but not guaranteed. Data last updated: {{ listing.dataTimestamp or "[feed-mirror sync timestamp — Rule 24 slot]" }}</p>
+  </footer>
+</article>
