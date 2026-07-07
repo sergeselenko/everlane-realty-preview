@@ -239,11 +239,11 @@ for (const r of required) {
   const home = fs.readFileSync(path.join(SITE, "index.html"), "utf8");
   const order = ["hero", "verify", "doors", "databand", "listings", "hoods", "guides", "proof", "booking"];
   const found = [...home.matchAll(/data-sec="([a-z]+)"/g)].map((m) => m[1]);
-  const filtered = found.filter((s) => order.includes(s));
-  if (JSON.stringify(filtered) === JSON.stringify(order)) {
-    ok(`homepage sections in the locked order: ${order.join(" → ")}`);
+  // Exact match, no filtering: a rogue/unexpected data-sec on home is a grammar break too.
+  if (JSON.stringify(found) === JSON.stringify(order)) {
+    ok(`homepage sections in the locked order, no rogue sections: ${order.join(" → ")}`);
   } else {
-    fail(`homepage section order broken — expected ${order.join(",")} got ${filtered.join(",")}`);
+    fail(`homepage section order broken — expected exactly ${order.join(",")} got ${found.join(",")}`);
   }
   // mast + footer come from the layout on every page:
   if (home.includes('class="site-header"') && home.includes('class="site-footer"')) ok("mast + footer present on home");
@@ -254,16 +254,31 @@ for (const r of required) {
   } else fail("amended verify byline block missing on home");
 }
 
-/* ---- 11 · WAVE 1: synced-line build-coupling (real sync age or NOTHING) ---- */
+/* ---- 11 · WAVE 1: synced-line build-coupling (real sync age or NOTHING) ----
+   The honesty-line organ is "listings synced <age> ago". Case-insensitive, and
+   gated on the feed value: while feed.listingsSyncedAgo is null the line must
+   appear NOWHERE; once wave 2 wires a real value, the line must render it.
+   (The /ai/ colophon's "Listings synced today" COUNTER label is a different
+   organ — a wave-3 live counter, no age claim — and is deliberately not
+   matched by the "… ago" pattern.) */
 {
-  let leaked = 0;
-  for (const f of htmlFiles) {
-    if (fs.readFileSync(f, "utf8").includes("listings synced")) {
-      fail(`synced line rendered without a real feed value: ${rel(f)}`);
-      leaked++;
+  const feed = (await import("../src/_data/feed.js")).default;
+  const syncedRe = /listings synced\s+\S[^<]*\bago\b/i;
+  if (feed.listingsSyncedAgo == null) {
+    let leaked = 0;
+    for (const f of htmlFiles) {
+      if (syncedRe.test(fs.readFileSync(f, "utf8"))) {
+        fail(`synced line rendered without a real feed value: ${rel(f)}`);
+        leaked++;
+      }
     }
+    if (!leaked) ok("no 'listings synced … ago' line in built HTML (coupling honored while feed value is null)");
+  } else {
+    const home = fs.readFileSync(path.join(SITE, "index.html"), "utf8");
+    if (home.includes(`listings synced ${feed.listingsSyncedAgo} ago`)) {
+      ok(`synced line renders the real feed value (${feed.listingsSyncedAgo})`);
+    } else fail("feed.listingsSyncedAgo is set but the synced line does not render it on home");
   }
-  if (!leaked) ok("no 'listings synced' line in built HTML (coupling honored while feed value is null)");
 }
 
 /* ---- 12 · WAVE 1: no external font requests (license DEFERRED, free path) ---- */

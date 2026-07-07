@@ -159,13 +159,11 @@ p { margin: 0 0 1em; }
   font-size: .72rem; color: var(--c-ink); font-style: italic; margin: 0;
 }
 
-/* THE VERIFY BYLINE — REBUILT PER THE OPERATOR'S r2 AMENDMENT.
-   His verdict: concept approved (small photo + small info), execution
-   rejected ("a lot of white space… feels as if it doesn't belong").
-   The rebuild: ONE bordered strip, split 25% / 75% (inside his named
-   20–30% range) — the photo fills its cell edge-to-edge (no chip floating
-   in whitespace), the info sits right in a tight stack, padding minimal.
-   The block reads as a deliberate signature card, not a leftover. */
+/* THE VERIFY BYLINE — rebuilt per the r2 design amendment: ONE bordered
+   strip, split 25% / 75% (inside the specified 20–30% range) — the photo
+   fills its cell edge-to-edge (no chip floating in whitespace), the info
+   sits right in a tight stack, padding minimal. The block reads as a
+   deliberate signature card. */
 .verify {
   display: grid;
   grid-template-columns: 25% 1fr; /* the amendment: photo = 25% of the block's left */

@@ -16,8 +16,13 @@
  * TYPE — system faces with honest fallbacks (NO webfont ships in this build):
  *   display  = Avenir Next Condensed (Apple system face). Windows/Android
  *              visitors currently see Arial Narrow / a narrow grotesque —
- *              the identity forks by OS, stated in rationale §5.2 and
- *              accepted by the operator at the lock.
+ *              the identity forks by OS (rationale §5.2). This fork is
+ *              INTERIM, not accepted: the r2 verdict binds the free path as
+ *              system faces PLUS a free close-alternative webfont for
+ *              non-Apple devices, CHOSEN ON PREVIEW — that choosing moment
+ *              (candidates staged on a branch preview, self-hosted) is a
+ *              named wave-1/2 staged item, and the raw fallback is what the
+ *              Android review below will show until it lands.
  *   body     = Charter (Apple system face) → Bitstream Charter (Linux) →
  *              Iowan Old Style → Georgia.
  *
