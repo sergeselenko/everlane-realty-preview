@@ -1,0 +1,18 @@
+---
+permalink: /sitemap.xml
+layout: false
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+{#- BUILD-GENERATED on every deploy from collections.all — never hand-placed.
+    This kills the production "declared in robots.txt but 404" defect class
+    permanently (audit §2.2): a page that builds is in the sitemap; a page
+    that doesn't build isn't. 404.html and plumbing are collection-excluded. -#}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for p in collections.all %}
+  <url>
+    <loc>{{ site.url }}{{ p.url }}</loc>
+    <lastmod>{{ p.date | isoDate }}</lastmod>
+  </url>
+{%- endfor %}
+</urlset>

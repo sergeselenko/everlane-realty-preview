@@ -1,0 +1,22 @@
+---
+title: "Page Not Found"
+description: "That page doesn't exist — here's where to go instead."
+permalink: /404.html
+eleventyExcludeFromCollections: true
+---
+{#- 404 with navigation utility (audit #34: the production 404 is branded but
+    bare). GitHub Pages serves /404.html automatically. Excluded from
+    collections → never in sitemap.xml or llms.txt. -#}
+<section class="section">
+  <div class="wrap center" style="max-width:640px">
+    <p class="eyebrow">404</p>
+    <h1>That page isn&rsquo;t here.</h1>
+    <p class="lede center">It may have moved in the rebuild &mdash; here&rsquo;s where to go:</p>
+    <div class="hero__ctas" style="justify-content:center;margin-top:20px">
+      <a class="btn btn--dark" href="/">Home</a>
+      <a class="btn btn--dark" href="/search/">Search listings</a>
+      <a class="btn btn--dark" href="/valuation/">Home value</a>
+      <a class="btn btn--dark" href="/contact/">Contact Serge</a>
+    </div>
+  </div>
+</section>

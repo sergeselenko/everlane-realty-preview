@@ -1,0 +1,13 @@
+---
+permalink: /robots.txt
+layout: false
+eleventyExcludeFromCollections: true
+---
+{#- BUILD-GENERATED. PREVIEW POLICY: disallow-all — this preview must never be
+    crawled (belt) on top of per-page noindex (suspenders). The production
+    robots.txt (open to GPTBot/ClaudeBot/PerplexityBot deliberately — plan §3c)
+    is a wave-4 cutover artifact, not this file with a flag flipped. -#}
+User-agent: *
+Disallow: /
+
+Sitemap: {{ site.url }}/sitemap.xml

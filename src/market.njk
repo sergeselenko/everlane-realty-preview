@@ -1,0 +1,29 @@
+---
+title: "St. Petersburg Market Data"
+description: "Auto-computed St. Petersburg housing market stats — median price, days on market, inventory — refreshed by Everlane's own automation, with a monthly broker narrative."
+crumbs: []
+---
+{#- /market/ — plan §2 #4: the city market hub. Wave 2 wires the feed mirror's
+    market_stats (computed by SQL, never by a model) + the monthly narrative
+    (human-gated) + the Stellar Art. 15 derived-analytics notice. -#}
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">The numbers, current</p>
+    <h1>St. Petersburg market data</h1>
+    <p class="lede">Auto-computed from the MLS feed and refreshed continuously &mdash; with a monthly plain-language read from the broker, not a syndicated report.</p>
+  </div>
+</section>
+
+{% include "components/live-data-band.njk" %}
+
+<section class="section">
+  <div class="wrap">
+    <h2>Monthly narrative</h2>
+    <div class="stub-block">
+      <p><span class="stub-note">TODO(wave 2)</span> Monthly market narrative &mdash; drafted from computed stats via the KB pipeline, human-gated (one PR, broker merge), never auto-published (plan §3d).</p>
+      <p><span class="stub-note">TODO(wave 2)</span> Stat time-series blocks per period &times; geo (feed mirror `market_stats`).</p>
+      <p><span class="stub-note">TODO(wave 2, compliance lane)</span> Stellar Art. 15 derived-analytics notice + visible computation timestamp on every stats surface.</p>
+    </div>
+  </div>
+</section>

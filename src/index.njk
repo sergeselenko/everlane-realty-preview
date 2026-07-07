@@ -1,0 +1,107 @@
+---
+title: "Find Your Next Home | Serge Osaulenko"
+description: "Search every home for sale in St. Petersburg & Tampa Bay, get new-listing alerts the moment they hit, and find out what your home is worth — with Serge Osaulenko at Everlane Realty."
+jsonld: ["real-estate-agent"]
+preconnect:
+  - "https://everlanerealty.idxbroker.com"
+  - "https://middleware.idxbroker.com"
+---
+{#- HOME — production content ported verbatim from sergeselenko/everlane-realty-site@main
+    index.html (fetched 2026-07-07) as the wave-0 starting skeleton; header/footer
+    now come from the layout; intake links remapped to the plan §2 IA
+    (/contact/, /valuation/). The live-data band stub is added per plan §2 #1.
+    Wave 2 replaces the IDX featured carousel with server-rendered listing
+    cards from the feed mirror; wave 3 restyles everything at convergence. -#}
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--accent)">St. Petersburg &amp; Tampa Bay</p>
+    <h1>Find your next home in St. Petersburg &mdash; the moment it hits the market.</h1>
+    <p>Search every active listing across Tampa Bay, save your search, and get alerted before the rest of the market sees it. Real MLS data, no middleman &mdash; with a local Realtor who actually picks up the phone.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary" href="#search">Search the map</a>
+      <a class="btn btn--ghost" href="/contact/">Talk to Serge</a>
+    </div>
+  </div>
+</section>
+
+{% include "components/live-data-band.njk" %}
+
+<section class="section section--mist" id="search">
+  <div class="wrap">
+    <p class="eyebrow">Every home on the market</p>
+    <h2>Search by map, city, or ZIP</h2>
+    <p class="lede">Live MLS listings, updated continuously. Pan the map, filter, and save what you find &mdash; saving a search is how you turn on new-listing alerts.</p>
+    <p><a href="/search/">Prefer a full page? Open the search page &rarr;</a></p>
+    <div class="idx-slot" id="idx-widget-search" style="margin-top:22px;min-height:520px;padding:0;border-style:solid">
+      <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-152208" src="https://everlanerealty.idxbroker.com/idx/widgets/152208"></script>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Fresh on the market</p>
+    <h2>Featured &amp; just-listed homes</h2>
+    <p class="lede">Hand-picked active listings, updated automatically from the MLS.</p>
+    <div class="idx-slot" id="idx-widget-featured" style="margin-top:22px;padding:0;border-style:solid">
+      <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-152207" src="https://everlanerealty.idxbroker.com/idx/widgets/152207"></script>
+    </div>
+    {#- Wave 2: this carousel is replaced by server-rendered static listing cards
+        (components/listing-card.njk) fed by the feed mirror — AI-crawler-visible
+        HTML per R2 §2. Attribution text below ported from production; final
+        MLS GRID text + icon confirm is a wave-2 compliance-lane item. #}
+    <p style="font-size:.82rem;color:var(--slate);text-align:center;margin-top:18px">
+      Listings courtesy of Stellar MLS as distributed by MLS GRID. Listing data is updated multiple times daily, direct from Stellar MLS.
+    </p>
+  </div>
+</section>
+
+<section class="section section--mist" id="alerts">
+  <div class="wrap">
+    <div class="grid grid--2" style="align-items:center">
+      <div>
+        <p class="eyebrow">Never miss the right one</p>
+        <h2>Get new listings the day they hit &mdash; free.</h2>
+        <p class="lede">Run a search above, then <strong>save it</strong> &mdash; we'll email you the moment a matching home comes on the market. Save searches, track price changes, and favorite homes, all in one free account.</p>
+        <p style="font-size:.9rem;color:var(--slate)">Saving a search creates your free account and your consent to receive listing alerts. Unsubscribe anytime, one click.</p>
+      </div>
+      <div class="card" id="idx-widget-register">
+        <strong>Save your search, get the alerts</strong>
+        <p style="margin-top:8px;color:var(--slate)">Search the map, then hit save &mdash; you'll get an email the moment a new match lists. Creating your free account takes a few seconds.</p>
+        {#- Wave 1 (staged remainder, needs IDX access): the third widget —
+            saved-search signup — mounts HERE, closing audit P0-3/#4. #}
+        <p><span class="stub-note">TODO(wave 1): IDX saved-search signup widget mounts here (ask #1)</span></p>
+        <a class="btn btn--primary btn--block" href="#search" style="margin-top:14px">Start searching</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="card grid grid--2" style="align-items:center;box-shadow:var(--shadow)">
+      <div>
+        <p class="eyebrow">Thinking about your own place?</p>
+        <h2>What&rsquo;s your home worth right now?</h2>
+        <p>The market has moved. Get a real, current read on your home&rsquo;s value and your equity picture &mdash; a broker's market opinion (a CMA), no obligation, no pressure. Whether you're curious, weighing a sale, or just want the number, I'll put together an honest assessment.</p>
+      </div>
+      <div style="text-align:center">
+        <a class="btn btn--dark btn--block" href="/valuation/">Get my home value</a>
+        <p style="font-size:.82rem;color:var(--slate);margin-top:12px">A short request &mdash; I follow up personally. A market opinion (CMA), not an appraisal or an automated valuation funnel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-band">
+  <div class="wrap center">
+    <p class="eyebrow" style="color:var(--accent)">No-pressure, genuinely useful</p>
+    <h2>Want a real plan for your move?</h2>
+    <p class="lede center" style="color:rgba(255,255,255,.85)">Tell me your situation &mdash; buying, selling, or just figuring out your options &mdash; and I'll come back with a clear, honest plan. Not a sales pitch.</p>
+    <div style="margin-top:24px">
+      <a class="btn btn--primary" href="/contact/">Start with a few quick questions</a>
+    </div>
+    <p style="font-size:.82rem;color:rgba(255,255,255,.6);margin-top:16px">Prefer to just talk? Email <a href="mailto:serge@everlanerealty.com">serge@everlanerealty.com</a>.</p>
+  </div>
+</section>

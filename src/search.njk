@@ -1,0 +1,48 @@
+---
+title: "Search St. Petersburg & Tampa Bay Listings"
+description: "Every active MLS listing across St. Petersburg and Tampa Bay — search by map, city, or ZIP, and save your search for new-listing alerts."
+crumbs: []
+preconnect:
+  - "https://everlanerealty.idxbroker.com"
+  - "https://middleware.idxbroker.com"
+---
+{#- /search/ — plan §2 #2: the branded page hosting the IDX map widget.
+    Wave-1 staged remainder (needs IDX access, ask #1): register the Dynamic
+    Wrapper so vendor pages carry Everlane chrome; mount the third
+    (saved-search signup) widget. NO wrapper/widget registration happens at
+    wave 0 — read-only constraint. -#}
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Every home on the market</p>
+    <h1>Search listings</h1>
+    <p class="lede">Live MLS listings for St. Petersburg &amp; Tampa Bay, updated continuously. Save a search to turn on new-listing alerts.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:10px">
+  <div class="wrap">
+    <div class="idx-slot" id="idx-widget-search-page" style="min-height:520px;padding:0;border-style:solid">
+      <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-152208" src="https://everlanerealty.idxbroker.com/idx/widgets/152208"></script>
+    </div>
+    <p class="idx-note" style="margin-top:14px"><span class="stub-note">TODO(wave 1)</span> Dynamic Wrapper registration: listing clicks currently exit to vendor-chrome pages; after registration they carry Everlane chrome end-to-end (audit §0.3, staged remainder — fires when IDX access lands).</p>
+  </div>
+</section>
+
+<section class="section section--mist">
+  <div class="wrap">
+    <p class="eyebrow">Component stub</p>
+    <h2>Server-rendered listing cards (wave 2)</h2>
+    <p class="lede">At wave 2 the feed mirror renders listing cards as static HTML &mdash; AI-crawler-visible, with MLS GRID Rules 22&ndash;24 attribution baked into the component. A demo instance of the component:</p>
+    {% set listing = {
+      price: "$724,900",
+      status: "Active",
+      address: "1234 Demo Ave NE, St. Petersburg, FL 33701",
+      meta: "3 bd · 2 ba · 1,842 sqft",
+      photoNote: "DEMO CARD — placeholder data, not a real listing",
+      courtesyOf: "[listing brokerage — Rule 22 attribution slot]",
+      dataTimestamp: "[feed-mirror sync timestamp — Rule 24 slot]"
+    } %}
+    {% include "components/listing-card.njk" %}
+  </div>
+</section>

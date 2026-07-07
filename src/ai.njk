@@ -1,0 +1,39 @@
+---
+title: "How This Site Runs"
+description: "The colophon: how Everlane Realty's site runs itself — the data pipeline, what the automation does, what the broker decides, and the live receipts."
+crumbs: []
+---
+{#- /ai/ — plan §2 #10: the colophon (R3 §5 — receipts, not claims; verified
+    first-mover space). Live counters wire at wave 3 (Concierge/AI Engineer);
+    the pipeline diagram + copy land with them. Loudness dial: DEFAULT
+    (plan §4a) — this page is the label's receipt. -#}
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">The receipts</p>
+    <h1>How this site runs</h1>
+    <p class="lede">This site is operated by Everlane&rsquo;s own studio automation <span class="stub-note">[studio-name TODO — plan §11.5]</span>. The data refreshes itself; the pages regenerate on every deploy; every client-facing decision is the broker&rsquo;s. Here&rsquo;s exactly how.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:10px">
+  <div class="wrap">
+    <h2>The pipeline</h2>
+    <div class="stub-block">
+      <p><span class="stub-note">TODO(wave 3)</span> Pipeline diagram: MLS feed &rarr; mirror (4h sync, 12h rule floor) &rarr; computed stats (SQL, never a model) &rarr; static pages regenerated per deploy &rarr; watchers + dead-man alerts.</p>
+    </div>
+
+    <h2 style="margin-top:36px">Live counters</h2>
+    <div class="grid grid--2" style="margin-top:16px">
+      <div class="card"><strong>Listings synced today</strong><p style="margin:6px 0 0"><span class="stub-note">TODO(wave 3): live counter — feed mirror</span></p></div>
+      <div class="card"><strong>Pages refreshed on last deploy</strong><p style="margin:6px 0 0"><span class="stub-note">TODO(wave 3): live counter — build manifest</span></p></div>
+      <div class="card"><strong>AI drafts reviewed by broker</strong><p style="margin:6px 0 0"><span class="stub-note">TODO(wave 3): N of N — merge-count receipt (plan §3d)</span></p></div>
+      <div class="card"><strong>Feed freshness</strong><p style="margin:6px 0 0"><span class="stub-note">TODO(wave 3): last successful sync timestamp + dead-man status</span></p></div>
+    </div>
+
+    <h2 style="margin-top:36px">What the automation never does</h2>
+    <div class="stub-block">
+      <p><span class="stub-note">TODO(wave 3)</span> The guardrail statement: nothing auto-publishes; narrative changes are broker-merged; the concierge speaks only from the public KB + listings mirror; fair-housing stop-list; spend caps; query log.</p>
+    </div>
+  </div>
+</section>
