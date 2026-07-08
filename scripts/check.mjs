@@ -230,8 +230,9 @@ for (const r of required) {
   else fail("tokens.css missing :root or LOCKED status marker");
   if (tokens.includes("PLACEHOLDER")) fail("tokens.css still carries the PLACEHOLDER marker — the system is locked");
   else ok("tokens.css placeholder marker gone");
-  // The 9 locked palette tokens (C · St. Pete Editorial, rationale §6/§7):
-  const locked = ["#FAFAF6", "#22261F", "#5F6458", "#C98A8F", "#9E4A52", "#3E5C43", "#F1EEE6", "#DDDACE", "#C2C6B8"];
+  // The 9 locked palette tokens (C · St. Pete Editorial, rationale §6/§7;
+  // c-paper re-toned #F1EEE6 → #F5F5F1 per operator feedback 2026-07-08 — lighter/de-yellowed):
+  const locked = ["#FAFAF6", "#22261F", "#5F6458", "#C98A8F", "#9E4A52", "#3E5C43", "#F5F5F1", "#DDDACE", "#C2C6B8"];
   const missing = locked.filter((hex) => !tokens.includes(hex));
   if (!missing.length) ok("all 9 locked palette tokens present in tokens.css");
   else fail(`locked palette tokens missing from tokens.css: ${missing.join(", ")}`);

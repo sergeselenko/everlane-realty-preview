@@ -63,8 +63,8 @@ export default {
     "c-pink": "#C98A8F", // decorative pink — rules/underlines + dark-ground eyebrows ONLY
     "c-pinkdeep": "#9E4A52", // deep pink — kickers/eyebrows on light grounds (AA-passing rung)
     "c-palm": "#3E5C43", // palm — links, labels, primary button, booking band
-    "c-paper": "#F1EEE6", // paper card ground
-    "c-paper-deep": "#E9E5D9", // deepened paper rung — card fills that must read against the gallery ground (operator feedback 7/7: hood cards blended in). AA on this ground, computed: ink 12.2 · sub 4.83 · palm 5.92 · pinkdeep 4.69 — all pass
+    "c-paper": "#F5F5F1", // paper card ground — lightened + de-yellowed (operator feedback 2026-07-08: the cream read too warm/yellow; cards now carry their own borders, so a lighter, cleaner ground still reads as a card). AA on this ground, computed 2026-07-08: ink 13.9 · sub 5.4 · palm 7.5 · pinkdeep 5.4 — all pass (lighter ground = higher contrast than the old cream)
+    "c-paper-deep": "#EDEDE7", // deepened paper rung — orphaned since the hood cards moved to c-paper 2026-07-08 (kept for the 9-token contract + any future deeper surface); lightened to match the de-yellowed c-paper
     "c-line": "#DDDACE", // hairlines / borders
     "c-dark-sub": "#C2C6B8", // secondary text on dark (ink) grounds — incl. delta lines
 
