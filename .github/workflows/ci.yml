@@ -9,6 +9,12 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  # Feed-driven rebuilds (wave 2, plan §5): the n8n sync dispatches
+  # `feed-sync` after data changes; the dead-man watcher dispatches
+  # `feed-stale` at the 12h Rule-11 floor (build bakes the stale banner);
+  # a later `feed-sync` rebuild clears it. See build/wave-2/feed-ops/.
+  repository_dispatch:
+    types: [feed-sync, feed-stale]
 
 permissions:
   contents: read
@@ -28,11 +34,15 @@ jobs:
         run: npm run build
       - name: Checks (sitemap XML, JSON-LD, internal links, noindex, form-inert)
         run: node scripts/check.mjs
+      - name: KB lint (sources+dates, fair-housing patterns, Rule 32 stop-list, notice slots)
+        run: node scripts/kb-lint.mjs
 
   deploy-preview:
     # Publishes to https://sergeselenko.github.io/everlane-realty-preview/
     # Skipped until Pages is enabled (Settings → Pages → Source: GitHub Actions).
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: >-
+      (github.ref == 'refs/heads/main' && github.event_name == 'push')
+      || github.event_name == 'repository_dispatch'
     needs: build-and-check
     runs-on: ubuntu-latest
     permissions:
@@ -45,6 +55,11 @@ jobs:
     env:
       PATH_PREFIX: /everlane-realty-preview/
       SITE_URL: https://sergeselenko.github.io/everlane-realty-preview
+      # Stale banner bakes ONLY on the dead-man's feed-stale dispatch (12h floor).
+      FEED_STALE: ${{ github.event.action == 'feed-stale' && '1' || '' }}
+      # GA4_ID comes from repo/Actions variables when the property exists
+      # (wave-2 staged ask). Absent var ⇒ no analytics markup in the build.
+      GA4_ID: ${{ vars.GA4_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

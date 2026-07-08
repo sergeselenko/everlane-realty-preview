@@ -46,6 +46,13 @@
 
   <div class="preview-ribbon" role="note">PREVIEW — rebuild in progress. Not the live site. Forms disabled &middot; not indexable &middot; sample data labeled SAMPLE.</div>
 
+  {#- FEED STALE BANNER (wave 2, plan §5): baked ONLY when the dead-man
+      watcher dispatches a feed-stale rebuild at the 12h Rule-11 floor.
+      Cleared by the next feed-sync rebuild. src/_data/env.js. -#}
+  {%- if env.feedStale %}
+  <div class="stale-banner" role="status">Heads up — our MLS data feed is temporarily paused, so listing and market figures may be up to a day old. Live inventory is always current on <a href="/search/">the search page</a>.</div>
+  {%- endif %}
+
   {#- MASTHEAD — locked grammar §2 row 1 (design lock 2026-07-07): commerce-first
       nav order + Book-a-consult CTA + phone in the mast (the audit §4.4 gap). -#}
   <header class="site-header">
@@ -75,5 +82,12 @@
   {% include "components/footer.njk" %}
 
   <script src="/assets/site.js" defer></script>
+  {#- MEASUREMENT (wave 2, plan §10): emitted ONLY when GA4_ID was set at
+      build time; the asset then host-gates again at runtime (production
+      hostnames only) — the preview host never beacons even if the markup
+      ships. src/_data/analytics.js + src/assets/analytics.js. -#}
+  {%- if analytics.ga4Id %}
+  <script src="/assets/analytics.js" defer data-ga4="{{ analytics.ga4Id }}" data-hosts="{{ analytics.productionHosts | join(',') }}"></script>
+  {%- endif %}
 </body>
 </html>

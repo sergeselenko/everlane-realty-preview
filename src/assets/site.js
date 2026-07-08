@@ -105,6 +105,9 @@
       form.reset();
       setStatus("ok", "Got it — thank you. I'll review your situation and follow up personally, usually within a day.");
       submitBtn.textContent = "Sent ✓";
+      /* Conversion event (wave 2 measurement layer). Category fields only —
+         never name/email/phone: no PII reaches analytics, by construction. */
+      if (window.elTrack) window.elTrack("generate_lead", { method: "intake_form", topic: data.topic || "(none)", about: data.about || "(none)" });
     }).catch(function () {
       submitBtn.disabled = false;
       submitBtn.textContent = "Send it to Serge";
