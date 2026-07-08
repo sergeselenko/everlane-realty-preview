@@ -4,27 +4,45 @@ description: "Plain-language guides to buying and selling in St. Petersburg — 
 permalink: /guides/
 crumbs: []
 ---
-{#- /guides/ — plan §2 #6 + §3b: launch set = 6 guides at wave 2, flood/insurance
-    flagship first. One sample page proves the chassis + Article JSON-LD hook. -#}
+{#- /guides/ — plan §2 #6 + §3b. Wave 2: this index renders FROM the KB
+    (kb/guides/*.md via src/_data/kb.js) — live entries get cards + links,
+    outline entries are listed as in-the-works WITHOUT links (an outline is a
+    sourcing plan, not a page). Adding a guide = adding a kb entry; this page
+    never edits by hand. -#}
 
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">First-hand, not syndicated</p>
     <h1>Buyer &amp; seller guides</h1>
-    <p class="lede">The questions people actually ask about St. Pete real estate, answered with primary sources and broker experience &mdash; each guide carries a named author and a visible last-verified date.</p>
+    <p class="lede">The questions people actually ask about St. Pete real estate, answered with
+    primary sources and broker experience &mdash; each guide carries a named author, its sources,
+    and a visible last-verified date.</p>
   </div>
 </section>
 
 <section class="section" style="padding-top:10px">
   <div class="wrap">
     <div class="grid grid--2">
+      {%- for g in kb.guidesLive %}
       <div class="card">
-        <h2 style="font-size:1.2rem"><a href="/guides/flood-zones-insurance-st-pete/">Flood zones &amp; insurance in St. Pete</a></h2>
-        <p>The flagship &mdash; sample chassis page for the wave-2 tranche.</p>
+        <p class="g-eyebrow" style="margin:0 0 6px">{{ g.eyebrow | replace("The knowledge base · ", "") }}</p>
+        <h2 style="font-size:1.2rem"><a href="/guides/{{ g.slug }}/">{{ g.title }}</a></h2>
+        <p>{{ g.description }}</p>
+        <p class="fine" style="margin:8px 0 0">By {{ g.author }} &middot; last verified {{ g.last_verified | longDate }}</p>
       </div>
-      <div class="stub-block">
-        <p><span class="stub-note">TODO(wave 2)</span> Launch set (plan §3b): 1&middot;Flood zones &amp; insurance (flagship) &middot; 2&middot;Best neighborhoods in St. Petersburg &middot; 3&middot;Moving to St. Petersburg &middot; 4&middot;Buying in St. Pete: the real process + costs &middot; 5&middot;Selling in St. Pete: pricing honestly &middot; 6&middot;Short-term rentals in Pinellas: where Airbnb is actually allowed.</p>
-      </div>
+      {%- endfor %}
     </div>
+
+    {%- if kb.guidesPlanned.length %}
+    <div class="stub-block" style="margin-top:22px">
+      <p style="margin-bottom:6px"><strong>In the works</strong> &mdash; researched, sourced, and
+      broker-reviewed before each one publishes (nothing here auto-publishes):</p>
+      <p style="margin:0">
+      {%- for g in kb.guidesPlanned %}
+      {{ loop.index + kb.guidesLive.length }}&middot; {{ g.title }}{% if not loop.last %} &nbsp;&nbsp; {% endif %}
+      {%- endfor %}
+      </p>
+    </div>
+    {%- endif %}
   </div>
 </section>

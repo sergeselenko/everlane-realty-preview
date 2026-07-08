@@ -1,0 +1,92 @@
+---
+pagination:
+  data: kb.guidesLive
+  size: 1
+  alias: g
+permalink: "/guides/{{ g.slug }}/"
+crumbs:
+  - { title: "Guides", url: "/guides/" }
+jsonld: ["article"]
+eleventyComputed:
+  title: "{{ g.title }}"
+  description: "{{ g.description }}"
+  datePublished: "{{ g.published | isoDate }}"
+  dateModified: "{{ g.last_verified | isoDate }}"
+---
+{#- GUIDE CHASSIS — kb-driven (wave 2). One template builds EVERY live guide
+    from kb/guides/<slug>.md (plan §3a: the KB compiled into pages by the SSG).
+    Extends the wave-1 chassis (design lock 2026-07-07, organ set: breadcrumb →
+    editorial hero + E-E-A-T byline → guide body → sources → read-next →
+    consult band); the per-page .njk stubs it replaces are retired, not forked.
+
+    CHASSIS RULE — FAIR HOUSING (bound, round-2 grade finding 3): content
+    describes places, facts, and processes — never the ideal resident.
+    Enforced by scripts/kb-lint.mjs on every build.
+
+    NUMBERS RULE (bound, plan §3d): market statistics never live in kb/
+    markdown — stat surfaces render from the feed mirror or render nothing. -#}
+
+<div class="hero-ed" data-sec="hero" style="border-bottom:0">
+  <div class="hero-ed__words">
+    <p class="kicker">{{ g.eyebrow }}</p>
+    <h1 class="display">{{ g.title }}</h1>
+    <p class="sub">{{ g.lede or g.description }}</p>
+    <p class="byline">By <strong>{{ g.author }}</strong>, Broker &middot;
+    Published {{ g.published | longDate }} &middot; Last verified {{ g.last_verified | longDate }}
+    &middot; facts re-checked {{ g.review }}</p>
+  </div>
+  <div class="hero-ed__plate" role="img" aria-label="Photo placeholder — {{ g.plate_note }}">
+    <p class="plate-note">{{ g.plate_note }}</p>
+  </div>
+</div>
+
+<section class="section" data-sec="body">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="no">The guide</span><h2>{{ g.question }}</h2></div></div>
+    <div class="prose prose--kb">
+      {{ g.body | md | safe }}
+    </div>
+  </div>
+</section>
+
+<section class="section" data-sec="sources" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="no">Receipts</span><h2>Sources for this guide</h2></div></div>
+    <ul class="srclist">
+      {%- for s in g.sources %}
+      <li><a href="{{ s.url }}" rel="noopener">{{ s.name }}</a> <span class="srclist__accessed">verified {{ s.accessed | longDate }}</span></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" data-sec="readnext" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="no">Keep reading</span><h2>Read next</h2></div></div>
+    <div class="readnext">
+      {#- All other live guides (small set by design: 10–20 excellent pages, plan §3b).
+          When the live set grows past ~4, curation moves to a `read_next` front-matter
+          list like the neighborhood chassis already carries. -#}
+      {%- for other in kb.guidesLive %}{% if other.slug != g.slug %}
+      <article class="guide">
+        <span class="g-eyebrow">{{ other.eyebrow | replace("The knowledge base · ", "") }}</span>
+        <h3>{{ other.title }}</h3>
+        <p>{{ other.description | truncate(110) }}</p>
+        <a href="/guides/{{ other.slug }}/">Read the guide</a>
+      </article>
+      {%- endif %}{% endfor %}
+      <article class="guide">
+        <span class="g-eyebrow">The neighborhoods</span>
+        <h3>The neighborhood chapters</h3>
+        <p>Narrative + live market stats + the flood story, one real page per neighborhood.</p>
+        <a href="/neighborhoods/">Open the chapters</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+{%- set book = {
+  title: g.book_title or "Want the version specific to your situation?",
+  lede: g.book_lede or "Fifteen minutes, free, and the messy version of your question is the right version to bring."
+} %}
+{% include "components/booking-band.njk" %}

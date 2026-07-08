@@ -52,6 +52,7 @@ const required = [
   "neighborhoods/old-northeast/index.html",
   "guides/index.html",
   "guides/flood-zones-insurance-st-pete/index.html",
+  "guides/best-neighborhoods-st-petersburg/index.html",
   "team/serge-osaulenko/index.html",
   "about/index.html",
   "contact/index.html",
@@ -139,7 +140,9 @@ for (const r of required) {
   const mustHave = {
     "index.html": "RealEstateAgent",
     "team/serge-osaulenko/index.html": "Person",
-    "guides/flood-zones-insurance-st-pete/index.html": "Article"
+    "guides/flood-zones-insurance-st-pete/index.html": "Article",
+    "guides/best-neighborhoods-st-petersburg/index.html": "Article",
+    "neighborhoods/old-northeast/index.html": "Article"
   };
   const found = {};
   for (const f of htmlFiles) {
@@ -298,6 +301,126 @@ for (const r of required) {
     }
   }
   if (!bad) ok(`no @font-face / url() in built CSS, no external font hosts in HTML (${cssFiles.length} css, ${htmlFiles.length} html)`);
+}
+
+/* ---- 13 · WAVE 2: KB-page honesty + compliance surfaces ----
+   (a) HONEST STAT BAND (charter rule, plan §3d): while feed.marketStats is
+       null, kb-driven stats surfaces (market hub + neighborhood chapters)
+       must NOT render sample figures — the "SAMPLE FIGURES" band phrase is
+       banned there (home keeps its labeled preview band, a wave-0/1 call).
+   (b) Art. 15.01.A notice present on every stats surface even while pending
+       (compliance fold: "Based on information from Stellar MLS®…").
+   (c) E-E-A-T visible stamps: live kb pages show "Last verified"/"Updated"
+       and the named author in the rendered HTML.
+   (d) Article JSON-LD on kb pages carries real dates (no TODO left). */
+{
+  const feed = (await import("../src/_data/feed.js")).default;
+  const kbStatPages = ["market/index.html"];
+  // every built neighborhood chapter is a kb stats surface:
+  const hoodDir = path.join(SITE, "neighborhoods");
+  for (const e of fs.readdirSync(hoodDir, { withFileTypes: true })) {
+    if (e.isDirectory()) kbStatPages.push(`neighborhoods/${e.name}/index.html`);
+  }
+  let bad = 0;
+  for (const p of kbStatPages) {
+    const f = path.join(SITE, p);
+    if (!fs.existsSync(f)) continue;
+    const html = fs.readFileSync(f, "utf8");
+    if (feed.marketStats == null && html.includes("SAMPLE FIGURES")) {
+      fail(`kb stats surface renders sample figures while feed is null: ${p}`); bad++;
+    }
+    if (!html.includes("Based on information from Stellar MLS")) {
+      fail(`missing Art. 15.01.A notice on stats surface: ${p}`); bad++;
+    }
+    // No UNLABELED process copy leaks into public kb surfaces (wave-2 grade
+    // finding 9 — same defect class the wave-1 grade scrubbed once already).
+    // Deliberate, visibly-labeled preview stubs (<span class="stub-note">, the
+    // wave-1 idiom — e.g. the footer's MLS GRID attribution slot awaiting the
+    // compliance lane's final text) are tolerated until their owners land.
+    const bodyOnly = html.replace(/<span class="stub-note">[\s\S]*?<\/span>/g, "");
+    if (/\[Art\.|compliance lane/i.test(bodyOnly)) {
+      fail(`process copy leaked into rendered kb surface (bracketed slot / "compliance lane"): ${p}`); bad++;
+    }
+  }
+  if (!bad) ok(`kb stats surfaces honest + Art. 15 notice present + no process-copy leaks (${kbStatPages.length} pages)`);
+
+  const kbPages = [
+    ["guides/flood-zones-insurance-st-pete/index.html", "Last verified"],
+    ["guides/best-neighborhoods-st-petersburg/index.html", "Last verified"],
+    ["neighborhoods/old-northeast/index.html", "Updated"]
+  ];
+  let badStamp = 0;
+  for (const [p, stamp] of kbPages) {
+    const html = fs.readFileSync(path.join(SITE, p), "utf8");
+    if (!html.includes(stamp) || !html.includes("Serge Osaulenko")) {
+      fail(`kb page missing visible ${stamp}/author stamp: ${p}`); badStamp++;
+    }
+    if (!html.includes("Sources for this")) {
+      fail(`kb page missing on-page sources section (Rule 16/21 render visibility): ${p}`); badStamp++;
+    }
+    if (/TODO\(KB pipeline/.test(html)) {
+      fail(`kb page JSON-LD still carries TODO dates: ${p}`); badStamp++;
+    }
+  }
+  if (!badStamp) ok("kb pages carry visible author + date stamps, on-page sources, dated JSON-LD");
+}
+
+/* ---- 14 · WAVE 2: measurement layer — double-gated, PII-free ----
+   (Feed & Ops lane.) Build gate: no GA4_ID env ⇒ zero analytics markup in
+   built HTML. Runtime gate: analytics.js must host-gate on
+   location.hostname BEFORE any gtag load, and elTrack call sites must not
+   ship PII fields. */
+{
+  const analyticsData = (await import("../src/_data/analytics.js")).default;
+
+  let tagged = 0;
+  for (const f of htmlFiles) {
+    if (/data-ga4=/.test(fs.readFileSync(f, "utf8"))) tagged++;
+  }
+  if (analyticsData.ga4Id == null) {
+    if (!tagged) ok("no analytics markup in built HTML (GA4_ID unset — build gate holds)");
+    else fail(`analytics markup present in ${tagged} page(s) while GA4_ID is unset`);
+  } else {
+    if (tagged === htmlFiles.length) ok(`analytics markup on all ${tagged} pages (GA4_ID set at build)`);
+    else fail(`GA4_ID set but analytics markup on only ${tagged}/${htmlFiles.length} pages`);
+  }
+
+  const aPath = path.join(SITE, "assets/analytics.js");
+  if (fs.existsSync(aPath)) {
+    const a = fs.readFileSync(aPath, "utf8");
+    const gateIdx = a.indexOf("HOSTS.indexOf(window.location.hostname)");
+    const loadIdx = a.indexOf("googletagmanager.com");
+    if (gateIdx > -1 && loadIdx > -1 && gateIdx < loadIdx) {
+      ok("analytics.js host-gates before the gtag loader (runtime gate present)");
+    } else fail("analytics.js missing the hostname gate ahead of the gtag loader");
+  } else fail("assets/analytics.js not built");
+
+  const js = fs.readFileSync(path.join(SITE, "assets/site.js"), "utf8");
+  if (js.includes('elTrack("generate_lead"')) ok("generate_lead conversion event wired on intake success");
+  else fail("site.js missing the generate_lead elTrack call");
+  const evStart = js.indexOf('elTrack("generate_lead"');
+  const evCall = evStart > -1 ? js.slice(evStart, evStart + 200) : "";
+  if (evStart > -1 && !/data\.(name|email|phone)/.test(evCall)) ok("conversion event carries no PII fields (name/email/phone absent)");
+  else if (evStart > -1) fail("conversion event payload references PII fields");
+}
+
+/* ---- 15 · WAVE 2: feed-stale banner build-coupling ----
+   (Feed & Ops lane, plan §5 dead-man.) The banner renders on EVERY page
+   when FEED_STALE=1 (the dead-man's repository_dispatch) and on NO page
+   otherwise — the same honesty pattern as check 11. */
+{
+  const envData = (await import("../src/_data/env.js")).default;
+  let banners = 0;
+  for (const f of htmlFiles) {
+    if (fs.readFileSync(f, "utf8").includes('class="stale-banner"')) banners++;
+  }
+  if (envData.feedStale) {
+    if (banners === htmlFiles.length) ok(`stale banner on all ${banners} pages (FEED_STALE build)`);
+    else fail(`FEED_STALE set but banner on only ${banners}/${htmlFiles.length} pages`);
+  } else {
+    if (!banners) ok("no stale banner in built HTML (FEED_STALE unset — coupling holds)");
+    else fail(`stale banner leaked into ${banners} page(s) without FEED_STALE`);
+  }
 }
 
 console.log(`\n${passes} checks passed, ${failures} failed.`);

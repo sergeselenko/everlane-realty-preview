@@ -1,0 +1,143 @@
+# kb/facts/flood — flood zones, maps, and floodplain rules (St. Pete / Pinellas)
+# Every entry: value + source + last-verified (plan §3a). Quarterly re-verification.
+domain: flood
+updated: 2026-07-07
+review: quarterly
+facts:
+  - id: stpete-flood-risk-share
+    value: >
+      45.9% of properties in St. Petersburg (39,585 properties) face significant risk of
+      flooding over the next 30 years, per First Street Foundation's Flood Factor model
+      (surfaced via Redfin's climate-risk data).
+    source: First Street — St. Petersburg, FL flood risk report (city page)
+    source_url: https://firststreet.org/city/st-petersburg-fl/1263000_fsid/flood
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: MEDIUM
+    notes: >
+      Model estimate, not a FEMA figure — always label as such on-page. Engagement research
+      (R2, plan §3b) carried the rounded "45%" as HIGH for the risk CLASS. The city page is
+      JS-rendered (figures not text-fetchable); precise pair re-verified in a browser at the
+      quarterly sweep. Grade fold 2026-07-07: source re-anchored from Redfin's generic
+      methodology page to First Street's location-specific report.
+
+  - id: pinellas-current-firm-effective
+    value: >
+      The currently effective FEMA Flood Insurance Rate Map (FIRM) for Pinellas County took
+      effect August 24, 2021, replacing the 2009 maps.
+    source: Pinellas County Flood Map Service / WUSF report on the map adoption
+    source_url: https://floodmaps.pinellas.gov/pages/current-flood-zones
+    as_of: 2021-08-24
+    last_verified: 2026-07-07
+    confidence: HIGH
+    notes: >
+      Corroborated by WUSF (2021-08-24, "New Flood Maps In Pinellas County Could Affect
+      Insurance Rates"); the replaced-the-2009-maps clause corroborated by FOX 13
+      ("New flood insurance maps take effect in Pinellas County"). Per-address zone always
+      confirmed at msc.fema.gov or floodmaps.pinellas.gov, never from memory.
+
+  - id: pinellas-preliminary-maps-underway
+    value: >
+      FEMA preliminary flood-zone updates for Pinellas County are in progress (the county
+      publishes a dedicated preliminary-zones viewer); zone changes ahead of the next
+      effective FIRM are possible.
+    source: Pinellas County Flood Map Service — Preliminary Flood Zones
+    source_url: https://floodmaps.pinellas.gov/pages/preliminary-flood-zones
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: MEDIUM
+    notes: "UNVERIFIABLE — needs: adoption timeline from FEMA/county. Re-check quarterly."
+
+  - id: zone-x-definition
+    value: >
+      FEMA Zone X marks areas of moderate flood hazard (between the 1%-annual-chance and
+      0.2%-annual-chance floodplains) or minimal hazard; flood insurance is optional in
+      Zone X but often recommended.
+    source: FEMA flood zones glossary
+    source_url: https://www.fema.gov/about/glossary/flood-zones
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: HIGH
+
+  - id: zone-ae-definition
+    value: >
+      FEMA Zone AE marks areas subject to the 1%-annual-chance flood ("100-year flood") with
+      Base Flood Elevations published; mandatory flood-insurance purchase requirements apply
+      to federally backed mortgages.
+    source: FEMA flood zones glossary
+    source_url: https://www.fema.gov/about/glossary/flood-zones
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: HIGH
+
+  - id: zone-ve-definition
+    value: >
+      FEMA Zone VE is the coastal high-hazard area: 1%-annual-chance flooding with additional
+      storm-wave hazard; Base Flood Elevations account for wave height. The most stringent
+      building standards and typically the highest premiums apply.
+    source: FEMA flood zones glossary
+    source_url: https://www.fema.gov/about/glossary/flood-zones
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: HIGH
+
+  - id: stpete-49-percent-rule
+    value: >
+      St. Petersburg applies a 49% substantial-damage/substantial-improvement threshold
+      (stricter than FEMA's 50% baseline): any combination of repair, reconstruction, or
+      improvement whose cumulative cost equals or exceeds 49% of the structure's pre-damage
+      market value requires bringing the entire structure into full compliance with current
+      floodplain regulations (which can mean elevating). Applies to all buildings in the
+      Special Flood Hazard Area, whatever caused the damage.
+    source: City of St. Petersburg — Substantial Damage and Substantial Improvement
+    source_url: https://www.stpete.org/residents/public_safety/permitting_after_a_storm.php
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: HIGH
+
+  - id: helene-stpete-surge
+    value: >
+      Hurricane Helene (landfall Sept 26, 2024) pushed more than 6 feet of storm surge into
+      St. Petersburg; the city reported 100.6 miles of road flooded and ~70 water rescues by
+      the morning after.
+    source: City of St. Petersburg — Helene damage assessment update #14 (2024-09-27)
+    source_url: https://www.stpete.org/news_detail_T30_R1130.php
+    as_of: 2024-09-27
+    last_verified: 2026-07-07
+    confidence: HIGH
+
+  - id: milton-stpete-rain
+    value: >
+      Hurricane Milton (Oct 9, 2024) dropped over 18 inches of rain on St. Petersburg —
+      reported as beyond a 1-in-1000-year rainfall event for the area.
+    source: WUSF reporting on Milton recovery (2024-10-11)
+    source_url: https://www.wusf.org/weather/2024-10-11/pinellas-county-residents-focus-on-recovery-after-hurricane-milton
+    as_of: 2024-10-11
+    last_verified: 2026-07-07
+    confidence: MEDIUM
+    notes: "Secondary source; re-anchor to NWS/city primary record at next sweep."
+
+  - id: elevation-certificates-free-lookup
+    value: >
+      Pinellas County publishes existing FEMA elevation certificates free through its
+      Flood Map Service / eGIS viewer — many addresses already have one on file, no
+      surveyor needed to check.
+    source: Pinellas County — Find an Elevation Certificate
+    source_url: https://pinellas.gov/services/find-an-elevation-certificate/
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: HIGH
+
+  - id: crs-discount-stpete
+    value: >
+      St. Petersburg participates in FEMA's Community Rating System at Class 5, worth up to a
+      25% NFIP premium discount inside the Special Flood Hazard Area (10% outside);
+      unincorporated Pinellas County rates even better (up to 40%).
+    source: FEMA CRS program page + Florida insurance-market secondary sources
+    source_url: https://www.fema.gov/floodplain-management/community-rating-system
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: MEDIUM
+    notes: >
+      City's exact current class from a secondary source — re-anchor to the city/FEMA CRS
+      eligible-communities list before quoting a percentage in print.

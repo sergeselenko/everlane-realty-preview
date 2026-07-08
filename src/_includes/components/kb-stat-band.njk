@@ -1,0 +1,63 @@
+{#- KB stat band — the wave-2 HONEST market-stat surface (charter, plan §3d).
+
+    RULE (bound): this band renders REAL data from the feed mirror
+    (src/_data/feed.js → Supabase market_stats, SQL-computed) or it renders
+    NO NUMBERS AT ALL. Never sample figures, never model-computed numbers.
+    (The home page's live-data-band keeps its SAMPLE-labeled preview band —
+    a wave-0/1 decision for the locked-grammar demo; KB/market surfaces are
+    the production pattern and go honest first.)
+
+    DATA CONTRACT with wave-2 lane (a) Feed & Ops — feed.marketStats:
+      {
+        computedAt: "2026-07-14T09:00:00Z",   // computation timestamp (Art. 15)
+        city:          { stats: [ { num, lbl, delta, period } ... ] },
+        neighborhoods: { "<stat_geo>": { stats: [ ... ] } }
+      }
+    `period` per stat feeds the Art. 15 per-surface period naming
+    (round-2 grade finding 9: the notice names the ACTUAL period per surface).
+
+    Caller sets: {% set statband = { title, geo, art15 } %} — geo: "city" or a
+    neighborhood stat_geo key. -#}
+{%- set _kbstats = null %}
+{%- if feed.marketStats %}
+  {%- if statband.geo == "city" %}
+    {%- set _kbstats = feed.marketStats.city %}
+  {%- elif feed.marketStats.neighborhoods %}
+    {%- set _kbstats = feed.marketStats.neighborhoods[statband.geo] %}
+  {%- endif %}
+{%- endif %}
+<section class="databand" data-sec="databand" aria-label="Market snapshot">
+  <div class="databand__in">
+    <div class="databand__head">
+      <h2>{{ statband.title }}</h2>
+      {%- if _kbstats %}
+      <p class="databand__stamp">computed {{ feed.marketStats.computedAt }}</p>
+      {%- else %}
+      <p class="databand__stamp">live data connecting</p>
+      {%- endif %}
+    </div>
+    {%- if _kbstats %}
+    <div class="databand__stats">
+      {%- for s in _kbstats.stats %}
+      <div class="stat">
+        <p class="num">{{ s.num }}</p>
+        <p class="lbl">{{ s.lbl }}</p>
+        {%- if s.delta %}<p class="delta">{{ s.delta }}</p>{% endif %}
+      </div>
+      {%- endfor %}
+    </div>
+    {%- else %}
+    <p class="databand__pending">This band renders real market data &mdash; median sale price, days
+    on market, active inventory &mdash; computed by database queries over our own Stellar MLS feed,
+    with the computation timestamp shown. The feed mirror is being wired now; until it connects,
+    we show you nothing rather than a made-up number.</p>
+    {%- endif %}
+    {#- Art. 15.01.A notice — REQUIRED on every stats surface, wired even while
+        stats are pending (compliance lane, build/wave-2/compliance/
+        rules-current-read.md: "Based on information from Stellar MLS® for the
+        period (date through date)"). The caller's art15 string leads with the
+        exact formula; real period dates render from the feed mirror. -#}
+    <p class="databand__note">{{ statband.art15 }}</p>
+    <p class="databand__credit"><a href="/ai/">Computed and refreshed by Everlane&rsquo;s own studio automation &mdash; see how this site runs &rarr;</a></p>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+# kb/facts/str-rules — short-term rental rules, state + Pinellas municipalities
+# Every entry: value + source + last-verified (plan §3a). QUARTERLY RE-VERIFICATION IS
+# BINDING for this domain (plan §3b guide 6: rules churn; each municipality cited to its
+# CURRENT ordinance with dates before the STR guide ships).
+domain: str-rules
+updated: 2026-07-07
+review: quarterly
+facts:
+  - id: fl-str-preemption
+    value: >
+      Florida Statute 509.032(7)(b) preempts local governments from PROHIBITING vacation
+      rentals or regulating their DURATION or FREQUENCY — but ordinances adopted on or
+      before June 1, 2011 are grandfathered and remain enforceable. This grandfather clause
+      is why STR rules differ street-to-street across Pinellas: some cities kept pre-2011
+      restrictions, some never had them.
+    source: Florida Statutes §509.032 (2025 statutes, official)
+    source_url: https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599%2F0509%2FSections%2F0509.032.html
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: HIGH
+
+  - id: stpete-str-rule
+    value: >
+      City of St. Petersburg: in residential zones, renting for under 30 days is allowed at
+      most THREE times per 12-month period (a pre-2011 ordinance, on the books since 2001,
+      so it survives state preemption). Beyond that, sub-30-day use is a prohibited
+      transient use in most residential districts; some downtown/mixed-use districts allow
+      transient accommodations. The city has moved to align STR fines with the state's
+      "super fine" ceiling (up to $1,000/day, $10,000 per violation).
+    source: St. Petersburg Code of Ordinances (via Municode) + Tampa Bay reporting
+    source_url: https://library.municode.com/fl/st._petersburg/codes/code_of_ordinances
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: MEDIUM
+    notes: >
+      Rule shape corroborated across the city-code library, a local law firm's analysis
+      (stpetelawgroup.com), and FOX 13 reporting on the fines. Before the STR guide ships:
+      cite the exact LDR section number + the fines ordinance number and date from Municode.
+
+  - id: str-registration-btr
+    value: >
+      Any St. Petersburg rental operation needs a city Business Tax Receipt (annual
+      renewal); Florida vacation rentals as defined by ch. 509 also need a state DBPR
+      vacation-rental license and to collect state sales tax + Pinellas tourist
+      development tax.
+    source: City licensing pages + DBPR vacation-rental licensing
+    source_url: https://www2.myfloridalicense.com/hotels-restaurants/vacation-rentals/
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: MEDIUM
+    notes: "Verify each element against the current city/DBPR pages when the guide drafts."
+
+  - id: beach-communities-vary
+    value: >
+      The beach municipalities each carry their OWN rules (St. Pete Beach publishes a
+      dedicated short-term-rental rules page; Treasure Island, Madeira Beach, Gulfport,
+      Clearwater differ again) — the per-municipality matrix is the STR guide's core table
+      and must be built from each city's current ordinance, cited with dates.
+    source: St. Pete Beach — Short Term Rental Rules & Regulations (example)
+    source_url: https://www.stpetebeach.org/438/Short-Term-Rental-Rules-Regulations
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: MEDIUM
+    notes: >
+      UNVERIFIABLE at this pass — needs: per-municipality ordinance reads (the guide-6
+      drafting task). Do not state any beach city's specific day-limits until then.

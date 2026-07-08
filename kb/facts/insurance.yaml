@@ -1,0 +1,72 @@
+# kb/facts/insurance — property & flood insurance market facts (Florida / St. Pete)
+# Every entry: value + source + last-verified (plan §3a). Quarterly re-verification —
+# this domain churns; rate facts carry the filing/release date they speak to.
+domain: insurance
+updated: 2026-07-07
+review: quarterly
+facts:
+  - id: citizens-flood-requirement-phase-in
+    value: >
+      Florida's Senate Bill 2A (Dec 2022) requires Citizens Property Insurance personal
+      residential policyholders with wind coverage to carry flood insurance, phased by
+      dwelling value: from Jan 1 2024 at $600,000+; Jan 1 2025 at $500,000+; Jan 1 2026 at
+      $400,000+; and from Jan 1 2027 ALL such policies regardless of value. Inside the
+      Special Flood Hazard Area the requirement already applies regardless of value.
+      Exempt: condo unit-owner policies, tenant contents policies, and policies excluding
+      windstorm/hail.
+    source: Citizens Property Insurance Corporation — Flood Insurance Requirements
+    source_url: https://www.citizensfla.com/flood
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: HIGH
+
+  - id: citizens-2026-rate-change
+    value: >
+      Citizens' 2026 rates, as approved by the Florida Office of Insurance Regulation, DROP:
+      homeowners multiperil −8.8% on average, wind-only −5.5%, with at least a 2% cut for
+      all Personal Lines policyholders — effective July 1, 2026 for new business and at
+      renewal for existing policies. Citizens attributes the drop to litigation reforms and
+      a recovering private market.
+    source: Citizens press release, "Citizens' 2026 Multiperil Rates to Drop Statewide" (2026-03-04)
+    source_url: https://www.citizensfla.com/-/20260304-citizens-2026-multiperil-rates-to-drop-statewide
+    as_of: 2026-03-04
+    last_verified: 2026-07-07
+    confidence: HIGH
+
+  - id: citizens-depopulation
+    value: >
+      Citizens' policy count fell about 76% from its October 2023 peak of 1.41 million to
+      roughly 336,000 (as of the March 2026 rate release) — the "insurer of last resort" is
+      shedding policies to a recovering private market.
+    source: Citizens press release (2026-03-04)
+    source_url: https://www.citizensfla.com/-/20260304-citizens-2026-multiperil-rates-to-drop-statewide
+    as_of: 2026-03-04
+    last_verified: 2026-07-07
+    confidence: HIGH
+
+  - id: risk-rating-2-0
+    value: >
+      NFIP premiums have been set under FEMA's Risk Rating 2.0 since April 1, 2023: the
+      flood ZONE no longer sets the premium. Price is property-specific — distance to water,
+      flood type/frequency, foundation, first-floor height vs. base flood elevation, claims
+      history, and replacement cost.
+    source: FEMA — NFIP's Pricing Approach (Risk Rating 2.0)
+    source_url: https://www.fema.gov/flood-insurance/risk-rating
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: HIGH
+
+  - id: nfip-florida-average-premium
+    value: >
+      The average NFIP flood policy in Florida runs about $938/year (~$78/month) — but the
+      spread around that average in coastal Pinellas is enormous; elevation and first-floor
+      height dominate.
+    source: NerdWallet, "Flood Insurance in Florida" (2026 guide)
+    source_url: https://www.nerdwallet.com/insurance/homeowners/learn/flood-insurance-florida
+    as_of: 2026-07-07
+    last_verified: 2026-07-07
+    confidence: MEDIUM
+    notes: >
+      Secondary aggregation (FEMA's own state table returned 403 at verification).
+      Re-anchor to FEMA's single-family cost page at next sweep; on-page usage must keep
+      the "average, huge spread" framing, never quote as a likely personal premium.

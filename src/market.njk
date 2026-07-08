@@ -1,29 +1,97 @@
 ---
 title: "St. Petersburg Market Data"
-description: "Auto-computed St. Petersburg housing market stats — median price, days on market, inventory — refreshed by Everlane's own automation, with a monthly broker narrative."
+description: "Auto-computed St. Petersburg housing market stats — median price, days on market, inventory — refreshed by Everlane's own automation, with a monthly broker narrative. Real data or nothing, never estimates."
 crumbs: []
 ---
-{#- /market/ — plan §2 #4: the city market hub. Wave 2 wires the feed mirror's
-    market_stats (computed by SQL, never by a model) + the monthly narrative
-    (human-gated) + the Stellar Art. 15 derived-analytics notice. -#}
+{#- /market/ — plan §2 #4: the city market hub, wave-2 full depth (Content/KB
+    lane). HONESTY RULE (bound, charter + plan §3d): every stat surface here
+    renders REAL feed-mirror data (Supabase market_stats, SQL-computed — lane a
+    wires it; contract in components/kb-stat-band.njk) or renders NO numbers.
+    Narrative is human-gated through the KB pipeline: drafted from computed
+    stats, one PR per month, broker merge — never auto-published. -#}
 
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">The numbers, current</p>
     <h1>St. Petersburg market data</h1>
-    <p class="lede">Auto-computed from the MLS feed and refreshed continuously &mdash; with a monthly plain-language read from the broker, not a syndicated report.</p>
+    <p class="lede">Computed from our own copy of the MLS feed and refreshed continuously &mdash;
+    with a monthly plain-language read from the broker, not a syndicated report.</p>
+    <p class="byline">Maintained by <strong>Serge Osaulenko</strong>, Broker &middot; stats compute automatically &middot; narrative reviewed before it publishes</p>
   </div>
 </section>
 
-{% include "components/live-data-band.njk" %}
+{%- set statband = {
+  title: "The market, plainly read",
+  geo: "city",
+  art15: "Based on information from Stellar MLS® for the period shown with each statistic — median sale price and days on market: trailing 90 days; active listings and months of supply: as of the computation time shown."
+} %}
+{% include "components/kb-stat-band.njk" %}
 
-<section class="section">
+<section class="section" data-sec="method">
   <div class="wrap">
-    <h2>Monthly narrative</h2>
-    <div class="stub-block">
-      <p><span class="stub-note">TODO(wave 2)</span> Monthly market narrative &mdash; drafted from computed stats via the KB pipeline, human-gated (one PR, broker merge), never auto-published (plan §3d).</p>
-      <p><span class="stub-note">TODO(wave 2)</span> Stat time-series blocks per period &times; geo (feed mirror `market_stats`).</p>
-      <p><span class="stub-note">TODO(wave 2, compliance lane)</span> Stellar Art. 15 derived-analytics notice + visible computation timestamp on every stats surface.</p>
+    <div class="sec-head"><div><span class="no">The apparatus</span><h2>Where do these numbers come from?</h2></div></div>
+    <div class="prose prose--kb">
+      <p>Most market-stat pages are syndicated widgets. These aren&rsquo;t. Everlane runs its own
+      data pipeline: listings flow from <strong>Stellar MLS</strong> (via MLS GRID) into our own
+      database several times a day, and the statistics on this page are computed there by
+      database queries &mdash; median sale price, days on market, active inventory, months of
+      supply &mdash; then baked into this page as plain HTML with the computation timestamp shown.</p>
+      <p>Three commitments, permanent:</p>
+      <ul>
+        <li><strong>No AI-generated numbers.</strong> An AI model never computes or estimates a
+        statistic here. Models draft narrative (below) from the computed numbers; the numbers
+        themselves are SQL over the feed, every time.</li>
+        <li><strong>Real data or nothing.</strong> If the pipeline hasn&rsquo;t run, the band above
+        shows no figures &mdash; you will never see a placeholder number dressed up as data.</li>
+        <li><strong>Visible timestamps.</strong> Every stat surface names its computation time and
+        the period it covers, per MLS display rules.</li>
+      </ul>
+      <p><a href="/ai/">See how this site runs &rarr;</a></p>
     </div>
   </div>
 </section>
+
+<section class="section" data-sec="narrative" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="no">The read</span><h2>What do the numbers mean this month?</h2></div></div>
+    <div class="prose prose--kb">
+      <p>The monthly narrative &mdash; a plain-language read of what moved and why it matters if
+      you&rsquo;re buying or selling right now &mdash; publishes here once the data pipeline connects.
+      It&rsquo;s drafted from the computed stats and <strong>reviewed and merged by the broker before
+      it appears</strong>; if it isn&rsquo;t reviewed, it doesn&rsquo;t publish. The stats above keep
+      refreshing on their own either way.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-sec="readnext" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="no">Keep reading</span><h2>Read next</h2></div></div>
+    <div class="readnext">
+      <article class="guide guide--flag">
+        <span class="g-eyebrow">The flagship</span>
+        <h3>Flood zones &amp; insurance in St. Pete</h3>
+        <p>The question under every offer in this city &mdash; zones, the Citizens mandate, and what coverage really costs after 2024.</p>
+        <a href="/guides/flood-zones-insurance-st-pete/">Read the guide</a>
+      </article>
+      <article class="guide">
+        <span class="g-eyebrow">Neighborhoods</span>
+        <h3>The neighborhood chapters</h3>
+        <p>Narrative, live stats, and the flood story &mdash; one real page per neighborhood.</p>
+        <a href="/neighborhoods/">Open the chapters</a>
+      </article>
+      <article class="guide">
+        <span class="g-eyebrow">Your number</span>
+        <h3>What&rsquo;s your home worth?</h3>
+        <p>An honest range, signed by the broker &mdash; not an instant estimate.</p>
+        <a href="/valuation/">Start the valuation</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+{%- set book = {
+  title: "Want the numbers read for your situation?",
+  lede: "Buying or selling, the market read is different — fifteen minutes, free, current data on the table."
+} %}
+{% include "components/booking-band.njk" %}

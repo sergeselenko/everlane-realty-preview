@@ -1,6 +1,7 @@
-{#- Article JSON-LD for guide pages (plan §2: named human author E-E-A-T —
-    R2 §1.4). Dates are TODO until the wave-2 content tranche publishes real
-    guides through the KB pipeline. -#}
+{#- Article JSON-LD for guide/chapter pages (plan §2: named human author
+    E-E-A-T — R2 §1.4). Dates flow from the KB pipeline (wave 2): the from-kb
+    templates compute datePublished/dateModified from each entry's
+    published/last_verified front matter. -#}
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -18,6 +19,6 @@
     "name": "Everlane Realty",
     "url": "{{ site.url }}/"
   },
-  "datePublished": "TODO(wave 2: KB pipeline publish date)",
-  "dateModified": "TODO(wave 2: KB pipeline last-verified date)"
+  "datePublished": "{{ datePublished or 'TODO(KB pipeline publish date)' }}",
+  "dateModified": "{{ dateModified or 'TODO(KB pipeline last-verified date)' }}"
 }

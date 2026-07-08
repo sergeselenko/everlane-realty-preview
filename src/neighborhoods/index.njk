@@ -4,28 +4,38 @@ description: "Real neighborhood guides for St. Petersburg — narrative from a l
 permalink: /neighborhoods/
 crumbs: []
 ---
-{#- /neighborhoods/ — plan §2 #5 + §3b: the KB's public spine. Launch tranche
-    (wave 2) = 10 pages chosen by stated criteria; the final set is a 2-minute
-    operator ask at wave 2 (plan §8.4 ask #5). One sample page exists at
-    wave 0 to prove the chassis. -#}
+{#- /neighborhoods/ — plan §2 #5 + §3b: the KB's public spine. Wave 2: this
+    index renders FROM the KB (kb/neighborhoods/*.md) — live chapters get
+    cards + links; the launch tranche lands as kb entries once the operator
+    confirms the 10-neighborhood set (ask #5, 2-minute pick-list delivered at
+    build/wave-2/content-kb/operator-ask-neighborhoods.md). -#}
 
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">Local knowledge, written down</p>
     <h1>St. Petersburg neighborhoods</h1>
-    <p class="lede">Real pages, not portal filler: what each neighborhood is actually like, what it costs, its flood story, and what&rsquo;s on the market right now.</p>
+    <p class="lede">Real pages, not portal filler: what each neighborhood is actually like, what it
+    costs, its flood story, and what&rsquo;s on the market right now.</p>
   </div>
 </section>
 
 <section class="section" style="padding-top:10px">
   <div class="wrap">
     <div class="grid grid--2">
+      {%- for n in kb.neighborhoodsLive %}
       <div class="card">
-        <h2 style="font-size:1.2rem"><a href="/neighborhoods/old-northeast/">Old Northeast</a></h2>
-        <p>Sample chassis page &mdash; the wave-2 tranche builds on this template.</p>
+        <p class="g-eyebrow" style="margin:0 0 6px">Chapter {% if n.chapter < 10 %}0{% endif %}{{ n.chapter }}</p>
+        <h2 style="font-size:1.2rem"><a href="/neighborhoods/{{ n.slug }}/">{{ n.title }}</a></h2>
+        <p>{{ n.lede }}</p>
+        <p class="fine" style="margin:8px 0 0">By {{ n.author }} &middot; updated {{ n.last_verified | longDate }} &middot; live stats on the page</p>
       </div>
+      {%- endfor %}
       <div class="stub-block">
-        <p><span class="stub-note">TODO(wave 2)</span> Launch tranche: 10 neighborhood pages. Evidence-anchored candidates (plan §3b): Old Northeast, Snell Isle, Downtown/EDGE, Historic Kenwood, Shore Acres, Crescent Lake, Gulfport, Pinellas Point, Tierra Verde, St. Pete Beach &mdash; final set confirmed by the operator (ask #5).</p>
+        <p><strong>The launch tranche</strong> &mdash; ten neighborhood chapters, written from
+        sourced facts with live market data, publishing as each clears broker review. Candidates:
+        Old Northeast, Snell Isle, Downtown/EDGE, Historic Kenwood, Shore Acres, Crescent Lake,
+        Gulfport, Pinellas Point, Tierra Verde, St. Pete Beach &mdash; final set confirmed by the
+        broker (his market knowledge beats our inference).</p>
       </div>
     </div>
   </div>

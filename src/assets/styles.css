@@ -580,6 +580,17 @@ fieldset.radio-fieldset legend { display: block; font-weight: 600; color: var(--
 }
 .skip-link:focus { left: 0; }
 
+/* FEED-STALE BANNER (wave 2, plan §5): baked only by a dead-man feed-stale
+   rebuild at the 12h Rule-11 floor; cleared by the next feed-sync rebuild.
+   Reuses the AA-computed amber pair above (#713F12 on #FEF3C7 = 7.79:1,
+   wave-1 KTB) — no new color rung introduced. */
+.stale-banner {
+  background: #FEF3C7; color: #713F12; border-bottom: 1px solid #713F12;
+  text-align: center; font-family: var(--font);
+  font-size: .88rem; padding: 8px 16px;
+}
+.stale-banner a { color: inherit; }
+
 /* Stub / TODO markers — visually obvious placeholders, die as waves land.
    (Pair computed 2026-07-07: #713F12 on #FEF3C7 = 7.79:1 — wave-1 KTB.) */
 .stub-note {
@@ -620,4 +631,42 @@ fieldset.form-preview-disabled { border: 0; margin: 0; padding: 0; opacity: .55;
   .nav-toggle { display: block; }
   .radio-row label { flex: 1 1 100%; }
   .verify { max-width: none; }
+}
+
+/* ==========================================================================
+   WAVE 2 — KB CHASSIS ADDITIONS (Content/KB lane, 2026-07-07)
+   Extends the locked system (C · St. Pete Editorial) for kb-driven pages:
+   markdown-rendered article bodies, on-page source lists (Rule 16/21:
+   non-MLS sources readily visible at render), and the honest stat band's
+   pending state. Tokens only — no new colors minted.
+   ========================================================================== */
+.prose--kb { max-width: 68ch; }
+.prose--kb h2 { font-size: 1.5rem; margin: 30px 0 12px; }
+.prose--kb h2:first-child { margin-top: 0; }
+.prose--kb h3 { font-size: 1.2rem; margin: 22px 0 10px; }
+.prose--kb ul, .prose--kb ol { margin: 0 0 14px; padding-left: 22px; }
+.prose--kb li { margin-bottom: 8px; font-size: 1rem; }
+.prose--kb li::marker { color: var(--c-palm); }
+.prose--kb blockquote {
+  border-left: 3px solid var(--c-line); margin: 0 0 14px; padding: 2px 0 2px 16px;
+  color: var(--c-sub); font-style: italic;
+}
+.prose--kb a { text-underline-offset: 3px; }
+
+/* On-page source list (E-E-A-T receipts + Rule 16/21: typeface not smaller
+   than the median used for listing data — kept at ~body size on purpose). */
+.srclist { list-style: none; margin: 0; padding: 0; max-width: 68ch; }
+.srclist li {
+  font-size: .95rem; padding: 10px 0; border-bottom: 1px solid var(--c-line);
+}
+.srclist li:first-child { border-top: 1px solid var(--c-line); }
+.srclist a { text-underline-offset: 3px; }
+.srclist__accessed { color: var(--c-sub); font-style: italic; font-size: .85rem; margin-left: 6px; }
+
+/* Visible non-MLS source line (Rule 16/21) — readable size, never fine print. */
+.nonmls-src { font-size: .95rem; color: var(--c-sub); margin: 0; }
+
+/* Honest stat band, pending state (real data or nothing — wave-2 rule). */
+.databand__pending {
+  font-size: .95rem; font-style: italic; max-width: 62ch; margin: 0 0 10px;
 }

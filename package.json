@@ -7,11 +7,15 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve",
-    "check": "npm run build && node scripts/check.mjs",
+    "check": "npm run build && node scripts/check.mjs && node scripts/kb-lint.mjs",
+    "kb-lint": "node scripts/kb-lint.mjs",
     "clean": "rm -rf _site"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.0",
-    "fast-xml-parser": "^5.0.0"
+    "fast-xml-parser": "^5.0.0",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "markdown-it": "^14.1.0"
   }
 }

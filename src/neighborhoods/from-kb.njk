@@ -1,0 +1,163 @@
+---
+pagination:
+  data: kb.neighborhoodsLive
+  size: 1
+  alias: n
+permalink: "/neighborhoods/{{ n.slug }}/"
+crumbs:
+  - { title: "Neighborhoods", url: "/neighborhoods/" }
+jsonld: ["article"]
+eleventyComputed:
+  title: "{{ n.title }}"
+  description: "{{ n.description }}"
+  datePublished: "{{ n.published | isoDate }}"
+  dateModified: "{{ n.last_verified | isoDate }}"
+---
+{#- NEIGHBORHOOD CHASSIS — kb-driven (wave 2). One template builds EVERY live
+    neighborhood chapter from kb/neighborhoods/<slug>.md. Organ set BOUND by
+    the design lock 2026-07-07 (rationale §3): breadcrumb → editorial hero +
+    author/date byline → stat band (Art. 15 per-surface periods slot) →
+    narrative → cost bands + flood box → inventory w/ attribution +
+    synced-line slot → read-next → consult band. This retires the wave-1
+    hand-built old-northeast.njk (align, don't duplicate — same organs, the
+    content now flows from the KB with sourced facts).
+
+    CHASSIS RULE — FAIR HOUSING (bound by the round-2 grade, finding 3):
+    narrative organs describe the PLACE — features, distances, housing
+    stock — NEVER the ideal resident. No "who it fits", no "perfect for
+    <group>". Every chapter inherits this rule; scripts/kb-lint.mjs enforces.
+
+    NUMBERS RULE (bound, plan §3d + wave-2 charter, hardened by the wave-2
+    gap-finder grade finding 5): stat band, cost bands AND listing cards all
+    render REAL feed-mirror data or render an honest empty state — never
+    sample or model-computed figures. The page's own copy promises "nothing
+    rather than a made-up figure"; every organ on it now keeps that promise. -#}
+
+<div class="hero-ed" data-sec="hero" style="border-bottom:0">
+  <div class="hero-ed__words">
+    <p class="kicker">{{ n.eyebrow }}</p>
+    <h1 class="display">{{ n.title }}</h1>
+    <p class="sub">{{ n.lede }}</p>
+    <p class="byline">By <strong>{{ n.author }}</strong>, Broker &middot; Updated {{ n.last_verified | longDate }} &middot;
+    Stats refresh daily, narrative reviewed by the broker</p>
+  </div>
+  <div class="hero-ed__plate" role="img" aria-label="Photo placeholder — {{ n.plate_note }}">
+    <p class="plate-note">{{ n.plate_note }}</p>
+  </div>
+</div>
+
+{%- set statband = {
+  title: n.title + ", by the numbers",
+  geo: n.stat_geo,
+  art15: "Based on information from Stellar MLS® for the period shown with each statistic — median sale price and days on market: trailing 90 days; active listings: as of the computation time shown; price per square foot: trailing 12 months."
+} %}
+{% include "components/kb-stat-band.njk" %}
+
+<section class="section" data-sec="narrative">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="no">The chapter</span><h2>The lay of the land</h2></div></div>
+    <div class="prose prose--kb">
+      {{ n.body | md | safe }}
+    </div>
+  </div>
+</section>
+
+<section class="section" data-sec="context" style="padding-top:0">
+  <div class="wrap">
+    <div class="duo">
+      <div class="costbox">
+        <h3>What it costs, honestly</h3>
+        {%- set _costs = feed.marketStats.neighborhoods[n.stat_geo].costBands if (feed.marketStats and feed.marketStats.neighborhoods and feed.marketStats.neighborhoods[n.stat_geo]) else null %}
+        {%- if _costs %}
+        {%- for row in _costs %}
+        <div class="costrow"><span>{{ row.label }}</span><span class="v">{{ row.range }}</span></div>
+        {%- endfor %}
+        <p class="fine">Computed from closed sales in the Stellar MLS feed, trailing 12 months &mdash;
+        honest ranges, never AVM point estimates. Same attribution notice as the stat band above.</p>
+        {%- else %}
+        <p class="fine" style="margin-top:0">These bands compute from closed sales in the Stellar MLS
+        feed (trailing 12 months) the moment the feed mirror connects &mdash; honest ranges, never AVM
+        point estimates, never made-up numbers. Until then this box stays empty on purpose:
+        we render real data or nothing.</p>
+        {%- endif %}
+      </div>
+      <div class="floodbox">
+        <span class="f-eyebrow">The flood question</span>
+        <h3>Answered straight, block by block</h3>
+        <p>{{ n.flood_summary }}</p>
+        {#- Rule 16/21 (compliance lane, rules-current-read.md): non-MLS data
+            shown near listing/feed data must carry its source prominently, in
+            a readily visible typeface not smaller than the median — hence a
+            styled source line ON the rendered page, not only in the repo YAML. -#}
+        <p class="nonmls-src">Flood data source: FEMA flood maps via the Pinellas County Flood Map
+        Service (not MLS data) &middot; verified {{ n.last_verified | longDate }}</p>
+        <a href="/guides/flood-zones-insurance-st-pete/">Read the flood &amp; insurance guide &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-sec="listings" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="no">On the market</span><h2>For sale in {{ n.title }} right now</h2></div>
+      <div>
+        {%- if feed.listingsSyncedAgo %}
+        <span class="synced">listings synced {{ feed.listingsSyncedAgo }} ago</span> &nbsp;
+        {%- endif %}
+        {#- synced-line build-coupling: real feed-watcher value or nothing (rationale §6). -#}
+        <a class="more" href="/search/">Every {{ n.title }} listing</a>
+      </div>
+    </div>
+    {#- Inventory organ, honest (grade finding 5): real listings from the feed
+        mirror or an empty state — no fabricated cards on a page that promises
+        "nothing rather than a made-up figure". DATA CONTRACT (lane a):
+        feed.inventory.neighborhoods[<stat_geo>] = [ { mediaVariant, price,
+        status, address, meta, courtesyOf (Rule 22), dataTimestamp (Rule 24) } ]. -#}
+    {%- set _inv = feed.inventory.neighborhoods[n.stat_geo] if (feed.inventory and feed.inventory.neighborhoods) else null %}
+    {%- if _inv %}
+    <div class="cards">
+      {%- for listing in _inv %}
+      {%- include "components/listing-card.njk" %}
+      {%- endfor %}
+    </div>
+    {%- else %}
+    <p class="fine" style="margin:0">Live {{ n.title }} inventory renders here &mdash; straight
+    from our copy of the Stellar MLS feed with full attribution, the moment the feed mirror
+    connects. Until then: <a href="/search/" style="color:inherit">open the live search &rarr;</a></p>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="section" data-sec="sources" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="no">Receipts</span><h2>Sources for this chapter</h2></div></div>
+    <ul class="srclist">
+      {%- for s in n.sources %}
+      <li><a href="{{ s.url }}" rel="noopener">{{ s.name }}</a> <span class="srclist__accessed">verified {{ s.accessed | longDate }}</span></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" data-sec="readnext" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="no">Keep reading</span><h2>Read next</h2></div></div>
+    <div class="readnext">
+      {%- for r in n.read_next %}
+      <article class="guide">
+        <span class="g-eyebrow">{{ r.eyebrow }}</span>
+        <h3>{{ r.title }}</h3>
+        <p>{{ r.text }}</p>
+        <a href="{{ r.url }}">Read on</a>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{%- set book = {
+  title: "Buying or selling in " + n.title + "?",
+  lede: "Talk to the broker who wrote the chapter. Fifteen minutes, free, and the messy version of your situation is the right version to bring."
+} %}
+{% include "components/booking-band.njk" %}
