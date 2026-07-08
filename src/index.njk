@@ -83,7 +83,15 @@ jsonld: ["real-estate-agent"]
   </div>
 </section>
 
-{% include "components/live-data-band.njk" %}
+{#- F4 home-band honesty swap (operator: "swap it", 2026-07-07): home joins the
+    render-real-or-nothing pattern — kb-stat-band on the city geo replaces the
+    SAMPLE-labeled preview band (grade F4 + contrarian note, wave-2 KB KTB). -#}
+{% set statband = {
+  title: "The market, plainly read",
+  geo: "city",
+  art15: "Based on information from Stellar MLS® — period dates render with the live computation."
+} %}
+{% include "components/kb-stat-band.njk" %}
 
 <section class="section" data-sec="listings">
   <div class="wrap">
