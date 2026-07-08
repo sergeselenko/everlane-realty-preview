@@ -3,6 +3,7 @@ pagination:
   data: kb.guidesLive
   size: 1
   alias: g
+  addAllPagesToCollections: true   # else these paginated pages are absent from collections.all → missing from sitemap.xml (SEO defect, caught 7/8)
 permalink: "/guides/{{ g.slug }}/"
 crumbs:
   - { title: "Guides", url: "/guides/" }

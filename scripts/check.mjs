@@ -110,6 +110,25 @@ for (const r of required) {
     }
     if (locs.some((l) => l.includes("404"))) fail("404 page must not be in sitemap");
     else ok("404 not in sitemap");
+
+    // Completeness (the OTHER direction — added 7/8 after paginated KB pages
+    // silently missed the sitemap): every built content page must be listed,
+    // not just every listed URL built. Plumbing (404) is intentionally excluded.
+    const sitemapRel = new Set(locs.map((loc) => {
+      let p = decodeURIComponent(new URL(loc).pathname);
+      if (p.startsWith(BASE_PATH)) p = "/" + p.slice(BASE_PATH.length);
+      if (p.endsWith("/")) p += "index.html";
+      return p.replace(/^\//, "");
+    }));
+    const sitemapExclude = new Set(["404.html"]);
+    let missing = 0, checked = 0;
+    for (const f of htmlFiles) {
+      const r = rel(f);
+      if (sitemapExclude.has(r)) continue;
+      checked++;
+      if (!sitemapRel.has(r)) { fail(`built page missing from sitemap.xml: ${r}`); missing++; }
+    }
+    if (!missing) ok(`sitemap.xml covers all ${checked} content pages (no page left out)`);
   }
 }
 

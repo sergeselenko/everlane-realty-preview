@@ -3,6 +3,7 @@ pagination:
   data: kb.neighborhoodsLive
   size: 1
   alias: n
+  addAllPagesToCollections: true   # else these paginated pages are absent from collections.all → missing from sitemap.xml (SEO defect, caught 7/8)
 permalink: "/neighborhoods/{{ n.slug }}/"
 crumbs:
   - { title: "Neighborhoods", url: "/neighborhoods/" }
