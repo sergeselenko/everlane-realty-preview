@@ -1,0 +1,98 @@
+# kb/facts/climate — climate + storm-history specifics NOT already in flood.yaml:
+# the two-season pattern, hurricane-season dates, storm surge as the top threat,
+# evacuation-zone-vs-flood-zone, and Shore Acres neighborhood-level storm effects.
+# (City-level Helene surge + Milton rain live in flood.yaml — not duplicated here.)
+# Extracted from the guides + chapters (wave-3 facts substrate). Every entry:
+# value + source + last-verified. Quarterly re-verification.
+domain: climate
+updated: 2026-07-08
+review: quarterly
+facts:
+  - id: tampa-bay-two-seasons
+    value: >
+      The Tampa Bay area has two seasons rather than four: a hot, wet season roughly May through
+      October and a mild, dry one November through April. Close to two-thirds of the year's rain
+      falls June–September, and summer afternoons carry an almost-daily chance of a sea-breeze
+      thunderstorm.
+    source: "Climate of the Tampa Bay area — humid subtropical, the two-season wet/dry pattern (via the Wikipedia mirror)"
+    source_url: "https://en.wikipedia.org/wiki/Climate_of_the_Tampa_Bay_area"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: "Secondary source. From kb/guides/moving-to-st-petersburg.md."
+
+  - id: hurricane-season-dates
+    value: >
+      Atlantic hurricane season runs June 1 through November 30 each year, peaking from mid-August
+      into October.
+    source: "National Weather Service Tampa Bay — tropical weather (hurricane season dates)"
+    source_url: "https://www.weather.gov/tbw/tampabaytropicalweather"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "From kb/guides/moving-to-st-petersburg.md."
+
+  - id: storm-surge-top-threat
+    value: >
+      For the bay-and-Gulf St. Petersburg area, the National Weather Service Tampa Bay names storm
+      surge the single greatest hurricane threat to life — ahead of wind.
+    source: "National Weather Service Tampa Bay — tropical weather (storm surge as the top threat)"
+    source_url: "https://www.weather.gov/tbw/tampabaytropicalweather"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "From kb/guides/moving-to-st-petersburg.md."
+
+  - id: evacuation-zone-vs-flood-zone
+    value: >
+      A storm-surge evacuation zone is not a FEMA flood zone. Evacuation zones are lettered surge
+      zones (Zone A ordered out first) that tell you when to leave for a specific storm; FEMA flood
+      zones tell you long-term flood risk and drive insurance and building rules. A home can sit in
+      a low-risk FEMA flood zone and a first-out evacuation zone at the same time.
+    source: "Florida Division of Emergency Management — Know Your Zone (storm-surge evacuation zones)"
+    source_url: "https://www.floridadisaster.org/knowyourzone/"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "Pinellas lookup at kyz.pinellas.gov. From kb/guides/moving-to-st-petersburg.md."
+
+  - id: shore-acres-bowl-topography
+    value: >
+      Shore Acres sits low and, as FOX 13 described it after Hurricane Helene, is "built like a
+      bowl" — the middle dips, so interior blocks tend to take water before the streets along the
+      edges do.
+    source: "FOX 13 Tampa Bay — Homes in Shore Acres destroyed by Hurricane Helene (Sept 27, 2024)"
+    source_url: "https://www.fox13news.com/news/hurricane-helene-destroys-homes-shore-acres-neighborhood-experiences-4th-flooding-event-4-years"
+    as_of: 2024-09-27
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      Secondary source (FOX 13). Describes the neighborhood's topography, not any resident group.
+      From kb/neighborhoods/shore-acres.md.
+
+  - id: shore-acres-four-floods-four-years
+    value: >
+      Hurricane Helene (Sept 26, 2024) was Shore Acres' fourth flooding event in four years, per
+      FOX 13 — flooding here is recurrent, not a single-storm event.
+    source: "FOX 13 Tampa Bay — Shore Acres neighborhood experiences 4th flooding event in 4 years (Sept 27, 2024)"
+    source_url: "https://www.fox13news.com/news/hurricane-helene-destroys-homes-shore-acres-neighborhood-experiences-4th-flooding-event-4-years"
+    as_of: 2024-09-27
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: "Secondary source (FOX 13). From kb/neighborhoods/shore-acres.md."
+
+  - id: shore-acres-elevate-florida
+    value: >
+      The state's Elevate Florida home-hardening program drew 555 applications from Shore Acres
+      alone after 2024; the neighborhood civic association's president estimated only 100 to 150
+      would ultimately receive funding, with priority to homes carrying three or more flood losses
+      or officially classified as substantially damaged.
+    source: "Bay News 9 — Shore Acres residents start getting responses from Elevate Florida (Aug 23, 2025)"
+    source_url: "https://baynews9.com/fl/tampa/news/2025/08/23/shore-acres-residents-start-getting-responses-from-elevate-florida-"
+    as_of: 2025-08-23
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      The 100–150 funded figure is the civic association president's estimate, not a final program
+      count; the 555-application figure is reported by Bay News 9 (secondary). From
+      kb/neighborhoods/shore-acres.md.

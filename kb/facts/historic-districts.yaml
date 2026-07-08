@@ -1,0 +1,112 @@
+# kb/facts/historic-districts — NRHP listings, contributing-structure counts,
+# district dates/refs, and the National-Register-vs-local-designation distinction.
+# Extracted from the neighborhood chapters (wave-3 facts substrate). Every entry:
+# value + source + last-verified. Quarterly re-verification.
+domain: historic-districts
+updated: 2026-07-08
+review: quarterly
+facts:
+  - id: old-northeast-nrhp-north-shore
+    value: >
+      Old Northeast is listed on the National Register of Historic Places as the North Shore
+      Historic District (NRHP ref. #03000040), listed February 20, 2003, with 2,975 contributing
+      buildings. The brick streets, granite curbs, and hex-block sidewalks are part of that
+      protected historic fabric.
+    source: "NRHP record — North Shore Historic District (Old Northeast), ref #03000040 (National Park Service, National Register)"
+    source_url: "https://npgallery.nps.gov/AssetDetail/NRIS/03000040"
+    as_of: 2003-02-20
+    last_verified: 2026-07-07
+    confidence: HIGH
+    notes: >
+      Contributing-building count (2,975) per the NRHP nomination. From
+      kb/neighborhoods/old-northeast.md.
+
+  - id: kenwood-nrhp-district
+    value: >
+      Historic Kenwood is listed on the National Register of Historic Places as the Kenwood
+      Historic District (NRHP ref. #03000729), listed August 4, 2003, with 2,203 contributing
+      buildings across roughly 375 acres; the homes were built largely between 1912 and 1945,
+      and bungalows make up more than half of them.
+    source: "NRHP record — Kenwood Historic District, ref #03000729 (National Park Service, National Register)"
+    source_url: "https://npgallery.nps.gov/AssetDetail/NRIS/03000729"
+    as_of: 2003-08-04
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      Counts, acreage, build era, and bungalow share per the NRHP nomination. From
+      kb/neighborhoods/historic-kenwood.md.
+
+  - id: huggins-stengel-field-nrhp
+    value: >
+      Huggins-Stengel Field, the ballfield inside Crescent Lake Park, is listed on the National
+      Register of Historic Places (NRHP ref. #100004348), listed August 27, 2019; the New York
+      Yankees held spring training there across the seasons from 1925 to 1961.
+    source: "NRHP record — Huggins-Stengel Field, ref #100004348 (National Park Service, National Register); Florida Department of State"
+    source_url: "https://npgallery.nps.gov/AssetDetail/NRIS/100004348"
+    as_of: 2019-08-27
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      Yankees spring-training history (1925–1961) per the Florida Department of State. From
+      kb/neighborhoods/crescent-lake.md.
+
+  - id: don-cesar-nrhp
+    value: >
+      The Don CeSar, the resort at the south end of St. Pete Beach (Long Key), is listed on the
+      National Register of Historic Places (NRHP ref. #75000563), listed April 3, 1975; it opened
+      in 1928.
+    source: "NRHP record — The Don CeSar, ref #75000563 (National Park Service, National Register)"
+    source_url: "https://npgallery.nps.gov/AssetDetail/NRIS/75000563"
+    as_of: 1975-04-03
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "From kb/neighborhoods/st-pete-beach.md."
+
+  - id: national-register-vs-local-designation
+    value: >
+      National Register listing is largely honorary: it does not by itself restrict what an owner
+      may do to a private home unless federal assistance is involved. Local historic-district
+      designation is the layer with legal teeth — inside a local district an exterior change goes
+      through the City of St. Petersburg's design review and needs a Certificate of Appropriateness
+      before work on the front of the house.
+    source: "City of St. Petersburg — historic preservation program (local designation vs. National Register; Certificate of Appropriateness)"
+    source_url: "https://www.stpete.org/business/planning___zoning/historic_preservation.php"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      Whether a specific parcel sits under a local overlay is answerable per address with the city;
+      National Register status alone is not the governing layer. From
+      kb/neighborhoods/historic-kenwood.md.
+
+  - id: snell-isle-no-nrhp-district
+    value: >
+      Snell Isle carries no National Register historic-district designation of its own (unlike Old
+      Northeast's North Shore district and Historic Kenwood); its 1920s Mediterranean character is
+      a market fact, not a legal protection. Only local designation on the City of St. Petersburg's
+      own Register of Historic Places would protect a property from demolition or unsympathetic
+      alteration.
+    source: "Snell Isle — encyclopedia record; City of St. Petersburg — historic preservation program"
+    source_url: "https://en.wikipedia.org/wiki/Snell_Isle"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      The absence of an NRHP district is stated per the public record via the Snell Isle
+      encyclopedia record (secondary); confirm any specific property's local designation with the
+      city. From kb/neighborhoods/snell-isle.md.
+
+  - id: crescent-lake-no-nrhp-district
+    value: >
+      Crescent Lake's residential grid carries no National Register historic-district listing of
+      its own — it is historic in character, not by ordinance — unlike neighboring Old Northeast
+      and Historic Kenwood. The only National Register record inside its bounds is Huggins-Stengel
+      Field, the ballfield in the park.
+    source: "Historic Homes Tampa Bay — Crescent Lake Park: the center of a historic neighborhood"
+    source_url: "https://historichomestampabay.com/journal-crescent-lake-park-st-petersburg-historic-neighborhood/"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      Secondary source; the absence of a district designation means the preservation review that
+      binds Old Northeast/Kenwood does not apply here. From kb/neighborhoods/crescent-lake.md.

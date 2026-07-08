@@ -1,0 +1,140 @@
+# kb/facts/tax — Florida/Pinellas tax and statutory closing-cost rules: no income
+# tax, homestead + Save Our Homes, the purchase reassessment reset, documentary-stamp
+# and intangible taxes, the promulgated title-insurance rate, and the tourist tax.
+# These are statutory/regulatory RATE RULES, not market numbers. Extracted from the
+# guides (wave-3 facts substrate). Every entry: value + source + last-verified.
+# Quarterly re-verification (tax rules churn).
+domain: tax
+updated: 2026-07-08
+review: quarterly
+facts:
+  - id: florida-no-income-tax
+    value: >
+      Florida imposes no personal income tax — none on wages — and no state inheritance or gift
+      tax.
+    source: "Florida Department of Revenue — Tax Information for New Residents"
+    source_url: "https://floridarevenue.com/Forms_library/current/brochure/gt800025.pdf"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "From kb/guides/moving-to-st-petersburg.md."
+
+  - id: homestead-exemption
+    value: >
+      A Florida homeowner can claim a homestead exemption of up to $50,000 off the taxable value of
+      a primary residence; filing for it also unlocks the Save Our Homes assessment cap.
+    source: "Florida Department of Revenue — Tax Information for New Residents"
+    source_url: "https://floridarevenue.com/Forms_library/current/brochure/gt800025.pdf"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "From kb/guides/moving-to-st-petersburg.md."
+
+  - id: save-our-homes-cap
+    value: >
+      Once a Florida property is homesteaded, its assessed value can rise no more than the lower of
+      3% or the change in the Consumer Price Index per year, regardless of market movement (the
+      "Save Our Homes" cap). Over years, a long-held home's assessed value drifts well below its
+      market value.
+    source: "Florida Statutes §193.155 — homestead assessments (Save Our Homes 3%/CPI cap)"
+    source_url: "https://www.flsenate.gov/laws/statutes/2024/193.155"
+    as_of: 2024-01-01
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "Cited to the 2024 Florida Statutes. From kb/guides/moving-to-st-petersburg.md."
+
+  - id: homestead-reassessment-at-purchase
+    value: >
+      A seller's low capped homestead assessment belongs to the seller, not the house: on a change
+      of ownership the property is reassessed at full just (market) value as of January 1 of the
+      following year, and the Save Our Homes cap starts over from there. A buyer's tax bill is
+      computed on today's market value, not the seller's current bill — the "same house, double the
+      taxes" reset.
+    source: "Florida Statutes §193.155 — homestead assessments (reassessment at just value after a change of ownership)"
+    source_url: "https://www.flsenate.gov/laws/statutes/2024/193.155"
+    as_of: 2024-01-01
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      A first partial-year bill can still ride the seller's low capped value, then jump at the
+      January 1 reset. From kb/guides/moving-to-st-petersburg.md.
+
+  - id: homestead-portability
+    value: >
+      A Florida homesteader moving within the state can carry the accumulated Save Our Homes
+      benefit — the gap between assessed and market value — from the old home to the new one
+      ("portability").
+    source: "Florida Statutes §193.155 — homestead assessments"
+    source_url: "https://www.flsenate.gov/laws/statutes/2024/193.155"
+    as_of: 2024-01-01
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "From kb/guides/moving-to-st-petersburg.md."
+
+  - id: doc-stamp-tax-deed
+    value: >
+      Florida's documentary stamp tax on a deed is $0.70 per $100 of the sale price (the transfer
+      tax). By local custom in Pinellas County the seller pays the deed doc stamps — but custom is
+      not law: the contract controls and it is negotiable. (Miami-Dade uses a different rate;
+      Pinellas does not.)
+    source: "Florida Department of Revenue — Documentary Stamp Tax (deed and note rates)"
+    source_url: "https://floridarevenue.com/taxes/taxesfees/Pages/doc_stamp.aspx"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "The seller-pays split is local custom, not statute. From kb/guides/buying-in-st-pete-process-costs.md."
+
+  - id: doc-stamp-tax-note-uncapped
+    value: >
+      Florida's documentary stamp tax on a promissory note runs $0.35 per $100 of the amount
+      financed. Because a purchase-money note is secured by a recorded Florida mortgage, this tax is
+      uncapped — the $2,450 documentary-stamp cap applies only to obligations NOT secured by
+      Florida real property (Fla. Stat. §201.08). By custom the borrower pays.
+    source: "Florida Department of Revenue — Documentary Stamp Tax; Fla. Stat. §201.08"
+    source_url: "https://floridarevenue.com/taxes/taxesfees/Pages/doc_stamp.aspx"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      The §201.08 correction: the $2,450 cap does NOT apply to a mortgage-secured purchase-money
+      note. From kb/guides/buying-in-st-pete-process-costs.md.
+
+  - id: nonrecurring-intangible-tax
+    value: >
+      Florida levies a nonrecurring intangible tax of 2 mills — $0.002 per dollar, or $2 per $1,000
+      — on a new mortgage; it is uncapped, and by custom falls on the borrower.
+    source: "Florida Department of Revenue — Nonrecurring Intangible Tax (2 mills on a new mortgage)"
+    source_url: "https://floridarevenue.com/taxes/taxesfees/Pages/nonrecurring_intangible_tax.aspx"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "From kb/guides/buying-in-st-pete-process-costs.md."
+
+  - id: title-insurance-promulgated-rate
+    value: >
+      Florida promulgates the owner's-title-insurance premium by rule, so it is the same at every
+      title company: $5.75 per $1,000 of coverage on the first $100,000, then $5.00 per $1,000 up
+      to $1 million, with a $100 minimum. What varies between companies is the settlement/closing-
+      service fee, not the policy rate.
+    source: "Fla. Admin. Code R. 69O-186.003 — Title Insurance Rates (via Cornell LII)"
+    source_url: "https://www.law.cornell.edu/regulations/florida/Fla-Admin-Code-Ann-R-69O-186-003"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      A promulgated regulatory rate schedule, not a market price. From
+      kb/guides/buying-in-st-pete-process-costs.md.
+
+  - id: tourist-development-tax
+    value: >
+      A short stay (six months or less) in Pinellas County is taxed three ways: 6% Florida state
+      sales tax, a 1% Pinellas discretionary surtax, and the 6% Pinellas Tourist Development Tax
+      (the "bed tax," levied under Pinellas County Code ch. 118, art. III) — about 13% all in.
+      Operators register with the Pinellas County Tax Collector for the tourist tax and with the
+      state for sales tax.
+    source: "Pinellas County Tax Collector — Tourist Development Tax (Pinellas County Code ch. 118, art. III)"
+    source_url: "https://pinellastaxcollector.gov/property-tax/tourist-development-taxes/"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "Confirm the current rate when filing. From kb/guides/short-term-rentals-pinellas.md."

@@ -1,0 +1,59 @@
+# kb/facts/transit — transit and access facts: the SunRunner BRT, the airports,
+# the Howard Frankland Bridge (I-275 to Tampa), and the Pinellas Bayway causeway.
+# Extracted from the guides + chapters (wave-3 facts substrate). Every entry:
+# value + source + last-verified. Quarterly re-verification (service churns).
+domain: transit
+updated: 2026-07-08
+review: quarterly
+facts:
+  - id: sunrunner-brt
+    value: >
+      The SunRunner is Tampa Bay's first bus rapid transit line, running about 10 miles from St.
+      Pete Beach through downtown St. Petersburg — much of it in dedicated bus lanes — every 15
+      minutes at peak, seven days a week from 6 a.m. to midnight.
+    source: "PSTA — SunRunner bus rapid transit"
+    source_url: "https://psta.net/services/sunrunner/"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "From kb/guides/moving-to-st-petersburg.md."
+
+  - id: airports-tpa-pie
+    value: >
+      Two airports serve the area: Tampa International (TPA), the region's major full-service hub,
+      is about 17 miles from St. Petersburg; St. Pete–Clearwater International (PIE) is the small,
+      close-in option about 9 miles north of downtown, largely served by a single low-cost carrier.
+    source: "St. Pete–Clearwater International Airport (PIE) — location and carrier profile (via the Wikipedia mirror)"
+    source_url: "https://en.wikipedia.org/wiki/St._Pete%E2%80%93Clearwater_International_Airport"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      PIE distance and carrier profile via the encyclopedia mirror (secondary); the TPA distance
+      as stated in the relocation guide. From kb/guides/moving-to-st-petersburg.md.
+
+  - id: howard-frankland-bridge
+    value: >
+      I-275 crosses Tampa Bay to Tampa on the Howard Frankland Bridge — the busiest bridge in the
+      region at roughly 250,000 vehicles a day. FDOT's new span opened its express lanes and a
+      nearly seven-mile pedestrian-and-cyclist path in May 2026, adding about 50% capacity.
+    source: "WUSF — new Howard Frankland Bridge express lanes and shared-use path open (May 27, 2026)"
+    source_url: "https://www.wusf.org/transportation/2026-05-27/northbound-express-lanes-howard-frankland-bridge-now-open"
+    as_of: 2026-05-27
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: "Secondary source (WUSF). From kb/guides/moving-to-st-petersburg.md."
+
+  - id: pinellas-bayway
+    value: >
+      The Pinellas Bayway is an FDOT toll route whose State Road 679 leg is the only vehicular
+      access to Tierra Verde and, past it, Fort De Soto Park; it opened December 21, 1962. Its old
+      bascule drawbridges were replaced with high, fixed causeways — SR 682 in 2013–2014 and the SR
+      679 span to Tierra Verde in 2019–2021 — so a fixed vertical clearance now governs sailboat
+      mast height on and off the island.
+    source: "Pinellas Bayway — FDOT toll system record (via the Wikipedia mirror)"
+    source_url: "https://en.wikipedia.org/wiki/Pinellas_Bayway"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: "Secondary source. From kb/neighborhoods/tierra-verde.md."

@@ -1,7 +1,7 @@
 # kb/facts/flood — flood zones, maps, and floodplain rules (St. Pete / Pinellas)
 # Every entry: value + source + last-verified (plan §3a). Quarterly re-verification.
 domain: flood
-updated: 2026-07-07
+updated: 2026-07-08
 review: quarterly
 facts:
   - id: stpete-flood-risk-share
@@ -141,3 +141,52 @@ facts:
     notes: >
       City's exact current class from a secondary source — re-anchor to the city/FEMA CRS
       eligible-communities list before quoting a percentage in print.
+
+  # --- wave-3 facts-substrate appends (2026-07-08): floodplain-construction + St. Pete Beach ---
+  - id: pinellas-design-flood-elevation
+    value: >
+      In the Special Flood Hazard Area, Pinellas County requires new or substantially-improved
+      buildings to be built at least one foot above the base flood elevation — the "design flood
+      elevation," BFE plus a foot of freeboard. A building finished to current code therefore sits
+      materially higher, and prices differently on flood insurance, than a ground-level older home
+      a block away.
+    source: "Pinellas County — Construction in a Floodplain (new/substantially-improved buildings built at least one foot above BFE)"
+    source_url: "https://pinellas.gov/construction-in-a-floodplain/"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      From kb/neighborhoods/downtown-edge-district.md (the Downtown/EDGE new-construction flood
+      posture).
+
+  - id: spb-substantial-improvement-50-percent
+    value: >
+      St. Pete Beach applies FEMA's 50% substantial-improvement threshold in its own floodplain
+      code: cross 50% of a structure's value in repairs or improvements and the building must be
+      brought into full flood compliance (which on a ground-level island cottage can mean elevating
+      it). This is looser than the City of St. Petersburg's deliberately stricter 49% threshold — on
+      a separate island city you read that city's code for the number, not the mainland's.
+    source: "City of St. Pete Beach — Flooding & Property (FEMA 50% substantial-improvement threshold); City of St. Petersburg — substantial damage & improvement (49%, for contrast)"
+    source_url: "https://www.stpetebeach.org/256/Flooding-Property"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      The existing stpete-49-percent-rule entry covers the City of St. Petersburg's 49%; this is
+      St. Pete Beach's distinct 50%. From kb/neighborhoods/st-pete-beach.md.
+
+  - id: spb-coastal-high-hazard-area
+    value: >
+      The City of St. Pete Beach's own flood page states that property in the city is subject to
+      flooding and marks a Coastal High Hazard Area across Long Key. The exact zone and base flood
+      elevation remain a per-address question on the county flood map, but the island skews to the
+      high-hazard end.
+    source: "City of St. Pete Beach — Flooding & Property (the city's flood map, Coastal High Hazard Area)"
+    source_url: "https://www.stpetebeach.org/256/Flooding-Property"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      The Coastal High Hazard Area designation is the city's own; that "much of Long Key reads FEMA
+      VE or AE" is a parcel-specific characterization to confirm per address. From
+      kb/neighborhoods/st-pete-beach.md.

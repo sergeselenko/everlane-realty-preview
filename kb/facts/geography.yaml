@@ -1,0 +1,246 @@
+# kb/facts/geography — locations, boundaries, municipal identity, island/peninsula
+# facts, and signature located landmarks across St. Petersburg and the Pinellas
+# beach/island communities. Extracted from the chapters + guides (wave-3 facts
+# substrate). Every entry: value + source + last-verified. Quarterly re-verification.
+domain: geography
+updated: 2026-07-08
+review: quarterly
+facts:
+  - id: gulfport-own-municipality
+    value: >
+      Gulfport is a separate incorporated city in Pinellas County — not a St. Petersburg
+      neighborhood — bordering St. Petersburg, South Pasadena, and Boca Ciega Bay, with its own
+      mayor, city council, city manager, building department, and code of ordinances. Because it
+      governs itself, its permitting, business-tax, rental, and floodplain administration run
+      through Gulfport's rulebook, not St. Petersburg's.
+    source: "City of Gulfport, FL — official site"
+    source_url: "https://mygulfport.us/"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "From kb/neighborhoods/gulfport.md."
+
+  - id: gulfport-incorporation-land-area
+    value: >
+      Gulfport was incorporated in 1910 and covers roughly 2.76 square miles of land on Boca Ciega
+      Bay — small enough to cross on foot.
+    source: "Gulfport, Florida — municipal record (via the Wikipedia mirror; primary city/county records pulled at quarterly sweep)"
+    source_url: "https://en.wikipedia.org/wiki/Gulfport,_Florida"
+    as_of: 1910-01-01
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      Incorporation year and land area via the encyclopedia mirror (secondary); the chapter flags
+      these for primary city/county re-anchoring at the quarterly sweep. From
+      kb/neighborhoods/gulfport.md.
+
+  - id: boca-ciega-bay
+    value: >
+      Boca Ciega Bay is a bay connected to the Gulf of Mexico, designated a Florida aquatic
+      preserve since 1968, with a mangrove-and-seagrass shoreline rather than an open-beach edge;
+      it borders Gulfport.
+    source: "Boca Ciega Bay — bay record (via the Wikipedia mirror)"
+    source_url: "https://en.wikipedia.org/wiki/Boca_Ciega_Bay"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: "Secondary source. From kb/neighborhoods/gulfport.md."
+
+  - id: st-pete-beach-own-municipality
+    value: >
+      St. Pete Beach is its own city, not a St. Petersburg neighborhood — it occupies nearly all
+      of Long Key, a barrier island on the open Gulf of Mexico reached by bridge. It was
+      incorporated in 1957 from Pass-a-Grille, Don CeSar, Belle Vista, and the town of St.
+      Petersburg Beach plus unincorporated Pinellas, and renamed "St. Pete Beach" by referendum in
+      1994; it keeps its own city hall on Corey Avenue, its own commission, code, and permitting.
+    source: "City of St. Pete Beach — Community History"
+    source_url: "https://www.stpetebeach.org/260/Community-History"
+    as_of: 1957-01-01
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      Pass-a-Grille, at the island's southern tip, is the oldest village, one of the towns merged
+      into the city in 1957. From kb/neighborhoods/st-pete-beach.md.
+
+  - id: tierra-verde-unincorporated
+    value: >
+      Tierra Verde is unincorporated — outside any city limit — so the Pinellas County Board of
+      County Commissioners is its local government, and its building permits, code enforcement, and
+      land-use rules run through the county rather than a city. Both St. Petersburg and St. Pete
+      Beach have bid to annex the island; it has voted to stay independent.
+    source: "Pinellas County — For Residents of Unincorporated Tierra Verde"
+    source_url: "https://pinellas.gov/for-residents-of-unincorporated-tierra-verde/"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      The annexation-vote history is via the Tierra Verde encyclopedia record (secondary); the
+      unincorporated status and county-government fact are from the Pinellas County page. From
+      kb/neighborhoods/tierra-verde.md.
+
+  - id: tierra-verde-made-island
+    value: >
+      Tierra Verde is a made island of 667 acres at the entrance of Tampa Bay: it began as fifteen
+      low mangrove-and-scrub islands that 1960s dredge-and-fill reshaped into the six areas the
+      community carries today — Monte Cristo, Entrada, Pinellas Bayway, Sands Point, East Shore,
+      and West Shore.
+    source: "Tierra Verde, Florida — geography record (via the Wikipedia mirror)"
+    source_url: "https://en.wikipedia.org/wiki/Tierra_Verde,_Florida"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: "Secondary source. From kb/neighborhoods/tierra-verde.md."
+
+  - id: fort-de-soto-park
+    value: >
+      Fort De Soto Park, at the southern end of Tierra Verde, spans 1,136 acres across five
+      interconnected keys — the largest park in the Pinellas County park system — with more than
+      seven miles of waterfront and a public boat launch.
+    source: "Pinellas County Parks — Fort De Soto Park"
+    source_url: "https://pinellas.gov/parks/fort-de-soto-park/"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "From kb/neighborhoods/tierra-verde.md."
+
+  - id: pinellas-point-peninsula
+    value: >
+      Pinellas Point is a peninsula at St. Petersburg's southern tip that pushes into Tampa Bay,
+      ringed by waterfront parks and aimed at the Sunshine Skyway; it filled in after World War II
+      as a mid-century neighborhood of one-story ranches and concrete-block homes. Pinellas Point
+      Park sits on the bay as one of the city's waterfront parks.
+    source: "City of St. Petersburg Parks & Recreation — Pinellas Point Park; The Gabber Newspaper — 'The Pink Streets of St. Petersburg'"
+    source_url: "https://www.stpeteparksrec.org/parks___facilities/pinellas_point_park.php"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      Mid-century build character per The Gabber (local history, secondary); the waterfront-park
+      location per City Parks & Recreation. From kb/neighborhoods/pinellas-point.md.
+
+  - id: pink-streets
+    value: >
+      The "Pink Streets" are roughly four and a half miles of pink-red pavement in Pinellas Point,
+      south of Pinellas Point Drive between 10th and 22nd Streets South. They date to spring 1925,
+      when Marguerite Cook and her son George laid pink-tinted concrete through their Murok Realty
+      development; the color faded and the roads decayed until a resident campaign got the City
+      Council to protect them in 1989, and nearly four and a half miles were restored in the early
+      1990s.
+    source: "The Gabber Newspaper — 'The Pink Streets of St. Petersburg'"
+    source_url: "https://thegabber.com/the-pink-streets-of-st-petersburg/"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      Local-history source citing 1925 St. Petersburg Times / Tampa Morning Tribune primary
+      quotes; secondary. From kb/neighborhoods/pinellas-point.md.
+
+  - id: pinellas-point-mound
+    value: >
+      Indian Mound Park at Pinellas Point preserves the Pinellas Point Mound, a Tocobaga-built
+      prehistoric temple mound you can walk. The mound was donated to the City of St. Petersburg
+      in 1958 and carries a marker erected in 1960 by the Princess Hirrihigua Chapter of the
+      Daughters of the American Revolution.
+    source: "Pinellas Point Mound — record (via the Wikipedia mirror); City of St. Petersburg Parks & Recreation — Indian Mound Park"
+    source_url: "https://en.wikipedia.org/wiki/Pinellas_Point_Mound"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      Donation year and DAR marker per the encyclopedia record (secondary); the walkable park per
+      City Parks & Recreation. From kb/neighborhoods/pinellas-point.md.
+
+  - id: stpete-peninsula-water-share
+    value: >
+      St. Petersburg sits at the south end of the Pinellas peninsula, with Tampa Bay on the east
+      side, the Gulf of Mexico to the west, and a single land connection to the mainland at the
+      north; roughly 55% of the city's area is water.
+    source: "St. Petersburg, FL — city geography record (via the Wikipedia mirror)"
+    source_url: "https://en.wikipedia.org/wiki/St._Petersburg,_Florida"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: "Secondary source. From kb/guides/moving-to-st-petersburg.md."
+
+  - id: stpete-sunshine-city-record
+    value: >
+      St. Petersburg is nicknamed the "Sunshine City" and holds a Guinness record for consecutive
+      sunny days — 768 of them, from 1967 to 1969.
+    source: "St. Petersburg, FL — city record (via the Wikipedia mirror)"
+    source_url: "https://en.wikipedia.org/wiki/St._Petersburg,_Florida"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: "Secondary source. From kb/guides/moving-to-st-petersburg.md."
+
+  - id: edge-district-boundaries
+    value: >
+      The EDGE District is downtown St. Petersburg's arts-and-entertainment sub-district, running
+      along Central Avenue between 9th Street (Dr. Martin Luther King Jr. Street) and 16th Street
+      and reaching out to First Avenue North and First Avenue South; it was designated a Florida
+      Main Street in 2014.
+    source: "The EDGE District — official site; Florida Department of State — Florida Main Street designation"
+    source_url: "https://edgedistrict.org/"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      Boundaries per the EDGE District official site; the 2014 Florida Main Street designation per
+      the Florida Department of State. From kb/neighborhoods/downtown-edge-district.md.
+
+  - id: st-pete-pier
+    value: >
+      The St. Pete Pier is a 26-acre district on downtown St. Petersburg's waterfront — parks, a
+      marketplace, restaurants, a fishing dock, a splash pad, and public art including Janet
+      Echelman's "Bending Arc" — that opened in 2020.
+    source: "St. Pete Pier — official site (City of St. Petersburg); St. Pete Rising"
+    source_url: "https://www.stpetepier.org/"
+    as_of: 2020-07-01
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: "Opened July 2020. From kb/neighborhoods/downtown-edge-district.md."
+
+  - id: downtown-waterfront-parks
+    value: >
+      Downtown St. Petersburg's eastern edge is a near-continuous chain of public waterfront parks
+      along Tampa Bay — Vinoy Park, North and South Straub Park, Spa Beach, and Demens Landing. The
+      often-repeated claim that this is the "third-largest" downtown waterfront park system in North
+      America (roughly seven miles) is not verifiable — PolitiFact examined it and found no way to
+      confirm the comparison — but the parks themselves are real, continuous, and public.
+    source: "St. Petersburg Parks & Recreation — downtown waterfront parks; PolitiFact"
+    source_url: "https://www.stpeteparksrec.org/parks___facilities/downtown_waterfront.php"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      The "third-largest / seven miles" ranking is explicitly flagged unverifiable per PolitiFact
+      — assert the parks, not the ranking. From kb/neighborhoods/downtown-edge-district.md.
+
+  - id: snell-isle-made-island
+    value: >
+      Snell Isle is a built island: developer C. Perry Snell opened a roughly 275-acre estate
+      subdivision on it in 1925, of which only about 39 acres sat above the high-tide line — the
+      rest was fill, dredged and pumped up out of the shallows onto a low mangrove spoil island. It
+      is organized around Snell Isle Boulevard, across Coffee Pot Bayou from the north end of
+      downtown.
+    source: "Snell Isle — encyclopedia record; St. Petersburg Museum of History — 'C. Perry Snell: In the Pursuit of Beauty'"
+    source_url: "https://en.wikipedia.org/wiki/Snell_Isle"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      Acreage and fill origin corroborated by the St. Petersburg Museum of History; both secondary.
+      From kb/neighborhoods/snell-isle.md.
+
+  - id: vinoy-golf-club
+    value: >
+      The green center of Snell Isle is the Vinoy Golf Club, an 18-hole course that traces to the
+      9-hole Coffee Pot Golf Club C. Perry Snell opened in 1920, was rebuilt into a full course by
+      architects Wayne Stiles and John van Kleek in 1926, and was redesigned by Ron Garl in 1992;
+      its 1927 Mediterranean clubhouse still overlooks the fairways.
+    source: "Florida Historic Golf Trail — Vinoy Golf Club"
+    source_url: "https://floridahistoricgolftrail.com/courses/vinoy-golf-club/?altTemplate=CoursePage"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: "Secondary source (a state historic golf trail). From kb/neighborhoods/snell-isle.md."

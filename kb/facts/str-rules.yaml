@@ -3,7 +3,7 @@
 # BINDING for this domain (plan §3b guide 6: rules churn; each municipality cited to its
 # CURRENT ordinance with dates before the STR guide ships).
 domain: str-rules
-updated: 2026-07-07
+updated: 2026-07-08
 review: quarterly
 facts:
   - id: fl-str-preemption
@@ -62,5 +62,121 @@ facts:
     last_verified: 2026-07-07
     confidence: MEDIUM
     notes: >
-      UNVERIFIABLE at this pass — needs: per-municipality ordinance reads (the guide-6
-      drafting task). Do not state any beach city's specific day-limits until then.
+      Umbrella fact. The per-municipality matrix this entry once deferred is now filed
+      (2026-07-08, from the shipped STR guide): see spb-str-rule, gulfport-str-def,
+      treasure-island-str, madeira-beach-str, clearwater-str, unincorporated-pinellas-str, and
+      the fl-transient-threshold-509013 state line — each cited to the city's own ordinance, with
+      the guide's "verify with the city" gaps preserved in each fact's notes. Quarterly
+      re-verification stays binding (these rules churn).
+
+  # --- wave-3 facts-substrate appends (2026-07-08): the STR guide's per-municipality matrix is
+  # --- now drafted + sourced, so the per-city specifics the beach-communities-vary entry deferred
+  # --- can be filed. Each cell cited to the city's own ordinance; "verify with the city" gaps skipped.
+  - id: fl-transient-threshold-509013
+    value: >
+      Under Florida Statute §509.013, a home becomes a "transient public lodging establishment" — a
+      vacation rental — once it is rented more than three times in a calendar year for periods of
+      less than 30 days. Rent three or fewer times a year and it is below the state's line; a fourth
+      short stay crosses it.
+    source: "Florida Statutes §509.013 — 'transient public lodging establishment' definition"
+    source_url: "https://www.flsenate.gov/laws/statutes/2025/509.013"
+    as_of: 2025-01-01
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      Cited to the 2025 Florida Statutes. This state threshold echoes through the local ordinances.
+      From kb/guides/short-term-rentals-pinellas.md.
+
+  - id: spb-str-rule
+    value: >
+      In St. Pete Beach, under-30-day rentals are not permitted in most districts — they are allowed
+      up to 3 times per 12 months only in RM (Residential Multi-Family) zoning and the Pass-A-Grille
+      Overlay; rentals of one month or longer are allowed citywide. Permanent transient lodging needs
+      a business tax license plus Zoning and Fire Marshal review before issuance.
+    source: "City of St. Pete Beach — Short-Term Rental Rules & Regulations (RM + Pass-A-Grille Overlay)"
+    source_url: "https://www.stpetebeach.org/438/Short-Term-Rental-Rules-Regulations"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      The 3-times shape is a grandfathered pre-2011 rule; the city does not publish the fine schedule
+      or adopting-ordinance date on its STR page (confirm with the city). Supersedes the earlier
+      beach-communities-vary caveat now that the STR guide sources the rule. From
+      kb/guides/short-term-rentals-pinellas.md.
+
+  - id: gulfport-str-def
+    value: >
+      The City of Gulfport (Code §22-2.02) defines a short-term rental as a rental of less than one
+      month, more than 3 times in any consecutive 12 months. Gulfport uses "listed uses only" zoning
+      — short-term rental is permitted in certain districts, some only with added approval, with the
+      city's zoning map and staff making the final call.
+    source: "City of Gulfport — Short-Term Rentals (Code ch. 22, §22-2.02)"
+    source_url: "https://mygulfport.us/short-term-rentals/"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      Adopting-ordinance number/date and the fine schedule are not published on the city's STR page
+      (verify with the city). From kb/guides/short-term-rentals-pinellas.md.
+
+  - id: treasure-island-str
+    value: >
+      Treasure Island regulates short-term rentals on a "change-of-occupancy" model with no minimum
+      stay (each new short-term occupant is one change). Tourist dwellings are allowed with no change
+      limit in the CG, RFM-30, RFH-50, PR-MU Core, and PR-MU Gulf Blvd districts; a property is
+      presumed a tourist dwelling (and barred) in RU-75 above 2 changes per 12 months and in RM-15
+      above 6 changes per 12 months.
+    source: "City of Treasure Island — Short Term Rental Information (change-of-occupancy / tourist-dwelling zoning)"
+    source_url: "https://www.mytreasureisland.org/residents/departments/community_development/short_term_rental_information.php"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      Exact code section and adoption date to verify with the city; a state lodging license, city
+      Local Business Tax, and the 6% county tourist tax also apply. From
+      kb/guides/short-term-rentals-pinellas.md.
+
+  - id: madeira-beach-str
+    value: >
+      Madeira Beach restricts under-30-day rentals by zoning district per its Vacation Rental
+      Restriction Map (dated Aug. 24, 2021) and requires registration with the City Clerk under Code
+      §34-504 (adopted by Ordinance 2015-13), with building and fire inspections, a local responsible
+      party, and insurance among the conditions.
+    source: "City of Madeira Beach — Code §34-504 registration (adopted by Ord. 2015-13)"
+    source_url: "http://madeirabeach.elaws.us/code/coor_ptii_ch34_artvii_div3_sec34-504"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: >
+      Confirm the district for a specific parcel and the exact current registration terms with the
+      City Clerk. From kb/guides/short-term-rentals-pinellas.md.
+
+  - id: clearwater-str
+    value: >
+      Clearwater effectively bars short-term rentals in residential zones: under Community
+      Development Code §3-1206, a residentially-zoned property may not be rented — or advertised —
+      for less than 31 days (one calendar month). Transient lodging is allowed only in Tourist ("T")
+      districts and commercial-tourist overlays.
+    source: "City of Clearwater — Community Development Code §3-1206 (31-day residential floor)"
+    source_url: "https://library.municode.com/fl/clearwater/codes/community_development_code"
+    as_of: 2026-07-08
+    last_verified: 2026-07-08
+    confidence: MEDIUM
+    notes: "Confirm current code text on Municode. From kb/guides/short-term-rentals-pinellas.md."
+
+  - id: unincorporated-pinellas-str
+    value: >
+      In unincorporated Pinellas County, short-term rentals are allowed county-wide (not zoned out)
+      but require a Short-Term Rental Certificate of Use under State-filed Ordinance 25-15 (2025) and
+      LDC §138-3232 — a registration/inspection regime. The Certificate of Use costs $450 (annual
+      renewal $450), with a $150 initial inspection and $100 re-inspection; occupancy is capped at 2
+      per bedroom plus 2 in one common area (max 10 total), with quiet hours 10 p.m.–9 a.m.
+    source: "Pinellas County — Short-Term Rental Certificate of Use program (State-filed Ordinance 25-15, 2025); Pinellas County Land Development Code §138-3232"
+    source_url: "https://pinellas.gov/str/"
+    as_of: 2025-01-01
+    last_verified: 2026-07-08
+    confidence: HIGH
+    notes: >
+      Program applies once a unit is rented more than 3 times per calendar year for short stays; the
+      exact per-day fine for operating without a Certificate of Use is reported up to $300/day
+      (confirm with the county). From kb/guides/short-term-rentals-pinellas.md.
