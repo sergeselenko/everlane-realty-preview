@@ -3,6 +3,15 @@ title: "Terms of Use"
 description: "Terms of use for everlanerealty.com."
 crumbs: []
 ---
+{#- Compliance set (plan §2 #11). DRAFT for broker + legal review before launch.
+    Grounds: the MLS/IDX frame from wave-2 compliance (Stellar MLS via MLS GRID;
+    Rule 24 consumer personal/non-commercial use + deemed-reliable-not-guaranteed;
+    Rule 29 prohibited non-consumer use), the mlsAttribution + broker block from
+    src/_data/site.js, and the CMA-vs-appraisal distinction. The full Rule 24
+    timestamped currency disclaimer + the MLS GRID source icon live on the
+    listing-display surfaces (listing-card / listing pages), handled at the
+    wave-2 card fix — not on this page. [OPERATOR/LEGAL] markers flag every
+    specific that needs the broker or a lawyer. -#}
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">The fine print</p>
@@ -11,8 +20,49 @@ crumbs: []
 </section>
 <section class="section" style="padding-top:10px">
   <div class="wrap">
-    <div class="stub-block">
-      <p><span class="stub-note">TODO(wave 4, compliance lane)</span> Terms of use: MLS/IDX data ownership and permitted use (Rules 22&ndash;24 frame), no-guarantee language, CMA-vs-appraisal distinction (kept from production copy), governing law.</p>
+    <div class="prose prose--kb">
+      <p class="draftnote">Effective date: <span class="stub-note">[OPERATOR/LEGAL: effective date on launch]</span></p>
+
+      <p>These terms govern your use of everlanerealty.com (the &ldquo;site&rdquo;). By using the site, you agree to them. If you don&rsquo;t agree, please don&rsquo;t use the site.</p>
+
+      <h2 style="margin-top:36px">Who we are</h2>
+      <p>This site is operated by Everlane Realty, a licensed Florida real estate brokerage.</p>
+      <p>
+        {{ site.broker.name }}, {{ site.broker.title }} &middot; Florida License #{{ site.broker.license }}<br>
+        Everlane Realty<br>
+        {{ site.broker.street }}, {{ site.broker.city }}, {{ site.broker.state }} {{ site.broker.zip }}<br>
+        <a href="mailto:{{ site.broker.email }}">{{ site.broker.email }}</a> &middot; <a href="tel:{{ site.broker.phoneHref }}">{{ site.broker.phone }}</a>
+      </p>
+      <p>Everlane Realty is regulated by the Florida Real Estate Commission (FREC); brokerage identification on this site is provided consistent with Florida brokerage-advertising rules. <span class="stub-note">[OPERATOR/LEGAL: the license number above is Serge Osaulenko&rsquo;s individual broker license (BK). If Everlane Realty holds its own brokerage-entity license (CQ), add it here.]</span></p>
+
+      <h2 style="margin-top:36px">Property listings and MLS data</h2>
+      <p>{{ site.mlsAttribution }} The listing content displayed on this site is owned by the MLS and its participating brokers and is provided through an Internet Data Exchange (IDX) program &mdash; it is not owned by Everlane Realty.</p>
+      <p>IDX listing information is provided <strong>exclusively for consumers&rsquo; personal, non-commercial use</strong>. It may not be used for any purpose other than to identify prospective properties consumers may be interested in purchasing. The data is deemed reliable but is <strong>not guaranteed</strong> by MLS GRID or the participating MLS, is not verified by Everlane Realty, and should be independently reviewed and verified for accuracy.</p>
+      <p>Any use or search of the listing data on this site by anyone other than a consumer looking to purchase or lease real estate is prohibited. You may not scrape, harvest, copy in bulk, redistribute, or make any commercial use of the listing data or any other content on this site.</p>
+
+      <h2 style="margin-top:36px">Home values and market information</h2>
+      <p>Any home-value estimate, comparative market analysis (CMA), or market statistic we provide is an opinion of value prepared to help you make a decision. <strong>A CMA is not a formal appraisal.</strong> Only a licensed appraiser can perform an appraisal, and a lender may require one. Market figures are believed reliable but are not guaranteed.</p>
+
+      <h2 style="margin-top:36px">Using this site</h2>
+      <p>You agree to use the site only for lawful, personal, non-commercial purposes, and not to interfere with its operation, attempt to gain unauthorized access, or use automated tools to collect data from it.</p>
+
+      <h2 style="margin-top:36px">No warranties</h2>
+      <p>The site and its content are provided &ldquo;as is&rdquo; and &ldquo;as available,&rdquo; without warranties of any kind, whether express or implied, to the fullest extent permitted by law. While we work to keep the site accurate and current, we do not guarantee that any information &mdash; including listing data, market statistics, and neighborhood facts &mdash; is complete, current, or error-free. Always confirm anything you intend to rely on.</p>
+
+      <h2 style="margin-top:36px">Limitation of liability</h2>
+      <p>To the fullest extent permitted by law, Everlane Realty and Serge Osaulenko are not liable for any damages arising out of your use of, or inability to use, the site or your reliance on any information it contains. <span class="stub-note">[OPERATOR/LEGAL: confirm the limitation-of-liability and any indemnification language you want counsel to stand behind]</span></p>
+
+      <h2 style="margin-top:36px">Third-party links and embedded tools</h2>
+      <p>This site includes embedded IDX search and map tools provided by a third-party MLS/IDX vendor, and may link to other third-party websites. We provide these for convenience and do not control them or take responsibility for their content, availability, or privacy practices.</p>
+
+      <h2 style="margin-top:36px">Governing law</h2>
+      <p>These terms are governed by the laws of the State of Florida, without regard to its conflict-of-laws rules. <span class="stub-note">[OPERATOR/LEGAL: confirm governing law and venue/jurisdiction (e.g. courts located in Pinellas County, Florida)]</span></p>
+
+      <h2 style="margin-top:36px">Changes to these terms</h2>
+      <p>We may update these terms from time to time. When we do, we&rsquo;ll change the effective date at the top of the page. Continuing to use the site means you accept the current version.</p>
+
+      <h2 style="margin-top:36px">Contact us</h2>
+      <p>Questions about these terms? Reach us at <a href="mailto:{{ site.broker.email }}">{{ site.broker.email }}</a> &middot; <a href="tel:{{ site.broker.phoneHref }}">{{ site.broker.phone }}</a>.</p>
     </div>
   </div>
 </section>

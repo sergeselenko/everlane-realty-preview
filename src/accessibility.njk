@@ -3,6 +3,14 @@ title: "Accessibility Statement"
 description: "Everlane Realty's accessibility commitment — WCAG 2.1 AA target across the site."
 crumbs: []
 ---
+{#- Compliance set (plan §2 #11; §4 hard constraint — WCAG 2.1 AA survives any
+    design direction). DRAFT for broker + legal review before launch. Every
+    claim is grounded in the live build: AA-computed color pairs (styles.css
+    header note — 35 pairs, 0 failures), static server-rendered semantic HTML,
+    the skip-to-content link (.skip-link), reduced-motion support
+    (prefers-reduced-motion), labelled form fields, alt text on images. The
+    known limitation is the embedded third-party IDX search/map widgets
+    (vendor-controlled, shadow DOM). -#}
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">The fine print</p>
@@ -11,8 +19,37 @@ crumbs: []
 </section>
 <section class="section" style="padding-top:10px">
   <div class="wrap">
-    <div class="stub-block">
-      <p><span class="stub-note">TODO(wave 4, compliance lane)</span> Accessibility statement: WCAG 2.1 AA target (a hard §4 constraint surviving any design direction), known vendor-widget limitations (IDX map shadow DOM — audit §5.6), and a contact path for accessibility issues.</p>
+    <div class="prose prose--kb">
+      <p class="draftnote">Effective date: <span class="stub-note">[OPERATOR/LEGAL: effective date on launch]</span></p>
+
+      <p>Everlane Realty wants everyone to be able to use this website, including people with disabilities. We build and maintain the site with accessibility in mind and treat it as ongoing work, not a one-time checkbox.</p>
+
+      <h2 style="margin-top:36px">Our standard</h2>
+      <p>We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA &mdash; the standard widely used as the benchmark for accessible websites.</p>
+
+      <h2 style="margin-top:36px">What we&rsquo;ve built in</h2>
+      <ul>
+        <li><strong>Readable color contrast.</strong> Every text-and-background color pair used on the site is computed against the WCAG AA contrast thresholds.</li>
+        <li><strong>Clean, semantic HTML.</strong> Pages are static, server-rendered HTML with proper headings and landmarks, so they work well with screen readers and other assistive technology.</li>
+        <li><strong>Keyboard navigation.</strong> The site can be operated with a keyboard, and a &ldquo;skip to content&rdquo; link lets keyboard and screen-reader users jump past the navigation.</li>
+        <li><strong>Labelled forms.</strong> Form fields have associated, visible labels, and grouped choices use proper field grouping.</li>
+        <li><strong>Descriptive images.</strong> Meaningful images include alternative text.</li>
+        <li><strong>Reduced motion.</strong> The site respects your browser or device &ldquo;reduce motion&rdquo; setting.</li>
+      </ul>
+
+      <h2 style="margin-top:36px">Known limitations</h2>
+      <p>The property-search and map tools embedded on this site are provided by a third-party MLS/IDX vendor and are rendered as vendor-controlled components that we cannot fully modify. As a result, those embedded widgets may not fully meet WCAG 2.1 AA. We&rsquo;re aware of this, we monitor it, and we&rsquo;ll work with the vendor as their tools improve. In the meantime, if a listing or search tool is hard to use, contact us and we&rsquo;ll get you the same information directly.</p>
+
+      <h2 style="margin-top:36px">Ongoing work</h2>
+      <p>Accessibility is never finished. We review the site as it changes and fix issues we find or that are reported to us. <span class="stub-note">[OPERATOR/LEGAL: optional &mdash; if you want a formal third-party accessibility audit or a documented conformance claim, confirm scope with counsel/an accessibility specialist]</span></p>
+
+      <h2 style="margin-top:36px">Need help, or found a problem?</h2>
+      <p>If you have trouble using any part of this site, or you need information from it in a different format, please tell us &mdash; we&rsquo;ll help, and we&rsquo;ll get you what you need directly.</p>
+      <p>
+        {{ site.broker.name }}, {{ site.broker.title }}<br>
+        Everlane Realty<br>
+        <a href="mailto:{{ site.broker.email }}">{{ site.broker.email }}</a> &middot; <a href="tel:{{ site.broker.phoneHref }}">{{ site.broker.phone }}</a>
+      </p>
     </div>
   </div>
 </section>

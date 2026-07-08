@@ -4,8 +4,13 @@ description: "How Everlane Realty collects, uses, and protects your information.
 crumbs: []
 ---
 {#- Compliance set (plan §2 #11; audit #28). Drafted by the compliance lane at
-    wave 4; reviewed before launch. The production form's inline consent
-    language is the seed. -#}
+    wave 4; DRAFT for broker + legal review before launch. Every practice-claim
+    is grounded in the live build: the intake form + its verbatim consent
+    language (src/contact.njk ~L75-76), the analytics posture (src/_data/analytics.js
+    + src/assets/analytics.js — GA4 host-gated, off by default, PII-free), the
+    intake pipeline (n8n webhook → RLS-locked Supabase store), and the broker
+    contact block (src/_data/site.js). [OPERATOR/LEGAL] markers flag every
+    specific that needs the broker or a lawyer. -#}
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">The fine print</p>
@@ -14,9 +19,62 @@ crumbs: []
 </section>
 <section class="section" style="padding-top:10px">
   <div class="wrap">
-    <div class="stub-block">
-      <p><span class="stub-note">TODO(wave 4, compliance lane)</span> Full privacy policy: what the intake form collects and where it goes (n8n &rarr; RLS-locked store), vendor cookies set by IDX widgets, analytics disclosure, retention, deletion on request.</p>
-      <p>Seed (production consent language, kept): the information you share is stored securely, used only to respond to your request, never sold, rented, or shared with third parties, and deleted whenever you ask.</p>
+    <div class="prose prose--kb">
+      <p class="draftnote">Effective date: <span class="stub-note">[OPERATOR/LEGAL: effective date on launch]</span></p>
+
+      <p>This page explains, in plain language, what information this site collects, where it goes, and how you stay in control of it. The short version is the promise on our contact form: the information you share is <strong>stored securely, used only to respond to your request, never sold, rented, or shared with third parties, and deleted whenever you ask</strong>. Everything below is the detail behind that promise.</p>
+
+      <h2 style="margin-top:36px">The information you share with us</h2>
+      <p>The only information we collect directly from you is what you choose to type into our contact form. That includes:</p>
+      <ul>
+        <li>Your name and email address (required, so we can reply);</li>
+        <li>Your cell phone number (optional);</li>
+        <li>What your situation is, what a good outcome would look like, and any context you want to add;</li>
+        <li>Whether your question is about a home or property, your business, or something else.</li>
+      </ul>
+      <p>You don&rsquo;t need an account, and we don&rsquo;t ask for anything we don&rsquo;t need to help you. If you email or call us directly, we&rsquo;ll have whatever you choose to tell us that way, too.</p>
+
+      <h2 style="margin-top:36px">Where your information goes</h2>
+      <p>When you send the contact form, your message travels over a secure (HTTPS) connection to an automated intake workflow, which files it into a private, access-controlled database (row-level security is enforced, so records are not openly readable). It is handled by Serge Osaulenko and Everlane Realty, and by the trusted service providers that operate our secure intake and storage on our behalf &mdash; and by no one else. It is used only to prepare and discuss your plan and to follow up with you.</p>
+
+      <h2 style="margin-top:36px">How we use it &mdash; and what we never do</h2>
+      <p>We use your details only to respond to and follow up on your request. We do <strong>not</strong> sell, rent, or share your information with third parties, and we do not use it for advertising or hand it to data brokers. That is a firm commitment, not a preference we reserve the right to change quietly.</p>
+
+      <h2 style="margin-top:36px">How long we keep it, and deleting it</h2>
+      <p>We keep your information only as long as we need it to respond to and assist with your request. You can ask us to delete it at any time, and we will. <span class="stub-note">[OPERATOR/LEGAL: confirm a specific retention period if one is desired (e.g. &ldquo;deleted within N days of a request, or N months after our last contact&rdquo;)]</span></p>
+      <p>To see what we have, correct it, or have it deleted, just contact us using the details at the bottom of this page.</p>
+
+      <h2 style="margin-top:36px">Cookies and analytics</h2>
+      <p>Everlane Realty&rsquo;s own pages do not set advertising or tracking cookies of their own. Two things are worth knowing:</p>
+      <ul>
+        <li><strong>Analytics.</strong> This site is built to optionally use Google Analytics 4 (GA4) to understand aggregate traffic &mdash; which pages are visited, general device and browser information. Analytics is <strong>off by default</strong>: it loads only on our production website (everlanerealty.com) and only after a measurement ID has been configured; on the preview site and anywhere else it never runs. Even when active, it does <strong>not</strong> receive your name, email, or phone number, and advertising-personalization signals are turned off. When active, GA4 sets its own analytics cookies.</li>
+        <li><strong>IDX property-search widgets.</strong> The property search and map tools embedded on this site are provided by a third-party MLS/IDX vendor. To function, those embedded widgets may set their own cookies and are governed by that vendor&rsquo;s privacy practices, not ours.</li>
+        <li><strong>Appointment booking.</strong> Our &ldquo;book a consult&rdquo; tool is embedded from Cal.com. When you open or use it, that embedded widget may set its own cookies and is governed by Cal.com&rsquo;s privacy practices, not ours.</li>
+      </ul>
+
+      <h2 style="margin-top:36px">What this site connects to</h2>
+      <p>We keep third-party connections to a minimum. The embedded IDX search and map widgets, our Cal.com booking embed, and &mdash; only when enabled on our production site &mdash; Google Analytics are the third-party services our pages connect to, all described above. Beyond those, our pages make no third-party requests: no ad networks, no social-media trackers, no data brokers.</p>
+
+      <h2 style="margin-top:36px">Seller and occupant information</h2>
+      <p>The property listings shown on this site come from the MLS and are limited to information intended for public display. We do not collect, store, or display sellers&rsquo; or occupants&rsquo; personal contact information.</p>
+
+      <h2 style="margin-top:36px">Your choices and rights</h2>
+      <p>At any time you can ask us what information we hold about you, ask us to correct it, ask us to delete it, or ask us to stop following up. Reach us using the contact details below and we&rsquo;ll take care of it. <span class="stub-note">[OPERATOR/LEGAL: if you want to assert compliance with a specific privacy law (e.g. a state consumer-privacy statute), have counsel confirm which laws apply and add the disclosures they require]</span></p>
+
+      <h2 style="margin-top:36px">Children&rsquo;s privacy</h2>
+      <p>This site is intended for adults making real-estate decisions and is not directed to children. We do not knowingly collect personal information from children.</p>
+
+      <h2 style="margin-top:36px">Changes to this policy</h2>
+      <p>If we update this policy, we&rsquo;ll change the effective date at the top of the page. Material changes will be reflected here.</p>
+
+      <h2 style="margin-top:36px">Contact us</h2>
+      <p>Questions about your privacy, or a request about your information? Reach:</p>
+      <p>
+        {{ site.broker.name }}, {{ site.broker.title }} &middot; FL License #{{ site.broker.license }}<br>
+        Everlane Realty<br>
+        {{ site.broker.street }}, {{ site.broker.city }}, {{ site.broker.state }} {{ site.broker.zip }}<br>
+        <a href="mailto:{{ site.broker.email }}">{{ site.broker.email }}</a> &middot; <a href="tel:{{ site.broker.phoneHref }}">{{ site.broker.phone }}</a>
+      </p>
     </div>
   </div>
 </section>
