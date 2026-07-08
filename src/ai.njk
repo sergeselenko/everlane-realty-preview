@@ -1,39 +1,70 @@
 ---
 title: "How This Site Runs"
-description: "The colophon: how Everlane Realty's site runs itself — the data pipeline, what the automation does, what the broker decides, and the live receipts."
+description: "The colophon: how Everlane Realty's site runs itself — the data pipeline, what the automation does, what the broker decides, and the honest guardrails."
 crumbs: []
 ---
 {#- /ai/ — plan §2 #10: the colophon (R3 §5 — receipts, not claims; verified
-    first-mover space). Live counters wire at wave 3 (Concierge/AI Engineer);
-    the pipeline diagram + copy land with them. Loudness dial: DEFAULT
-    (plan §4a) — this page is the label's receipt. -#}
+    first-mover space). Loudness dial: DEFAULT (plan §4a) — output-forward,
+    label-quiet: this page is the label's receipt, stated plainly, not sold.
+    Pipeline copy sourced from build/wave-2/feed-ops/n8n/feed-sync-spec.md;
+    guardrails from build/wave-2/compliance/ktb.md + kb/README.md editorial
+    rules. LIVE COUNTERS stay feed-gated: they show an honest "connects with
+    the feed" state until the MLS GRID token lands (wave 3) — never a
+    fabricated number. Studio NAME (the colophon signature) still awaits the
+    naming reconcile (plan §11.5) — described here, not yet branded.
+    GRADE FOLD 2026-07-08 (fresh-context gap-finder, SHIP-WITH-FIXES): the
+    editorial guardrail reframed to the true model (the tools DRAFT the
+    narrative; the broker reviews/edits/merges/owns it — not "the automation
+    moves data, not narrative"); the wave-3 concierge's cap+log future-tensed
+    (it's in development, not operating); "trends" dropped (spec computes
+    medians/counts); the AI-drafts counter relabeled (content-pipeline-gated,
+    not feed-gated). -#}
 
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">The receipts</p>
     <h1>How this site runs</h1>
-    <p class="lede">This site is operated by Everlane&rsquo;s own studio automation <span class="stub-note">[studio-name TODO — plan §11.5]</span>. The data refreshes itself; the pages regenerate on every deploy; every client-facing decision is the broker&rsquo;s. Here&rsquo;s exactly how.</p>
+    <p class="lede">This site is operated by Everlane&rsquo;s own studio automation. The listing data refreshes itself from the MLS; the market numbers are computed by a database, never guessed by a model; the pages regenerate on every deploy; and every client-facing word is the broker&rsquo;s. Here&rsquo;s exactly how &mdash; because a site that claims to be honest about data should be able to show its work.</p>
   </div>
 </section>
 
 <section class="section" style="padding-top:10px">
   <div class="wrap">
     <h2>The pipeline</h2>
-    <div class="stub-block">
-      <p><span class="stub-note">TODO(wave 3)</span> Pipeline diagram: MLS feed &rarr; mirror (4h sync, 12h rule floor) &rarr; computed stats (SQL, never a model) &rarr; static pages regenerated per deploy &rarr; watchers + dead-man alerts.</p>
+    <div class="prose prose--kb" style="margin-top:8px">
+      <ol>
+        <li><strong>The data comes straight from the MLS.</strong> Listings arrive through MLS GRID&rsquo;s licensed data feed &mdash; the same source the MLS itself publishes &mdash; refreshed every few hours. Nothing here is typed in by hand or scraped off another site.</li>
+        <li><strong>A private mirror keeps it current.</strong> Each refresh updates our own copy of the listings; when the MLS changes or removes a listing, the mirror follows in the same cycle, so what you see tracks what&rsquo;s actually on the market.</li>
+        <li><strong>Every market number is computed, not estimated.</strong> Medians, counts, and the other market figures are calculated by the database in plain arithmetic over real records &mdash; an AI model never writes a market number. If the data isn&rsquo;t there yet, the page shows nothing rather than a made-up figure.</li>
+        <li><strong>The whole site rebuilds itself.</strong> When the data changes, every page is regenerated from scratch and redeployed &mdash; timestamped, so you can see how fresh each number is. There is no live database call between you and a stale page; the page you load was already rebuilt with the latest data.</li>
+        <li><strong>A watchdog checks it hourly.</strong> A separate monitor confirms the feed is healthy every hour. If a refresh ever fails and the data goes stale, the site says so out loud &mdash; a visible banner &mdash; instead of quietly showing yesterday&rsquo;s numbers as if they were today&rsquo;s.</li>
+      </ol>
+      <p style="color:var(--c-sub)">The broker&rsquo;s entire monitoring duty is a short weekly digest of the pipeline&rsquo;s health. The machine does the watching; a person reads one email.</p>
     </div>
 
-    <h2 style="margin-top:36px">Live counters</h2>
+    <h2 style="margin-top:40px">Live counters</h2>
+    <p class="lede" style="margin-top:6px">These fill in the moment the live MLS feed connects. Until then they stay empty on purpose &mdash; the same rule the whole site runs on: show you nothing before we&rsquo;ll show you a number we can&rsquo;t stand behind.</p>
     <div class="grid grid--2" style="margin-top:16px">
-      <div class="card"><strong>Listings synced today</strong><p style="margin:6px 0 0"><span class="stub-note">TODO(wave 3): live counter — feed mirror</span></p></div>
-      <div class="card"><strong>Pages refreshed on last deploy</strong><p style="margin:6px 0 0"><span class="stub-note">TODO(wave 3): live counter — build manifest</span></p></div>
-      <div class="card"><strong>AI drafts reviewed by broker</strong><p style="margin:6px 0 0"><span class="stub-note">TODO(wave 3): N of N — merge-count receipt (plan §3d)</span></p></div>
-      <div class="card"><strong>Feed freshness</strong><p style="margin:6px 0 0"><span class="stub-note">TODO(wave 3): last successful sync timestamp + dead-man status</span></p></div>
+      <div class="card"><strong>Listings synced today</strong><p style="margin:6px 0 0"><span class="stub-note">Live when the feed connects</span></p></div>
+      <div class="card"><strong>Pages refreshed on last deploy</strong><p style="margin:6px 0 0"><span class="stub-note">Live when the feed connects</span></p></div>
+      <div class="card"><strong>AI drafts reviewed by the broker</strong><p style="margin:6px 0 0"><span class="stub-note">Live once draft-tracking is wired</span></p></div>
+      <div class="card"><strong>Feed freshness</strong><p style="margin:6px 0 0"><span class="stub-note">Live when the feed connects</span></p></div>
     </div>
 
-    <h2 style="margin-top:36px">What the automation never does</h2>
-    <div class="stub-block">
-      <p><span class="stub-note">TODO(wave 3)</span> The guardrail statement: nothing auto-publishes; narrative changes are broker-merged; the concierge speaks only from the public KB + listings mirror; fair-housing stop-list; spend caps; query log.</p>
+    <h2 style="margin-top:40px">What the automation never does</h2>
+    <div class="prose prose--kb" style="margin-top:8px">
+      <ul>
+        <li><strong>It never publishes on its own.</strong> The studio&rsquo;s tools research and draft the guides and neighborhood chapters &mdash; but they never hit publish. Every change to what this site <em>says</em> is reviewed, edited, and merged by the broker before it goes live, one change at a time. No words reach you that a person didn&rsquo;t read, approve, and put his name to.</li>
+        <li><strong>It never makes up a market number.</strong> Prices, medians, and counts are arithmetic done by the database over real MLS records. A model is never in that path. Missing data renders as an honest blank, not an estimate.</li>
+        <li><strong>It never invents an answer.</strong> The AI concierge (in development) will answer only from this site&rsquo;s own published knowledge base and the live listings &mdash; it cannot reach beyond them, and it cannot guess. When it doesn&rsquo;t know, it says so and points you to the broker.</li>
+        <li><strong>It never profiles who should live somewhere.</strong> Every neighborhood page describes the <em>place</em> &mdash; its features, its flood story, its housing stock &mdash; never the kind of person who &ldquo;belongs&rdquo; there. That&rsquo;s a fair-housing line the content is built to and checked against automatically.</li>
+        <li><strong>It never stores private party data.</strong> Seller and occupant private fields from the MLS feed are stripped at the source, before anything is saved &mdash; they never reach this site or any tool behind it.</li>
+        <li><strong>It will run under a cap and a log.</strong> When the AI concierge launches, it will operate under a hard spending limit with every query recorded &mdash; so it can be audited and can never quietly run away. (Site analytics already collect no personal information.)</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:28px">
+      <p style="margin:0">This is a working brokerage site operated by a real broker &mdash; the automation exists to keep the data honest and current, not to replace the person you&rsquo;ll actually work with. <a href="/team/serge-osaulenko/">Meet the broker &rarr;</a></p>
     </div>
   </div>
 </section>
