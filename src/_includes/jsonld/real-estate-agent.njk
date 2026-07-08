@@ -1,7 +1,18 @@
 {#- RealEstateAgent JSON-LD (plan §2 entity/schema layer, W1).
-    Confirmed data from production; TODO slots filled at wave 1 by the
-    Content/KB Engineer + Proof/Trust Curator. NO listing schema until the
-    compliance lane clears it (R2 §1.2 caveat). -#}
+    Confirmed data from production. FILLED wave 1 (2026-07-08):
+      · areaServed  = the decided positioning (working-notes: St. Pete identity
+        + honest Pinellas/Tampa Bay; bio span Pink Streets → Clearwater).
+      · sameAs      = the ORGANISATION's own profiles only (LinkedIn company,
+        Facebook, Instagram) — entity sameAs should identify the entity. Serge's
+        PERSON-scoped profiles (Zillow [operator-provided 2026-07-08], homes.com,
+        YouTube, personal LinkedIn) live on the Person schema (person.njk), which
+        is where Google reads the agent; the two are linked by worksFor. Google
+        Business Profile OMITTED — none found on two web sweeps and the operator
+        confirms he has none (a GBP is a high-value local-SEO add if/when he
+        creates one: one line here). The FL DBPR license lives in
+        employee.identifier (the machine-readable authoritative claim) rather
+        than an unstable license-lookup URL.
+    NO listing schema until the compliance lane clears it (R2 §1.2 caveat). -#}
 {
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
@@ -19,13 +30,14 @@
   },
   "areaServed": [
     { "@type": "City", "name": "St. Petersburg, FL" },
-    { "@type": "AdministrativeArea", "name": "Tampa Bay, FL — TODO(wave 1: confirm service-area list with operator)" }
+    { "@type": "City", "name": "Clearwater, FL" },
+    { "@type": "AdministrativeArea", "name": "Pinellas County, FL" },
+    { "@type": "AdministrativeArea", "name": "Tampa Bay, FL" }
   ],
   "sameAs": [
-    "TODO(wave 1): Google Business Profile URL",
-    "TODO(wave 1): Zillow profile URL",
-    "TODO(wave 1): LinkedIn URL",
-    "TODO(wave 1): FL DBPR license-lookup URL"
+    "https://www.linkedin.com/company/everlanerealty",
+    "https://www.facebook.com/EverlaneRealty/",
+    "https://www.instagram.com/everlanerealty/"
   ],
   "employee": {
     "@type": "Person",

@@ -1,7 +1,9 @@
 {#- Booking band — LOCKED grammar §2 row 10 (approved as-is by the operator's
     r2 judgment 2: "easy to end up at the bottom… how it is right now is good").
-    Cal.com embeds here at wave 1's staged remainder (plan §2 #9); until then
-    the slots are SAMPLE-labeled inert buttons and the band links to /contact/.
+    Cal.com wired 2026-07-08 (plan §2 #9): when booking.calLink is set the CTA
+    opens the operator's live Cal.com calendar as a popup (data-cal-link, embed
+    loaded via calcom-loader). When unset it falls back to sample-labeled inert
+    slots + a link to /contact/ (the wave-1 coupling: real calendar or nothing).
     Caller may override copy: {% set book = { title, lede } %}. -#}
 {%- set book = book or {
   title: "Talk to Serge — pick a time",
@@ -10,10 +12,18 @@
 <section class="book" data-sec="booking">
   <h2>{{ book.title }}</h2>
   <p>{{ book.lede }}</p>
+  {%- if booking.calLink %}
+  <div class="slots">
+    <button class="slot" type="button" data-cal-link="{{ booking.calLink }}" data-cal-config='{"layout":"month_view"}'>Pick a time &rarr;</button>
+  </div>
+  <p class="fine">A free {{ booking.durationLabel }} consult, straight onto Serge&rsquo;s calendar. Prefer to write first? <a href="/contact/" style="color:inherit">use the contact page &rarr;</a></p>
+  {% include "components/calcom-loader.njk" %}
+  {%- else %}
   <div class="slots" aria-label="Sample available times">
     <button class="slot" type="button">Wed &middot; 10:30 am</button>
     <button class="slot" type="button">Wed &middot; 2:00 pm</button>
     <button class="slot" type="button">Thu &middot; 9:00 am</button>
   </div>
   <p class="fine">SAMPLE slots &mdash; the live calendar (Cal.com) embeds here at wave 1. Until then: <a href="/contact/" style="color:inherit">book through the contact page &rarr;</a></p>
+  {%- endif %}
 </section>

@@ -1,0 +1,13 @@
+{#- Cal.com embed loader — emitted ONCE on any page carrying a booking surface
+    (booking-band or the /contact/ inline embed; a page has at most one). This
+    is the ONE third-party script on the site besides the IDX widgets and the
+    (build-gated) GA4 tag — named in calcom-embed-plan §2.6 for the wave-4 perf
+    pass. The official vanilla loader (verified against cal.com embed docs
+    2026-07-08: script host app.cal.com/embed/embed.js, popup via data-cal-link,
+    inline via Cal("inline")). bookingSuccessful flows through the one analytics
+    seam — guarded on window.elTrack so it is inert until GA4 is wired. -#}
+<script>
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", { origin: "https://cal.com" });
+Cal("on", { action: "bookingSuccessful", callback: function () { if (window.elTrack) elTrack("book_appointment", { method: "calcom" }); } });
+</script>

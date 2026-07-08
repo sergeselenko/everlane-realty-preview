@@ -13,7 +13,18 @@
   <meta property="og:description" content="{{ description or site.description }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-  {#- og:image TODO(wave 1): script-E submark / OG card lands with the identity (plan §2 plumbing, §8.1 wave 1) #}
+  {#- Social-share card (wave 1, 2026-07-08): a branded 1200×630 JPG in the
+      locked C · St. Pete Editorial palette. Absolute URL — social scrapers
+      never resolve root-relative paths. One card site-wide (page-specific
+      cards are a later refinement). -#}
+  <meta property="og:image" content="{{ site.url }}/assets/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Everlane Realty — St. Petersburg & Tampa Bay real estate, with broker Serge Osaulenko">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title or site.name }}">
+  <meta name="twitter:description" content="{{ description or site.description }}">
+  <meta name="twitter:image" content="{{ site.url }}/assets/og-card.jpg">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   {%- if preconnect %}{% for h in preconnect %}
   <link rel="preconnect" href="{{ h }}">{% endfor %}{% endif %}
@@ -44,7 +55,7 @@
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="preview-ribbon" role="note">PREVIEW — rebuild in progress. Not the live site. Forms disabled &middot; not indexable &middot; sample data labeled SAMPLE.</div>
+  <div class="preview-ribbon" role="note">PREVIEW — rebuild in progress. Not the live site. Intake form disabled &middot; booking calendar live for testing &middot; not indexable &middot; sample data labeled SAMPLE.</div>
 
   {#- FEED STALE BANNER (wave 2, plan §5): baked ONLY when the dead-man
       watcher dispatches a feed-stale rebuild at the 12h Rule-11 floor.
