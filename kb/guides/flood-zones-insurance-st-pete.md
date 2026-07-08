@@ -71,8 +71,8 @@ St. Petersburg properties — 39,585 of them — face significant flood risk ove
 
 The real-world calibration: **Hurricane Helene (Sept 26, 2024) pushed more than six feet of storm
 surge into the city** — 100.6 miles of road flooded, roughly 70 water rescues by the next morning,
-per the city's own damage assessment. Two weeks later, **Hurricane Milton dropped over 18 inches
-of rain** on St. Pete — reported as beyond a 1-in-1,000-year rainfall event. Surge and rain are
+per the city's own damage assessment. Two weeks later, **Hurricane Milton dropped as much as 18 inches
+of rain** on parts of the county, St. Pete among them (WUSF, Oct 11 2024). Surge and rain are
 different flood mechanisms, and the pair showed which blocks answer to which.
 
 ## What do zones X, AE, and VE mean on a listing?

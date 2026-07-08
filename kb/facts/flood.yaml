@@ -108,14 +108,14 @@ facts:
 
   - id: milton-stpete-rain
     value: >
-      Hurricane Milton (Oct 9, 2024) dropped over 18 inches of rain on St. Petersburg —
-      reported as beyond a 1-in-1000-year rainfall event for the area.
+      Hurricane Milton (Oct 9, 2024) dropped as much as 18 inches of rain on parts of
+      Pinellas County, St. Petersburg among them.
     source: WUSF reporting on Milton recovery (2024-10-11)
     source_url: https://www.wusf.org/weather/2024-10-11/pinellas-county-residents-focus-on-recovery-after-hurricane-milton
     as_of: 2024-10-11
-    last_verified: 2026-07-07
+    last_verified: 2026-07-08
     confidence: MEDIUM
-    notes: "Secondary source; re-anchor to NWS/city primary record at next sweep."
+    notes: "Secondary source (WUSF), which states 'as much as 18 inches ... in parts of the county'. A prior '1-in-1,000-year rainfall event' framing was NOT supported by this source and was removed 2026-07-08. Re-anchor to an NWS/city primary at next sweep."
 
   - id: elevation-certificates-free-lookup
     value: >

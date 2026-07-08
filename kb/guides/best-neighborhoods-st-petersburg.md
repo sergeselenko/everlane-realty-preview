@@ -17,12 +17,12 @@ book_lede: "Bring the shortlist — fifteen minutes on which attributes actually
 plate_note: "photo placeholder — brick street under the oak canopy"
 sources:
   - id: nrhp-north-shore
-    name: "NRHP record — North Shore Historic District (Old Northeast), ref #03000040, listed 2003-02-20 (via the NRHP database mirror; nomination PDF pulled at quarterly sweep)"
-    url: "https://en.wikipedia.org/wiki/North_Shore_Historic_District_(St._Petersburg,_Florida)"
+    name: "NRHP record — North Shore Historic District (Old Northeast), ref #03000040, listed 2003-02-20 (National Park Service, National Register; 2,975 contributing buildings per the NRHP nomination)"
+    url: "https://npgallery.nps.gov/AssetDetail/NRIS/03000040"
     accessed: 2026-07-07
   - id: nrhp-kenwood
-    name: "NRHP record — Kenwood Historic District, ref #03000729, listed 2003-08-04 (via the NRHP database mirror)"
-    url: "https://en.wikipedia.org/wiki/Kenwood_Historic_District_(St._Petersburg,_Florida)"
+    name: "NRHP record — Kenwood Historic District, ref #03000729, listed 2003-08-04 (National Park Service, National Register; ~2,203 contributing buildings across ~375 acres)"
+    url: "https://npgallery.nps.gov/AssetDetail/NRIS/03000729"
     accessed: 2026-07-07
   - id: honna-preservation
     name: "Historic Old Northeast Neighborhood Association — historic preservation"

@@ -652,6 +652,18 @@ fieldset.form-preview-disabled { border: 0; margin: 0; padding: 0; opacity: .55;
   color: var(--c-sub); font-style: italic;
 }
 .prose--kb a { text-underline-offset: 3px; }
+/* KB prose tables (e.g. the STR municipality matrix): scroll horizontally on
+   narrow viewports rather than break the layout — markdown emits a bare <table>
+   with no wrapper, so the table itself is the scroll container. */
+.prose--kb table {
+  display: block; overflow-x: auto; width: 100%;
+  border-collapse: collapse; margin: 4px 0 16px; font-size: .9rem;
+}
+.prose--kb th, .prose--kb td {
+  border: 1px solid var(--c-line); padding: 8px 10px;
+  text-align: left; vertical-align: top;
+}
+.prose--kb thead th { font-weight: 600; }
 
 /* On-page source list (E-E-A-T receipts + Rule 16/21: typeface not smaller
    than the median used for listing data — kept at ~body size on purpose). */
