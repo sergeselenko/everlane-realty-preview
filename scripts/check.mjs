@@ -418,10 +418,16 @@ for (const r of required) {
   const js = fs.readFileSync(path.join(SITE, "assets/site.js"), "utf8");
   if (js.includes('elTrack("generate_lead"')) ok("generate_lead conversion event wired on intake success");
   else fail("site.js missing the generate_lead elTrack call");
-  const evStart = js.indexOf('elTrack("generate_lead"');
-  const evCall = evStart > -1 ? js.slice(evStart, evStart + 200) : "";
-  if (evStart > -1 && !/data\.(name|email|phone)/.test(evCall)) ok("conversion event carries no PII fields (name/email/phone absent)");
-  else if (evStart > -1) fail("conversion event payload references PII fields");
+  // PII-free guard on EVERY generate_lead event (there are two lead forms —
+  // intake + valuation — each fires its own; a first-occurrence check would
+  // silently stop covering the other. `address` added: the valuation form's
+  // most-sensitive field must never reach analytics either).
+  const evMatches = [...js.matchAll(/elTrack\("generate_lead"[\s\S]{0,200}/g)];
+  if (evMatches.length && evMatches.every((m) => !/data\.(name|email|phone|address)/.test(m[0]))) {
+    ok(`all ${evMatches.length} generate_lead conversion event(s) carry no PII fields (name/email/phone/address absent)`);
+  } else if (!evMatches.length) {
+    fail("no generate_lead conversion event found to check for PII");
+  } else fail("a generate_lead conversion event payload references PII fields");
 }
 
 /* ---- 15 · WAVE 2: feed-stale banner build-coupling ----

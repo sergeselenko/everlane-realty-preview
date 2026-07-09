@@ -3,11 +3,21 @@ title: "What's Your Home Worth?"
 description: "Get a real, current read on your St. Petersburg home's value — a broker's market opinion (CMA), not an automated estimate. No obligation, no pressure."
 crumbs: []
 ---
-{#- /valuation/ — plan §2 #3: the guided AI-assisted CMA (conversational
-    intake → broker-gated range report ≤24h) builds at wave 3; the interim
-    IDX valuation-request page mounts at wave 1 (needs IDX access).
-    Wave-0 stub keeps the production home-value voice and routes to the
-    contact form with the ported topic=home-value prefill. -#}
+{#- /valuation/ — plan §2 #3. The guided AI-assisted CMA (conversational intake
+    → broker-gated range report ≤24h) builds at wave 3; THIS is the interim: a
+    native valuation-REQUEST form — a broker-prepared market opinion (CMA), never
+    an on-site AVM / point estimate (compliance GREEN-AMBER, Art. 16.03).
+    DEVIATION FROM PLAN, surfaced to the operator (not decided in this comment):
+    the plan's blessed interim was IDX Broker's valuation-request PAGE, which
+    returns the requester an INSTANT "matching recent solds" page (ai-experience
+    §4). We go native instead — the honest reason is INTAKE-PIPELINE REUSE (one
+    n8n sink, one PREVIEW_MODE rail, one honeypot, one consent surface), and the
+    page prose stays server-rendered. The tradeoff we accept: no instant
+    matching-solds response (the IDX feature we forgo — addable later as an
+    enhancement). This "human-backed CMA request" is deliberately NOT the
+    automated funnel the hero disclaims. JS-driven + PREVIEW_MODE-guarded
+    (assets/site.js #valuation-form) — disabled + inert on preview, live at the
+    wave-4 cutover; the endpoint never POSTs from this build. -#}
 
 <section class="page-hero">
   <div class="wrap">
@@ -20,17 +30,76 @@ crumbs: []
 <section class="section" style="padding-top:10px">
   <div class="wrap">
     <div class="grid grid--2">
-      <div class="card">
-        <h2 style="font-size:1.3rem">Request an honest read today</h2>
-        <p>Tell me about your place and what you&rsquo;re weighing &mdash; I&rsquo;ll follow up personally, usually within a day.</p>
-        <a class="btn btn--dark btn--block" href="/contact/?topic=home-value">Get my home value</a>
+      <div>
+        <h2 style="font-size:1.3rem">Request an honest read</h2>
+        <p class="form-disabled-note" role="note">Preview &mdash; form disabled</p>
+        <div class="form-status" data-form-status role="status" aria-live="polite"></div>
+        <form id="valuation-form" novalidate>
+          <fieldset class="form-preview-disabled" disabled>
+            <div class="hp" aria-hidden="true">
+              <label>Leave this field empty<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+            </div>
+
+            <div class="field">
+              <label for="v-address">Property address <span class="hint">&mdash; the home you&rsquo;d like valued</span></label>
+              <input type="text" id="v-address" name="address" autocomplete="street-address" required>
+            </div>
+
+            <div class="field">
+              <label for="v-name">Your name</label>
+              <input type="text" id="v-name" name="name" autocomplete="name" required>
+            </div>
+
+            <div class="grid grid--2">
+              <div class="field">
+                <label for="v-email">Email</label>
+                <input type="email" id="v-email" name="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label for="v-phone">Cell <span class="hint">(optional)</span></label>
+                <input type="tel" id="v-phone" name="phone" autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="v-timeline">Where are you in the process? <span class="hint">(optional)</span></label>
+              <select id="v-timeline" name="timeline">
+                <option value="">Prefer not to say</option>
+                <option value="curious">Just curious about the number</option>
+                <option value="weighing">Weighing a sale (next 3&ndash;6 months)</option>
+                <option value="soon">Ready to sell soon</option>
+                <option value="equity">Refinance / equity check</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="v-notes">Anything I should know? <span class="hint">&mdash; recent updates, beds/baths, what prompted this</span></label>
+              <textarea id="v-notes" name="notes" placeholder="Optional, but it sharpens the read."></textarea>
+            </div>
+
+            <p class="consent-note">By sending this, you&rsquo;re asking Serge Osaulenko (Everlane Realty) to prepare and follow up with a market opinion on your home. Your details are used only for that &mdash; never sold or shared. You can ask to be removed anytime.</p>
+            <p class="consent-note"><strong>Your privacy:</strong> the information you share here is stored securely, used only to respond to your request, never sold, rented, or shared with third parties, and deleted whenever you ask.</p>
+
+            <button type="submit" class="btn btn--primary btn--block" data-submit>Request my home value</button>
+          </fieldset>
+        </form>
       </div>
-      <div class="stub-block">
-        <strong>Coming here:</strong>
-        <ul style="margin:8px 0 0;padding-left:20px">
-          <li><span class="stub-note">Coming</span> A quick home-valuation request form &mdash; ask for a broker-prepared value in a couple of clicks.</li>
-          <li><span class="stub-note">Coming</span> A guided, AI-assisted valuation: a short conversation, then a broker-reviewed value range back to you within a day.</li>
-        </ul>
+
+      <div>
+        <div class="stub-block">
+          <strong>What you&rsquo;ll get</strong>
+          <ul style="margin:8px 0 0;padding-left:20px">
+            <li>A <strong>human-backed CMA</strong> &mdash; my read on your home&rsquo;s current value from real comparable sales, not an automated point estimate.</li>
+            <li>Usually back to you <strong>within a day</strong>, personally.</li>
+            <li>No obligation, no pressure &mdash; curious counts.</li>
+          </ul>
+        </div>
+        <div class="stub-block" style="margin-top:18px">
+          <strong>Coming here:</strong>
+          <ul style="margin:8px 0 0;padding-left:20px">
+            <li><span class="stub-note">Coming</span> A guided, AI-assisted valuation: a short conversation, then a broker-reviewed value range back to you within a day.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

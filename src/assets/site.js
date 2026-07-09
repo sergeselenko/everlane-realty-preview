@@ -46,6 +46,73 @@
     if (aboutHome) aboutHome.checked = true;
   }
 
+  /* ---- VALUATION-REQUEST FORM (/valuation/) — a broker-prepared CMA request,
+     NOT an on-site AVM. Its own handler because the intake handler below
+     early-returns when #intake-form is absent. Same PREVIEW_MODE guard, same
+     preserved endpoint, same honeypot; PII-free conversion event. ---- */
+  (function () {
+    var vform = document.getElementById("valuation-form");
+    if (!vform) return;
+    var vstatus = document.querySelector("[data-form-status]");
+    var vsubmit = vform.querySelector("[data-submit]");
+    function vSet(kind, msg) { if (!vstatus) return; vstatus.className = "form-status show " + kind; vstatus.innerHTML = msg; }
+    function vField(n) { var el = vform.querySelector('[name="' + n + '"]'); return el ? (el.value || "").trim() : ""; }
+
+    vform.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (PREVIEW_MODE) {
+        vSet("info", "Preview build — the form is disabled here. On the live site, reach me directly at " + MAILTO + ".");
+        return;
+      }
+
+      var hp = vform.querySelector('input[name="company"]');
+      if (hp && hp.value.trim() !== "") { return; }
+
+      var data = {
+        name: vField("name"),
+        email: vField("email"),
+        phone: vField("phone"),
+        address: vField("address"),
+        timeline: vField("timeline"),
+        notes: vField("notes"),
+        topic: "home-value",
+        source: "valuation-form"
+      };
+
+      if (!data.name || !validEmail(data.email) || !data.address) {
+        vSet("err", "Please add your name, a valid email, and the property address.");
+        return;
+      }
+
+      if (!FORM_LIVE || !INTAKE_ENDPOINT) {
+        vSet("info", "Thanks! The form's secure intake is being finalized. In the meantime, the fastest way to reach me is a direct note to " + MAILTO + " — I read every one personally.");
+        return;
+      }
+
+      vsubmit.disabled = true;
+      vsubmit.textContent = "Sending…";
+      vSet("info", "Sending…");
+
+      fetch(INTAKE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        if (!res.ok) throw new Error("bad status " + res.status);
+        vform.reset();
+        vSet("ok", "Got it — thank you. I'll put together an honest read on your home and follow up personally, usually within a day.");
+        vsubmit.textContent = "Sent ✓";
+        /* Conversion event — category fields only, never name/email/phone/address. */
+        if (window.elTrack) window.elTrack("generate_lead", { method: "valuation_form", topic: "home-value" });
+      }).catch(function () {
+        vsubmit.disabled = false;
+        vsubmit.textContent = "Request my home value";
+        vSet("err", "Something went wrong sending that. Please email me directly at " + MAILTO + " and I'll take it from there.");
+      });
+    });
+  })();
+
   var form = document.getElementById("intake-form");
   if (!form) return;
   var statusEl = document.querySelector("[data-form-status]");
