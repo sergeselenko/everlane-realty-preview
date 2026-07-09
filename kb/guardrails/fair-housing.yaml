@@ -67,7 +67,10 @@ patterns:
     flags: i
     label: familial-status steering (coded)
   - id: raise-a-family
-    pattern: '\b(raise|raising|start a family)\b'
+    # Scoped to the familial-status construction so it does NOT false-match the
+    # real-estate verb "raise" (e.g. "raise your offer") and needlessly degrade a
+    # legitimate process/negotiation answer at runtime.
+    pattern: '\b(raise|raising) a family\b|\bstart(ing)? a family\b'
     flags: i
     label: familial-status steering (coded)
   - id: schools-quality

@@ -7,7 +7,7 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve",
-    "check": "npm run build && node scripts/check.mjs && node scripts/kb-lint.mjs && node scripts/concierge-check.mjs",
+    "check": "npm run build && node scripts/check.mjs && node scripts/kb-lint.mjs && node scripts/build-concierge-bundle.mjs && node scripts/concierge-check.mjs",
     "kb-lint": "node scripts/kb-lint.mjs",
     "clean": "rm -rf _site"
   },

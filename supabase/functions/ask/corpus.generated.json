@@ -1,0 +1,1825 @@
+{
+  "source": "src/_data/concierge.js (compiled from kb/facts + kb prose + kb/guardrails)",
+  "meta": {
+    "factAtoms": 75,
+    "proseDocs": 16,
+    "domains": [
+      "climate",
+      "flood",
+      "geography",
+      "historic-districts",
+      "insurance",
+      "str-rules",
+      "tax",
+      "transit"
+    ],
+    "guardrailFiles": [
+      "fairHousing",
+      "mlsClaims",
+      "displayCaps",
+      "piiExclusion"
+    ]
+  },
+  "corpus": {
+    "facts": [
+      {
+        "kind": "fact",
+        "id": "tampa-bay-two-seasons",
+        "domain": "climate",
+        "value": "The Tampa Bay area has two seasons rather than four: a hot, wet season roughly May through October and a mild, dry one November through April. Close to two-thirds of the year's rain falls June–September, and summer afternoons carry an almost-daily chance of a sea-breeze thunderstorm.",
+        "source": "Climate of the Tampa Bay area — humid subtropical, the two-season wet/dry pattern (via the Wikipedia mirror)",
+        "source_url": "https://en.wikipedia.org/wiki/Climate_of_the_Tampa_Bay_area",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source. From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "hurricane-season-dates",
+        "domain": "climate",
+        "value": "Atlantic hurricane season runs June 1 through November 30 each year, peaking from mid-August into October.",
+        "source": "National Weather Service Tampa Bay — tropical weather (hurricane season dates)",
+        "source_url": "https://www.weather.gov/tbw/tampabaytropicalweather",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "storm-surge-top-threat",
+        "domain": "climate",
+        "value": "For the bay-and-Gulf St. Petersburg area, the National Weather Service Tampa Bay names storm surge the single greatest hurricane threat to life — ahead of wind.",
+        "source": "National Weather Service Tampa Bay — tropical weather (storm surge as the top threat)",
+        "source_url": "https://www.weather.gov/tbw/tampabaytropicalweather",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "evacuation-zone-vs-flood-zone",
+        "domain": "climate",
+        "value": "A storm-surge evacuation zone is not a FEMA flood zone. Evacuation zones are lettered surge zones (Zone A ordered out first) that tell you when to leave for a specific storm; FEMA flood zones tell you long-term flood risk and drive insurance and building rules. A home can sit in a low-risk FEMA flood zone and a first-out evacuation zone at the same time.",
+        "source": "Florida Division of Emergency Management — Know Your Zone (storm-surge evacuation zones)",
+        "source_url": "https://www.floridadisaster.org/knowyourzone/",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Pinellas lookup at kyz.pinellas.gov. From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "shore-acres-bowl-topography",
+        "domain": "climate",
+        "value": "Shore Acres sits low and, as FOX 13 described it after Hurricane Helene, is \"built like a bowl\" — the middle dips, so interior blocks tend to take water before the streets along the edges do.",
+        "source": "FOX 13 Tampa Bay — Homes in Shore Acres destroyed by Hurricane Helene (Sept 27, 2024)",
+        "source_url": "https://www.fox13news.com/news/hurricane-helene-destroys-homes-shore-acres-neighborhood-experiences-4th-flooding-event-4-years",
+        "as_of": "2024-09-27T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source (FOX 13). Describes the neighborhood's topography, not any resident group. From kb/neighborhoods/shore-acres.md."
+      },
+      {
+        "kind": "fact",
+        "id": "shore-acres-four-floods-four-years",
+        "domain": "climate",
+        "value": "Hurricane Helene (Sept 26, 2024) was Shore Acres' fourth flooding event in four years, per FOX 13 — flooding here is recurrent, not a single-storm event.",
+        "source": "FOX 13 Tampa Bay — Shore Acres neighborhood experiences 4th flooding event in 4 years (Sept 27, 2024)",
+        "source_url": "https://www.fox13news.com/news/hurricane-helene-destroys-homes-shore-acres-neighborhood-experiences-4th-flooding-event-4-years",
+        "as_of": "2024-09-27T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source (FOX 13). From kb/neighborhoods/shore-acres.md."
+      },
+      {
+        "kind": "fact",
+        "id": "shore-acres-elevate-florida",
+        "domain": "climate",
+        "value": "The state's Elevate Florida home-hardening program drew 555 applications from Shore Acres alone after 2024; the neighborhood civic association's president estimated only 100 to 150 would ultimately receive funding, with priority to homes carrying three or more flood losses or officially classified as substantially damaged.",
+        "source": "Bay News 9 — Shore Acres residents start getting responses from Elevate Florida (Aug 23, 2025)",
+        "source_url": "https://baynews9.com/fl/tampa/news/2025/08/23/shore-acres-residents-start-getting-responses-from-elevate-florida-",
+        "as_of": "2025-08-23T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "The 100–150 funded figure is the civic association president's estimate, not a final program count; the 555-application figure is reported by Bay News 9 (secondary). From kb/neighborhoods/shore-acres.md."
+      },
+      {
+        "kind": "fact",
+        "id": "stpete-flood-risk-share",
+        "domain": "flood",
+        "value": "45.9% of properties in St. Petersburg (39,585 properties) face significant risk of flooding over the next 30 years, per First Street Foundation's Flood Factor model (surfaced via Redfin's climate-risk data).",
+        "source": "First Street — St. Petersburg, FL flood risk report (city page)",
+        "source_url": "https://firststreet.org/city/st-petersburg-fl/1263000_fsid/flood",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Model estimate, not a FEMA figure — always label as such on-page. Engagement research (R2, plan §3b) carried the rounded \"45%\" as HIGH for the risk CLASS. The city page is JS-rendered (figures not text-fetchable); precise pair re-verified in a browser at the quarterly sweep. Grade fold 2026-07-07: source re-anchored from Redfin's generic methodology page to First Street's location-specific report."
+      },
+      {
+        "kind": "fact",
+        "id": "pinellas-current-firm-effective",
+        "domain": "flood",
+        "value": "The currently effective FEMA Flood Insurance Rate Map (FIRM) for Pinellas County took effect August 24, 2021, replacing the 2009 maps.",
+        "source": "Pinellas County Flood Map Service / WUSF report on the map adoption",
+        "source_url": "https://floodmaps.pinellas.gov/pages/current-flood-zones",
+        "as_of": "2021-08-24T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Corroborated by WUSF (2021-08-24, \"New Flood Maps In Pinellas County Could Affect Insurance Rates\"); the replaced-the-2009-maps clause corroborated by FOX 13 (\"New flood insurance maps take effect in Pinellas County\"). Per-address zone always confirmed at msc.fema.gov or floodmaps.pinellas.gov, never from memory."
+      },
+      {
+        "kind": "fact",
+        "id": "pinellas-preliminary-maps-underway",
+        "domain": "flood",
+        "value": "FEMA preliminary flood-zone updates for Pinellas County are in progress (the county publishes a dedicated preliminary-zones viewer); zone changes ahead of the next effective FIRM are possible.",
+        "source": "Pinellas County Flood Map Service — Preliminary Flood Zones",
+        "source_url": "https://floodmaps.pinellas.gov/pages/preliminary-flood-zones",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "UNVERIFIABLE — needs: adoption timeline from FEMA/county. Re-check quarterly."
+      },
+      {
+        "kind": "fact",
+        "id": "zone-x-definition",
+        "domain": "flood",
+        "value": "FEMA Zone X marks areas of moderate flood hazard (between the 1%-annual-chance and 0.2%-annual-chance floodplains) or minimal hazard; flood insurance is optional in Zone X but often recommended.",
+        "source": "FEMA flood zones glossary",
+        "source_url": "https://www.fema.gov/about/glossary/flood-zones",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH"
+      },
+      {
+        "kind": "fact",
+        "id": "zone-ae-definition",
+        "domain": "flood",
+        "value": "FEMA Zone AE marks areas subject to the 1%-annual-chance flood (\"100-year flood\") with Base Flood Elevations published; mandatory flood-insurance purchase requirements apply to federally backed mortgages.",
+        "source": "FEMA flood zones glossary",
+        "source_url": "https://www.fema.gov/about/glossary/flood-zones",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH"
+      },
+      {
+        "kind": "fact",
+        "id": "zone-ve-definition",
+        "domain": "flood",
+        "value": "FEMA Zone VE is the coastal high-hazard area: 1%-annual-chance flooding with additional storm-wave hazard; Base Flood Elevations account for wave height. The most stringent building standards and typically the highest premiums apply.",
+        "source": "FEMA flood zones glossary",
+        "source_url": "https://www.fema.gov/about/glossary/flood-zones",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH"
+      },
+      {
+        "kind": "fact",
+        "id": "stpete-49-percent-rule",
+        "domain": "flood",
+        "value": "St. Petersburg applies a 49% substantial-damage/substantial-improvement threshold (stricter than FEMA's 50% baseline): any combination of repair, reconstruction, or improvement whose cumulative cost equals or exceeds 49% of the structure's pre-damage market value requires bringing the entire structure into full compliance with current floodplain regulations (which can mean elevating). Applies to all buildings in the Special Flood Hazard Area, whatever caused the damage.",
+        "source": "City of St. Petersburg — Substantial Damage and Substantial Improvement",
+        "source_url": "https://www.stpete.org/residents/public_safety/permitting_after_a_storm.php",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH"
+      },
+      {
+        "kind": "fact",
+        "id": "helene-stpete-surge",
+        "domain": "flood",
+        "value": "Hurricane Helene (landfall Sept 26, 2024) pushed more than 6 feet of storm surge into St. Petersburg; the city reported 100.6 miles of road flooded and ~70 water rescues by the morning after.",
+        "source": "City of St. Petersburg — Helene damage assessment update",
+        "source_url": "https://www.stpete.org/news_detail_T30_R1130.php",
+        "as_of": "2024-09-27T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH"
+      },
+      {
+        "kind": "fact",
+        "id": "milton-stpete-rain",
+        "domain": "flood",
+        "value": "Hurricane Milton (Oct 9, 2024) dropped as much as 18 inches of rain on parts of Pinellas County, St. Petersburg among them.",
+        "source": "WUSF reporting on Milton recovery (2024-10-11)",
+        "source_url": "https://www.wusf.org/weather/2024-10-11/pinellas-county-residents-focus-on-recovery-after-hurricane-milton",
+        "as_of": "2024-10-11T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source (WUSF), which states 'as much as 18 inches ... in parts of the county'. A prior '1-in-1,000-year rainfall event' framing was NOT supported by this source and was removed 2026-07-08. Re-anchor to an NWS/city primary at next sweep."
+      },
+      {
+        "kind": "fact",
+        "id": "elevation-certificates-free-lookup",
+        "domain": "flood",
+        "value": "Pinellas County publishes existing FEMA elevation certificates free through its Flood Map Service / eGIS viewer — many addresses already have one on file, no surveyor needed to check.",
+        "source": "Pinellas County — Find an Elevation Certificate",
+        "source_url": "https://pinellas.gov/services/find-an-elevation-certificate/",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH"
+      },
+      {
+        "kind": "fact",
+        "id": "crs-discount-stpete",
+        "domain": "flood",
+        "value": "St. Petersburg participates in FEMA's Community Rating System at Class 5, worth up to a 25% NFIP premium discount inside the Special Flood Hazard Area (10% outside); unincorporated Pinellas County rates even better (up to 40%).",
+        "source": "FEMA CRS program page + Florida insurance-market secondary sources",
+        "source_url": "https://www.fema.gov/floodplain-management/community-rating-system",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "City's exact current class from a secondary source — re-anchor to the city/FEMA CRS eligible-communities list before quoting a percentage in print."
+      },
+      {
+        "kind": "fact",
+        "id": "pinellas-design-flood-elevation",
+        "domain": "flood",
+        "value": "In the Special Flood Hazard Area, Pinellas County requires new or substantially-improved buildings to be built at least one foot above the base flood elevation — the \"design flood elevation,\" BFE plus a foot of freeboard. A building finished to current code therefore sits materially higher, and prices differently on flood insurance, than a ground-level older home a block away.",
+        "source": "Pinellas County — Construction in a Floodplain (new/substantially-improved buildings built at least one foot above BFE)",
+        "source_url": "https://pinellas.gov/construction-in-a-floodplain/",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "From kb/neighborhoods/downtown-edge-district.md (the Downtown/EDGE new-construction flood posture)."
+      },
+      {
+        "kind": "fact",
+        "id": "spb-substantial-improvement-50-percent",
+        "domain": "flood",
+        "value": "St. Pete Beach applies FEMA's 50% substantial-improvement threshold in its own floodplain code: cross 50% of a structure's value in repairs or improvements and the building must be brought into full flood compliance (which on a ground-level island cottage can mean elevating it). This is looser than the City of St. Petersburg's deliberately stricter 49% threshold — on a separate island city you read that city's code for the number, not the mainland's.",
+        "source": "City of St. Pete Beach — Flooding & Property (FEMA 50% substantial-improvement threshold); City of St. Petersburg — substantial damage & improvement (49%, for contrast)",
+        "source_url": "https://www.stpetebeach.org/256/Flooding-Property",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "The existing stpete-49-percent-rule entry covers the City of St. Petersburg's 49%; this is St. Pete Beach's distinct 50%. From kb/neighborhoods/st-pete-beach.md."
+      },
+      {
+        "kind": "fact",
+        "id": "spb-coastal-high-hazard-area",
+        "domain": "flood",
+        "value": "The City of St. Pete Beach's own flood page states that property in the city is subject to flooding and marks a Coastal High Hazard Area across Long Key. The exact zone and base flood elevation remain a per-address question on the county flood map, but the island skews to the high-hazard end.",
+        "source": "City of St. Pete Beach — Flooding & Property (the city's flood map, Coastal High Hazard Area)",
+        "source_url": "https://www.stpetebeach.org/256/Flooding-Property",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "The Coastal High Hazard Area designation is the city's own; that \"much of Long Key reads FEMA VE or AE\" is a parcel-specific characterization to confirm per address. From kb/neighborhoods/st-pete-beach.md."
+      },
+      {
+        "kind": "fact",
+        "id": "gulfport-own-municipality",
+        "domain": "geography",
+        "value": "Gulfport is a separate incorporated city in Pinellas County — not a St. Petersburg neighborhood — bordering St. Petersburg, South Pasadena, and Boca Ciega Bay, with its own mayor, city council, city manager, building department, and code of ordinances. Because it governs itself, its permitting, business-tax, rental, and floodplain administration run through Gulfport's rulebook, not St. Petersburg's.",
+        "source": "City of Gulfport, FL — official site",
+        "source_url": "https://mygulfport.us/",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "From kb/neighborhoods/gulfport.md."
+      },
+      {
+        "kind": "fact",
+        "id": "gulfport-incorporation-land-area",
+        "domain": "geography",
+        "value": "Gulfport was incorporated in 1910 and covers roughly 2.76 square miles of land on Boca Ciega Bay — small enough to cross on foot.",
+        "source": "Gulfport, Florida — municipal record (via the Wikipedia mirror; primary city/county records pulled at quarterly sweep)",
+        "source_url": "https://en.wikipedia.org/wiki/Gulfport,_Florida",
+        "as_of": "1910-01-01T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Incorporation year and land area via the encyclopedia mirror (secondary); the chapter flags these for primary city/county re-anchoring at the quarterly sweep. From kb/neighborhoods/gulfport.md."
+      },
+      {
+        "kind": "fact",
+        "id": "boca-ciega-bay",
+        "domain": "geography",
+        "value": "Boca Ciega Bay is a bay connected to the Gulf of Mexico, designated a Florida aquatic preserve since 1968, with a mangrove-and-seagrass shoreline rather than an open-beach edge; it borders Gulfport.",
+        "source": "Boca Ciega Bay — bay record (via the Wikipedia mirror)",
+        "source_url": "https://en.wikipedia.org/wiki/Boca_Ciega_Bay",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source. From kb/neighborhoods/gulfport.md."
+      },
+      {
+        "kind": "fact",
+        "id": "st-pete-beach-own-municipality",
+        "domain": "geography",
+        "value": "St. Pete Beach is its own city, not a St. Petersburg neighborhood — it occupies nearly all of Long Key, a barrier island on the open Gulf of Mexico reached by bridge. It was incorporated in 1957 from Pass-a-Grille, Don CeSar, Belle Vista, and the town of St. Petersburg Beach plus unincorporated Pinellas, and renamed \"St. Pete Beach\" by referendum in 1994; it keeps its own city hall on Corey Avenue, its own commission, code, and permitting.",
+        "source": "City of St. Pete Beach — Community History",
+        "source_url": "https://www.stpetebeach.org/260/Community-History",
+        "as_of": "1957-01-01T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Pass-a-Grille, at the island's southern tip, is the oldest village, one of the towns merged into the city in 1957. From kb/neighborhoods/st-pete-beach.md."
+      },
+      {
+        "kind": "fact",
+        "id": "tierra-verde-unincorporated",
+        "domain": "geography",
+        "value": "Tierra Verde is unincorporated — outside any city limit — so the Pinellas County Board of County Commissioners is its local government, and its building permits, code enforcement, and land-use rules run through the county rather than a city. Both St. Petersburg and St. Pete Beach have bid to annex the island; it has voted to stay independent.",
+        "source": "Pinellas County — For Residents of Unincorporated Tierra Verde",
+        "source_url": "https://pinellas.gov/for-residents-of-unincorporated-tierra-verde/",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "The annexation-vote history is via the Tierra Verde encyclopedia record (secondary); the unincorporated status and county-government fact are from the Pinellas County page. From kb/neighborhoods/tierra-verde.md."
+      },
+      {
+        "kind": "fact",
+        "id": "tierra-verde-made-island",
+        "domain": "geography",
+        "value": "Tierra Verde is a made island of 667 acres at the entrance of Tampa Bay: it began as fifteen low mangrove-and-scrub islands that 1960s dredge-and-fill reshaped into the six areas the community carries today — Monte Cristo, Entrada, Pinellas Bayway, Sands Point, East Shore, and West Shore.",
+        "source": "Tierra Verde, Florida — geography record (via the Wikipedia mirror)",
+        "source_url": "https://en.wikipedia.org/wiki/Tierra_Verde,_Florida",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source. From kb/neighborhoods/tierra-verde.md."
+      },
+      {
+        "kind": "fact",
+        "id": "fort-de-soto-park",
+        "domain": "geography",
+        "value": "Fort De Soto Park, at the southern end of Tierra Verde, spans 1,136 acres across five interconnected keys — the largest park in the Pinellas County park system — with more than seven miles of waterfront and a public boat launch.",
+        "source": "Pinellas County Parks — Fort De Soto Park",
+        "source_url": "https://pinellas.gov/parks/fort-de-soto-park/",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "From kb/neighborhoods/tierra-verde.md."
+      },
+      {
+        "kind": "fact",
+        "id": "pinellas-point-peninsula",
+        "domain": "geography",
+        "value": "Pinellas Point is a peninsula at St. Petersburg's southern tip that pushes into Tampa Bay, ringed by waterfront parks and aimed at the Sunshine Skyway; it filled in after World War II as a mid-century neighborhood of one-story ranches and concrete-block homes. Pinellas Point Park sits on the bay as one of the city's waterfront parks.",
+        "source": "City of St. Petersburg Parks & Recreation — Pinellas Point Park; The Gabber Newspaper — 'The Pink Streets of St. Petersburg'",
+        "source_url": "https://www.stpeteparksrec.org/parks___facilities/pinellas_point_park.php",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Mid-century build character per The Gabber (local history, secondary); the waterfront-park location per City Parks & Recreation. From kb/neighborhoods/pinellas-point.md."
+      },
+      {
+        "kind": "fact",
+        "id": "pink-streets",
+        "domain": "geography",
+        "value": "The \"Pink Streets\" are roughly four and a half miles of pink-red pavement in Pinellas Point, south of Pinellas Point Drive between 10th and 22nd Streets South. They date to spring 1925, when Marguerite Cook and her son George laid pink-tinted concrete through their Murok Realty development; the color faded and the roads decayed until a resident campaign got the City Council to protect them in 1989, and nearly four and a half miles were restored in the early 1990s.",
+        "source": "The Gabber Newspaper — 'The Pink Streets of St. Petersburg'",
+        "source_url": "https://thegabber.com/the-pink-streets-of-st-petersburg/",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Local-history source citing 1925 St. Petersburg Times / Tampa Morning Tribune primary quotes; secondary. From kb/neighborhoods/pinellas-point.md."
+      },
+      {
+        "kind": "fact",
+        "id": "pinellas-point-mound",
+        "domain": "geography",
+        "value": "Indian Mound Park at Pinellas Point preserves the Pinellas Point Mound, a Tocobaga-built prehistoric temple mound you can walk. The mound was donated to the City of St. Petersburg in 1958 and carries a marker erected in 1960 by the Princess Hirrihigua Chapter of the Daughters of the American Revolution.",
+        "source": "Pinellas Point Mound — record (via the Wikipedia mirror); City of St. Petersburg Parks & Recreation — Indian Mound Park",
+        "source_url": "https://en.wikipedia.org/wiki/Pinellas_Point_Mound",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Donation year and DAR marker per the encyclopedia record (secondary); the walkable park per City Parks & Recreation. From kb/neighborhoods/pinellas-point.md."
+      },
+      {
+        "kind": "fact",
+        "id": "stpete-peninsula-water-share",
+        "domain": "geography",
+        "value": "St. Petersburg sits at the south end of the Pinellas peninsula, with Tampa Bay on the east side, the Gulf of Mexico to the west, and a single land connection to the mainland at the north; roughly 55% of the city's area is water.",
+        "source": "St. Petersburg, FL — city geography record (via the Wikipedia mirror)",
+        "source_url": "https://en.wikipedia.org/wiki/St._Petersburg,_Florida",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source. From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "stpete-sunshine-city-record",
+        "domain": "geography",
+        "value": "St. Petersburg is nicknamed the \"Sunshine City\" and holds a Guinness record for consecutive sunny days — 768 of them, from 1967 to 1969.",
+        "source": "St. Petersburg, FL — city record (via the Wikipedia mirror)",
+        "source_url": "https://en.wikipedia.org/wiki/St._Petersburg,_Florida",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source. From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "edge-district-boundaries",
+        "domain": "geography",
+        "value": "The EDGE District is downtown St. Petersburg's arts-and-entertainment sub-district, running along Central Avenue between 9th Street (Dr. Martin Luther King Jr. Street) and 16th Street and reaching out to First Avenue North and First Avenue South; it was designated a Florida Main Street in 2014.",
+        "source": "The EDGE District — official site; Florida Department of State — Florida Main Street designation",
+        "source_url": "https://edgedistrict.org/",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Boundaries per the EDGE District official site; the 2014 Florida Main Street designation per the Florida Department of State. From kb/neighborhoods/downtown-edge-district.md."
+      },
+      {
+        "kind": "fact",
+        "id": "st-pete-pier",
+        "domain": "geography",
+        "value": "The St. Pete Pier is a 26-acre district on downtown St. Petersburg's waterfront — parks, a marketplace, restaurants, a fishing dock, a splash pad, and public art including Janet Echelman's \"Bending Arc\" — that opened in 2020.",
+        "source": "St. Pete Pier — official site (City of St. Petersburg); St. Pete Rising",
+        "source_url": "https://www.stpetepier.org/",
+        "as_of": "2020-07-01T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Opened July 2020. From kb/neighborhoods/downtown-edge-district.md."
+      },
+      {
+        "kind": "fact",
+        "id": "downtown-waterfront-parks",
+        "domain": "geography",
+        "value": "Downtown St. Petersburg's eastern edge is a near-continuous chain of public waterfront parks along Tampa Bay — Vinoy Park, North and South Straub Park, Spa Beach, and Demens Landing. The often-repeated claim that this is the \"third-largest\" downtown waterfront park system in North America (roughly seven miles) is not verifiable — PolitiFact examined it and found no way to confirm the comparison — but the parks themselves are real, continuous, and public.",
+        "source": "St. Petersburg Parks & Recreation — downtown waterfront parks; PolitiFact",
+        "source_url": "https://www.stpeteparksrec.org/parks___facilities/downtown_waterfront.php",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "The \"third-largest / seven miles\" ranking is explicitly flagged unverifiable per PolitiFact — assert the parks, not the ranking. From kb/neighborhoods/downtown-edge-district.md."
+      },
+      {
+        "kind": "fact",
+        "id": "snell-isle-made-island",
+        "domain": "geography",
+        "value": "Snell Isle is a built island: developer C. Perry Snell opened a roughly 275-acre estate subdivision on it in 1925, of which only about 39 acres sat above the high-tide line — the rest was fill, dredged and pumped up out of the shallows onto a low mangrove spoil island. It is organized around Snell Isle Boulevard, across Coffee Pot Bayou from the north end of downtown.",
+        "source": "Snell Isle — encyclopedia record; St. Petersburg Museum of History — 'C. Perry Snell: In the Pursuit of Beauty'",
+        "source_url": "https://en.wikipedia.org/wiki/Snell_Isle",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Acreage and fill origin corroborated by the St. Petersburg Museum of History; both secondary. From kb/neighborhoods/snell-isle.md."
+      },
+      {
+        "kind": "fact",
+        "id": "vinoy-golf-club",
+        "domain": "geography",
+        "value": "The green center of Snell Isle is the Vinoy Golf Club, an 18-hole course that traces to the 9-hole Coffee Pot Golf Club C. Perry Snell opened in 1920, was rebuilt into a full course by architects Wayne Stiles and John van Kleek in 1926, and was redesigned by Ron Garl in 1992; its 1927 Mediterranean clubhouse still overlooks the fairways.",
+        "source": "Florida Historic Golf Trail — Vinoy Golf Club",
+        "source_url": "https://floridahistoricgolftrail.com/courses/vinoy-golf-club/?altTemplate=CoursePage",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source (a state historic golf trail). From kb/neighborhoods/snell-isle.md."
+      },
+      {
+        "kind": "fact",
+        "id": "old-northeast-nrhp-north-shore",
+        "domain": "historic-districts",
+        "value": "Old Northeast is listed on the National Register of Historic Places as the North Shore Historic District (NRHP ref. #03000040), listed February 20, 2003, with 2,975 contributing buildings. The brick streets, granite curbs, and hex-block sidewalks are part of that protected historic fabric.",
+        "source": "NRHP record — North Shore Historic District (Old Northeast), ref #03000040 (National Park Service, National Register)",
+        "source_url": "https://npgallery.nps.gov/AssetDetail/NRIS/03000040",
+        "as_of": "2003-02-20T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Contributing-building count (2,975) per the NRHP nomination. From kb/neighborhoods/old-northeast.md."
+      },
+      {
+        "kind": "fact",
+        "id": "kenwood-nrhp-district",
+        "domain": "historic-districts",
+        "value": "Historic Kenwood is listed on the National Register of Historic Places as the Kenwood Historic District (NRHP ref. #03000729), listed August 4, 2003, with 2,203 contributing buildings across roughly 375 acres; the homes were built largely between 1912 and 1945, and bungalows make up more than half of them.",
+        "source": "NRHP record — Kenwood Historic District, ref #03000729 (National Park Service, National Register)",
+        "source_url": "https://npgallery.nps.gov/AssetDetail/NRIS/03000729",
+        "as_of": "2003-08-04T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Counts, acreage, build era, and bungalow share per the NRHP nomination. From kb/neighborhoods/historic-kenwood.md."
+      },
+      {
+        "kind": "fact",
+        "id": "huggins-stengel-field-nrhp",
+        "domain": "historic-districts",
+        "value": "Huggins-Stengel Field, the ballfield inside Crescent Lake Park, is listed on the National Register of Historic Places (NRHP ref. #100004348), listed August 27, 2019; the New York Yankees held spring training there across the seasons from 1925 to 1961.",
+        "source": "NRHP record — Huggins-Stengel Field, ref #100004348 (National Park Service, National Register); Florida Department of State",
+        "source_url": "https://npgallery.nps.gov/AssetDetail/NRIS/100004348",
+        "as_of": "2019-08-27T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Yankees spring-training history (1925–1961) per the Florida Department of State. From kb/neighborhoods/crescent-lake.md."
+      },
+      {
+        "kind": "fact",
+        "id": "don-cesar-nrhp",
+        "domain": "historic-districts",
+        "value": "The Don CeSar, the resort at the south end of St. Pete Beach (Long Key), is listed on the National Register of Historic Places (NRHP ref. #75000563), listed April 3, 1975; it opened in 1928.",
+        "source": "NRHP record — The Don CeSar, ref #75000563 (National Park Service, National Register)",
+        "source_url": "https://npgallery.nps.gov/AssetDetail/NRIS/75000563",
+        "as_of": "1975-04-03T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "From kb/neighborhoods/st-pete-beach.md."
+      },
+      {
+        "kind": "fact",
+        "id": "national-register-vs-local-designation",
+        "domain": "historic-districts",
+        "value": "National Register listing is largely honorary: it does not by itself restrict what an owner may do to a private home unless federal assistance is involved. Local historic-district designation is the layer with legal teeth — inside a local district an exterior change goes through the City of St. Petersburg's design review and needs a Certificate of Appropriateness before work on the front of the house.",
+        "source": "City of St. Petersburg — historic preservation program (local designation vs. National Register; Certificate of Appropriateness)",
+        "source_url": "https://www.stpete.org/business/planning___zoning/historic_preservation.php",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Whether a specific parcel sits under a local overlay is answerable per address with the city; National Register status alone is not the governing layer. From kb/neighborhoods/historic-kenwood.md."
+      },
+      {
+        "kind": "fact",
+        "id": "snell-isle-no-nrhp-district",
+        "domain": "historic-districts",
+        "value": "Snell Isle carries no National Register historic-district designation of its own (unlike Old Northeast's North Shore district and Historic Kenwood); its 1920s Mediterranean character is a market fact, not a legal protection. Only local designation on the City of St. Petersburg's own Register of Historic Places would protect a property from demolition or unsympathetic alteration.",
+        "source": "Snell Isle — encyclopedia record; City of St. Petersburg — historic preservation program",
+        "source_url": "https://en.wikipedia.org/wiki/Snell_Isle",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "The absence of an NRHP district is stated per the public record via the Snell Isle encyclopedia record (secondary); confirm any specific property's local designation with the city. From kb/neighborhoods/snell-isle.md."
+      },
+      {
+        "kind": "fact",
+        "id": "crescent-lake-no-nrhp-district",
+        "domain": "historic-districts",
+        "value": "Crescent Lake's residential grid carries no National Register historic-district listing of its own — it is historic in character, not by ordinance — unlike neighboring Old Northeast and Historic Kenwood. The only National Register record inside its bounds is Huggins-Stengel Field, the ballfield in the park.",
+        "source": "Historic Homes Tampa Bay — Crescent Lake Park: the center of a historic neighborhood",
+        "source_url": "https://historichomestampabay.com/journal-crescent-lake-park-st-petersburg-historic-neighborhood/",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source; the absence of a district designation means the preservation review that binds Old Northeast/Kenwood does not apply here. From kb/neighborhoods/crescent-lake.md."
+      },
+      {
+        "kind": "fact",
+        "id": "citizens-flood-requirement-phase-in",
+        "domain": "insurance",
+        "value": "Florida's Senate Bill 2A (Dec 2022) requires Citizens Property Insurance personal residential policyholders with wind coverage to carry flood insurance, phased by dwelling value: from Jan 1 2024 at $600,000+; Jan 1 2025 at $500,000+; Jan 1 2026 at $400,000+; and from Jan 1 2027 ALL such policies regardless of value. Inside the Special Flood Hazard Area the requirement already applies regardless of value. Exempt: condo unit-owner policies, tenant contents policies, and policies excluding windstorm/hail.",
+        "source": "Citizens Property Insurance Corporation — Flood Insurance Requirements",
+        "source_url": "https://www.citizensfla.com/flood",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH"
+      },
+      {
+        "kind": "fact",
+        "id": "citizens-2026-rate-change",
+        "domain": "insurance",
+        "value": "Citizens' 2026 rates, as approved by the Florida Office of Insurance Regulation, DROP: homeowners multiperil −8.8% on average, wind-only −5.5%, with at least a 2% cut for all Personal Lines policyholders — effective July 1, 2026 for new business and at renewal for existing policies. Citizens attributes the drop to litigation reforms and a recovering private market.",
+        "source": "Citizens press release, \"Citizens' 2026 Multiperil Rates to Drop Statewide\" (2026-03-04)",
+        "source_url": "https://www.citizensfla.com/-/20260304-citizens-2026-multiperil-rates-to-drop-statewide",
+        "as_of": "2026-03-04T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH"
+      },
+      {
+        "kind": "fact",
+        "id": "citizens-depopulation",
+        "domain": "insurance",
+        "value": "Citizens' policy count fell about 76% from its October 2023 peak of 1.41 million to roughly 336,000 (as of the March 2026 rate release) — the \"insurer of last resort\" is shedding policies to a recovering private market.",
+        "source": "Citizens press release (2026-03-04)",
+        "source_url": "https://www.citizensfla.com/-/20260304-citizens-2026-multiperil-rates-to-drop-statewide",
+        "as_of": "2026-03-04T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH"
+      },
+      {
+        "kind": "fact",
+        "id": "risk-rating-2-0",
+        "domain": "insurance",
+        "value": "NFIP premiums have been set under FEMA's Risk Rating 2.0 since April 1, 2023: the flood ZONE no longer sets the premium. Price is property-specific — distance to water, flood type/frequency, foundation, first-floor height vs. base flood elevation, claims history, and replacement cost.",
+        "source": "FEMA — NFIP's Pricing Approach (Risk Rating 2.0)",
+        "source_url": "https://www.fema.gov/flood-insurance/risk-rating",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH"
+      },
+      {
+        "kind": "fact",
+        "id": "nfip-florida-average-premium",
+        "domain": "insurance",
+        "value": "The average NFIP flood policy in Florida runs about $938/year (~$78/month) — but the spread around that average in coastal Pinellas is enormous; elevation and first-floor height dominate.",
+        "source": "NerdWallet, \"Flood Insurance in Florida\" (2026 guide)",
+        "source_url": "https://www.nerdwallet.com/insurance/homeowners/learn/flood-insurance-florida",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary aggregation (FEMA's own state table returned 403 at verification). Re-anchor to FEMA's single-family cost page at next sweep; on-page usage must keep the \"average, huge spread\" framing, never quote as a likely personal premium."
+      },
+      {
+        "kind": "fact",
+        "id": "fl-str-preemption",
+        "domain": "str-rules",
+        "value": "Florida Statute 509.032(7)(b) preempts local governments from PROHIBITING vacation rentals or regulating their DURATION or FREQUENCY — but ordinances adopted on or before June 1, 2011 are grandfathered and remain enforceable. This grandfather clause is why STR rules differ street-to-street across Pinellas: some cities kept pre-2011 restrictions, some never had them.",
+        "source": "Florida Statutes §509.032 (2025 statutes, official)",
+        "source_url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599%2F0509%2FSections%2F0509.032.html",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "HIGH"
+      },
+      {
+        "kind": "fact",
+        "id": "stpete-str-rule",
+        "domain": "str-rules",
+        "value": "City of St. Petersburg: in residential zones, renting for under 30 days is allowed at most THREE times per 12-month period (a pre-2011 ordinance, on the books since 2001, so it survives state preemption). Beyond that, sub-30-day use is a prohibited transient use in most residential districts; some downtown/mixed-use districts allow transient accommodations. The city has moved to align STR fines with the state's \"super fine\" ceiling (up to $1,000/day, $10,000 per violation).",
+        "source": "St. Petersburg Code of Ordinances (via Municode) + Tampa Bay reporting",
+        "source_url": "https://library.municode.com/fl/st._petersburg/codes/code_of_ordinances",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Rule shape corroborated across the city-code library, a local law firm's analysis (stpetelawgroup.com), and FOX 13 reporting on the fines. Before the STR guide ships: cite the exact LDR section number + the fines ordinance number and date from Municode."
+      },
+      {
+        "kind": "fact",
+        "id": "str-registration-btr",
+        "domain": "str-rules",
+        "value": "Any St. Petersburg rental operation needs a city Business Tax Receipt (annual renewal); Florida vacation rentals as defined by ch. 509 also need a state DBPR vacation-rental license and to collect state sales tax + Pinellas tourist development tax.",
+        "source": "City licensing pages + DBPR vacation-rental licensing",
+        "source_url": "https://www2.myfloridalicense.com/hotels-restaurants/vacation-rentals/",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Verify each element against the current city/DBPR pages when the guide drafts."
+      },
+      {
+        "kind": "fact",
+        "id": "beach-communities-vary",
+        "domain": "str-rules",
+        "value": "The beach municipalities each carry their OWN rules (St. Pete Beach publishes a dedicated short-term-rental rules page; Treasure Island, Madeira Beach, Gulfport, Clearwater differ again) — the per-municipality matrix is the STR guide's core table and must be built from each city's current ordinance, cited with dates.",
+        "source": "St. Pete Beach — Short Term Rental Rules & Regulations (example)",
+        "source_url": "https://www.stpetebeach.org/438/Short-Term-Rental-Rules-Regulations",
+        "as_of": "2026-07-07T00:00:00.000Z",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Umbrella fact. The per-municipality matrix this entry once deferred is now filed (2026-07-08, from the shipped STR guide): see spb-str-rule, gulfport-str-def, treasure-island-str, madeira-beach-str, clearwater-str, unincorporated-pinellas-str, and the fl-transient-threshold-509013 state line — each cited to the city's own ordinance, with the guide's \"verify with the city\" gaps preserved in each fact's notes. Quarterly re-verification stays binding (these rules churn)."
+      },
+      {
+        "kind": "fact",
+        "id": "fl-transient-threshold-509013",
+        "domain": "str-rules",
+        "value": "Under Florida Statute §509.013, a home becomes a \"transient public lodging establishment\" — a vacation rental — once it is rented more than three times in a calendar year for periods of less than 30 days. Rent three or fewer times a year and it is below the state's line; a fourth short stay crosses it.",
+        "source": "Florida Statutes §509.013 — 'transient public lodging establishment' definition",
+        "source_url": "https://www.flsenate.gov/laws/statutes/2025/509.013",
+        "as_of": "2025-01-01T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Cited to the 2025 Florida Statutes. This state threshold echoes through the local ordinances. From kb/guides/short-term-rentals-pinellas.md."
+      },
+      {
+        "kind": "fact",
+        "id": "spb-str-rule",
+        "domain": "str-rules",
+        "value": "In St. Pete Beach, under-30-day rentals are not permitted in most districts — they are allowed up to 3 times per 12 months only in RM (Residential Multi-Family) zoning and the Pass-A-Grille Overlay; rentals of one month or longer are allowed citywide. Permanent transient lodging needs a business tax license plus Zoning and Fire Marshal review before issuance.",
+        "source": "City of St. Pete Beach — Short-Term Rental Rules & Regulations (RM + Pass-A-Grille Overlay)",
+        "source_url": "https://www.stpetebeach.org/438/Short-Term-Rental-Rules-Regulations",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "The 3-times shape is a grandfathered pre-2011 rule; the city does not publish the fine schedule or adopting-ordinance date on its STR page (confirm with the city). Supersedes the earlier beach-communities-vary caveat now that the STR guide sources the rule. From kb/guides/short-term-rentals-pinellas.md."
+      },
+      {
+        "kind": "fact",
+        "id": "gulfport-str-def",
+        "domain": "str-rules",
+        "value": "The City of Gulfport (Code §22-2.02) defines a short-term rental as a rental of less than one month, more than 3 times in any consecutive 12 months. Gulfport uses \"listed uses only\" zoning — short-term rental is permitted in certain districts, some only with added approval, with the city's zoning map and staff making the final call.",
+        "source": "City of Gulfport — Short-Term Rentals (Code ch. 22, §22-2.02)",
+        "source_url": "https://mygulfport.us/short-term-rentals/",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Adopting-ordinance number/date and the fine schedule are not published on the city's STR page (verify with the city). From kb/guides/short-term-rentals-pinellas.md."
+      },
+      {
+        "kind": "fact",
+        "id": "treasure-island-str",
+        "domain": "str-rules",
+        "value": "Treasure Island regulates short-term rentals on a \"change-of-occupancy\" model with no minimum stay (each new short-term occupant is one change). Tourist dwellings are allowed with no change limit in the CG, RFM-30, RFH-50, PR-MU Core, and PR-MU Gulf Blvd districts; a property is presumed a tourist dwelling (and barred) in RU-75 above 2 changes per 12 months and in RM-15 above 6 changes per 12 months.",
+        "source": "City of Treasure Island — Short Term Rental Information (change-of-occupancy / tourist-dwelling zoning)",
+        "source_url": "https://www.mytreasureisland.org/residents/departments/community_development/short_term_rental_information.php",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Exact code section and adoption date to verify with the city; a state lodging license, city Local Business Tax, and the 6% county tourist tax also apply. From kb/guides/short-term-rentals-pinellas.md."
+      },
+      {
+        "kind": "fact",
+        "id": "madeira-beach-str",
+        "domain": "str-rules",
+        "value": "Madeira Beach restricts under-30-day rentals by zoning district per its Vacation Rental Restriction Map (dated Aug. 24, 2021) and requires registration with the City Clerk under Code §34-504 (adopted by Ordinance 2015-13), with building and fire inspections, a local responsible party, and insurance among the conditions.",
+        "source": "City of Madeira Beach — Code §34-504 registration (adopted by Ord. 2015-13)",
+        "source_url": "http://madeirabeach.elaws.us/code/coor_ptii_ch34_artvii_div3_sec34-504",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Confirm the district for a specific parcel and the exact current registration terms with the City Clerk. From kb/guides/short-term-rentals-pinellas.md."
+      },
+      {
+        "kind": "fact",
+        "id": "clearwater-str",
+        "domain": "str-rules",
+        "value": "Clearwater effectively bars short-term rentals in residential zones: under Community Development Code §3-1206, a residentially-zoned property may not be rented — or advertised — for less than 31 days (one calendar month). Transient lodging is allowed only in Tourist (\"T\") districts and commercial-tourist overlays.",
+        "source": "City of Clearwater — Community Development Code §3-1206 (31-day residential floor)",
+        "source_url": "https://library.municode.com/fl/clearwater/codes/community_development_code",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Confirm current code text on Municode. From kb/guides/short-term-rentals-pinellas.md."
+      },
+      {
+        "kind": "fact",
+        "id": "unincorporated-pinellas-str",
+        "domain": "str-rules",
+        "value": "In unincorporated Pinellas County, short-term rentals are allowed county-wide (not zoned out) but require a Short-Term Rental Certificate of Use under State-filed Ordinance 25-15 (2025) and LDC §138-3232 — a registration/inspection regime. The Certificate of Use costs $450 (annual renewal $450), with a $150 initial inspection and $100 re-inspection; occupancy is capped at 2 per bedroom plus 2 in one common area (max 10 total), with quiet hours 10 p.m.–9 a.m.",
+        "source": "Pinellas County — Short-Term Rental Certificate of Use program (State-filed Ordinance 25-15, 2025); Pinellas County Land Development Code §138-3232",
+        "source_url": "https://pinellas.gov/str/",
+        "as_of": "2025-01-01T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Program applies once a unit is rented more than 3 times per calendar year for short stays; the exact per-day fine for operating without a Certificate of Use is reported up to $300/day (confirm with the county). From kb/guides/short-term-rentals-pinellas.md."
+      },
+      {
+        "kind": "fact",
+        "id": "florida-no-income-tax",
+        "domain": "tax",
+        "value": "Florida imposes no personal income tax — none on wages — and no state inheritance or gift tax.",
+        "source": "Florida Department of Revenue — Tax Information for New Residents",
+        "source_url": "https://floridarevenue.com/Forms_library/current/brochure/gt800025.pdf",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "homestead-exemption",
+        "domain": "tax",
+        "value": "A Florida homeowner can claim a homestead exemption of up to $50,000 off the taxable value of a primary residence; filing for it also unlocks the Save Our Homes assessment cap.",
+        "source": "Florida Department of Revenue — Tax Information for New Residents",
+        "source_url": "https://floridarevenue.com/Forms_library/current/brochure/gt800025.pdf",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "save-our-homes-cap",
+        "domain": "tax",
+        "value": "Once a Florida property is homesteaded, its assessed value can rise no more than the lower of 3% or the change in the Consumer Price Index per year, regardless of market movement (the \"Save Our Homes\" cap). Over years, a long-held home's assessed value drifts well below its market value.",
+        "source": "Florida Statutes §193.155 — homestead assessments (Save Our Homes 3%/CPI cap)",
+        "source_url": "https://www.flsenate.gov/laws/statutes/2024/193.155",
+        "as_of": "2024-01-01T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Cited to the 2024 Florida Statutes. From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "homestead-reassessment-at-purchase",
+        "domain": "tax",
+        "value": "A seller's low capped homestead assessment belongs to the seller, not the house: on a change of ownership the property is reassessed at full just (market) value as of January 1 of the following year, and the Save Our Homes cap starts over from there. A buyer's tax bill is computed on today's market value, not the seller's current bill — the \"same house, double the taxes\" reset.",
+        "source": "Florida Statutes §193.155 — homestead assessments (reassessment at just value after a change of ownership)",
+        "source_url": "https://www.flsenate.gov/laws/statutes/2024/193.155",
+        "as_of": "2024-01-01T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "A first partial-year bill can still ride the seller's low capped value, then jump at the January 1 reset. From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "homestead-portability",
+        "domain": "tax",
+        "value": "A Florida homesteader moving within the state can carry the accumulated Save Our Homes benefit — the gap between assessed and market value — from the old home to the new one (\"portability\").",
+        "source": "Florida Statutes §193.155 — homestead assessments",
+        "source_url": "https://www.flsenate.gov/laws/statutes/2024/193.155",
+        "as_of": "2024-01-01T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "doc-stamp-tax-deed",
+        "domain": "tax",
+        "value": "Florida's documentary stamp tax on a deed is $0.70 per $100 of the sale price (the transfer tax). By local custom in Pinellas County the seller pays the deed doc stamps — but custom is not law: the contract controls and it is negotiable. (Miami-Dade uses a different rate; Pinellas does not.)",
+        "source": "Florida Department of Revenue — Documentary Stamp Tax (deed and note rates)",
+        "source_url": "https://floridarevenue.com/taxes/taxesfees/Pages/doc_stamp.aspx",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "The seller-pays split is local custom, not statute. From kb/guides/buying-in-st-pete-process-costs.md."
+      },
+      {
+        "kind": "fact",
+        "id": "doc-stamp-tax-note-uncapped",
+        "domain": "tax",
+        "value": "Florida's documentary stamp tax on a promissory note runs $0.35 per $100 of the amount financed. Because a purchase-money note is secured by a recorded Florida mortgage, this tax is uncapped — the $2,450 documentary-stamp cap applies only to obligations NOT secured by Florida real property (Fla. Stat. §201.08). By custom the borrower pays.",
+        "source": "Florida Department of Revenue — Documentary Stamp Tax; Fla. Stat. §201.08",
+        "source_url": "https://floridarevenue.com/taxes/taxesfees/Pages/doc_stamp.aspx",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "The §201.08 correction: the $2,450 cap does NOT apply to a mortgage-secured purchase-money note. From kb/guides/buying-in-st-pete-process-costs.md."
+      },
+      {
+        "kind": "fact",
+        "id": "nonrecurring-intangible-tax",
+        "domain": "tax",
+        "value": "Florida levies a nonrecurring intangible tax of 2 mills — $0.002 per dollar, or $2 per $1,000 — on a new mortgage; it is uncapped, and by custom falls on the borrower.",
+        "source": "Florida Department of Revenue — Nonrecurring Intangible Tax (2 mills on a new mortgage)",
+        "source_url": "https://floridarevenue.com/taxes/taxesfees/Pages/nonrecurring_intangible_tax.aspx",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "From kb/guides/buying-in-st-pete-process-costs.md."
+      },
+      {
+        "kind": "fact",
+        "id": "title-insurance-promulgated-rate",
+        "domain": "tax",
+        "value": "Florida promulgates the owner's-title-insurance premium by rule, so it is the same at every title company: $5.75 per $1,000 of coverage on the first $100,000, then $5.00 per $1,000 up to $1 million, with a $100 minimum. What varies between companies is the settlement/closing- service fee, not the policy rate.",
+        "source": "Fla. Admin. Code R. 69O-186.003 — Title Insurance Rates (via Cornell LII)",
+        "source_url": "https://www.law.cornell.edu/regulations/florida/Fla-Admin-Code-Ann-R-69O-186-003",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "A promulgated regulatory rate schedule, not a market price. From kb/guides/buying-in-st-pete-process-costs.md."
+      },
+      {
+        "kind": "fact",
+        "id": "tourist-development-tax",
+        "domain": "tax",
+        "value": "A short stay (six months or less) in Pinellas County is taxed three ways: 6% Florida state sales tax, a 1% Pinellas discretionary surtax, and the 6% Pinellas Tourist Development Tax (the \"bed tax,\" levied under Pinellas County Code ch. 118, art. III) — about 13% all in. Operators register with the Pinellas County Tax Collector for the tourist tax and with the state for sales tax.",
+        "source": "Pinellas County Tax Collector — Tourist Development Tax (Pinellas County Code ch. 118, art. III)",
+        "source_url": "https://pinellastaxcollector.gov/property-tax/tourist-development-taxes/",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "Confirm the current rate when filing. From kb/guides/short-term-rentals-pinellas.md."
+      },
+      {
+        "kind": "fact",
+        "id": "sunrunner-brt",
+        "domain": "transit",
+        "value": "The SunRunner is Tampa Bay's first bus rapid transit line, running about 10 miles from St. Pete Beach through downtown St. Petersburg — much of it in dedicated bus lanes — every 15 minutes at peak, seven days a week from 6 a.m. to midnight.",
+        "source": "PSTA — SunRunner bus rapid transit",
+        "source_url": "https://psta.net/services/sunrunner/",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "HIGH",
+        "notes": "From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "airports-tpa-pie",
+        "domain": "transit",
+        "value": "Two airports serve the area: Tampa International (TPA), the region's major full-service hub, is about 17 miles from St. Petersburg; St. Pete–Clearwater International (PIE) is the small, close-in option about 9 miles north of downtown, largely served by a single low-cost carrier.",
+        "source": "St. Pete–Clearwater International Airport (PIE) — location and carrier profile (via the Wikipedia mirror)",
+        "source_url": "https://en.wikipedia.org/wiki/St._Pete%E2%80%93Clearwater_International_Airport",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "PIE distance and carrier profile via the encyclopedia mirror (secondary); the TPA distance as stated in the relocation guide. From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "howard-frankland-bridge",
+        "domain": "transit",
+        "value": "I-275 crosses Tampa Bay to Tampa on the Howard Frankland Bridge — the busiest bridge in the region at roughly 250,000 vehicles a day. FDOT's new span opened its express lanes and a nearly seven-mile pedestrian-and-cyclist path in May 2026, adding about 50% capacity.",
+        "source": "WUSF — new Howard Frankland Bridge express lanes and shared-use path open (May 27, 2026)",
+        "source_url": "https://www.wusf.org/transportation/2026-05-27/northbound-express-lanes-howard-frankland-bridge-now-open",
+        "as_of": "2026-05-27T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source (WUSF). From kb/guides/moving-to-st-petersburg.md."
+      },
+      {
+        "kind": "fact",
+        "id": "pinellas-bayway",
+        "domain": "transit",
+        "value": "The Pinellas Bayway is an FDOT toll route whose State Road 679 leg is the only vehicular access to Tierra Verde and, past it, Fort De Soto Park; it opened December 21, 1962. Its old bascule drawbridges were replaced with high, fixed causeways — SR 682 in 2013–2014 and the SR 679 span to Tierra Verde in 2019–2021 — so a fixed vertical clearance now governs sailboat mast height on and off the island.",
+        "source": "Pinellas Bayway — FDOT toll system record (via the Wikipedia mirror)",
+        "source_url": "https://en.wikipedia.org/wiki/Pinellas_Bayway",
+        "as_of": "2026-07-08T00:00:00.000Z",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "confidence": "MEDIUM",
+        "notes": "Secondary source. From kb/neighborhoods/tierra-verde.md."
+      }
+    ],
+    "prose": [
+      {
+        "kind": "prose",
+        "type": "guide",
+        "slug": "flood-zones-insurance-st-pete",
+        "title": "Flood zones & insurance in St. Pete",
+        "question": "What do flood zones actually mean for buying a home in St. Petersburg?",
+        "lede": "This is the question under every offer in this city. Not \"does St. Pete flood\" — Helene answered that — but *what the flood story of one specific address means for what you'll pay, what you can rebuild, and whether the house is the right risk for you.* Portals won't answer it per-address. This guide will show you how we do.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "FEMA — flood zones glossary",
+            "url": "https://www.fema.gov/about/glossary/flood-zones",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "FEMA — NFIP's pricing approach (Risk Rating 2.0)",
+            "url": "https://www.fema.gov/flood-insurance/risk-rating",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service — current FIRM",
+            "url": "https://floodmaps.pinellas.gov/pages/current-flood-zones",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County — find an elevation certificate",
+            "url": "https://pinellas.gov/services/find-an-elevation-certificate/",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — substantial damage & substantial improvement (the 49% rule)",
+            "url": "https://www.stpete.org/residents/public_safety/permitting_after_a_storm.php",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — Hurricane Helene damage assessment, update #14 (Sept 27, 2024)",
+            "url": "https://www.stpete.org/news_detail_T30_R1130.php",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "Citizens Property Insurance — flood insurance requirements",
+            "url": "https://www.citizensfla.com/flood",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "Citizens press release — 2026 multiperil rates drop statewide (Mar 4, 2026)",
+            "url": "https://www.citizensfla.com/-/20260304-citizens-2026-multiperil-rates-to-drop-statewide",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "First Street — St. Petersburg, FL flood risk report (the model behind Redfin's flood scores)",
+            "url": "https://firststreet.org/city/st-petersburg-fl/1263000_fsid/flood",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "WUSF — new flood maps take effect in Pinellas County (Aug 24, 2021)",
+            "url": "https://www.wusf.org/environment/2021-08-24/new-flood-maps-in-pinellas-county-could-affect-insurance-rates",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "guide",
+        "slug": "best-neighborhoods-st-petersburg",
+        "title": "The best neighborhoods in St. Petersburg",
+        "question": "What are the best neighborhoods in St. Petersburg — and best for what, exactly?",
+        "lede": "\"Best neighborhood\" is a dishonest phrase until you finish the sentence: best *at what*? Every place on this list is the best in the city at something and mediocre at something else, and a guide that pretends otherwise is marketing. So this one is organized by what a place is actually good at — the housing stock, the distances, the water, the flood story. What you do with that is your call, and the fifteen-minute version of that conversation is what I do all day.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "NRHP record — North Shore Historic District (Old Northeast), ref #03000040, listed 2003-02-20 (National Park Service, National Register; 2,975 contributing buildings per the NRHP nomination)",
+            "url": "https://npgallery.nps.gov/AssetDetail/NRIS/03000040",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "NRHP record — Kenwood Historic District, ref #03000729, listed 2003-08-04 (National Park Service, National Register; ~2,203 contributing buildings across ~375 acres)",
+            "url": "https://npgallery.nps.gov/AssetDetail/NRIS/03000729",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "Historic Old Northeast Neighborhood Association — historic preservation",
+            "url": "https://honna.org/2022/08/24/historic-preservation/",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — historic preservation program",
+            "url": "https://www.stpete.org/business/planning___zoning/historic_preservation.php",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "City of Gulfport, FL — official site",
+            "url": "https://mygulfport.us/",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Pete Beach, FL — official site",
+            "url": "https://www.stpetebeach.org/",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "Tampa Bay Times — Shore Acres assesses damage after Hurricane Helene (Sept 27, 2024)",
+            "url": "https://www.tampabay.com/hurricane/2024/09/27/st-petersburgs-shore-acres-assesses-damage-after-hurricane-helene/",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service",
+            "url": "https://floodmaps.pinellas.gov/",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "guide",
+        "slug": "moving-to-st-petersburg",
+        "title": "Moving to St. Petersburg",
+        "question": "What should I actually know before moving to St. Petersburg?",
+        "lede": "I moved to St. Petersburg before I ever sold real estate in it, which means I made the newcomer mistakes first and learned the city the slow way. This is the version I wish someone had handed me at the start: where things actually are, what the weather actually does, how the tax math actually works, and the order to do it all in so the move doesn't ambush you. It describes the place and the mechanics — the honest version, not the brochure.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "St. Petersburg, FL — city geography (Pinellas peninsula between Tampa Bay and the Gulf; the Sunshine City record)",
+            "url": "https://en.wikipedia.org/wiki/St._Petersburg,_Florida",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Climate of the Tampa Bay area — humid subtropical, the two-season wet/dry pattern",
+            "url": "https://en.wikipedia.org/wiki/Climate_of_the_Tampa_Bay_area",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "National Weather Service Tampa Bay — tropical weather (hurricane season dates, storm surge as the top threat)",
+            "url": "https://www.weather.gov/tbw/tampabaytropicalweather",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — Hurricane Helene damage assessment (Sept 27, 2024)",
+            "url": "https://www.stpete.org/news_detail_T30_R1130.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "WUSF — Pinellas County recovery after Hurricane Milton (up to 18 inches of rain, Oct 11, 2024)",
+            "url": "https://www.wusf.org/weather/2024-10-11/pinellas-county-residents-focus-on-recovery-after-hurricane-milton",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Division of Emergency Management — Know Your Zone (storm-surge evacuation zones)",
+            "url": "https://www.floridadisaster.org/knowyourzone/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Department of Revenue — Tax Information for New Residents (no personal income tax; homestead exemption up to $50,000)",
+            "url": "https://floridarevenue.com/Forms_library/current/brochure/gt800025.pdf",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Statutes §193.155 — homestead assessments (Save Our Homes 3%/CPI cap; reassessment at just value after a change of ownership)",
+            "url": "https://www.flsenate.gov/laws/statutes/2024/193.155",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "PSTA — SunRunner bus rapid transit (St. Pete Beach to downtown St. Petersburg)",
+            "url": "https://psta.net/services/sunrunner/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "St. Pete–Clearwater International Airport (PIE) — location and carrier profile",
+            "url": "https://en.wikipedia.org/wiki/St._Pete%E2%80%93Clearwater_International_Airport",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "WUSF — new Howard Frankland Bridge express lanes and shared-use path open (May 27, 2026)",
+            "url": "https://www.wusf.org/transportation/2026-05-27/northbound-express-lanes-howard-frankland-bridge-now-open",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Schools — School Zone Locator (address-based attendance-zone lookup)",
+            "url": "https://www.pcsb.org/departments/district-services/student-registration/school-zone-locator",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "guide",
+        "slug": "buying-in-st-pete-process-costs",
+        "title": "Buying in St. Pete: the real process and costs",
+        "question": "What does buying a home in St. Petersburg actually involve — and cost?",
+        "lede": "Most guides to \"the buying process\" describe a national average that doesn't exist. This is the version I actually run in Pinellas County — the real sequence between \"we like this one\" and keys, and the full ledger of what you pay beyond the sticker price. Some of it is statute and I've cited the rate; some of it is local custom and I've labeled it as custom; and some of it is my own read from the deals I close, which I've labeled as exactly that. No invented averages, no numbers from memory.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "Florida Realtors — Florida's laws & regulations regarding real estate contracts (the AS-IS contract's sole-discretion cancellation right)",
+            "url": "https://www.floridarealtors.org/law-ethics/library/florida-real-estate-contract-laws",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Berlin Patten Ebling — Florida Realtors' contract updates (the AS-IS ‘Rev. 12/24’ effective Dec 31, 2024 and the closing-services cost change)",
+            "url": "https://berlinpatten.com/florida-realtors-2025-contract-updates-key-changes-every-agent-should-know/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Department of Revenue — Documentary Stamp Tax (deed and note rates)",
+            "url": "https://floridarevenue.com/taxes/taxesfees/Pages/doc_stamp.aspx",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Department of Revenue — Nonrecurring Intangible Tax (2 mills on a new mortgage)",
+            "url": "https://floridarevenue.com/taxes/taxesfees/Pages/nonrecurring_intangible_tax.aspx",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Fla. Admin. Code R. 69O-186.003 — Title Insurance Rates (Florida's promulgated title premium schedule, via Cornell LII)",
+            "url": "https://www.law.cornell.edu/regulations/florida/Fla-Admin-Code-Ann-R-69O-186-003",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Statutes §553.899 (2024) — Mandatory structural (milestone) inspections for condominium and cooperative buildings",
+            "url": "https://www.flsenate.gov/Laws/Statutes/2024/553.899",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Statutes §718.112 — Structural Integrity Reserve Study (SIRS) and the reserve-funding rule",
+            "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0718/Sections/0718.112.html",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Office of Insurance Regulation — Wind Mitigation Resources (§627.0629 discounts; Uniform Mitigation Verification form OIR-B1-1802)",
+            "url": "https://floir.gov/consumers/wind-mitigation-resources",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Citizens Property Insurance — Inspections (the four-point inspection requirement for homes 20+ years old)",
+            "url": "https://www.citizensfla.com/inspections",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Citizens Property Insurance — Flood insurance requirements (SB 2A phase-in)",
+            "url": "https://www.citizensfla.com/flood",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — Substantial damage & substantial improvement (the 49% rule)",
+            "url": "https://www.stpete.org/residents/public_safety/permitting_after_a_storm.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County — Find an elevation certificate (free eGIS lookup)",
+            "url": "https://pinellas.gov/services/find-an-elevation-certificate/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "guide",
+        "slug": "selling-in-st-pete-pricing-honestly",
+        "title": "Selling in St. Pete: pricing honestly",
+        "question": "How should I actually price my St. Petersburg home — and why do the online estimates miss?",
+        "lede": "Three tools will hand you three different numbers for the same house, and only one of them will still be true after a human looks at your actual address. That's the whole problem with pricing in this city. An algorithm scores your home off beds, baths, square footage, and the sales around it; it has never seen your elevation certificate, your permit file, or which side of the street the water reached in 2024. So before you anchor on a number a portal gave you for free, it's worth knowing what each number is actually measuring — and why the one I'll put my name on is a range, not a point.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "Zillow — What is a Zestimate? (published Zestimate accuracy / median error rates)",
+            "url": "https://www.zillow.com/zestimate/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Redfin — About the Redfin Estimate (published accuracy / median error rates)",
+            "url": "https://www.redfin.com/redfin-estimate",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "The Appraisal Foundation — USPAP (Uniform Standards of Professional Appraisal Practice)",
+            "url": "https://appraisalfoundation.org/pages/uspap",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "FEMA — NFIP's Pricing Approach (Risk Rating 2.0)",
+            "url": "https://www.fema.gov/flood-insurance/risk-rating",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "FEMA — Risk Rating 2.0 Frequently Asked Questions (Dec 2022)",
+            "url": "https://agents.floodsmart.gov/sites/default/files/media/document/2025-07/fema-nfip-risk-rating-2.0-FAQs.pdf",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "National Association of Realtors — Myth Buster: FEMA Risk Rating 2.0 (policy-discount transfer by assignment)",
+            "url": "https://www.nar.realtor/flood-insurance/nar-myth-buster-fema-risk-rating-2-0",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — substantial damage & substantial improvement (the 49% rule)",
+            "url": "https://www.stpete.org/residents/public_safety/permitting_after_a_storm.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County — find an elevation certificate",
+            "url": "https://pinellas.gov/services/find-an-elevation-certificate/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "guide",
+        "slug": "short-term-rentals-pinellas",
+        "title": "Short-term rentals in Pinellas: where Airbnb is actually allowed",
+        "question": "Can I buy a place in the St. Pete area and rent it on Airbnb?",
+        "lede": "\"Can I buy a place here and put it on Airbnb?\" is one of the most common questions I get from buyers — and the honest answer is *it depends entirely on which side of a city line the parcel sits on.* Pinellas is a mosaic of small municipalities, and short-term-rental law is written one city at a time. Two houses a block apart, one in St. Pete Beach and one in unincorporated county, can carry completely different rules. No portal keeps this straight per address. This guide is the map I actually use — every rule below is cited to the city's own current ordinance where the city publishes it, and flagged \"verify with the city\" where it doesn't, each with the date I last checked it.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "Florida Statutes §509.032(7)(b) — vacation-rental preemption & the June 1, 2011 grandfather",
+            "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599%2F0509%2FSections%2F0509.032.html",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Statutes §509.013 — 'transient public lodging establishment' definition (the >3×/year, <30-day threshold)",
+            "url": "https://www.flsenate.gov/laws/statutes/2025/509.013",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida DBPR, Division of Hotels & Restaurants — vacation-rental licensing",
+            "url": "https://www2.myfloridalicense.com/hotels-restaurants/vacation-rentals/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Tax Collector — Tourist Development Tax (Pinellas County Code ch. 118, art. III)",
+            "url": "https://pinellastaxcollector.gov/property-tax/tourist-development-taxes/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — Transient Accommodation handout (LDR §16.90.020.3 def. + §16.10.020.1 use matrix), 2023",
+            "url": "https://cms5.revize.com/revize/stpete/Business/Planning%20&%20Zoning/Land%20Development/Transient%20Accomodation%20Handout%202023.pdf",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of Gulfport — Short-Term Rentals (Code ch. 22, §22-2.02)",
+            "url": "https://mygulfport.us/short-term-rentals/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "St. Pete Beach — short-term rental rules & regulations (RM + Pass-A-Grille Overlay)",
+            "url": "https://www.stpetebeach.org/438/Short-Term-Rental-Rules-Regulations",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of Treasure Island — Short Term Rental Information (change-of-occupancy / tourist-dwelling zoning)",
+            "url": "https://www.mytreasureisland.org/residents/departments/community_development/short_term_rental_information.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of Madeira Beach — Code §34-504 registration (adopted by Ord. 2015-13)",
+            "url": "http://madeirabeach.elaws.us/code/coor_ptii_ch34_artvii_div3_sec34-504",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of Clearwater — Community Development Code §3-1206 (31-day residential floor)",
+            "url": "https://library.municode.com/fl/clearwater/codes/community_development_code",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County — Short-Term Rental Certificate of Use program (State-filed Ordinance 25-15, 2025)",
+            "url": "https://pinellas.gov/str/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Land Development Code §138-3232 — short-term vacation rentals",
+            "url": "https://library.municode.com/fl/pinellas_county/codes/code_of_ordinances?nodeId=PTIIILADECO_CH138ZO_ARTIXSPUSST_DIV3AC_S138-3232SHRMVARE",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "neighborhood",
+        "slug": "old-northeast",
+        "title": "Old Northeast",
+        "question": "What is it actually like to own a home in Old Northeast, St. Petersburg?",
+        "lede": "Old Northeast is the neighborhood people picture when they picture St. Pete: a 1910s–1920s grid of craftsman bungalows, Mediterranean revivals, and four-square colonials running from downtown's edge north to Coffee Pot Bayou. It was listed on the National Register of Historic Places in February 2003 as the North Shore Historic District, with 2,975 contributing buildings (NRHP ref. #03000040, accessed July 2026). The brick streets, granite curbs, and hex-block sidewalks aren't a marketing line: they're part of the protected historic fabric, and a big part of why homes here hold value the way they do.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-07T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "NRHP record — North Shore Historic District (Old Northeast), ref #03000040, listed 2003-02-20 (National Park Service, National Register; 2,975 contributing buildings per the NRHP nomination)",
+            "url": "https://npgallery.nps.gov/AssetDetail/NRIS/03000040",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "Historic Old Northeast Neighborhood Association — historic preservation",
+            "url": "https://honna.org/2022/08/24/historic-preservation/",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — historic preservation program",
+            "url": "https://www.stpete.org/business/planning___zoning/historic_preservation.php",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service (per-address flood layer + elevation certificates)",
+            "url": "https://floodmaps.pinellas.gov/",
+            "accessed": "2026-07-07T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "neighborhood",
+        "slug": "snell-isle",
+        "title": "Snell Isle",
+        "question": "What is it actually like to own a home on Snell Isle, St. Petersburg?",
+        "lede": "Snell Isle is St. Petersburg's built island. In 1925 the developer C. Perry Snell — a Kentucky druggist who'd come to St. Pete in 1900 — opened a roughly 275-acre estate subdivision on the city's northern edge, of which only about 39 acres sat above the high-tide line when he started; the rest was fill, dredged and pumped up out of the shallows onto what had been a low mangrove spoil island (Snell Isle record, accessed July 2026; St. Petersburg Museum of History, accessed July 2026). Snell chased beauty to the point of ruin — a local historian's line was that he \"deliberately impoverished himself in the pursuit of beauty,\" and he finished his downtown Snell Arcade with European antiques and designs (St. Petersburg Museum of History, accessed July 2026). That Mediterranean idiom is still the island's signature, from the barrel-tile estates on the water to the 1927 clubhouse at the golf course's center.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "Snell Isle — encyclopedia record (development history, the 275-acre fill origin, C. Perry Snell, the 1925 opening, Coffee Pot Bayou and Snell Isle Boulevard)",
+            "url": "https://en.wikipedia.org/wiki/Snell_Isle",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "St. Petersburg Museum of History — 'C. Perry Snell: In the Pursuit of Beauty' (the dredge-and-fill origin, ~275 acres, Snell's European-ornament aesthetic)",
+            "url": "http://historystpete.org/c-perry-snell-in-the-pursuit-of-beauty/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Historic Golf Trail — Vinoy Golf Club (the Snell Isle course: 1920 Coffee Pot Golf Club, Stiles & van Kleek 1926, the 1927 Mediterranean clubhouse, Ron Garl's 1992 redesign)",
+            "url": "https://floridahistoricgolftrail.com/courses/vinoy-golf-club/?altTemplate=CoursePage",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — historic preservation program (local Register of Historic Places; local designation is what protects a property from demolition/alteration)",
+            "url": "https://www.stpete.org/business/planning___zoning/historic_preservation.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service (per-address flood layer + free elevation certificates)",
+            "url": "https://floodmaps.pinellas.gov/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — Substantial Damage & Substantial Improvement (the 49% floodplain-compliance threshold)",
+            "url": "https://www.stpete.org/residents/public_safety/permitting_after_a_storm.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "neighborhood",
+        "slug": "downtown-edge-district",
+        "title": "Downtown / EDGE District",
+        "question": "What is it actually like to own a home in Downtown St. Pete and the EDGE District?",
+        "lede": "Downtown St. Pete is the walk-to-everything answer: condo towers and townhomes stacked over the city's waterfront parks, the St. Pete Pier, and the restaurant blocks of Central Avenue. This is where the city keeps its density — a grid you can live in without touching a car for days at a stretch, the open bay on one side and Central's shops and galleries running west from it.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "St. Pete Pier — official site (City of St. Petersburg), the 26-acre Pier district",
+            "url": "https://www.stpetepier.org/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "St. Pete Rising — the 26-acre St. Pete Pier district opens (July 2020)",
+            "url": "https://stpeterising.com/home/2020/7/6/the-26-acre-st-pete-pier-district-opens-with-restaurants-and-activities-abound",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "The EDGE District — official site (boundaries + character)",
+            "url": "https://edgedistrict.org/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Department of State — EDGE District designated a Florida Main Street (designation year 2014)",
+            "url": "https://dos.fl.gov/communications/press-releases/2018/secretary-detzner-designates-edge-district-main-street-in-st-petersburg-as-florida-main-street-program-of-the-month/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "St. Petersburg Parks & Recreation — downtown waterfront parks (Vinoy, Straub, Spa Beach, Demens Landing, the Pier)",
+            "url": "https://www.stpeteparksrec.org/parks___facilities/downtown_waterfront.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "PolitiFact — examining the 'seven miles / third-largest waterfront park' claim (found not provable)",
+            "url": "https://www.politifact.com/article/2013/aug/02/does-st-petersburg-have-no-3-waterfront-all-north-/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County — Construction in a Floodplain (new/substantially-improved buildings built at least one foot above BFE)",
+            "url": "https://pinellas.gov/construction-in-a-floodplain/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service (per-address flood layer + elevation certificates)",
+            "url": "https://floodmaps.pinellas.gov/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "neighborhood",
+        "slug": "historic-kenwood",
+        "title": "Historic Kenwood",
+        "question": "What is it actually like to own a home in Historic Kenwood, St. Petersburg?",
+        "lede": "Historic Kenwood is the city's bungalow district: a dense grid of 1910s–1940s craftsman homes on walkable blocks immediately west of downtown, between the Interstate and 34th Street. It was listed on the National Register of Historic Places on August 4, 2003 as the Kenwood Historic District, with 2,203 contributing buildings across roughly 375 acres (NRHP ref. #03000729, accessed July 2026). Bungalows make up more than half of those homes (NRHP, accessed July 2026) — the neighborhood association calls it one of the largest concentrations of bungalows in the southeast (Historic Kenwood Neighborhood Association, accessed July 2026) — and the deep porches, low eaves, and tapered columns are the neighborhood's signature, not a coincidence of a few good blocks.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "NRHP record — Kenwood Historic District, ref #03000729, listed 2003-08-04 (National Park Service, National Register; ~2,203 contributing buildings across ~375 acres per the NRHP nomination)",
+            "url": "https://npgallery.nps.gov/AssetDetail/NRIS/03000729",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Historic Kenwood Neighborhood Association — historic preservation (bungalow concentration, restoration, Certificate of Appropriateness)",
+            "url": "https://www.historickenwood.org/historic-preservation",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — historic preservation program (local designation vs. National Register; design review / Certificate of Appropriateness)",
+            "url": "https://www.stpete.org/business/planning___zoning/historic_preservation.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service (per-address flood layer + elevation certificates)",
+            "url": "https://floodmaps.pinellas.gov/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "neighborhood",
+        "slug": "shore-acres",
+        "title": "Shore Acres",
+        "question": "What is it actually like to own a home in Shore Acres, St. Petersburg — and what does its flood story really mean?",
+        "lede": "Shore Acres is the waterfront-value answer in St. Petersburg: a post-war neighborhood of largely 1950s–1960s homes laid out on the northeast side of the city, threaded with finger canals off Tampa Bay, most with a seawall and a good number with a dock and near-direct water access. Block for block, my read as a broker — not a statistic — is that it offers more waterfront per dollar than anywhere in the city proper. That's the honest reason people fall for it, and the honest reason this chapter is the most careful one I write. Shore Acres is also the city's most flood-sensitive neighborhood, and I'd rather you hear that from me on page one than discover it after an offer.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "Tampa Bay Times — St. Petersburg's Shore Acres assesses damage after Hurricane Helene (Sept 27, 2024)",
+            "url": "https://www.tampabay.com/hurricane/2024/09/27/st-petersburgs-shore-acres-assesses-damage-after-hurricane-helene/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "FOX 13 Tampa Bay — Homes in Shore Acres destroyed by Hurricane Helene; flood-prone neighborhood's fourth flooding event in four years (Sept 27, 2024)",
+            "url": "https://www.fox13news.com/news/hurricane-helene-destroys-homes-shore-acres-neighborhood-experiences-4th-flooding-event-4-years",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Bay News 9 — Shore Acres residents start getting responses from Elevate Florida (Aug 23, 2025)",
+            "url": "https://baynews9.com/fl/tampa/news/2025/08/23/shore-acres-residents-start-getting-responses-from-elevate-florida-",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — Hurricane Helene damage assessment, update #14 (Sept 27, 2024): more than 6 ft of surge, 100.6 miles of road flooded, 70 rescues",
+            "url": "https://www.stpete.org/news_detail_T30_R1130.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — Substantial Damage & Substantial Improvement (the 49% rule)",
+            "url": "https://www.stpete.org/residents/public_safety/permitting_after_a_storm.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County — Find an Elevation Certificate (free eGIS lookup)",
+            "url": "https://pinellas.gov/services/find-an-elevation-certificate/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service (per-address flood layer + elevation certificates)",
+            "url": "https://floodmaps.pinellas.gov/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "FEMA — flood zones glossary (Zone AE/VE; Special Flood Hazard Area insurance requirements)",
+            "url": "https://www.fema.gov/about/glossary/flood-zones",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "WUSF — Pinellas County residents focus on recovery after Hurricane Milton (Oct 11, 2024)",
+            "url": "https://www.wusf.org/weather/2024-10-11/pinellas-county-residents-focus-on-recovery-after-hurricane-milton",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "neighborhood",
+        "slug": "crescent-lake",
+        "title": "Crescent Lake",
+        "question": "What is it actually like to own a home in Crescent Lake, St. Petersburg?",
+        "lede": "Crescent Lake is the neighborhood built around a lake and its park: a 1910s–1920s grid of bungalows and revival-style houses wrapped around Crescent Lake and the public park that rings it (Historic Homes Tampa Bay, accessed July 2026), roughly a mile north of downtown. It sits just west of Old Northeast, and it carries much of the same era of housing stock, minus one thing: the historic-district rulebook.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "City of St. Petersburg Parks & Recreation — Crescent Lake Park (amenities, banyans; 1320 5th St. N.)",
+            "url": "https://www.stpeteparksrec.org/parks___facilities/crescent_lake_park.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "NRHP record — Huggins-Stengel Field, ref #100004348, listed 2019-08-27 (National Park Service, National Register; the ballfield within Crescent Lake Park)",
+            "url": "https://npgallery.nps.gov/AssetDetail/NRIS/100004348",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Florida Department of State — Secretary Lee announces Huggins-Stengel Field on the National Register (Yankees spring-training history)",
+            "url": "https://dos.fl.gov/communications/press-releases/2019/secretary-lee-announces-the-designation-of-huggins-stengel-field-on-the-national-register-of-historic-places/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Historic Homes Tampa Bay — Crescent Lake Park: the center of a historic neighborhood (housing stock, brick streets, park)",
+            "url": "https://historichomestampabay.com/journal-crescent-lake-park-st-petersburg-historic-neighborhood/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service (per-address flood layer + elevation certificates)",
+            "url": "https://floodmaps.pinellas.gov/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "neighborhood",
+        "slug": "gulfport",
+        "title": "Gulfport",
+        "question": "What is it actually like to own a home in Gulfport — and is it even part of St. Petersburg?",
+        "lede": "Start with the fact that surprises most people: Gulfport is not a St. Petersburg neighborhood. It's a separate city — its own incorporated municipality in Pinellas County, bordering St. Petersburg, South Pasadena, and Boca Ciega Bay (Wikipedia dates the incorporation to 1910; accessed July 2026). It has its own mayor, city council, and city manager, its own building department and code of ordinances (City of Gulfport, accessed July 2026). At roughly 2.76 square miles of land, it's small enough to cross on foot, and it wears its identity plainly: an arts-minded waterfront town that happens to sit inside the St. Pete metro, not a piece of it.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "City of Gulfport, FL — official site (own government, building permits, business tax, code of ordinances, arts venues, Waterfront Redevelopment District)",
+            "url": "https://mygulfport.us/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Gulfport, Florida — municipal record (incorporation, borders, land area, Beach Boulevard, Casino Ballroom, arts scene) via the Wikipedia mirror; primary city/county records pulled at quarterly sweep",
+            "url": "https://en.wikipedia.org/wiki/Gulfport,_Florida",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Boca Ciega Bay — bay connected to the Gulf of Mexico, an aquatic preserve since 1968, bordered by Gulfport (via the Wikipedia mirror)",
+            "url": "https://en.wikipedia.org/wiki/Boca_Ciega_Bay",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service (per-address flood layer + elevation certificates, covering all Pinellas municipalities including Gulfport)",
+            "url": "https://floodmaps.pinellas.gov/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "neighborhood",
+        "slug": "pinellas-point",
+        "title": "Pinellas Point",
+        "question": "What is it actually like to own a home in Pinellas Point, St. Petersburg?",
+        "lede": "Pinellas Point is where St. Petersburg runs out of land — a peninsula at the city's southern tip that pushes into Tampa Bay, ringed by waterfront parks and aimed at the Sunshine Skyway on the horizon. Pinellas Point Park sits right on the bay as one of the city's waterfront parks (City of St. Petersburg Parks & Recreation, accessed July 2026). It's a mid-century neighborhood, not a pre-war one: the streets filled in after World War II with one-story ranches and concrete-block houses — an assortment of mid-century, revival, and custom work rather than a single protected historic period (The Gabber, \"The Pink Streets of St. Petersburg,\" accessed July 2026). And the signature is literally underfoot — pink pavement, laid here in 1925, that exists nowhere else in the county.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "The Gabber Newspaper — 'The Pink Streets of St. Petersburg' (local history: 1925 Murok/Cook origin, 1989 City Council preservation, ~4.5 mi restored early 1990s, with St. Petersburg Times / Tampa Morning Tribune 1925 primary quotes)",
+            "url": "https://thegabber.com/the-pink-streets-of-st-petersburg/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg Parks & Recreation — Pinellas Point Park (a waterfront park on Tampa Bay)",
+            "url": "https://www.stpeteparksrec.org/parks___facilities/pinellas_point_park.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg Parks & Recreation — Indian Mound Park (the walkable historic Indian mound at Pinellas Point)",
+            "url": "https://www.stpeteparksrec.org/parks___facilities/indian_mound_park.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas Point Mound — Tocobaga-built temple mound in Indian Mound Park (marker erected 1960 by the Princess Hirrihigua Chapter, DAR; mound donated to the city 1958)",
+            "url": "https://en.wikipedia.org/wiki/Pinellas_Point_Mound",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service (per-address flood layer + elevation certificates)",
+            "url": "https://floodmaps.pinellas.gov/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "neighborhood",
+        "slug": "tierra-verde",
+        "title": "Tierra Verde",
+        "question": "What is it actually like to own a home on Tierra Verde, Florida?",
+        "lede": "Tierra Verde is a made island. Its 667 acres began as fifteen low islands of mangrove, pine, and scrub at the mouth of Tampa Bay; dredge-and-fill in the 1960s reshaped them into the six areas the community carries today — Monte Cristo, Entrada, Pinellas Bayway, Sands Point, East Shore, and West Shore (Wikipedia, \"Tierra Verde, Florida,\" accessed July 2026). It is a master-planned community in the literal sense: the canals, the causeway, and the lots were drawn before the houses. One road reaches it — the Pinellas Bayway, a state toll route run by FDOT whose State Road 679 leg is the only vehicular access to both Tierra Verde and, past it, Fort De Soto Park (Wikipedia, \"Pinellas Bayway,\" accessed July 2026). The Bayway and the park opened the same day, December 21, 1962.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "Pinellas County — For Residents of Unincorporated Tierra Verde (Board of County Commissioners as the local government)",
+            "url": "https://pinellas.gov/for-residents-of-unincorporated-tierra-verde/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Tierra Verde, Florida — geography, 667-acre island, the original 15 islands developed into six areas, entrance of Tampa Bay (Wikipedia)",
+            "url": "https://en.wikipedia.org/wiki/Tierra_Verde,_Florida",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas Bayway — FDOT toll system; SR 679 is the only vehicular access to Tierra Verde and Fort De Soto; opened Dec 21, 1962; bridge replacements 2013–2021 (Wikipedia)",
+            "url": "https://en.wikipedia.org/wiki/Pinellas_Bayway",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Parks — Fort De Soto Park (1,136 acres, five interconnected keys, largest in the county park system, 7+ miles of waterfront)",
+            "url": "https://pinellas.gov/parks/fort-de-soto-park/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service (per-address flood layer + elevation certificates)",
+            "url": "https://floodmaps.pinellas.gov/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "type": "neighborhood",
+        "slug": "st-pete-beach",
+        "title": "St. Pete Beach",
+        "question": "What is it actually like to own a home in St. Pete Beach — and is it even St. Petersburg?",
+        "lede": "Start with the fact the address does not advertise: St. Pete Beach is not a St. Petersburg neighborhood. It's its own city — incorporated in 1957 out of Pass-a-Grille, Don CeSar, Belle Vista, and the old town of St. Petersburg Beach, and shortened to \"St. Pete Beach\" by referendum in 1994 to set it apart from the St. Petersburg a few miles east (City of St. Pete Beach community history, accessed July 2026). It keeps its own city hall on Corey Avenue, its own commission, its own code, and its own permitting counter (City of St. Pete Beach, accessed July 2026). Like Gulfport across the bay, the shared \"St. Pete\" in the name is geography, not government — when you buy here, the rules that govern the house are this city's, not St. Petersburg's.",
+        "author": "Serge Osaulenko",
+        "last_verified": "2026-07-08T00:00:00.000Z",
+        "sources": [
+          {
+            "name": "City of St. Pete Beach, FL — official city site (city hall, commission, permitting)",
+            "url": "https://www.stpetebeach.org/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Pete Beach — Community History (incorporated 1957 from Pass-a-Grille, Don CeSar, Belle Vista, St. Petersburg Beach + unincorporated Pinellas; renamed 1994)",
+            "url": "https://www.stpetebeach.org/260/Community-History",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Pete Beach — Flooding & Property (the city's flood map, Coastal High Hazard Area, FEMA 50% substantial-improvement threshold)",
+            "url": "https://www.stpetebeach.org/256/Flooding-Property",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Pete Beach — Short-Term Rental Rules & Regulations (the city's own zoning-based rental rules)",
+            "url": "https://www.stpetebeach.org/438/Short-Term-Rental-Rules-Regulations",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "NRHP record — The Don CeSar, ref #75000563, listed 1975-04-03 (National Park Service, National Register; opened 1928)",
+            "url": "https://npgallery.nps.gov/AssetDetail/NRIS/75000563",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "City of St. Petersburg — substantial damage & substantial improvement (the mainland city's stricter 49% threshold, for contrast)",
+            "url": "https://www.stpete.org/residents/public_safety/permitting_after_a_storm.php",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "FEMA — flood zones glossary (Zone VE = coastal high-hazard area with wave action; Zone AE)",
+            "url": "https://www.fema.gov/about/glossary/flood-zones",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          },
+          {
+            "name": "Pinellas County Flood Map Service (per-address flood layer + elevation certificates)",
+            "url": "https://floodmaps.pinellas.gov/",
+            "accessed": "2026-07-08T00:00:00.000Z"
+          }
+        ]
+      }
+    ]
+  },
+  "guardrails": {
+    "fairHousing": [
+      {
+        "id": "who-it-fits-phrase",
+        "pattern": "who it fits",
+        "flags": "i",
+        "label": "\"who it fits\" framing"
+      },
+      {
+        "id": "perfect-for-cohort",
+        "pattern": "\\b(perfect|ideal|great|suited|best) for (young|famil|retiree|professional|couple|single(?!-(family|story))|empty|kids)",
+        "flags": "i",
+        "label": "who-it-fits copy pattern"
+      },
+      {
+        "id": "young-cohort",
+        "pattern": "\\byoung (families|professionals|couples)\\b",
+        "flags": "i",
+        "label": "demographic labeling"
+      },
+      {
+        "id": "retirees",
+        "pattern": "\\bretirees\\b",
+        "flags": "i",
+        "label": "demographic labeling"
+      },
+      {
+        "id": "empty-nesters",
+        "pattern": "\\bempty[ -]?nesters?\\b",
+        "flags": "i",
+        "label": "demographic labeling"
+      },
+      {
+        "id": "families-with-children",
+        "pattern": "\\bfamilies with (kids|children)\\b",
+        "flags": "i",
+        "label": "familial-status steering"
+      },
+      {
+        "id": "family-friendly",
+        "pattern": "\\b(family|kid)-friendly\\b",
+        "flags": "i",
+        "label": "familial-status steering (coded)"
+      },
+      {
+        "id": "raise-a-family",
+        "pattern": "\\b(raise|raising) a family\\b|\\bstart(ing)? a family\\b",
+        "flags": "i",
+        "label": "familial-status steering (coded)"
+      },
+      {
+        "id": "schools-quality",
+        "pattern": "\\b(good|great|top-rated|excellent|highly-rated|A-rated|best|award-winning) schools?\\b",
+        "flags": "i",
+        "label": "school-quality steering"
+      },
+      {
+        "id": "seniors",
+        "pattern": "\\bseniors\\b",
+        "flags": "i",
+        "label": "demographic labeling"
+      },
+      {
+        "id": "age-restriction",
+        "pattern": "\\b55\\+",
+        "flags": "",
+        "label": "age-restriction framing"
+      },
+      {
+        "id": "students",
+        "pattern": "\\bstudents\\b",
+        "flags": "i",
+        "label": "demographic labeling"
+      },
+      {
+        "id": "singles",
+        "pattern": "\\bsingles\\b",
+        "flags": "i",
+        "label": "demographic labeling"
+      },
+      {
+        "id": "coded-area-terms",
+        "pattern": "\\b(diverse|up-and-coming|vibrant|transitional) (neighborhood|area|community)\\b",
+        "flags": "i",
+        "label": "coded-area steering (race/national-origin proxy)"
+      }
+    ],
+    "mlsClaims": [
+      {
+        "id": "rule-32-verb-mls",
+        "pattern": "\\b(search|access|browse|query|pull\\s+from|look\\s+up)\\s+(the|our|your|stellar)\\s+MLS\\b",
+        "flags": "i",
+        "label": "Rule 32 stop-list phrase (\"search/access/browse/query/pull from/look up the MLS\")"
+      },
+      {
+        "id": "rule-32-mls-search-reversed",
+        "pattern": "\\bMLS\\s+search\\b",
+        "flags": "i",
+        "label": "Rule 32 reversed form (\"MLS search\")"
+      }
+    ]
+  },
+  "judgeProtectedClasses": [
+    "race",
+    "color",
+    "religion",
+    "national origin",
+    "sex",
+    "familial status",
+    "disability"
+  ],
+  "feedGated": {
+    "listingSearch": "arrives with the MLS GRID feed",
+    "guidedCMA": "arrives with the MLS GRID feed (sold comps)"
+  }
+}

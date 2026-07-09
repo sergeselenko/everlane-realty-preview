@@ -8,10 +8,16 @@
  *     as its ground truth, and
  *   - scripts/concierge-check.mjs validates on every `npm run check`.
  *
- * THE GROUNDING CONTRACT (plan §3a, BOUND): "the concierge speaks ONLY from
- * this tree + the listings mirror … enforced by what the bot can see, not by
- * prompt hope." So the corpus below is the *entire* assertable surface for the
- * KB-answering half — if a claim is not here, the bot cannot make it.
+ * THE GROUNDING CONTRACT (plan §3a). This corpus is the KB-answering half's
+ * intended assertable surface — but be precise about the ENFORCEMENT (honest
+ * mechanism, not a structural guarantee; mirrors kb/guardrails/README.md's
+ * floor framing): the runtime FORCES a retrieval before the model can answer
+ * (turn-0 tool_choice), INSTRUCTS it to assert only from returned atoms, and
+ * JUDGES every draft for steering + fabrication. It does NOT hard-block an
+ * ungrounded claim — a plausible non-numeric qualitative claim the judge does
+ * not catch can slip through. So: forced-retrieval + instructed-grounding +
+ * judged, NOT "if it is not here the bot cannot say it." The red-team's
+ * qualitative-fabrication probe is the check that this holds in practice.
  *
  * Two atom kinds:
  *   - fact atoms   → one per kb/facts entry: an atomic, sourced, dated,

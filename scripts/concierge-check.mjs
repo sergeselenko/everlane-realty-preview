@@ -111,5 +111,75 @@ const spans = corpusSpans();
   if (!bad) ok(`mls-claims guard runs clean over the concierge corpus`);
 }
 
+/* ---- 5 · the runtime bundle the edge function ships is in sync ---- */
+{
+  const bundlePath = path.join(ROOT, "supabase", "functions", "ask", "corpus.generated.json");
+  if (!fs.existsSync(bundlePath)) {
+    fail("supabase/functions/ask/corpus.generated.json missing (run build-concierge-bundle.mjs)");
+  } else {
+    let b;
+    try { b = JSON.parse(fs.readFileSync(bundlePath, "utf8")); }
+    catch (e) { fail(`corpus.generated.json does not parse: ${e.message}`); }
+    if (b) {
+      // CONTENT compare (not just counts): the bundle is generated from these same
+      // objects, so byte-equal JSON == in sync; a drifted fact VALUE fails here (F9).
+      const factsSync = JSON.stringify(b.corpus?.facts) === JSON.stringify(facts);
+      const proseSync = JSON.stringify(b.corpus?.prose) === JSON.stringify(prose);
+      if (factsSync && proseSync) {
+        ok(`edge-function bundle content-in-sync with corpus (${facts.length} facts, ${prose.length} prose docs)`);
+      } else {
+        fail(`edge-function bundle out of sync (content mismatch): regenerate with build-concierge-bundle.mjs`);
+      }
+      const fhMatch = (b.guardrails?.fairHousing?.length || 0) === fhPatterns.length;
+      const mlsMatch = (b.guardrails?.mlsClaims?.length || 0) === mlsPatterns.length;
+      let compiles = true;
+      for (const p of [...(b.guardrails?.fairHousing || []), ...(b.guardrails?.mlsClaims || [])]) {
+        try { new RegExp(p.pattern, p.flags || ""); } catch { compiles = false; }
+      }
+      if (fhMatch && mlsMatch && compiles) {
+        ok(`edge-function bundle carries the guardrail tripwires (${fhPatterns.length} fair-housing + ${mlsPatterns.length} mls-claims, all compile)`);
+      } else {
+        fail("edge-function bundle guardrail patterns out of sync or non-compiling");
+      }
+    }
+  }
+}
+
+/* ---- 6 · the staged edge function holds no secret + targets Haiku 4.5 ---- */
+{
+  const fnDir = path.join(ROOT, "supabase", "functions", "ask");
+  const files = ["index.ts", "answerer.ts", "guardrails.ts"];
+  let missing = 0;
+  for (const f of files) if (!fs.existsSync(path.join(fnDir, f))) { fail(`supabase/functions/ask/${f} missing`); missing++; }
+  if (!missing) {
+    const all = files.map((f) => fs.readFileSync(path.join(fnDir, f), "utf8")).join("\n");
+    // NEVER a hardcoded Anthropic key; the key is a Supabase secret read from env.
+    if (/sk-ant-[a-z0-9-]/i.test(all)) fail("edge function contains a hardcoded Anthropic key");
+    else ok("edge function holds no hardcoded Anthropic key (reads it from env)");
+    const idx = fs.readFileSync(path.join(fnDir, "index.ts"), "utf8");
+    const ans = fs.readFileSync(path.join(fnDir, "answerer.ts"), "utf8");
+    if (/ANTHROPIC_API_KEY/.test(idx) && /claude-haiku-4-5/.test(idx) && /claude-haiku-4-5/.test(ans)) {
+      ok("edge function reads ANTHROPIC_API_KEY from env and defaults to Haiku 4.5 (serve + judge)");
+    } else fail("edge function missing ANTHROPIC_API_KEY env read or Haiku 4.5 default");
+  }
+}
+
+/* ---- 7 · the staged migration is RLS-locked + anon-deny ---- */
+{
+  const migDir = path.join(ROOT, "supabase", "migrations");
+  const migs = fs.existsSync(migDir) ? fs.readdirSync(migDir).filter((f) => /concierge.*\.sql$/.test(f)) : [];
+  if (!migs.length) fail("supabase/migrations/*concierge*.sql missing");
+  else {
+    const sql = fs.readFileSync(path.join(migDir, migs[0]), "utf8");
+    const rlsCount = (sql.match(/enable row level security/gi) || []).length;
+    const grantsAnon = /grant[^;]*\bto\b[^;]*\banon\b/i.test(sql); // an anon GRANT (revoke is fine)
+    if (rlsCount >= 3 && !grantsAnon) {
+      ok(`concierge migration RLS-locked on all tables (${rlsCount} enable-RLS, no anon grants)`);
+    } else {
+      fail(`concierge migration not anon-deny (enable-RLS x${rlsCount}, anon-grant=${grantsAnon})`);
+    }
+  }
+}
+
 console.log(`\nconcierge-check: ${passes} checks passed, ${failures} failed.`);
 process.exit(failures ? 1 : 0);

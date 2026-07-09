@@ -48,6 +48,7 @@ const required = [
   "search/index.html",
   "valuation/index.html",
   "market/index.html",
+  "ask/index.html",
   "neighborhoods/index.html",
   "neighborhoods/old-northeast/index.html",
   "guides/index.html",
