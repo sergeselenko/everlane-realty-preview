@@ -11,3 +11,6 @@ _site/
 # OS noise
 .DS_Store
 *.log
+
+# Supabase CLI scratch
+supabase/.temp/

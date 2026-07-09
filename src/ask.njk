@@ -54,10 +54,14 @@ jsonld: ["ask"]
 <section class="section section--mist">
   <div class="wrap">
     <h2>Try it</h2>
+    {% if askLive %}
+    <p class="lede" style="margin-top:6px">Ask a plain-English question below. The assistant answers only from Everlane&rsquo;s sourced knowledge base, checks every reply for accuracy and fair housing, and hands anything it can&rsquo;t answer to Serge.</p>
+    {% else %}
     <p class="lede" style="margin-top:6px">The assistant goes live once it&rsquo;s deployed and cleared its guardrail review. Until then this is a preview of the interaction &mdash; the same honest &ldquo;coming soon&rdquo; state the rest of the site uses before a feature is wired.</p>
+    {% endif %}
 
     <div class="chat-preview" style="margin-top:18px;max-width:720px">
-      <p class="form-disabled-note" role="note">Preview &mdash; assistant offline</p>
+      {% if not askLive %}<p class="form-disabled-note" role="note">Preview &mdash; assistant offline</p>{% endif %}
 
       {#- Inert chat shell: a disabled fieldset, no JS, no network path. Mirrors
           the contact/valuation form-preview-disabled pattern. It wires to the
@@ -68,16 +72,17 @@ jsonld: ["ask"]
           <p class="chat-msg chat-msg--sample"><em>Example questions:</em> &ldquo;What does flood zone AE mean for insurance?&rdquo; &middot; &ldquo;Can I run an Airbnb in Gulfport?&rdquo; &middot; &ldquo;How does homestead exemption work?&rdquo;</p>
         </div>
         <form class="chat-form" novalidate>
-          <fieldset class="form-preview-disabled" disabled>
+          <fieldset{% if not askLive %} class="form-preview-disabled" disabled{% endif %}>
             <label for="ask-input" class="sr-only">Your question</label>
-            <textarea id="ask-input" name="question" rows="2" placeholder="Type your question — the assistant is offline in this preview." maxlength="500"></textarea>
+            <textarea id="ask-input" name="question" rows="2" placeholder="{% if askLive %}Ask about flood zones, a neighborhood, taxes, or short-term-rental rules…{% else %}Type your question — the assistant is offline in this preview.{% endif %}" maxlength="500"></textarea>
             <button type="submit" class="btn btn--primary" data-submit>Ask</button>
           </fieldset>
         </form>
       </div>
-      <p class="fine" style="margin-top:10px">When it&rsquo;s live, the assistant runs under a hard spending cap with a privacy-safe query log &mdash; no names, emails, phone numbers, or addresses recorded, and no chat transcripts kept. <a href="/ai/">How this site runs &rarr;</a></p>
+      <p class="fine" style="margin-top:10px">The assistant runs under a hard spending cap with a privacy-safe query log &mdash; no names, emails, phone numbers, or addresses recorded, and no chat transcripts kept. <a href="/ai/">How this site runs &rarr;</a></p>
     </div>
   </div>
+{% if askLive %}<script src="/assets/ask.js" defer></script>{% endif %}
 </section>
 
 <section class="section">

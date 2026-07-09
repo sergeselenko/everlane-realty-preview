@@ -213,9 +213,15 @@ end;
 $$;
 
 -- Only the server-side edge function (service_role) may call the RPCs.
-revoke all on function public.concierge_precheck(text, text, numeric, numeric, integer, integer, integer, numeric)   from public;
-revoke all on function public.concierge_record_spend(numeric, numeric)                                                from public;
-revoke all on function public.concierge_purge_query_log(integer)                                                      from public;
+-- NOTE: `revoke ... from public` alone is NOT enough on Supabase — pg_default_acl
+-- grants EXECUTE on every new public function to anon + authenticated DIRECTLY
+-- (not via PUBLIC), so those explicit grants must ALSO be revoked or these
+-- SECURITY DEFINER RPCs stay anon-callable (a browser client could zero the spend
+-- ledger via concierge_record_spend / wipe the query log via _purge). Revoke from
+-- public AND the two browser-reachable roles, mirroring the table revokes above.
+revoke all on function public.concierge_precheck(text, text, numeric, numeric, integer, integer, integer, numeric)   from public, anon, authenticated;
+revoke all on function public.concierge_record_spend(numeric, numeric)                                                from public, anon, authenticated;
+revoke all on function public.concierge_purge_query_log(integer)                                                      from public, anon, authenticated;
 grant execute on function public.concierge_precheck(text, text, numeric, numeric, integer, integer, integer, numeric) to service_role;
 grant execute on function public.concierge_record_spend(numeric, numeric)                                             to service_role;
 grant execute on function public.concierge_purge_query_log(integer)                                                   to service_role;

@@ -171,8 +171,11 @@ const spans = corpusSpans();
   if (!migs.length) fail("supabase/migrations/*concierge*.sql missing");
   else {
     const sql = fs.readFileSync(path.join(migDir, migs[0]), "utf8");
-    const rlsCount = (sql.match(/enable row level security/gi) || []).length;
-    const grantsAnon = /grant[^;]*\bto\b[^;]*\banon\b/i.test(sql); // an anon GRANT (revoke is fine)
+    // Strip `--` line comments before scanning for grants — a comment that merely
+    // *describes* an anon grant (e.g. explaining why we revoke it) is not one.
+    const sqlStmts = sql.replace(/--[^\n]*/g, "");
+    const rlsCount = (sqlStmts.match(/enable row level security/gi) || []).length;
+    const grantsAnon = /grant[^;]*\bto\b[^;]*\banon\b/i.test(sqlStmts); // an anon GRANT (revoke is fine)
     if (rlsCount >= 3 && !grantsAnon) {
       ok(`concierge migration RLS-locked on all tables (${rlsCount} enable-RLS, no anon grants)`);
     } else {

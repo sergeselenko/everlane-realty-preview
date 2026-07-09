@@ -62,6 +62,15 @@ function overlap(a: Set<string>, bText: string): number {
   return n;
 }
 
+// Generic filler that creates spurious answer↔source overlap (a homestead answer
+// sharing "year"/"value" with a climate page, or a fair-housing refusal listing
+// "housing stock, flood history, walkability"). Excluded when scoring citations so
+// only DISTINCTIVE content (numbers, place names, terms) counts (F3).
+const CITE_STOP = new Set(
+  ("area areas place places home homes house year years market value values rule rules local really actually specific different various matter matters looking around between through help talk book free consult that this your have will they them what when whom where which while there here just like also into over more most many some with from been were would could should about need want know knew make take give find best good great kind still much stock history commute walkability distances vibe aligns plainly facts fact thing things point people person family families group groups community communities live living move buying selling home).")
+    .split(" ")
+);
+
 function retrieve(query: string, domain: string | undefined, corpus: Corpus) {
   const q = tokenize(query);
   const facts = corpus.facts
@@ -132,12 +141,23 @@ function systemPrompt(feedGated: { listingSearch: string; guidedCMA: string }): 
     "   housing stock, rules, and process — never the kind of person who 'belongs' there, and never",
     "   any implication tied to race, color, religion, national origin, sex, familial status, or",
     "   disability. Do not answer 'is this a good area for [group]' — redirect to the place's facts.",
+    "   And when you decline such a request and point to Serge, offer ONLY that he can walk through the",
+    "   FACTS of a specific home or neighborhood — NEVER say or imply he will discuss safety, crime,",
+    "   which areas to 'avoid', a neighborhood's 'vibe', or who 'fits' a place. Promising that",
+    "   conversation offline is the same fair-housing violation as making the steer yourself.",
+    "   On ANY such decline (a 'good for [group]', 'family-friendly', 'best for a cohort', 'safest',",
+    "   'who fits', or protected-class question), CALL route_to_search(destination='contact') so the",
+    "   reply routes to Serge rather than dangling sources.",
     "3. NOT AN MLS TERMINAL. You consult Everlane's own published knowledge and, once live, its",
     "   licensed data feed. You never present yourself as searching, accessing, or being the MLS.",
     "   For inventory questions use route_to_search(destination='listings').",
     "4. NO IN-CHAT LEAD CAPTURE. Never ask for or accept a name, email, phone, or address. When the",
     "   user is ready to act, point them to book a consult with Serge.",
     "5. Preserve each fact's confidence: HIGH asserts plainly; MEDIUM keeps its written hedge.",
+    "6. PLAIN PROSE, NO LINKS OR URLS. Never write a web address, a domain, or a markdown [text](url)",
+    "   link in your answer. Do NOT guess or print the site's domain — refer to the buyer & seller",
+    "   guides, the search page, or a consult with Serge in WORDS only; the page renders the actual",
+    "   sources and next-step buttons for you.",
     "",
     `Feed-gated capabilities (honest coming states): listing search — ${feedGated.listingSearch}; ` +
     `guided valuation comps — ${feedGated.guidedCMA}. Say so plainly; never fabricate a result.`,
@@ -206,7 +226,7 @@ export async function answer(opts: {
   judgeModel: string;
 }): Promise<AnswerResult> {
   const client = new Anthropic({ apiKey: opts.apiKey });
-  const citations = new Map<string, string>(); // url -> name
+  const citeCandidates: { url: string; name: string; text: string }[] = []; // filtered at the end to sources the answer actually used (F3)
   let route: "search" | "contact" | null = null;
   let tokensIn = 0, tokensOut = 0, costUsd = 0;
   const onUsage = (m: string, i: number, o: number) => {
@@ -245,8 +265,8 @@ export async function answer(opts: {
         if (block.type !== "tool_use") continue;
         if (block.name === "search_kb") {
           const { facts, prose } = retrieve(block.input.query, block.input.domain, opts.corpus);
-          for (const f of facts) citations.set(f.source_url, f.source);
-          for (const p of prose) for (const s of p.sources) citations.set(s.url, s.name);
+          for (const f of facts) citeCandidates.push({ url: f.source_url, name: f.source, text: `${f.value} ${f.notes ?? ""}` });
+          for (const p of prose) for (const s of p.sources) citeCandidates.push({ url: s.url, name: s.name, text: `${p.title} ${p.lede}` });
           const payload = {
             facts: facts.map((f) => ({
               value: f.value, confidence: f.confidence, hedge: f.notes ?? null,
@@ -265,7 +285,10 @@ export async function answer(opts: {
             ? "Point them to the /search/ page for live listings. Live listing search arrives with the " +
               "MLS GRID feed; say that honestly. NEVER claim to search or be the MLS, never fabricate a listing."
             : "Point them to book a free consult with Serge at /contact/. Do NOT collect their name, " +
-              "email, phone, or address here.";
+              "email, phone, or address here. If the question touched a protected class, safety/crime, " +
+              "or 'which areas to avoid / who fits', frame the consult as ONLY about the FACTS of a " +
+              "specific home or neighborhood — never say or imply Serge will discuss safety, crime, " +
+              "'good/bad areas', vibe, or who 'fits'.";
           results.push({ type: "tool_result", tool_use_id: block.id, content });
         }
       }
@@ -303,7 +326,9 @@ export async function answer(opts: {
           "That draft was suppressed by the fair-housing / compliance guard. Rewrite your answer using " +
           "ONLY the facts you already retrieved: describe the place, the data, and the process — never " +
           "who a place suits, never anything tied to a protected class, never a claim to search or be " +
-          "the MLS. If you cannot answer cleanly from grounding, say you don't know and point to Serge."
+          "the MLS. If you cannot answer cleanly from grounding, say you don't know and point to Serge. " +
+          "Output ONLY the rewritten answer as plain prose — no preamble, no apology, no \"you're right\", " +
+          "no reference to the previous draft or to this instruction, and no URLs or links."
       });
       const regen = await client.messages.create({
         model: opts.serveModel, max_tokens: 700, system, tools: TOOLS as any, messages
@@ -326,9 +351,40 @@ export async function answer(opts: {
   // Serge so the CTA renders — an empty ctas[] would be a dead-end reply (F8).
   if (finalText === DEGRADE && route === null) route = "contact";
 
+  // Cite ONLY on a clean grounded answer. A suppressed-and-regenerated decline, a
+  // route-out (search/contact), or the degrade fallback asserts no facts of its
+  // own — so it must ship NO sources: six authoritative links under a fair-housing
+  // refusal read as "sourced from those places" (F3). On a genuine grounded answer,
+  // keep only sources whose content the answer text actually overlaps.
+  // A plain-language refusal (fair-housing decline, "I don't have that data")
+  // asserts no facts even when route===null and nothing was suppressed — detect it
+  // so it ships no sources.
+  const DECLINE_RE = /(can'?t (help|answer|steer|recommend|rank|tell you which|point)|don'?t (answer|have (a |any )?(grounded|data|info|information|that)|know which)|fair[- ]?housing (law|policy|rules|means|territory|line)|won'?t (describe|rank|steer|label)|not something (i|we) can|isn'?t in (our|the) knowledge|no grounded (answer|match))/i;
+  const isGrounded = route === null && !suppressed && finalText !== DEGRADE && !DECLINE_RE.test(finalText);
+  const usedCitations: { name: string; url: string }[] = [];
+  if (isGrounded) {
+    const qFinal = tokenize(finalText);
+    const seenCite = new Set<string>();
+    const scored = citeCandidates
+      .map((c) => {
+        const b = tokenize(c.text);
+        let n = 0;
+        for (const w of qFinal) if (w.length > 3 && !CITE_STOP.has(w) && b.has(w)) n++;
+        return { c, n };
+      })
+      .filter((x) => x.n >= 2)
+      .sort((a, b) => b.n - a.n);
+    for (const { c } of scored) {
+      if (seenCite.has(c.url)) continue;
+      seenCite.add(c.url);
+      usedCitations.push({ name: c.name, url: c.url });
+      if (usedCitations.length >= 3) break; // top-3 by relevance — no wall of links
+    }
+  }
+
   return {
     text: finalText,
-    citations: [...citations].map(([url, name]) => ({ url, name })).slice(0, 6),
+    citations: usedCitations,
     route,
     suppressed,
     costUsd,

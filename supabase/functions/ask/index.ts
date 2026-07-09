@@ -139,33 +139,50 @@ Deno.serve(async (req: Request) => {
       p_reserved: WORST_CASE_TURN_USD
     });
     if (recErr) console.error("concierge: record_spend reconcile FAILED (worst-case stays booked):", recErr.message);
-    await db.from("concierge_query_log").insert({
-      session_hash: await sha256Hex(sessionId),
-      category: categorize(question),
-      // Category-only by default; scrubbed query text only if the operator opts in.
-      query_scrubbed: LOG_QUERY_TEXT ? scrubPII(question) : null,
-      answered: true,
-      suppressed: result.suppressed,
-      route: result.route,
-      model: result.serveModel,
-      cost_usd: result.costUsd,
-      tokens_in: result.tokensIn,
-      tokens_out: result.tokensOut
-    }).catch(() => {}); // logging must never break the answer
+    // Logging must never break the answer. supabase-js's query builder is a
+    // thenable, NOT a Promise — it has no .catch(); a DB failure comes back as
+    // { error } from the await, and any other throw (hash, network) is contained
+    // by the try. (The old `.insert(...).catch(() => {})` threw synchronously —
+    // "catch is not a function" on the builder — collapsing every reply to the
+    // "error" resting state even though the answer + spend-record had succeeded.)
+    try {
+      const session_hash = await sha256Hex(sessionId);
+      const { error: logErr } = await db.from("concierge_query_log").insert({
+        session_hash,
+        category: categorize(question),
+        // Category-only by default; scrubbed query text only if the operator opts in.
+        query_scrubbed: LOG_QUERY_TEXT ? scrubPII(question) : null,
+        answered: true,
+        suppressed: result.suppressed,
+        route: result.route,
+        model: result.serveModel,
+        cost_usd: result.costUsd,
+        tokens_in: result.tokensIn,
+        tokens_out: result.tokensOut
+      });
+      if (logErr) console.error("concierge: query_log insert failed:", logErr.message);
+    } catch (logEx) {
+      console.error("concierge: query_log write threw:", (logEx as Error)?.message ?? String(logEx));
+    }
 
     return json(origin, 200, {
       state: "live",
       text: result.text,
       citations: result.citations,
       route: result.route,
+      // Every live answer ends with a way forward — the consult button is the ONLY
+      // conversion path (in-chat capture is forbidden by design), so it renders on
+      // every reply; a listing question also gets the search button (F2).
       ctas: result.route === "search"
-        ? [{ label: "Open listing search", href: "/search/" }]
-        : result.route === "contact"
-          ? [{ label: "Book a consult with Serge", href: "/contact/" }]
-          : []
+        ? [{ label: "Open listing search", href: "/search/" }, { label: "Book a consult with Serge", href: "/contact/" }]
+        : [{ label: "Book a consult with Serge", href: "/contact/" }]
     });
   } catch (_e) {
     // ANY failure → honest resting state. Never a 500 to the visitor.
+    // Observability (runbook D / F6): the fail-safe must not be SILENT — log WHY
+    // so a systematic break is visible in the edge logs. Error object only —
+    // never the question or the answer (no PII in logs).
+    console.error("concierge: handler threw:", (_e as Error)?.stack ?? (_e as Error)?.message ?? String(_e));
     return resting(origin, "error");
   }
 });
