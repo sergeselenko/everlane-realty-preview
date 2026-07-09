@@ -10,7 +10,10 @@
 // No PII is sent; the sessionId is a random UUID kept in localStorage.
 (function () {
   var ENDPOINT = "https://iavsouedogroqzwmccwy.supabase.co/functions/v1/ask";
-  var ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhdnNvdWVkb2dyb3F6d21jY3d5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwMjI5NzcsImV4cCI6MjA5ODU5ODk3N30.O2WZF9zJ7uLbgmlJr_xUluvJQmFDZvHwxqOws72m2Vs"; // public anon key (safe to embed); the gateway accepts requests with or without it (verified at deploy)
+  // No apikey/Authorization header: the function is public (--no-verify-jwt) and
+  // the Supabase gateway accepts the POST without one (verified at deploy). Sending
+  // them would force a CORS preflight the function's Allow-Headers (content-type
+  // only) rejects — so the ONLY request header is content-type, which is allowed.
   var form = document.querySelector(".chat-form");
   var log = document.querySelector(".chat-log");
   if (!form || !log) return;
@@ -23,7 +26,7 @@
     if (!q) return;
     add("you", q); ta.value = "";
     fetch(ENDPOINT, { method: "POST",
-      headers: { "content-type": "application/json", "apikey": ANON, "Authorization": "Bearer " + ANON },
+      headers: { "content-type": "application/json" },
       body: JSON.stringify({ question: q, sessionId: sid }) })
       .then(function (r) { return r.json(); })
       .then(function (d) {
