@@ -1,0 +1,33 @@
+# kb/guardrails/pii-exclusion — MLS GRID Rule 28 seller/occupant PII exclusion.
+#
+# CONFIG. The concierge's grounding layer must NEVER see, surface, or infer
+# seller/occupant private fields. Rule 28 (and Stellar Art. 20): confidential
+# fields are stripped at feed INGEST, before anything is stored — so the bot
+# cannot leak what it never holds. This file is the belt to that
+# suspenders: an explicit deny-list the ingest mapper and the concierge tool
+# layer both check, so a field is excluded by NAME even if a feed schema change
+# introduces it.
+#
+# Source: build/wave-2/compliance/ktb.md (Rule 28 early-warning) + Rule 19/28
+# in build/wave-2/compliance/rules-current-read.md.
+domain: pii-exclusion
+updated: 2026-07-08
+review: at-feed-signup
+# The AUTHORITATIVE confidential-fields list is Stellar's Rule 19 list, which is
+# collected IN WRITING at feed signup (compliance KTB "collect three things").
+# Until that lands, this is the known-excluded set from the rule text — treated
+# as a floor, not a complete list.
+authoritative_list_status: "UNVERIFIABLE — needs: Stellar Rule-19 confidential-fields list (collected at feed signup)"
+excluded_field_categories:
+  - seller name / owner name
+  - occupant / tenant name
+  - seller or occupant phone, email, or other contact detail
+  - showing instructions
+  - lockbox and alarm codes / access codes
+  - private / confidential agent remarks (non-public remarks)
+  - owner-of-record personal identifiers
+enforcement:
+  - stripped at feed ingest (never stored in the Supabase mirror)
+  - never inferred or reconstructed by the model at answer time
+  - the concierge tool schema exposes NONE of these fields to the model
+never_inferred: true

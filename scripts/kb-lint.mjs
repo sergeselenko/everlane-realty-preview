@@ -30,6 +30,16 @@ let passes = 0;
 const ok = (m) => { passes++; console.log(`  ok  ${m}`); };
 const fail = (m) => { failures++; console.error(`FAIL  ${m}`); };
 
+// Guardrail patterns are single-sourced from kb/guardrails/*.yaml so kb-lint
+// (build gate) and the wave-3 concierge (runtime output filter) can never drift
+// (see kb/guardrails/README.md). Each pattern: { pattern, flags, label }.
+function loadGuardrailPatterns(name) {
+  const p = path.join(KB, "guardrails", `${name}.yaml`);
+  if (!fs.existsSync(p)) { fail(`kb/guardrails/${name}.yaml missing (guardrail source of truth)`); return []; }
+  const doc = yaml.load(fs.readFileSync(p, "utf8"));
+  return (doc?.patterns || []).map((e) => ({ re: new RegExp(e.pattern, e.flags || ""), label: e.label }));
+}
+
 /* ---- 1 · facts discipline ---- */
 {
   const dir = path.join(KB, "facts");
@@ -102,35 +112,25 @@ for (const sub of ["guides", "neighborhoods"]) {
   if (!bad) ok(`${pages.length} kb pages: front matter complete (author/dates/sources per status)`);
 }
 
-/* ---- 3 · fair housing: place, never people ---- */
+/* ---- 3 · fair housing: place, never people (patterns from kb/guardrails/) ---- */
 {
-  const patterns = [
-    [/who it fits/i, `"who it fits" framing`],
-    [/\b(perfect|ideal|great|suited|best) for (young|famil|retiree|professional|couple|single|empty|kids)/i, "who-it-fits copy pattern"],
-    [/\byoung (families|professionals|couples)\b/i, "demographic labeling"],
-    [/\bretirees\b/i, "demographic labeling"],
-    [/\bempty[ -]?nesters?\b/i, "demographic labeling"],
-    [/\bfamilies with (kids|children)\b/i, "familial-status steering"],
-    [/\bgood schools\b/i, "school-quality steering"],
-    [/\bseniors\b/i, "demographic labeling"],
-    [/\b55\+/, "age-restriction framing"],
-    [/\bstudents\b/i, "demographic labeling"],
-    [/\bsingles\b/i, "demographic labeling"]
-  ];
+  const patterns = loadGuardrailPatterns("fair-housing");
   let bad = 0;
   for (const p of pages) {
     const text = `${JSON.stringify(p.data)}\n${p.content}`;
-    for (const [re, label] of patterns) {
+    for (const { re, label } of patterns) {
       const m = text.match(re);
       if (m) { fail(`${p.file}: fair-housing pattern (${label}): "${m[0]}"`); bad++; }
     }
   }
-  if (!bad) ok(`fair-housing chassis rule: no steering patterns in ${pages.length} kb entries`);
+  // A loaded-but-empty guardrail is a silent-skip trap — fail loudly, never pass.
+  if (!patterns.length) fail("fair-housing: kb/guardrails/fair-housing.yaml loaded zero patterns");
+  else if (!bad) ok(`fair-housing chassis rule: no steering patterns in ${pages.length} kb entries`);
 }
 
-/* ---- 4 · Rule 32 stop-list (kb entries + page templates) ---- */
+/* ---- 4 · Rule 32 stop-list (kb entries + page templates; patterns from kb/guardrails/) ---- */
 {
-  const stop = /\b(search|access)\s+the\s+MLS\b/i;
+  const patterns = loadGuardrailPatterns("mls-claims");
   let bad = 0;
   const targets = pages.map((p) => [p.file, `${JSON.stringify(p.data)}\n${p.content}`]);
   const srcDir = path.join(ROOT, "src");
@@ -140,9 +140,12 @@ for (const sub of ["guides", "neighborhoods"]) {
     targets.push([path.relative(ROOT, f), fs.readFileSync(f, "utf8")]);
   }
   for (const [name, text] of targets) {
-    if (stop.test(text)) { fail(`${name}: Rule 32 stop-list phrase ("search/access the MLS")`); bad++; }
+    for (const { re, label } of patterns) {
+      if (re.test(text)) { fail(`${name}: ${label}`); bad++; }
+    }
   }
-  if (!bad) ok(`Rule 32 stop-list clean across ${targets.length} kb entries + templates`);
+  if (!patterns.length) fail("mls-claims: kb/guardrails/mls-claims.yaml loaded zero patterns");
+  else if (!bad) ok(`Rule 32 stop-list clean across ${targets.length} kb entries + templates`);
 }
 
 /* ---- 5 · no market-stat claims in live kb prose (heuristic) ---- */

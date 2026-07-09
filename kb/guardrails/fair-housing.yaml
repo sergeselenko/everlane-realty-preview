@@ -1,0 +1,96 @@
+# kb/guardrails/fair-housing — the "describe the PLACE, not who it fits" tripwire.
+#
+# WHAT THIS IS (and is NOT). This regex list is a cheap KNOWN-BAD TRIPWIRE and a
+# FLOOR — not the load-bearing fair-housing enforcement, and not a complete
+# guard. A denylist misses paraphrases it never listed and can over-match
+# innocent text; treated as "the" guard it would give false confidence. So,
+# honestly (mirroring pii-exclusion.yaml's caveat):
+#
+#   coverage_status: "FLOOR ONLY — a known-bad tripwire, not complete coverage"
+#
+# The LOAD-BEARING fair-housing enforcement is two other things:
+#   1. GROUNDING — the concierge answers only from a corpus that itself contains
+#      no steering (proven clean by scripts/concierge-check.mjs); it cannot
+#      assert a steering claim that is not in its ground truth.
+#   2. The wave-3 SEMANTIC OUTPUT JUDGE (built next pass) — a model-graded check
+#      on every generated answer that catches CODED / paraphrased steering this
+#      regex cannot: religion, race, national origin, disability, and sex
+#      steering are the JUDGE'S domain, deliberately NOT faked here in regex
+#      (e.g. a "temple" regex would false-positive on landmark place-names —
+#      "temple" appears 4x in kb/ as a Tocobaga temple-mound reference).
+#
+# TWO consumers read the patterns below:
+#   1. scripts/kb-lint.mjs check 3 — fails the BUILD if a pattern hits authored
+#      kb/ prose (guides + neighborhood chapters).
+#   2. scripts/concierge-check.mjs — runs them over the compiled corpus (incl.
+#      the fact atoms kb-lint does not scan) and, at runtime (wave 3), the
+#      concierge runs them over generated text as the cheap first gate BEFORE
+#      the semantic judge.
+# One list, both consumers — they cannot drift.
+#
+# Patterns compile with `new RegExp(pattern, flags)`. `pattern` is single-quoted
+# (backslashes literal). Every pattern here is corpus-verified 0-match (grep of
+# kb/, 2026-07-09) so it is a tripwire, never a current-content block.
+domain: fair-housing
+updated: 2026-07-09
+review: on-rule-change
+coverage_status: "FLOOR ONLY — a known-bad tripwire; grounding + the wave-3 semantic judge are the load-bearing guard"
+patterns:
+  - id: who-it-fits-phrase
+    pattern: 'who it fits'
+    flags: i
+    label: '"who it fits" framing'
+  - id: perfect-for-cohort
+    # `single` carries a negative lookahead so it does NOT match the legitimate
+    # "single-family" / "single-story" housing-stock terms (2 real uses in kb/).
+    pattern: '\b(perfect|ideal|great|suited|best) for (young|famil|retiree|professional|couple|single(?!-(family|story))|empty|kids)'
+    flags: i
+    label: who-it-fits copy pattern
+  - id: young-cohort
+    pattern: '\byoung (families|professionals|couples)\b'
+    flags: i
+    label: demographic labeling
+  - id: retirees
+    pattern: '\bretirees\b'
+    flags: i
+    label: demographic labeling
+  - id: empty-nesters
+    pattern: '\bempty[ -]?nesters?\b'
+    flags: i
+    label: demographic labeling
+  - id: families-with-children
+    pattern: '\bfamilies with (kids|children)\b'
+    flags: i
+    label: familial-status steering
+  - id: family-friendly
+    pattern: '\b(family|kid)-friendly\b'
+    flags: i
+    label: familial-status steering (coded)
+  - id: raise-a-family
+    pattern: '\b(raise|raising|start a family)\b'
+    flags: i
+    label: familial-status steering (coded)
+  - id: schools-quality
+    pattern: '\b(good|great|top-rated|excellent|highly-rated|A-rated|best|award-winning) schools?\b'
+    flags: i
+    label: school-quality steering
+  - id: seniors
+    pattern: '\bseniors\b'
+    flags: i
+    label: demographic labeling
+  - id: age-restriction
+    pattern: '\b55\+'
+    flags: ''
+    label: age-restriction framing
+  - id: students
+    pattern: '\bstudents\b'
+    flags: i
+    label: demographic labeling
+  - id: singles
+    pattern: '\bsingles\b'
+    flags: i
+    label: demographic labeling
+  - id: coded-area-terms
+    pattern: '\b(diverse|up-and-coming|vibrant|transitional) (neighborhood|area|community)\b'
+    flags: i
+    label: coded-area steering (race/national-origin proxy)

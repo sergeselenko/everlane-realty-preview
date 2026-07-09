@@ -1,0 +1,45 @@
+# kb/guardrails/mls-claims — the "never claim to search/access/BE the MLS" stop-list.
+#
+# CANONICAL SOURCE. TWO consumers:
+#   1. scripts/kb-lint.mjs check 4 — fails the build if the phrase appears in
+#      any kb/ entry or src/ template.
+#   2. The AI concierge (wave 3): the SAME phrase list guards the bot's
+#      generated copy AND its canned framing. The concierge is an answer engine
+#      grounded in the site's own KB + the mirrored feed — it is NOT an MLS
+#      search terminal and must never say it is.
+#
+# Rule 32 (MLS GRID IDX Rules, 2026-07-15 governing text; see
+# build/wave-2/compliance/rules-current-read.md). `pattern` is single-quoted
+# (literal backslashes).
+#
+# SCAN-SCOPE NOTE (important): kb-lint check 4 scans kb/guides + kb/neighborhoods
+# + src/{njk,md,html} ONLY — it does NOT scan kb/guardrails/. That is why THIS
+# file may safely quote the forbidden verbs in its own docs/runtime_posture
+# without failing the build (verified: build green with the file present).
+domain: mls-claims
+updated: 2026-07-09
+review: on-rule-change
+patterns:
+  # Broadened to the verbs the runtime_posture names, plus the reversed form.
+  # Corpus-verified 0-match: kb/ prose says "our MLS pipeline" (no verb + the/our
+  # MLS construction, no "MLS search"), so this is a tripwire, not a block.
+  - id: rule-32-verb-mls
+    pattern: '\b(search|access|browse|query|pull\s+from|look\s+up)\s+(the|our|your|stellar)\s+MLS\b'
+    flags: i
+    label: Rule 32 stop-list phrase ("search/access/browse/query/pull from/look up the MLS")
+  - id: rule-32-mls-search-reversed
+    pattern: '\bMLS\s+search\b'
+    flags: i
+    label: Rule 32 reversed form ("MLS search")
+
+# Runtime posture the concierge asserts (documentation for the wave-3 build;
+# not a regex — a behavioural contract for the system prompt + tool layer):
+runtime_posture:
+  - The bot answers from the site's published KB and the mirrored listings feed;
+    it never presents itself as a live MLS search or MLS terminal.
+  - Inventory questions ROUTE to the compliant /search/ surface. Until the MLS
+    GRID feed lands, the honest answer is "live listing search arrives with the
+    feed" — never a fabricated result and never a claim to be searching the MLS.
+  - The bot never says "search the MLS", "access the MLS", "pull from the MLS",
+    or equivalent. It says it consults Everlane's own published knowledge and
+    the licensed data feed.

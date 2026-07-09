@@ -1,0 +1,31 @@
+# kb/guardrails/display-caps — MLS GRID listing display caps + Rule 24 attribution.
+#
+# CONFIG (not a regex set). The AI concierge enforces these when it surfaces
+# ANY listing-derived content once the MLS GRID feed is live. Source:
+# build/wave-2/compliance/ktb.md (concierge early-warning) +
+# build/wave-2/compliance/rules-current-read.md (Rules 22/23/24 minimal-display
+# exemption at :74–75; Rule 26 record caps).
+#
+# NOTE: every cap here binds only on FEED-DERIVED (listing) content. The
+# token-independent KB-answering half of the concierge (neighborhood / market /
+# process answers) draws on kb/facts + kb prose and carries its own on-page
+# source visibility (Rules 16/21), not these listing caps.
+domain: display-caps
+updated: 2026-07-09
+review: on-rule-change
+caps:
+  # The <=200-char snippet is the Rules 22/23/24 MINIMAL-DISPLAY exemption: a
+  # short snippet is allowed IF it links to a fully compliant listing display
+  # carrying the verbatim Rule 24 paragraph + timestamp (rules-current-read.md:74).
+  snippet_max_chars: 200          # Rules 22/23/24 minimal-display exemption; then link to compliant display
+  result_cap_min: "greater of 500 records or 50% of matching records"  # Rule 26 minimum
+  result_cap_max: 2500            # Rule 26 maximum records returned
+attribution:
+  # Rule 24 verbatim disclaimer + Rule 22 cooperating-brokerage/source line
+  # ride on EVERY listing snippet; the bot links out to the compliant card/page
+  # rather than reproducing a full listing inline.
+  every_listing_snippet_requires:
+    - listing brokerage attribution (Rule 22)
+    - MLS-source disclaimer + data timestamp (Rule 24)
+    - link to the compliant full display (the /search/ card or page)
+  reuse: src/_includes/components/listing-card.njk  # the one attribution component (plan §5)
