@@ -50,7 +50,9 @@
   function add(who, text, cites, ctas) {
     var p = document.createElement("p");
     p.className = "chat-msg chat-msg--" + (who === "you" ? "you" : "bot");
-    p.textContent = (who === "you" ? "You: " : "Assistant: ") + text;
+    // Render as plain text; strip markdown bold markers the model sometimes emits
+    // (textContent would otherwise show the literal ** around a term).
+    p.textContent = (who === "you" ? "You: " : "Assistant: ") + String(text).replace(/\*\*/g, "");
     log.appendChild(p);
     if (cites && cites.length) {
       var s = document.createElement("p"); s.className = "chat-cites";
