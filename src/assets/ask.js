@@ -35,6 +35,15 @@
       })
       .catch(function () { add("bot", "The assistant is resting — browse the guides or reach Serge directly."); });
   });
+  // Root-relative CTA hrefs (/search/, /contact/) come from the edge function,
+  // which doesn't know the site's path prefix; prefix them at render so they
+  // resolve on the preview (github.io/everlane-realty-preview/…) as well as on
+  // production. Absolute source URLs (citations) pass through untouched.
+  var BASE = (window.__ASK_BASE__ || "/");
+  function withBase(h) {
+    if (!h || h === "#" || /^https?:/i.test(h)) return h;
+    return BASE.replace(/\/+$/, "/") + String(h).replace(/^\/+/, "");
+  }
   function add(who, text, cites, ctas) {
     var p = document.createElement("p");
     p.className = "chat-msg chat-msg--" + (who === "you" ? "you" : "bot");
@@ -43,7 +52,7 @@
     if (cites && cites.length) {
       var s = document.createElement("p"); s.className = "chat-cites";
       cites.forEach(function (c) {
-        var a = document.createElement("a"); a.href = c.url || c.href || "#";
+        var a = document.createElement("a"); a.href = withBase(c.url || c.href || "#");
         a.textContent = c.name || c.label || c.url; a.rel = "nofollow";
         s.appendChild(a); s.appendChild(document.createTextNode(" "));
       });
@@ -52,7 +61,7 @@
     if (ctas && ctas.length) {
       var c2 = document.createElement("p"); c2.className = "chat-ctas";
       ctas.forEach(function (c) {
-        var a = document.createElement("a"); a.href = c.href || "#";
+        var a = document.createElement("a"); a.href = withBase(c.href || "#");
         a.className = "btn btn--primary"; a.textContent = c.label || "Continue";
         c2.appendChild(a); c2.appendChild(document.createTextNode(" "));
       });

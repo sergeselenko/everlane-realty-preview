@@ -82,7 +82,7 @@ jsonld: ["ask"]
       <p class="fine" style="margin-top:10px">The assistant runs under a hard spending cap with a privacy-safe query log &mdash; no names, emails, phone numbers, or addresses recorded, and no chat transcripts kept. <a href="/ai/">How this site runs &rarr;</a></p>
     </div>
   </div>
-{% if askLive %}<script src="/assets/ask.js" defer></script>{% endif %}
+{% if askLive %}<script>window.__ASK_BASE__ = "{{ '/' | url }}";</script><script src="/assets/ask.js" defer></script>{% endif %}
 </section>
 
 <section class="section">
