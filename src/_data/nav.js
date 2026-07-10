@@ -8,7 +8,7 @@ export default {
     { title: "Home value", url: "/valuation/" },
     { title: "Neighborhoods", url: "/neighborhoods/" },
     { title: "Guides", url: "/guides/" },
-    { title: "Ask the assistant", url: "/ask/" },
+    { title: "Ask Lane", url: "/ask/" },
     { title: "About", url: "/about/" }
   ],
   headerCta: { title: "Book a consult", url: "/contact/" },
@@ -18,7 +18,7 @@ export default {
     { title: "Market data", url: "/market/" },
     { title: "Neighborhoods", url: "/neighborhoods/" },
     { title: "Guides", url: "/guides/" },
-    { title: "Ask the assistant", url: "/ask/" },
+    { title: "Ask Lane", url: "/ask/" },
     { title: "Meet Serge", url: "/team/serge-osaulenko/" },
     { title: "About", url: "/about/" },
     { title: "Contact", url: "/contact/" }

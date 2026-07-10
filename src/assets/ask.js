@@ -38,7 +38,7 @@
     r.className = "chat-msg chat-msg--" + who;
     var w = document.createElement("span");
     w.className = "chat-who";
-    w.textContent = who === "you" ? "You" : "Everlane Assistant";
+    w.textContent = who === "you" ? "You" : "Lane";
     r.appendChild(w);
     return r;
   }
@@ -128,14 +128,14 @@
       .then(function (r) { return r.json(); })
       .then(function (d) {
         if (!d || d.state === "resting") {
-          done((d && d.text) || "The assistant is resting right now — browse the guides or reach Serge directly.",
+          done((d && d.text) || "Lane is resting right now — browse the guides or reach Serge directly.",
             null, [{ label: "Book a consult", href: "/contact/" }]);
         } else {
           done(d.text, d.citations, d.ctas);
         }
       })
       .catch(function () {
-        done("The assistant is resting right now — browse the guides or reach Serge directly.",
+        done("Lane is resting right now — browse the guides or reach Serge directly.",
           null, [{ label: "Book a consult", href: "/contact/" }]);
       });
   }

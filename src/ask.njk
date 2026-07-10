@@ -1,84 +1,47 @@
 ---
-title: "Ask Everlane's Assistant"
+title: "Ask Lane"
 description: "Ask a plain-English question about St. Petersburg real estate — flood zones, neighborhoods, taxes, short-term-rental rules, the buying and selling process — answered only from Everlane's own sourced knowledge base, and backed by a real broker."
 crumbs: []
 jsonld: ["ask"]
 ---
 {#- /ask/ — plan §5 (AI-native interaction), Wave 3. The dedicated concierge
-    surface: server-rendered, AI-crawler-visible prose stating what the
-    assistant does and its honesty posture, plus an inert "coming soon"
-    interaction shell in the SAME preview pattern as the contact/valuation
-    forms (fields inside <fieldset disabled>, a visible "Preview" note, no
-    network path). The live bot ships only AFTER deploy + the red-team pass
-    (build/wave-3/concierge-deploy-runbook.md). NOTHING here calls the edge
-    function — the shell is disabled by construction, not by a flag.
+    surface: server-rendered, AI-crawler-visible prose stating what Lane does
+    and its honesty posture, plus the live chat (askLive) or an inert "coming
+    soon" shell (fields inside <fieldset disabled>, no network path).
+    ORDER (operator design fine-tune 2026-07-10): heading → the chat RIGHT
+    THERE → the explainers below (kills the white space to reach the chat).
     COPY GUARD: no Rule-32 stop-list phrasing (never claim to search/access/be
     the MLS) — kb/guardrails/mls-claims.yaml; kb-lint scans this file. -#}
 
 <section class="page-hero">
   <div class="wrap wrap--narrow">
     <p class="eyebrow">Grounded answers, a human behind them</p>
-    <h1>Ask the assistant</h1>
-    <p class="lede">Ask a plain-English question about buying or selling in St.&nbsp;Petersburg &mdash; flood zones and insurance, a neighborhood, property taxes, where short-term rentals are actually allowed, or how the process really works. The assistant draws its answers from Everlane&rsquo;s own sourced knowledge base, is checked for accuracy and fair housing on every reply, and hands anything it can&rsquo;t answer to a real broker.</p>
+    <h1>Ask Lane</h1>
+    <p class="lede">Lane is Everlane&rsquo;s assistant. Ask a plain-English question about buying or selling in St.&nbsp;Petersburg &mdash; flood zones and insurance, a neighborhood, property taxes, where short-term rentals are actually allowed, or how the process really works &mdash; and get a grounded answer from Everlane&rsquo;s own sourced knowledge base, checked for accuracy and fair housing on every reply, with a real broker behind anything Lane can&rsquo;t answer.</p>
   </div>
 </section>
 
-<section class="section" style="padding-top:10px">
+<section class="section section--mist" style="padding-top:18px">
   <div class="wrap wrap--narrow">
-    <div class="grid grid--2">
-      <div>
-        <h2 style="font-size:1.3rem">What it can help with</h2>
-        <ul style="margin:8px 0 0;padding-left:20px;line-height:1.7">
-          <li><strong>Flood zones &amp; insurance</strong> &mdash; what a zone means for a home, what changed after the 2024 storms, how coverage is priced.</li>
-          <li><strong>Neighborhoods</strong> &mdash; the features, the flood story, and the housing stock of the areas we cover, chapter by chapter.</li>
-          <li><strong>Property taxes</strong> &mdash; homestead, Save Our Homes, portability, and how the numbers actually work here.</li>
-          <li><strong>Short-term rentals</strong> &mdash; where in Pinellas an Airbnb is actually permitted, municipality by municipality, with dates.</li>
-          <li><strong>The process</strong> &mdash; buying steps and costs, and how a broker-prepared valuation differs from an instant online number.</li>
-        </ul>
-      </div>
-      <div>
-        <div class="stub-block">
-          <strong>The honest posture</strong>
-          <ul style="margin:8px 0 0;padding-left:20px;line-height:1.7">
-            <li><strong>Grounded, not guessing.</strong> It draws on Everlane&rsquo;s published, sourced knowledge base &mdash; every fact dated &mdash; and is built to say &ldquo;I don&rsquo;t know&rdquo; and hand you to Serge rather than fill a gap.</li>
-            <li><strong>It describes the place, never who &ldquo;belongs&rdquo; there.</strong> A fair-housing line the assistant is built to and checked against &mdash; automatically, on every answer.</li>
-            <li><strong>Not a listing search.</strong> For homes on the market it sends you to the <a href="/search/">search page</a>; live listing results arrive with the data feed. It never fabricates a listing.</li>
-            <li><strong>Human-backed.</strong> It doesn&rsquo;t collect your details here and it never closes a deal &mdash; anything transactional goes to a free consult with the broker.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--mist">
-  <div class="wrap wrap--narrow">
-    <h2>Try it</h2>
-    {% if askLive %}
-    <p class="lede" style="margin-top:6px">Ask a plain-English question below. The assistant answers only from Everlane&rsquo;s sourced knowledge base, checks every reply for accuracy and fair housing, and hands anything it can&rsquo;t answer to Serge.</p>
-    {% else %}
-    <p class="lede" style="margin-top:6px">The assistant goes live once it&rsquo;s deployed and cleared its guardrail review. Until then this is a preview of the interaction &mdash; the same honest &ldquo;coming soon&rdquo; state the rest of the site uses before a feature is wired.</p>
-    {% endif %}
-
     <div class="chat-panel">
       <div class="chat-panel__id">
         <span class="chat-panel__mark" aria-hidden="true">E</span>
         <span class="chat-panel__idtext">
-          <span class="chat-panel__name">Everlane Assistant</span>
-          <span class="chat-panel__tag">Grounded answers &middot; a human behind them</span>
+          <span class="chat-panel__name">Lane</span>
+          <span class="chat-panel__tag">Everlane&rsquo;s assistant &middot; a human behind them</span>
         </span>
         <span class="chat-panel__status">{% if askLive %}<span class="chat-panel__dot" aria-hidden="true"></span>Ready{% else %}Offline{% endif %}</span>
       </div>
       <div class="chat-body">
-        {% if not askLive %}<p class="form-disabled-note" role="note">Preview &mdash; assistant offline</p>{% endif %}
+        {% if not askLive %}<p class="form-disabled-note" role="note">Preview &mdash; Lane is offline</p>{% endif %}
 
         {#- Chat surface. When askLive, /assets/ask.js wires the composer to the
             `ask` edge function; when not, the fieldset renders disabled (the honest
             coming-state) and no network path exists. COPY GUARD (kb-lint): never
             claim to search/access/be the MLS — kb/guardrails/mls-claims.yaml. -#}
-        <div class="chat-log" role="log" aria-live="polite" aria-label="Conversation with Everlane&rsquo;s assistant">
+        <div class="chat-log" role="log" aria-live="polite" aria-label="Conversation with Lane">
           <div class="chat-msg chat-msg--bot">
-            <span class="chat-who">Everlane Assistant</span>
+            <span class="chat-who">Lane</span>
             <div class="chat-bubble">Ask me about flood zones, a neighborhood, taxes, short-term-rental rules, or how buying and selling works in St.&nbsp;Pete. I answer only from what Everlane has published and sourced &mdash; and I&rsquo;ll hand you to Serge for anything I can&rsquo;t.</div>
           </div>
         </div>
@@ -94,19 +57,47 @@ jsonld: ["ask"]
           <fieldset{% if not askLive %} class="form-preview-disabled" disabled{% endif %}>
             <label for="ask-input" class="sr-only">Your question</label>
             <div class="chat-composer">
-              <textarea id="ask-input" name="question" rows="1" placeholder="{% if askLive %}Ask a plain-English question…{% else %}The assistant is offline in this preview.{% endif %}" maxlength="500"></textarea>
+              <textarea id="ask-input" name="question" rows="1" placeholder="{% if askLive %}Ask a plain-English question…{% else %}Lane is offline in this preview.{% endif %}" maxlength="500"></textarea>
               <button type="submit" class="chat-send" data-submit>Ask</button>
             </div>
           </fieldset>
         </form>
       </div>
     </div>
-    <p class="fine chat-fine">The assistant runs under a hard spending cap with a privacy-safe query log &mdash; no names, emails, phone numbers, or addresses recorded, and no chat transcripts kept. <a href="/ai/">How this site runs &rarr;</a></p>
+    <p class="fine chat-fine">Lane runs under a hard spending cap with a privacy-safe query log &mdash; no names, emails, phone numbers, or addresses recorded, and no chat transcripts kept. <a href="/ai/">How this site runs &rarr;</a></p>
   </div>
-{% if askLive %}<script>window.__ASK_BASE__ = "{{ '/' | url }}";</script><script src="/assets/ask.js" defer></script>{% endif %}
+  {% if askLive %}<script>window.__ASK_BASE__ = "{{ '/' | url }}";</script><script src="/assets/ask.js" defer></script>{% endif %}
 </section>
 
 <section class="section">
+  <div class="wrap wrap--narrow">
+    <div class="grid grid--2">
+      <div>
+        <h2 style="font-size:1.3rem">What Lane can help with</h2>
+        <ul style="margin:8px 0 0;padding-left:20px;line-height:1.7">
+          <li><strong>Flood zones &amp; insurance</strong> &mdash; what a zone means for a home, what changed after the 2024 storms, how coverage is priced.</li>
+          <li><strong>Neighborhoods</strong> &mdash; the features, the flood story, and the housing stock of the areas we cover, chapter by chapter.</li>
+          <li><strong>Property taxes</strong> &mdash; homestead, Save Our Homes, portability, and how the numbers actually work here.</li>
+          <li><strong>Short-term rentals</strong> &mdash; where in Pinellas an Airbnb is actually permitted, municipality by municipality, with dates.</li>
+          <li><strong>The process</strong> &mdash; buying steps and costs, and how a broker-prepared valuation differs from an instant online number.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="stub-block">
+          <strong>The honest posture</strong>
+          <ul style="margin:8px 0 0;padding-left:20px;line-height:1.7">
+            <li><strong>Grounded, not guessing.</strong> Lane draws on Everlane&rsquo;s published, sourced knowledge base &mdash; every fact dated &mdash; and is built to say &ldquo;I don&rsquo;t know&rdquo; and hand you to Serge rather than fill a gap.</li>
+            <li><strong>It describes the place, never who &ldquo;belongs&rdquo; there.</strong> A fair-housing line Lane is built to and checked against &mdash; automatically, on every answer.</li>
+            <li><strong>Not a listing search.</strong> For homes on the market it sends you to the <a href="/search/">search page</a>; live listing results arrive with the data feed. It never fabricates a listing.</li>
+            <li><strong>Human-backed.</strong> It doesn&rsquo;t collect your details here and it never closes a deal &mdash; anything transactional goes to a free consult with the broker.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
   <div class="wrap wrap--narrow">
     <div class="card">
       <p style="margin:0">Prefer a person right now? That&rsquo;s the right instinct for anything about your own move. <a href="/contact/">Book a free consult with Serge &rarr;</a> &middot; Or dig into the <a href="/guides/">buyer &amp; seller guides &rarr;</a>.</p>
