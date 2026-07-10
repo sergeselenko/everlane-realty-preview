@@ -84,7 +84,7 @@ crumbs: []
       <p class="eyebrow">Or just grab a time</p>
       <h2>Book a consult directly</h2>
       <p class="lede">Pick a slot on Serge&rsquo;s live calendar &mdash; a free {{ booking.durationLabel }} call, no form first. Prefer to write? <a href="mailto:serge@everlanerealty.com">serge@everlanerealty.com</a> &middot; <a href="tel:+17274908037">727-490-8037</a>.</p>
-      <div id="cal-inline" style="min-height:620px;overflow:auto;border:1px solid var(--c-line)"></div>
+      <div id="cal-inline" class="cal-embed" data-loading="Loading Serge&rsquo;s calendar&hellip;"></div>
       {% include "components/calcom-loader.njk" %}
       <script>Cal("inline", { elementOrSelector: "#cal-inline", calLink: "{{ booking.calLink }}", layout: "month_view" });</script>
     </div>

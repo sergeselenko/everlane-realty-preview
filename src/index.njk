@@ -55,6 +55,26 @@ jsonld: ["real-estate-agent"]
 <section class="section" data-sec="doors">
   <div class="wrap">
     <div class="sec-head"><div><span class="no">№ 1 &middot; Start here</span><h2>Buying, selling, or just asking</h2></div></div>
+
+    {#- Live homepage ask module (design-review fix 1, 2026-07-10): surfaces the
+        concierge as a first-class entry — a GET form + chips that deep-link into
+        /ask/?q=… (ask.js reads q and auto-sends). No network path on home; the
+        experience lives on /ask. COPY GUARD: no MLS-search phrasing. -#}
+    <form class="home-ask" action="/ask/" method="get" role="search" aria-label="Ask Everlane's assistant">
+      <p class="home-ask__lead"><span class="home-ask__eyebrow">Just asking?</span> Ask a plain-English question about buying or selling in St.&nbsp;Petersburg &mdash; grounded answers from Everlane&rsquo;s own knowledge base, with a real broker behind them.</p>
+      <div class="home-ask__row">
+        <label for="home-ask-input" class="sr-only">Ask the assistant a question</label>
+        <input id="home-ask-input" name="q" type="text" maxlength="500" autocomplete="off" placeholder="Ask about flood zones, a neighborhood, taxes, or the buying process…">
+        <button type="submit" class="btn btn--primary">Ask</button>
+      </div>
+      <div class="home-ask__chips">
+        <span class="home-ask__try">Try</span>
+        <a class="chip" href="/ask/?q=What%20does%20flood%20zone%20AE%20mean%20for%20insurance%3F">Flood zone AE &amp; insurance</a>
+        <a class="chip" href="/ask/?q=Can%20I%20run%20an%20Airbnb%20in%20Gulfport%3F">Airbnb in Gulfport?</a>
+        <a class="chip" href="/ask/?q=How%20does%20the%20homestead%20exemption%20work%3F">Homestead exemption</a>
+      </div>
+    </form>
+
     <div class="doors">
       <div class="door">
         <span class="d-eyebrow">Buying</span>
@@ -78,7 +98,6 @@ jsonld: ["real-estate-agent"]
         <h3>Talk it through first</h3>
         <p>Fifteen minutes, no pitch, no obligation. Give me the messy version &mdash; I&rsquo;ll make it clear.</p>
         <a class="go" href="/contact/">Book a consult</a>
-        <p style="margin:8px 0 0"><a class="quiet" href="/ask/">Or ask the assistant a quick question &rarr;</a></p>
       </div>
     </div>
   </div>

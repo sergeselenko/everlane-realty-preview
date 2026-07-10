@@ -9,5 +9,12 @@
 <script>
 (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 Cal("init", { origin: "https://cal.com" });
+{#- Brand the embed to the locked palette (design-review fix 3, 2026-07-10):
+    the selectable dates / primary buttons pick up Everlane green. cssVarsPerTheme
+    is the documented embed theming lever; unknown keys are ignored, so this is
+    safe against the live booking. Corners/type inside the iframe stay Cal's own
+    (cross-origin — not stylable from here); the container skeleton (.cal-embed)
+    handles the cold-load void. -#}
+Cal("ui", { cssVarsPerTheme: { light: { "cal-brand": "#3E5C43" } }, hideEventTypeDetails: false, layout: "month_view" });
 Cal("on", { action: "bookingSuccessful", callback: function () { if (window.elTrack) elTrack("book_appointment", { method: "calcom" }); } });
 </script>

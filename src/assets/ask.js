@@ -162,4 +162,11 @@
       ask(chip.getAttribute("data-q") || chip.textContent);
     });
   });
+
+  // Deep-link prefill: the homepage ask module sends visitors to /ask/?q=… —
+  // pick up the question and auto-send it once so the answer is already coming.
+  try {
+    var q0 = new URLSearchParams(window.location.search).get("q");
+    if (q0) ask(q0);
+  } catch (e) { /* no-op */ }
 })();
