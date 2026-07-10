@@ -342,6 +342,9 @@ p { margin: 0 0 1em; }
   font-size: .66rem; font-style: italic; color: var(--c-ink); opacity: .75;
 }
 .story__body { padding: 20px 24px 24px; }
+/* neighborhood-index cards get the same photo-placeholder plate (operator 2026-07-10, D1) */
+.card--photo { padding: 0; overflow: hidden; }
+.card--photo .card__body { padding: 22px 26px 24px; }
 .story .n {
   font-family: var(--font-display);
   font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;

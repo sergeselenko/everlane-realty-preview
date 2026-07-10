@@ -14,7 +14,7 @@ crumbs: []
   <div class="wrap">
     <p class="eyebrow">Local knowledge, written down</p>
     <h1>St. Petersburg neighborhoods</h1>
-    <p class="lede">Real pages, not portal filler: what each neighborhood is actually like, what it
+    <p class="lede lede--wide">Real pages, not portal filler: what each neighborhood is actually like, what it
     costs, its flood story, and what&rsquo;s on the market right now.</p>
   </div>
 </section>
@@ -23,11 +23,14 @@ crumbs: []
   <div class="wrap">
     <div class="grid grid--2">
       {%- for n in kb.neighborhoodsLive %}
-      <div class="card">
-        <p class="g-eyebrow" style="margin:0 0 6px">Chapter {% if n.chapter < 10 %}0{% endif %}{{ n.chapter }}</p>
-        <h2 style="font-size:1.2rem"><a href="/neighborhoods/{{ n.slug }}/">{{ n.title }}</a></h2>
-        <p>{{ n.lede }}</p>
-        <p class="fine" style="margin:8px 0 0">By {{ n.author }} &middot; updated {{ n.last_verified | longDate }} &middot; live stats on the page</p>
+      <div class="card card--photo">
+        <div class="story__plate" role="img" aria-label="Photo placeholder — {{ n.title }}"><span class="plate-note">photo placeholder &mdash; {{ n.title }}</span></div>
+        <div class="card__body">
+          <p class="g-eyebrow" style="margin:0 0 6px">Chapter {% if n.chapter < 10 %}0{% endif %}{{ n.chapter }}</p>
+          <h2 style="font-size:1.2rem"><a href="/neighborhoods/{{ n.slug }}/">{{ n.title }}</a></h2>
+          <p>{{ n.lede }}</p>
+          <p class="fine" style="margin:8px 0 0">By {{ n.author }} &middot; updated {{ n.last_verified | longDate }} &middot; live stats on the page</p>
+        </div>
       </div>
       {%- endfor %}
       <div class="stub-block">
