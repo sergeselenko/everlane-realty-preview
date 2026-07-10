@@ -3,21 +3,25 @@ title: "What's Your Home Worth?"
 description: "Get a real, current read on your St. Petersburg home's value — a broker's market opinion (CMA), not an automated estimate. No obligation, no pressure."
 crumbs: []
 ---
-{#- /valuation/ — plan §2 #3. The guided AI-assisted CMA (conversational intake
-    → broker-gated range report ≤24h) builds at wave 3; THIS is the interim: a
-    native valuation-REQUEST form — a broker-prepared market opinion (CMA), never
-    an on-site AVM / point estimate (compliance GREEN-AMBER, Art. 16.03).
-    DEVIATION FROM PLAN, surfaced to the operator (not decided in this comment):
-    the plan's blessed interim was IDX Broker's valuation-request PAGE, which
-    returns the requester an INSTANT "matching recent solds" page (ai-experience
-    §4). We go native instead — the honest reason is INTAKE-PIPELINE REUSE (one
-    n8n sink, one PREVIEW_MODE rail, one honeypot, one consent surface), and the
-    page prose stays server-rendered. The tradeoff we accept: no instant
-    matching-solds response (the IDX feature we forgo — addable later as an
-    enhancement). This "human-backed CMA request" is deliberately NOT the
-    automated funnel the hero disclaims. JS-driven + PREVIEW_MODE-guarded
-    (assets/site.js #valuation-form) — disabled + inert on preview, live at the
-    wave-4 cutover; the endpoint never POSTs from this build. -#}
+{#- /valuation/ — plan §2 #3 / §8.1. The GUIDED AI-CMA intake (launch-checklist
+    #1, built 2026-07-10): a question-by-question conversational intake
+    (assets/valuation-guided.js) → a broker-prepared range report within a day —
+    a human-backed CMA request, never an on-site AVM / point estimate
+    (compliance GREEN-AMBER, Art. 16.03). DESIGN CALLS (surfaced to the
+    operator, not silently made):
+    · The flow is DETERMINISTIC (scripted questions in the chat idiom), not an
+      LLM conversation — the intake collects PII, which must reach only the
+      RLS-locked sink, never a model/log (the page's published privacy posture
+      is Lane-records-no-PII); a script also structurally cannot fabricate a
+      number. The AI halves live elsewhere: Lane below for questions (PII-free),
+      comp analysis broker-side at feed time (checklist #6).
+    · The classic valuation-REQUEST form (the earlier interim) REMAINS as the
+      server-rendered no-JS default and a visible "prefer a simple form" swap.
+    · One network path for both surfaces: window.elValuationSend in site.js —
+      PREVIEW_MODE-guarded, endpoint preserved-but-inert on preview, payload
+      schema-identical to the classic form (guided answers compose into
+      `notes`; source: "valuation-guided") so the n8n sink needs no change.
+      valuation-guided.js carries NO network primitive (check.mjs enforces). -#}
 
 <section class="page-hero">
   <div class="wrap">
@@ -31,6 +35,36 @@ crumbs: []
   <div class="wrap">
     <div class="grid grid--2">
       <div>
+        {#- The guided intake panel — hidden until valuation-guided.js boots
+            (progressive enhancement: no JS → the classic form below is the
+            surface, exactly as before). All content inside .chat-log and
+            [data-val-answer] is script-built; the intro bubble is server-
+            rendered so the panel opens mid-conversation, like /ask. -#}
+        <div class="val-guided" data-val-guided hidden>
+          <div class="chat-panel chat-panel--guided">
+            <div class="chat-panel__id">
+              <h2 class="chat-panel__name">Guided valuation</h2><span class="chat-panel__sub">&mdash; a couple of minutes, question by question</span>
+            </div>
+            <div class="chat-body">
+              {% if site.preview %}<p class="form-disabled-note" role="note">Preview &mdash; sending is disabled</p>{% endif %}
+              <div class="chat-log" role="log" aria-live="polite" aria-label="Guided valuation intake">
+                <div class="chat-msg chat-msg--bot">
+                  <div class="chat-bubble">Let&rsquo;s get you a real read on your home. A few quick questions about the home itself &mdash; then where to send the finished read. Nothing goes anywhere until you confirm at the end. I prepare every valuation personally: real comparable sales, a clear range, and the why &mdash; usually within a day.</div>
+                </div>
+              </div>
+              <div class="val-answer" data-val-answer></div>
+              {#- Post-send links — server-rendered (HtmlBasePlugin rewrites the
+                  hrefs for the preview path prefix); unhidden by the script
+                  after a successful send. -#}
+              <p class="val-done-links" data-val-done hidden>
+                <a href="/guides/">Browse the guides meanwhile &rarr;</a>
+                <a href="#val-ask">Or ask Lane a question below &darr;</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div data-val-classic>
         <h2 style="font-size:1.3rem">Request an honest read</h2>
         <p class="form-disabled-note" role="note">Preview &mdash; form disabled</p>
         <div class="form-status" data-form-status role="status" aria-live="polite"></div>
@@ -65,7 +99,7 @@ crumbs: []
               <label for="v-timeline">Where are you in the process? <span class="hint">(optional)</span></label>
               <select id="v-timeline" name="timeline">
                 <option value="">Prefer not to say</option>
-                <option value="curious">Just curious about the number</option>
+                <option value="curious">Just curious what it&rsquo;s worth</option>
                 <option value="weighing">Weighing a sale (next 3&ndash;6 months)</option>
                 <option value="soon">Ready to sell soon</option>
                 <option value="equity">Refinance / equity check</option>
@@ -83,6 +117,11 @@ crumbs: []
             <button type="submit" class="btn btn--primary btn--block" data-submit>Request my home value</button>
           </fieldset>
         </form>
+        </div>
+
+        <p class="val-swap" data-val-swap hidden>
+          <button type="button" class="val-swap__btn" data-val-swap-btn>Prefer a simple form? Use the classic version</button>
+        </p>
       </div>
 
       <div class="val-context">
@@ -114,13 +153,13 @@ crumbs: []
 {#- The assistant, embedded underneath (operator 2026-07-10): the dark Lane
     entry module — for anyone who'd rather ask how a broker valuation works than
     fill the form. Plain GET form → deep-links into /ask (no network path here). -#}
-<section class="section" style="padding-top:0">
+<section class="section" style="padding-top:0" id="val-ask">
   <div class="wrap">
     <form class="home-ask" action="/ask/" method="get" role="search" aria-label="Ask Lane, Everlane's assistant">
       <div class="home-ask__id">
         <span class="home-ask__name">Lane</span><span class="home-ask__sub">&mdash; Everlane&rsquo;s assistant</span>
       </div>
-      <p class="home-ask__lead">Not ready for the form? Ask Lane how a broker valuation actually works &mdash; grounded answers from Everlane&rsquo;s knowledge base, with a real broker behind them. A guided, AI-assisted valuation is coming here; for now the form above gets you a broker&rsquo;s CMA.</p>
+      <p class="home-ask__lead">Questions before you start &mdash; or while you wait for your read? Ask Lane how a broker valuation actually works &mdash; grounded answers from Everlane&rsquo;s knowledge base, with a real broker behind them. Lane never asks for your details; the guided intake above is how the valuation itself gets requested.</p>
       <div class="home-ask__row">
         <label for="val-ask-input" class="sr-only">Ask Lane a question</label>
         <input id="val-ask-input" name="q" type="text" maxlength="500" autocomplete="off" placeholder="Ask about pricing, comps, flood zones, or the selling process…">
@@ -135,3 +174,4 @@ crumbs: []
     </form>
   </div>
 </section>
+<script src="/assets/valuation-guided.js" defer></script>

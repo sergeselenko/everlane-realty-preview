@@ -450,5 +450,61 @@ for (const r of required) {
   }
 }
 
+/* ---- 16 · GUIDED VALUATION INTAKE (launch-checklist #1, 2026-07-10) ----
+   (a) STRUCTURAL posture, not mere presence (gap-finder F1): the guided
+       shell ships `hidden` (JS unhides it — a no-JS visitor must never see
+       an inert panel), the classic form block ships NOT hidden (it IS the
+       no-JS surface), and the consent/privacy copy lives inside the classic
+       form — the guided review CLONES it from there, so its absence would
+       silently strip a legal surface from BOTH doors;
+   (b) the classic form's fields stay <fieldset disabled> on preview
+       (CUTOVER NOTE: this and check 8 flip at go-live — runbook step);
+   (c) built valuation-guided.js carries NO network primitive, no absolute
+       URL, and no web storage — the never-POST charter must not grow a
+       second door, and intake PII lives in memory only;
+   (d) built site.js exposes the elValuationSend bridge — without it the
+       guided flow's send is silently dead. */
+{
+  const vPath = path.join(SITE, "valuation/index.html");
+  if (fs.existsSync(vPath)) {
+    const val = fs.readFileSync(vPath, "utf8");
+    if (/<div[^>]*data-val-guided[^>]*\bhidden\b[^>]*>/.test(val)) {
+      ok("guided shell ships hidden at rest (JS-boot progressive enhancement)");
+    } else fail("guided shell missing or not hidden at rest — no-JS visitors would see an inert panel (or none)");
+    if (/<div[^>]*data-val-classic[^>]*\bhidden\b[^>]*>/.test(val)) {
+      fail("classic form block ships hidden — no-JS visitors would have NO usable surface");
+    } else if (val.includes("data-val-classic")) {
+      ok("classic form block ships visible (the no-JS surface)");
+    } else fail("classic form block (data-val-classic) missing from valuation page");
+    const formHtml = (val.match(/<form id="valuation-form"[\s\S]*?<\/form>/) || [""])[0];
+    const consentCount = (formHtml.match(/class="consent-note"/g) || []).length;
+    if (consentCount >= 2) {
+      ok(`consent/privacy copy present in the classic form (${consentCount} notes — the guided review clones these)`);
+    } else fail("consent-note copy missing from the classic form — the guided review would render with no consent/privacy text");
+    if (/<fieldset class="form-preview-disabled" disabled>/.test(val)) {
+      ok("valuation classic form fields wrapped in <fieldset disabled>");
+    } else fail("valuation classic form is not rendered disabled");
+  } else fail("valuation/index.html not built");
+
+  // (c) is a FLOOR-ONLY tripwire (catches honest drift, not adversarial
+  // code — WebSocket/EventSource/Image-beacons/dynamic import are out of
+  // scope; the load-bearing guard is the bridge-only architecture + review).
+  const gPath = path.join(SITE, "assets/valuation-guided.js");
+  if (fs.existsSync(gPath)) {
+    const g = fs.readFileSync(gPath, "utf8");
+    if (/\bfetch\s*\(|XMLHttpRequest|\bsendBeacon\b|https?:\/\//.test(g)) {
+      fail("valuation-guided.js carries a network primitive or absolute URL — its only send path is the site.js bridge");
+    } else ok("valuation-guided.js carries no network primitive or absolute URL (bridge-only send path)");
+    if (/\blocalStorage\b|\bsessionStorage\b|\bdocument\.cookie\b/.test(g)) {
+      fail("valuation-guided.js persists state — intake PII must live in memory only");
+    } else ok("valuation-guided.js keeps intake answers in memory only (no web storage)");
+  } else fail("assets/valuation-guided.js not built");
+
+  const siteJs = fs.readFileSync(path.join(SITE, "assets/site.js"), "utf8");
+  if (siteJs.includes("window.elValuationSend")) {
+    ok("site.js exposes the elValuationSend bridge for the guided flow");
+  } else fail("site.js missing the elValuationSend bridge — the guided flow's send would be silently dead");
+}
+
 console.log(`\n${passes} checks passed, ${failures} failed.`);
 process.exit(failures ? 1 : 0);

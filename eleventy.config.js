@@ -23,6 +23,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/styles.css": "assets/styles.css" });
   eleventyConfig.addPassthroughCopy({ "src/assets/site.js": "assets/site.js" });
   eleventyConfig.addPassthroughCopy({ "src/assets/ask.js": "assets/ask.js" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/valuation-guided.js": "assets/valuation-guided.js" });
   eleventyConfig.addPassthroughCopy({ "src/assets/analytics.js": "assets/analytics.js" });
   eleventyConfig.addPassthroughCopy({ "src/assets/favicon.svg": "assets/favicon.svg" });
   eleventyConfig.addPassthroughCopy({ "src/assets/headshot-serge.jpg": "assets/headshot-serge.jpg" });
