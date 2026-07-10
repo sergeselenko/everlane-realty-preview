@@ -1,0 +1,27 @@
+{#- Embedded "Ask Lane" entry module (dark, reusable) — operator 2026-07-10:
+    "we want Lane accessible everywhere." Plain GET form → deep-links into /ask
+    (no network path here; the live chat lives on /ask). Same dark look as the
+    homepage + /valuation modules. Caller may set `askLead` (an HTML string) and
+    `askPlaceholder` before including; both fall back to sensible defaults.
+    COPY GUARD (kb-lint scans this): never claim to search/access/be the MLS. -#}
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <form class="home-ask" action="/ask/" method="get" role="search" aria-label="Ask Lane, Everlane's assistant">
+      <div class="home-ask__id">
+        <span class="home-ask__name">Lane</span><span class="home-ask__sub">&mdash; Everlane&rsquo;s assistant</span>
+      </div>
+      <p class="home-ask__lead">{{ (askLead or "Ask a plain-English question about buying or selling in St.&nbsp;Petersburg &mdash; grounded answers from Everlane&rsquo;s own knowledge base, with a real broker behind them.") | safe }}</p>
+      <div class="home-ask__row">
+        <label for="ask-lane-input" class="sr-only">Ask Lane a question</label>
+        <input id="ask-lane-input" name="q" type="text" maxlength="500" autocomplete="off" placeholder="{{ askPlaceholder or 'Ask about flood zones, a neighborhood, taxes, or the buying process…' }}">
+        <button type="submit" class="btn btn--primary">Ask</button>
+      </div>
+      <div class="home-ask__chips">
+        <span class="home-ask__try">Try</span>
+        <a class="chip" href="/ask/?q=What%20does%20flood%20zone%20AE%20mean%20for%20insurance%3F">Flood zone AE &amp; insurance</a>
+        <a class="chip" href="/ask/?q=Can%20I%20run%20an%20Airbnb%20in%20Gulfport%3F">Airbnb in Gulfport?</a>
+        <a class="chip" href="/ask/?q=How%20does%20the%20homestead%20exemption%20work%3F">Homestead exemption</a>
+      </div>
+    </form>
+  </div>
+</section>

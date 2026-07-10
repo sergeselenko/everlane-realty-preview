@@ -9,8 +9,8 @@ export default {
     { title: "Home value", url: "/valuation/" },
     { title: "Neighborhoods", url: "/neighborhoods/" },
     { title: "Guides", url: "/guides/" },
-    { title: "Ask Lane", url: "/ask/" },
-    { title: "About", url: "/about/" }
+    { title: "About", url: "/about/" },
+    { title: "Ask Lane", url: "/ask/", boxed: true }
   ],
   headerCta: { title: "Book a consult", url: "/contact/" },
   footerExplore: [

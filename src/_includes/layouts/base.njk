@@ -75,7 +75,8 @@
       <nav class="nav" data-nav aria-label="Main">
         {%- for item in nav.header %}
         {%- set isActive = (item.url == "/" and page.url == "/") or (item.url != "/" and item.url in page.url) %}
-        <a href="{{ item.url }}"{% if isActive %} class="is-active" aria-current="page"{% endif %}>{{ item.title }}</a>
+        {%- set navcls = ("nav__lane " if item.boxed else "") + ("is-active" if isActive else "") %}
+        <a href="{{ item.url }}"{% if navcls | trim %} class="{{ navcls | trim }}"{% endif %}{% if isActive %} aria-current="page"{% endif %}>{{ item.title }}</a>
         {%- endfor %}
         <a class="nav__cta" href="{{ nav.headerCta.url }}">{{ nav.headerCta.title }}</a>
       </nav>

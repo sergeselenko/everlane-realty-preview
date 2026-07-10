@@ -135,6 +135,15 @@ p { margin: 0 0 1em; }
   padding: 5px 13px;
 }
 .nav a.nav__cta:hover { background: var(--c-palm); color: var(--c-bg); }
+/* Ask Lane = its own slim box (operator 2026-07-10) — boxed like the CTA so it
+   reads as "something," sits just before Book a consult; filled when on /ask */
+.nav a.nav__lane {
+  color: var(--c-palm);
+  border: 1.5px solid var(--c-palm);
+  padding: 5px 13px;
+}
+.nav a.nav__lane:hover { background: var(--c-palm); color: var(--c-bg); }
+.nav a.nav__lane.is-active { background: var(--c-palm); color: var(--c-bg); border: 1.5px solid var(--c-palm); }
 .nav-toggle { display: none; background: none; border: 0; font-size: 1.5rem; color: var(--c-ink); cursor: pointer; }
 
 /* ==========================================================================
@@ -657,8 +666,9 @@ fieldset.form-preview-disabled { border: 0; margin: 0; padding: 0; opacity: .55;
   .nav a { padding: 12px 0; width: 100%; border-bottom: 1px solid var(--c-line); }
   /* in the mobile dropdown the CTA is a full-width row like the rest (its
      desktop outlined-box would look odd stacked) — reset it */
-  .nav a.nav__cta { border: 0; border-bottom: 1px solid var(--c-line); padding: 12px 0; }
+  .nav a.nav__cta, .nav a.nav__lane { border: 0; border-bottom: 1px solid var(--c-line); padding: 12px 0; background: none; color: var(--c-palm); }
   .nav a.is-active { border-bottom: 2px solid var(--c-pink); }
+  .nav a.nav__lane.is-active { border-bottom: 2px solid var(--c-pink); background: none; color: var(--c-palm); }
   .nav-toggle { display: block; }
   .radio-row label { flex: 1 1 100%; }
   .verify { max-width: none; }
