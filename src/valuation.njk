@@ -85,22 +85,53 @@ crumbs: []
         </form>
       </div>
 
-      <div>
+      <div class="val-context">
         <div class="stub-block">
           <strong>What you&rsquo;ll get</strong>
-          <ul style="margin:8px 0 0;padding-left:20px">
+          <ul style="margin:8px 0 0;padding-left:20px;line-height:1.6">
             <li>A <strong>human-backed CMA</strong> &mdash; my read on your home&rsquo;s current value from real comparable sales, not an automated point estimate.</li>
             <li>Usually back to you <strong>within a day</strong>, personally.</li>
             <li>No obligation, no pressure &mdash; curious counts.</li>
           </ul>
         </div>
         <div class="stub-block" style="margin-top:18px">
-          <strong>Coming here:</strong>
-          <ul style="margin:8px 0 0;padding-left:20px">
-            <li><span class="stub-note">Coming</span> A guided, AI-assisted valuation: a short conversation, then a broker-reviewed value range back to you within a day.</li>
-          </ul>
+          <strong>How it works</strong>
+          <ol style="margin:8px 0 0;padding-left:20px;line-height:1.6">
+            <li>Tell me about the home &mdash; the address and anything that matters (recent updates, beds/baths).</li>
+            <li>I pull the real comparable sales and read them the way an automated estimate can&rsquo;t.</li>
+            <li>You get a broker&rsquo;s market opinion &mdash; a clear range, and the why &mdash; usually within a day.</li>
+          </ol>
+        </div>
+        <div class="stub-block" style="margin-top:18px">
+          <strong>Why a person, not an algorithm</strong>
+          <p style="margin:8px 0 0">An instant online estimate never walked your street or saw your kitchen. A broker&rsquo;s CMA weighs the comparable sales, the condition, and what&rsquo;s actually moving in your neighborhood right now &mdash; the difference between a number and a real read.</p>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+{#- The assistant, embedded underneath (operator 2026-07-10): the dark Lane
+    entry module — for anyone who'd rather ask how a broker valuation works than
+    fill the form. Plain GET form → deep-links into /ask (no network path here). -#}
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <form class="home-ask" action="/ask/" method="get" role="search" aria-label="Ask Lane, Everlane's assistant">
+      <div class="home-ask__id">
+        <span class="home-ask__name">Lane</span><span class="home-ask__sub">&mdash; Everlane&rsquo;s assistant</span>
+      </div>
+      <p class="home-ask__lead">Not ready for the form? Ask Lane how a broker valuation actually works &mdash; grounded answers from Everlane&rsquo;s knowledge base, with a real broker behind them. A guided, AI-assisted valuation is coming here; for now the form above gets you a broker&rsquo;s CMA.</p>
+      <div class="home-ask__row">
+        <label for="val-ask-input" class="sr-only">Ask Lane a question</label>
+        <input id="val-ask-input" name="q" type="text" maxlength="500" autocomplete="off" placeholder="Ask about pricing, comps, flood zones, or the selling process…">
+        <button type="submit" class="btn btn--primary">Ask</button>
+      </div>
+      <div class="home-ask__chips">
+        <span class="home-ask__try">Try</span>
+        <a class="chip" href="/ask/?q=How%20is%20a%20broker%20CMA%20different%20from%20an%20online%20estimate%3F">CMA vs. online estimate</a>
+        <a class="chip" href="/ask/?q=Does%20the%20flood%20zone%20affect%20a%20home%E2%80%99s%20value%3F">Flood zone &amp; value</a>
+        <a class="chip" href="/ask/?q=How%20does%20selling%20a%20home%20in%20St.%20Pete%20work%3F">How selling works</a>
+      </div>
+    </form>
   </div>
 </section>
