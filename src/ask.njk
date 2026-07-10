@@ -60,26 +60,38 @@ jsonld: ["ask"]
     <p class="lede" style="margin-top:6px">The assistant goes live once it&rsquo;s deployed and cleared its guardrail review. Until then this is a preview of the interaction &mdash; the same honest &ldquo;coming soon&rdquo; state the rest of the site uses before a feature is wired.</p>
     {% endif %}
 
-    <div class="chat-preview" style="margin-top:18px;max-width:720px">
+    <div class="chat-panel" style="margin-top:20px">
       {% if not askLive %}<p class="form-disabled-note" role="note">Preview &mdash; assistant offline</p>{% endif %}
 
-      {#- Inert chat shell: a disabled fieldset, no JS, no network path. Mirrors
-          the contact/valuation form-preview-disabled pattern. It wires to the
-          `ask` edge function only at the wave-4 go-live gate (runbook). -#}
-      <div class="chat-shell" aria-hidden="false">
-        <div class="chat-log" role="log" aria-live="off">
-          <p class="chat-msg chat-msg--bot"><strong>Assistant:</strong> Ask me about flood zones, a neighborhood, taxes, short-term-rental rules, or how buying and selling works in St.&nbsp;Pete. I answer only from what Everlane has published and sourced &mdash; and I&rsquo;ll hand you to Serge for anything I can&rsquo;t.</p>
-          <p class="chat-msg chat-msg--sample"><em>Example questions:</em> &ldquo;What does flood zone AE mean for insurance?&rdquo; &middot; &ldquo;Can I run an Airbnb in Gulfport?&rdquo; &middot; &ldquo;How does homestead exemption work?&rdquo;</p>
+      {#- Chat surface. When askLive, /assets/ask.js wires the composer to the
+          `ask` edge function; when not, the fieldset renders disabled (the honest
+          coming-state) and no network path exists. COPY GUARD (kb-lint): never
+          claim to search/access/be the MLS — kb/guardrails/mls-claims.yaml. -#}
+      <div class="chat-log" role="log" aria-live="polite" aria-label="Conversation with Everlane&rsquo;s assistant">
+        <div class="chat-msg chat-msg--bot">
+          <span class="chat-who">Everlane Assistant</span>
+          <div class="chat-bubble">Ask me about flood zones, a neighborhood, taxes, short-term-rental rules, or how buying and selling works in St.&nbsp;Pete. I answer only from what Everlane has published and sourced &mdash; and I&rsquo;ll hand you to Serge for anything I can&rsquo;t.</div>
         </div>
-        <form class="chat-form" novalidate>
-          <fieldset{% if not askLive %} class="form-preview-disabled" disabled{% endif %}>
-            <label for="ask-input" class="sr-only">Your question</label>
-            <textarea id="ask-input" name="question" rows="2" placeholder="{% if askLive %}Ask about flood zones, a neighborhood, taxes, or short-term-rental rules…{% else %}Type your question — the assistant is offline in this preview.{% endif %}" maxlength="500"></textarea>
-            <button type="submit" class="btn btn--primary" data-submit>Ask</button>
-          </fieldset>
-        </form>
       </div>
-      <p class="fine" style="margin-top:10px">The assistant runs under a hard spending cap with a privacy-safe query log &mdash; no names, emails, phone numbers, or addresses recorded, and no chat transcripts kept. <a href="/ai/">How this site runs &rarr;</a></p>
+
+      <div class="chat-suggest" aria-label="Example questions">
+        <span class="chat-suggest__label">Try</span>
+        <button type="button" class="chip" data-q="What does flood zone AE mean for insurance?">Flood zone AE &amp; insurance</button>
+        <button type="button" class="chip" data-q="Can I run an Airbnb in Gulfport?">Airbnb in Gulfport?</button>
+        <button type="button" class="chip" data-q="How does the homestead exemption work?">Homestead exemption</button>
+      </div>
+
+      <form class="chat-form" novalidate>
+        <fieldset{% if not askLive %} class="form-preview-disabled" disabled{% endif %}>
+          <label for="ask-input" class="sr-only">Your question</label>
+          <div class="chat-composer">
+            <textarea id="ask-input" name="question" rows="1" placeholder="{% if askLive %}Ask a plain-English question…{% else %}The assistant is offline in this preview.{% endif %}" maxlength="500"></textarea>
+            <button type="submit" class="chat-send" data-submit>Ask</button>
+          </div>
+        </fieldset>
+      </form>
+
+      <p class="fine" style="margin-top:12px">The assistant runs under a hard spending cap with a privacy-safe query log &mdash; no names, emails, phone numbers, or addresses recorded, and no chat transcripts kept. <a href="/ai/">How this site runs &rarr;</a></p>
     </div>
   </div>
 {% if askLive %}<script>window.__ASK_BASE__ = "{{ '/' | url }}";</script><script src="/assets/ask.js" defer></script>{% endif %}
