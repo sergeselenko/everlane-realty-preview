@@ -842,3 +842,14 @@ fieldset.form-preview-disabled { border: 0; margin: 0; padding: 0; opacity: .55;
   color: var(--c-sub); font-style: italic; font-size: .95rem; text-align: center; padding: 20px;
 }
 .cal-embed > * { position: relative; z-index: 1; }
+
+/* /ask — ONE centered content column (design fine-tune 2026-07-10). Desktop
+   echoes the clean mobile single-column instead of sprawling left in the wide
+   wrap: the hero, the explainer, the "Try it" intro, and the chat panel all
+   share this ~760 axis (the panel's own width). Mobile is unchanged (the wrap
+   padding fills the viewport). Kills the left-hug/empty-right + the axis clash. */
+.wrap--narrow { max-width: 760px; }
+.wrap--narrow .lede { max-width: none; }
+.wrap--narrow .grid--2 { gap: 34px; }
+.wrap--narrow .chat-panel,
+.wrap--narrow .chat-fine { max-width: none; margin-left: 0; margin-right: 0; }
