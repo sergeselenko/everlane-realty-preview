@@ -15,7 +15,7 @@ jsonld: ["ask"]
 
 <section class="page-hero">
   <div class="wrap">
-    <p class="eyebrow">Grounded answers, a human behind them</p>
+    <p class="eyebrow">Grounded answers, real sources</p>
     <h1>Ask Lane</h1>
     <p class="lede lede--wide">Lane is Everlane&rsquo;s assistant. Ask a plain-English question about buying or selling in St.&nbsp;Petersburg &mdash; flood zones and insurance, a neighborhood, property taxes, where short-term rentals are actually allowed, or how the process really works &mdash; and get a grounded answer from Everlane&rsquo;s own sourced knowledge base, checked for accuracy and fair housing on every reply, with a real broker behind anything Lane can&rsquo;t answer.</p>
   </div>
@@ -25,12 +25,7 @@ jsonld: ["ask"]
   <div class="wrap">
     <div class="chat-panel">
       <div class="chat-panel__id">
-        <span class="chat-panel__mark" aria-hidden="true">E</span>
-        <span class="chat-panel__idtext">
-          <span class="chat-panel__name">Lane</span>
-          <span class="chat-panel__tag">Everlane&rsquo;s assistant &middot; a human behind them</span>
-        </span>
-        <span class="chat-panel__status">{% if askLive %}<span class="chat-panel__dot" aria-hidden="true"></span>Ready{% else %}Offline{% endif %}</span>
+        <span class="chat-panel__name">Lane</span><span class="chat-panel__sub">&mdash; Everlane&rsquo;s assistant</span>
       </div>
       <div class="chat-body">
         {% if not askLive %}<p class="form-disabled-note" role="note">Preview &mdash; Lane is offline</p>{% endif %}
@@ -71,31 +66,39 @@ jsonld: ["ask"]
 
 <section class="section">
   <div class="wrap">
-    {#- full-width stacked bands (operator 2026-07-10: not left/right) -#}
-    <h2 style="font-size:1.3rem">What Lane can help with</h2>
-    <ul style="margin:8px 0 26px;padding-left:20px;line-height:1.7">
-      <li><strong>Flood zones &amp; insurance</strong> &mdash; what a zone means for a home, what changed after the 2024 storms, how coverage is priced.</li>
-      <li><strong>Neighborhoods</strong> &mdash; the features, the flood story, and the housing stock of the areas we cover, chapter by chapter.</li>
-      <li><strong>Property taxes</strong> &mdash; homestead, Save Our Homes, portability, and how the numbers actually work here.</li>
-      <li><strong>Short-term rentals</strong> &mdash; where in Pinellas an Airbnb is actually permitted, municipality by municipality, with dates.</li>
-      <li><strong>The process</strong> &mdash; buying steps and costs, and how a broker-prepared valuation differs from an instant online number.</li>
-    </ul>
-    <div class="stub-block">
-      <strong>The honest posture</strong>
-      <ul style="margin:8px 0 0;padding-left:20px;line-height:1.7">
-        <li><strong>Grounded, not guessing.</strong> Lane draws on Everlane&rsquo;s published, sourced knowledge base &mdash; every fact dated &mdash; and is built to say &ldquo;I don&rsquo;t know&rdquo; and hand you to Serge rather than fill a gap.</li>
-        <li><strong>It describes the place, never who &ldquo;belongs&rdquo; there.</strong> A fair-housing line Lane is built to and checked against &mdash; automatically, on every answer.</li>
-        <li><strong>Not a listing search.</strong> For homes on the market it sends you to the <a href="/search/">search page</a>; live listing results arrive with the data feed. It never fabricates a listing.</li>
-        <li><strong>Human-backed.</strong> It doesn&rsquo;t collect your details here and it never closes a deal &mdash; anything transactional goes to a free consult with the broker.</li>
-      </ul>
+    {#- one unified panel, two labeled parts (operator 2026-07-10: sharper, with
+        flow — not chopped-up boxes; stacked, full-width) -#}
+    <div class="lane-facts">
+      <div class="lane-facts__part">
+        <span class="eyebrow">What Lane helps with</span>
+        <ul class="lane-list">
+          <li><strong>Flood zones &amp; insurance</strong> &mdash; what a zone means for a home, what changed after the 2024 storms, how coverage is priced.</li>
+          <li><strong>Neighborhoods</strong> &mdash; the features, the flood story, and the housing stock of the areas we cover, chapter by chapter.</li>
+          <li><strong>Property taxes</strong> &mdash; homestead, Save Our Homes, portability, and how the numbers actually work here.</li>
+          <li><strong>Short-term rentals</strong> &mdash; where in Pinellas an Airbnb is actually permitted, municipality by municipality, with dates.</li>
+          <li><strong>The process</strong> &mdash; buying steps and costs, and how a broker-prepared valuation differs from an instant online number.</li>
+        </ul>
+      </div>
+      <div class="lane-facts__part">
+        <span class="eyebrow">How Lane stays honest</span>
+        <ul class="lane-list">
+          <li><strong>Grounded, not guessing.</strong> Lane draws on Everlane&rsquo;s published, sourced knowledge base &mdash; every fact dated &mdash; and is built to say &ldquo;I don&rsquo;t know&rdquo; and hand you to Serge rather than fill a gap.</li>
+          <li><strong>It describes the place, never who &ldquo;belongs&rdquo; there.</strong> A fair-housing line Lane is built to and checked against &mdash; automatically, on every answer.</li>
+          <li><strong>Not a listing search.</strong> For homes on the market it sends you to the <a href="/search/">search page</a>; live listing results arrive with the data feed. It never fabricates a listing.</li>
+          <li><strong>Human-backed.</strong> It doesn&rsquo;t collect your details here and it never closes a deal &mdash; anything transactional goes to a free consult with the broker.</li>
+        </ul>
+      </div>
     </div>
-  </div>
-</section>
 
-<section class="section" style="padding-top:0">
-  <div class="wrap">
-    <div class="card">
-      <p style="margin:0">Prefer a person right now? That&rsquo;s the right instinct for anything about your own move. <a href="/contact/">Book a free consult with Serge &rarr;</a> &middot; Or dig into the <a href="/guides/">buyer &amp; seller guides &rarr;</a>.</p>
+    <div class="lane-cta">
+      <div class="lane-cta__text">
+        <strong>Prefer a person right now?</strong>
+        <p>That&rsquo;s the right instinct for anything about your own move.</p>
+      </div>
+      <div class="lane-cta__actions">
+        <a class="btn btn--primary" href="/contact/">Book a free consult</a>
+        <a class="quiet" href="/guides/">Or dig into the guides &rarr;</a>
+      </div>
     </div>
   </div>
 </section>

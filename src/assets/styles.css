@@ -177,7 +177,7 @@ p { margin: 0 0 1em; }
   margin-top: 30px;
   border: 1px solid var(--c-line);
   background: var(--c-paper);
-  max-width: 520px;
+  max-width: 560px;
 }
 .verify__photo {
   background: linear-gradient(165deg, #E4DFD2, #D3CBB8);
@@ -192,18 +192,18 @@ p { margin: 0 0 1em; }
 .verify__info { padding: 12px 16px 11px; align-self: center; }
 .verify__name {
   font-family: var(--font-display);
-  font-weight: 700; font-size: 1rem;
+  font-weight: 700; font-size: 1.2rem;
   text-transform: uppercase; letter-spacing: .03em;
 }
 /* stacked credential lines — hero byline + proof block
    (operator 2026-07-10: plain lines, NOT button-chips) */
 .creds { list-style: none; margin: 6px 0 0; padding: 0; font-size: .82rem; color: var(--c-sub); line-height: 1.6; }
-.verify .creds { margin-top: 5px; font-size: .74rem; line-height: 1.5; }
+.verify .creds { margin-top: 8px; font-size: .92rem; line-height: 1.6; }
 .proof .creds { margin: 8px 0 20px; }
 .verify__more { margin: 8px 0 0; }
 .verify__more a {
   font-family: var(--font-display);
-  font-size: .7rem; letter-spacing: .12em;
+  font-size: .78rem; letter-spacing: .12em;
   text-transform: uppercase; font-weight: 700; color: var(--c-palm);
   text-decoration: none; border-bottom: 2px solid var(--c-pink); padding-bottom: 1px;
   white-space: nowrap;
@@ -329,7 +329,19 @@ p { margin: 0 0 1em; }
    NEIGHBORHOOD STORIES (locked grammar §2 row 7)
    ========================================================================== */
 .stories { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
-.story { padding: 24px 26px 28px; border: 1px solid var(--c-line); background: var(--c-paper); }
+.story { padding: 0; border: 1px solid var(--c-line); background: var(--c-paper); overflow: hidden; }
+.story__plate {
+  height: 150px; position: relative; border-bottom: 1px solid var(--c-line);
+  background:
+    radial-gradient(120% 90% at 20% 15%, #E9C9CB 0%, transparent 55%),
+    radial-gradient(130% 100% at 85% 80%, #B7C9B4 0%, transparent 60%),
+    linear-gradient(160deg, var(--c-paper), #E4DFD2);
+}
+.story__plate .plate-note {
+  position: absolute; bottom: 8px; right: 12px; margin: 0;
+  font-size: .66rem; font-style: italic; color: var(--c-ink); opacity: .75;
+}
+.story__body { padding: 20px 24px 24px; }
 .story .n {
   font-family: var(--font-display);
   font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
@@ -383,7 +395,7 @@ p { margin: 0 0 1em; }
 /* ==========================================================================
    PROOF BLOCK (locked grammar §2 row 9 — the deep verify layer)
    ========================================================================== */
-.proof { display: grid; grid-template-columns: 280px 1fr; gap: 34px; align-items: stretch; }
+.proof { display: grid; grid-template-columns: 200px 1fr; gap: 30px; align-items: start; }
 @media (max-width: 760px) { .proof { grid-template-columns: 1fr; } }
 .proof__photo {
   aspect-ratio: 3 / 4; /* stacked/mobile fallback */
@@ -392,7 +404,7 @@ p { margin: 0 0 1em; }
 }
 /* desktop: the photo tracks the text column's height — same size as its
    neighbor, growing with future testimonials (operator feedback 7/7) */
-@media (min-width: 761px) { .proof__photo { aspect-ratio: auto; height: 100%; min-height: 300px; } }
+@media (min-width: 761px) { .proof__photo { aspect-ratio: 3 / 4; } }
 .proof__photo small {
   position: absolute; bottom: 12px; left: 14px; right: 14px;
   font-size: .72rem; font-style: italic; color: var(--c-ink);
@@ -403,7 +415,7 @@ p { margin: 0 0 1em; }
   font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
   color: var(--c-sub); margin: 8px 0 14px; font-weight: 600;
 }
-.proof .bio { max-width: 60ch; color: var(--c-sub); font-size: .95rem; margin-bottom: 16px; }
+.proof .bio { max-width: none; color: var(--c-sub); font-size: .95rem; margin-bottom: 16px; }
 .chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
 .chip {
   font-family: var(--font-display);
@@ -708,16 +720,17 @@ fieldset.form-preview-disabled { border: 0; margin: 0; padding: 0; opacity: .55;
   max-width: none; margin: 22px 0 0;
 }
 .chat-panel__id {
-  display: flex; align-items: center; gap: 11px;
-  padding: 15px 20px; border-bottom: 1px solid rgba(250,250,246,.15); background: transparent;
+  display: flex; align-items: baseline; gap: 9px;
+  padding: 16px 22px; border-bottom: 1px solid rgba(250,250,246,.15); background: transparent;
 }
+.chat-panel__sub { font-size: .92rem; color: var(--c-dark-sub); font-style: italic; }
 .chat-panel__mark {
   flex: none; width: 34px; height: 34px; background: var(--c-bg); color: var(--c-ink);
   font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
   display: flex; align-items: center; justify-content: center;
 }
 .chat-panel__idtext { display: flex; flex-direction: column; line-height: 1.25; }
-.chat-panel__name { font-family: var(--font-display); font-weight: 700; letter-spacing: .02em; color: var(--c-bg); font-size: .95rem; }
+.chat-panel__name { font-family: var(--font-display); font-weight: 700; letter-spacing: .04em; color: var(--c-bg); font-size: 1.1rem; text-transform: uppercase; }
 .chat-panel__tag { font-size: .78rem; color: var(--c-dark-sub); }
 .chat-panel__status {
   margin-left: auto; display: inline-flex; align-items: center; gap: 6px;
@@ -875,4 +888,23 @@ fieldset.form-preview-disabled { border: 0; margin: 0; padding: 0; opacity: .55;
    column read as "too narrow, different from the other pages"). /ask now uses the
    standard wrap like every page; the dark chat panel fills it. The intro lede is
    stretched wide (below) so it takes fewer lines. */
-.lede--wide { max-width: 92ch; }
+.lede--wide { max-width: none; }
+
+/* /ask below-chat — one unified, flowing panel + a real CTA band
+   (operator 2026-07-10: "sharper, cleaner, a flow — not chopped up") */
+.lane-facts { border: 1px solid var(--c-line); background: var(--c-paper); margin-top: 4px; }
+.lane-facts__part { padding: 24px 28px; }
+.lane-facts__part + .lane-facts__part { border-top: 1px solid var(--c-line); }
+.lane-facts .eyebrow { display: block; margin-bottom: 12px; }
+.lane-list { margin: 0; padding-left: 20px; line-height: 1.7; }
+.lane-list li { margin-bottom: 8px; }
+.lane-list li:last-child { margin-bottom: 0; }
+.lane-list li::marker { color: var(--c-palm); }
+.lane-cta {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px 30px; flex-wrap: wrap;
+  border: 1px solid var(--c-line); border-left: 3px solid var(--c-palm); background: var(--c-paper);
+  padding: 22px 26px; margin-top: 24px;
+}
+.lane-cta__text strong { font-family: var(--font-display); font-size: 1.15rem; text-transform: uppercase; letter-spacing: .02em; display: block; }
+.lane-cta__text p { margin: 5px 0 0; color: var(--c-sub); }
+.lane-cta__actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
