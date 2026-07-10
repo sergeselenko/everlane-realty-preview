@@ -740,9 +740,15 @@ fieldset.form-preview-disabled { border: 0; margin: 0; padding: 0; opacity: .55;
 .chip {
   cursor: pointer; border: 1px solid var(--c-line); background: var(--c-paper); color: var(--c-ink);
   border-radius: 999px; padding: 7px 14px; font-family: var(--font); font-size: .84rem; line-height: 1;
+  text-transform: none; letter-spacing: 0;
   transition: border-color .15s ease, background .15s ease;
 }
 .chip:hover { border-color: var(--c-palm); background: var(--c-bg); }
+/* screen-reader-only utility (was undefined — a visible <label class="sr-only"> leaked on the forms) */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
 .chip:disabled { opacity: .5; cursor: default; }
 /* composer */
 .chat-form { margin: 14px 0 0; }
