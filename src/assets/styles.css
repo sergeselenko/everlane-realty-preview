@@ -504,6 +504,7 @@ blockquote footer {
 .prose { max-width: 66ch; }
 .prose p { font-size: 1rem; margin-bottom: 14px; }
 .prose h3 { font-size: 1.25rem; margin: 22px 0 10px; }
+.prose--wide { max-width: none; } /* operator 2026-07-10: About paragraphs use the full width */
 .draftnote { font-size: .78rem; color: var(--c-sub); font-style: italic; margin-top: 14px; }
 
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: stretch; }
@@ -559,6 +560,11 @@ blockquote footer {
 
 /* ---- forms (contact intake — preserved, disabled in preview) ---- */
 .form-wrap { max-width: 680px; margin: 0 auto; }
+/* contact — two side-by-side options above the fold (operator 2026-07-10):
+   send a message (form) · book a time (Cal.com). Stacks on mobile. */
+.contact-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-top: 26px; }
+.contact-cols__panel > .eyebrow { display: block; margin-bottom: 12px; }
+@media (max-width: 820px) { .contact-cols { grid-template-columns: 1fr; gap: 34px; } }
 .field { margin-bottom: 22px; }
 .field label { display: block; font-weight: 600; color: var(--c-ink); margin-bottom: 7px; }
 .field .hint { font-weight: 400; color: var(--c-sub); font-size: .9rem; }
