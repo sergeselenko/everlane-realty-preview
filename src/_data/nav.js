@@ -4,6 +4,7 @@
  *  /market/ stays reachable via the footer (and the data band's context at wave 2). */
 export default {
   header: [
+    { title: "Home", url: "/" },
     { title: "Search homes", url: "/search/" },
     { title: "Home value", url: "/valuation/" },
     { title: "Neighborhoods", url: "/neighborhoods/" },
