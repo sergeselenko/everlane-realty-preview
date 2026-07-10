@@ -19,7 +19,7 @@ crumbs: []
 <section class="section" style="padding-top:10px">
   <div class="wrap">
     <div class="prose prose--kb">
-      <p class="draftnote">Effective date: <span class="stub-note">[OPERATOR/LEGAL: effective date on launch]</span></p>
+      <p class="draftnote">Effective date: {{ site.legalEffectiveDate or "on publication of this site" }}</p>
 
       <p>Everlane Realty respects the intellectual-property rights of others and responds to notices of alleged copyright infringement under the Digital Millennium Copyright Act (DMCA), 17 U.S.C. &sect;512. If you believe material on this site infringes a copyright you own or control, you can send a written notice to our designated agent using the information below.</p>
 
@@ -31,7 +31,6 @@ crumbs: []
         {{ site.broker.street }}, {{ site.broker.city }}, {{ site.broker.state }} {{ site.broker.zip }}<br>
         <a href="mailto:{{ site.broker.email }}">{{ site.broker.email }}</a> &middot; <a href="tel:{{ site.broker.phoneHref }}">{{ site.broker.phone }}</a>
       </p>
-      <p><span class="stub-note">[OPERATOR/LEGAL: register this designated agent with the U.S. Copyright Office DMCA Designated Agent Directory (dmca.copyright.gov) to secure full §512 safe-harbor protection &mdash; a formal step beyond publishing this page. Renewal is required every three years.]</span></p>
 
       <h2 style="margin-top:36px">How to file a takedown notice</h2>
       <p>To be effective under §512, a written notice of claimed infringement should include all of the following:</p>
@@ -63,7 +62,6 @@ crumbs: []
         <p>The Digital Millennium Copyright Act of 1998, 17 U.S.C. &sect; 512 (the &ldquo;DMCA&rdquo;) provides recourse for copyright owners who believe that material appearing on the Internet infringes their rights under U.S. copyright law. If you believe in good faith that any content or material made available in connection with our website or services infringes your copyright, you (or your agent) may send us a notice requesting that the content or material be removed, or access to it blocked. Notices must be sent in writing by email to: <a href="mailto:{{ site.broker.email }}">{{ site.broker.email }}</a>.</p>
         <p>&ldquo;The DMCA requires that your notice of alleged copyright infringement include the following information: (1) description of the copyrighted work that is the subject of claimed infringement; (2) description of the alleged infringing content and information sufficient to permit us to locate the content; (3) contact information for you, including your address, telephone number and email address; (4) a statement by you that you have a good faith belief that the content in the manner complained of is not authorized by the copyright owner, or its agent, or by the operation of any law; (5) a statement by you, signed under penalty of perjury, that the information in the notification is accurate and that you have the authority to enforce the copyrights that are claimed to be infringed; and (6) a physical or electronic signature of the copyright owner or a person authorized to act on the copyright owner&rsquo;s behalf. Failure to include all of the above information may result in the delay of the processing of your complaint.&rdquo;</p>
       </blockquote>
-      <p class="draftnote"><span class="stub-note">[OPERATOR/LEGAL: the two paragraphs above are reproduced verbatim from the MLS GRID IDX Rules updated July 15, 2026 (on file); confirm they match your current MLS GRID version at legal review. The designated-agent email shown is your working address &mdash; set up a copyright@everlanerealty.com alias if you prefer a dedicated inbox.]</span></p>
       <p><strong>Operations duty:</strong> any DMCA notice we receive concerning MLS listing content must be forwarded to <a href="mailto:DMCAnotice@MLSGrid.com">DMCAnotice@MLSGrid.com</a> within 24 hours of receipt (per Rule 30) &mdash; tracked in the feed operations runbook.</p>
     </div>
   </div>

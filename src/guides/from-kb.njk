@@ -36,7 +36,7 @@ eleventyComputed:
     Published {{ g.published | longDate }} &middot; Last verified {{ g.last_verified | longDate }}
     &middot; facts re-checked {{ g.review }}</p>
   </div>
-  <div class="hero-ed__plate" role="img" aria-label="Photo placeholder — {{ g.plate_note }}">
+  <div class="hero-ed__plate" role="img" aria-label="{{ g.plate_note }}">
     <p class="plate-note">{{ g.plate_note }}</p>
   </div>
 </div>

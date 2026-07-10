@@ -42,7 +42,7 @@ eleventyComputed:
     <p class="byline">By <strong>{{ n.author }}</strong>, Broker &middot; Updated {{ n.last_verified | longDate }} &middot;
     Stats refresh daily, narrative reviewed by the broker</p>
   </div>
-  <div class="hero-ed__plate" role="img" aria-label="Photo placeholder — {{ n.plate_note }}">
+  <div class="hero-ed__plate" role="img" aria-label="{{ n.plate_note }}">
     <p class="plate-note">{{ n.plate_note }}</p>
   </div>
 </div>

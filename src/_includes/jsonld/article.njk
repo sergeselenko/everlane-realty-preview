@@ -18,7 +18,7 @@
     "@type": "RealEstateAgent",
     "name": "Everlane Realty",
     "url": "{{ site.url }}/"
-  },
-  "datePublished": "{{ datePublished or 'TODO(KB pipeline publish date)' }}",
-  "dateModified": "{{ dateModified or 'TODO(KB pipeline last-verified date)' }}"
+  }{% if datePublished %},
+  "datePublished": "{{ datePublished }}",
+  "dateModified": "{{ dateModified or datePublished }}"{% endif %}
 }

@@ -6,6 +6,9 @@
 export default {
   name: "Everlane Realty",
   preview: true,
+  // Legal effective date — set to the launch date at cutover (part of the cutover runbook).
+  // Blank on preview → the legal pages read "on publication of this site" instead of a bracket stub.
+  legalEffectiveDate: "",
   url: (process.env.SITE_URL || "https://sergeselenko.github.io/everlane-realty-preview").replace(/\/$/, ""),
   description:
     "Search every home for sale in St. Petersburg & Tampa Bay, get new-listing alerts the moment they hit, and find out what your home is worth — with Serge Osaulenko at Everlane Realty.",
