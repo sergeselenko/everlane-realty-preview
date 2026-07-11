@@ -175,6 +175,16 @@ p { margin: 0 0 1em; }
   font-size: .72rem; color: var(--c-ink); font-style: italic; margin: 0;
 }
 
+/* Scene illustrations (wave-4 image engine, 2026-07-11): when a real image
+   exists the plate becomes its frame — the gradient placeholder is replaced,
+   the image fills the plate (already position:relative + a set height). */
+.hero-ed__plate--img,
+.story__plate--img { background: none; padding: 0; overflow: hidden; }
+.hero-ed__plate--img img,
+.story__plate--img img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+
 /* THE VERIFY BYLINE — rebuilt per the r2 design amendment: ONE bordered
    strip, split 25% / 75% (inside the specified 20–30% range) — the photo
    fills its cell edge-to-edge (no chip floating in whitespace), the info

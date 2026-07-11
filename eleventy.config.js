@@ -28,6 +28,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/favicon.svg": "assets/favicon.svg" });
   eleventyConfig.addPassthroughCopy({ "src/assets/headshot-serge.jpg": "assets/headshot-serge.jpg" });
   eleventyConfig.addPassthroughCopy({ "src/assets/og-card.jpg": "assets/og-card.jpg" });
+  // Neighborhood/guide/home scene illustrations (wave-4 image engine, 2026-07-11):
+  // vintage-postcard-style art generated to the operator's 1934-postcard anchor.
+  // src/_data/images.js maps them by slug; templates render <img> when present,
+  // else the honest placeholder plate stays.
+  eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
 
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
   // Human-readable date for visible bylines/stamps (E-E-A-T: visible last-updated).

@@ -52,9 +52,15 @@ jsonld: ["real-estate-agent"]
       </div>
     </div>
   </div>
+  {%- if images.home %}
+  <div class="hero-ed__plate hero-ed__plate--img">
+    <img src="{{ images.home }}" alt="St. Petersburg waterfront at golden hour — vintage-postcard-style illustration" loading="eager" fetchpriority="high" decoding="async" width="1600" height="1067">
+  </div>
+  {%- else %}
   <div class="hero-ed__plate" role="img" aria-label="Photo placeholder — Old Northeast at dusk">
     <p class="plate-note">photo placeholder &mdash; Old Northeast, 6:48&nbsp;pm</p>
   </div>
+  {%- endif %}
 </div>
 
 <section class="section" data-sec="doors">
@@ -158,7 +164,9 @@ jsonld: ["real-estate-agent"]
     </div>
     <div class="stories">
       <div class="story">
-        <div class="story__plate" role="img" aria-label="Photo placeholder — Old Northeast"><span class="plate-note">photo placeholder</span></div>
+        {%- if images.neighborhoods["old-northeast"] %}
+        <div class="story__plate story__plate--img"><img src="{{ images.neighborhoods['old-northeast'] }}" alt="Old Northeast, St. Petersburg — vintage-postcard-style illustration" loading="lazy" decoding="async" width="1600" height="1067"></div>
+        {%- else %}<div class="story__plate" role="img" aria-label="Photo placeholder — Old Northeast"><span class="plate-note">photo placeholder</span></div>{% endif %}
         <div class="story__body">
           <p class="n">Neighborhood 01</p>
           <h3>Old Northeast</h3>
@@ -169,7 +177,9 @@ jsonld: ["real-estate-agent"]
         </div>
       </div>
       <div class="story">
-        <div class="story__plate" role="img" aria-label="Photo placeholder — Snell Isle"><span class="plate-note">photo placeholder</span></div>
+        {%- if images.neighborhoods["snell-isle"] %}
+        <div class="story__plate story__plate--img"><img src="{{ images.neighborhoods['snell-isle'] }}" alt="Snell Isle, St. Petersburg — vintage-postcard-style illustration" loading="lazy" decoding="async" width="1600" height="1067"></div>
+        {%- else %}<div class="story__plate" role="img" aria-label="Photo placeholder — Snell Isle"><span class="plate-note">photo placeholder</span></div>{% endif %}
         <div class="story__body">
           <p class="n">Neighborhood 02</p>
           <h3>Snell Isle</h3>
@@ -180,7 +190,9 @@ jsonld: ["real-estate-agent"]
         </div>
       </div>
       <div class="story">
-        <div class="story__plate" role="img" aria-label="Photo placeholder — Shore Acres"><span class="plate-note">photo placeholder</span></div>
+        {%- if images.neighborhoods["shore-acres"] %}
+        <div class="story__plate story__plate--img"><img src="{{ images.neighborhoods['shore-acres'] }}" alt="Shore Acres, St. Petersburg — vintage-postcard-style illustration" loading="lazy" decoding="async" width="1600" height="1067"></div>
+        {%- else %}<div class="story__plate" role="img" aria-label="Photo placeholder — Shore Acres"><span class="plate-note">photo placeholder</span></div>{% endif %}
         <div class="story__body">
           <p class="n">Neighborhood 03</p>
           <h3>Shore Acres</h3>

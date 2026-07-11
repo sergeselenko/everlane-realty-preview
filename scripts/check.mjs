@@ -581,5 +581,35 @@ for (const r of required) {
   } else fail("site.js missing the elValuationSend bridge — the guided flow's send would be silently dead");
 }
 
+/* ---- 17 · WAVE 4: scene illustrations wired (image engine, 2026-07-11) ----
+   Every hero surface (home + each neighborhood + each guide that HAS an image in
+   src/_data/images.js) must render the real <img> variant, point at the mapped
+   asset, and label it an ILLUSTRATION — not a photo (trust discipline on an RE
+   site). File existence for every img src is already covered by check 7. */
+{
+  const imagesData = (await import("../src/_data/images.js")).default;
+  // Expected hero set derived INDEPENDENTLY from the KB — NOT from images.js — so a
+  // vanished image (deleted file / broken passthrough) fails LOUD instead of silently
+  // dropping from both the templates AND this check (gap-finder F2). The KB is the
+  // source of which pages must exist; images.js is the thing under test.
+  const kb = (await import("../src/_data/kb.js")).default;
+  const expected = [["index.html", "home", imagesData.home]];
+  for (const n of kb.neighborhoodsLive) expected.push([`neighborhoods/${n.slug}/index.html`, n.slug, imagesData.neighborhoods[n.slug]]);
+  for (const g of kb.guidesLive) expected.push([`guides/${g.slug}/index.html`, g.slug, imagesData.guides[g.slug]]);
+  let bad = 0;
+  for (const [page, slug, imgPath] of expected) {
+    if (!imgPath) { fail(`no scene image mapped for expected hero "${slug}" — the image file is missing from src/assets/img/`); bad++; continue; }
+    const f = path.join(SITE, page);
+    if (!fs.existsSync(f)) { fail(`hero page not built: ${page}`); bad++; continue; }
+    const html = fs.readFileSync(f, "utf8");
+    if (!html.includes("hero-ed__plate--img") || !html.includes(`src="${imgPath}"`)) {
+      fail(`scene hero not wired on ${page} (expected img ${imgPath})`); bad++;
+    } else if (!html.includes("vintage-postcard-style illustration")) {
+      fail(`hero image on ${page} not labeled an illustration (alt honesty)`); bad++;
+    }
+  }
+  if (!bad) ok(`scene illustration wired on all ${expected.length} KB-expected hero surfaces (home + ${kb.neighborhoodsLive.length} neighborhoods + ${kb.guidesLive.length} guides), each labeled an illustration`);
+}
+
 console.log(`\n${passes} checks passed, ${failures} failed.`);
 process.exit(failures ? 1 : 0);

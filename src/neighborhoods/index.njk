@@ -24,7 +24,9 @@ crumbs: []
     <div class="grid grid--2">
       {%- for n in kb.neighborhoodsLive %}
       <div class="card card--photo">
-        <div class="story__plate" role="img" aria-label="Photo placeholder — {{ n.title }}"><span class="plate-note">photo placeholder &mdash; {{ n.title }}</span></div>
+        {%- if images.neighborhoods[n.slug] %}
+        <div class="story__plate story__plate--img"><img src="{{ images.neighborhoods[n.slug] }}" alt="{{ n.title }}, St. Petersburg — vintage-postcard-style illustration" loading="lazy" decoding="async" width="1600" height="1067"></div>
+        {%- else %}<div class="story__plate" role="img" aria-label="Photo placeholder — {{ n.title }}"><span class="plate-note">photo placeholder &mdash; {{ n.title }}</span></div>{% endif %}
         <div class="card__body">
           <p class="g-eyebrow" style="margin:0 0 6px">Chapter {% if n.chapter < 10 %}0{% endif %}{{ n.chapter }}</p>
           <h2 style="font-size:1.2rem"><a href="/neighborhoods/{{ n.slug }}/">{{ n.title }}</a></h2>
