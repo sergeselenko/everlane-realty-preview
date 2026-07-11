@@ -597,18 +597,35 @@ for (const r of required) {
   for (const n of kb.neighborhoodsLive) expected.push([`neighborhoods/${n.slug}/index.html`, n.slug, imagesData.neighborhoods[n.slug]]);
   for (const g of kb.guidesLive) expected.push([`guides/${g.slug}/index.html`, g.slug, imagesData.guides[g.slug]]);
   let bad = 0;
-  for (const [page, slug, imgPath] of expected) {
-    if (!imgPath) { fail(`no scene image mapped for expected hero "${slug}" — the image file is missing from src/assets/img/`); bad++; continue; }
+  for (const [page, slug, imgObj] of expected) {
+    if (!imgObj) { fail(`no scene image mapped for expected hero "${slug}" — the image file is missing from src/assets/img/`); bad++; continue; }
     const f = path.join(SITE, page);
     if (!fs.existsSync(f)) { fail(`hero page not built: ${page}`); bad++; continue; }
     const html = fs.readFileSync(f, "utf8");
-    if (!html.includes("hero-ed__plate--img") || !html.includes(`src="${imgPath}"`)) {
-      fail(`scene hero not wired on ${page} (expected img ${imgPath})`); bad++;
+    if (!html.includes("hero-ed__plate--img") || !html.includes(`src="${imgObj.src}"`)) {
+      fail(`scene hero not wired on ${page} (expected img ${imgObj.src})`); bad++;
     } else if (!html.includes("vintage-postcard-style illustration")) {
       fail(`hero image on ${page} not labeled an illustration (alt honesty)`); bad++;
     }
   }
   if (!bad) ok(`scene illustration wired on all ${expected.length} KB-expected hero surfaces (home + ${kb.neighborhoodsLive.length} neighborhoods + ${kb.guidesLive.length} guides), each labeled an illustration`);
+
+  // Responsive images: every srcset candidate URL must resolve to a built file
+  // (check 7 validates src/href only, NOT srcset — a missing derivative would 404).
+  let ssChecked = 0, ssBroken = 0;
+  for (const f of htmlFiles) {
+    for (const m of fs.readFileSync(f, "utf8").matchAll(/srcset="([^"]+)"/g)) {
+      for (const cand of m[1].split(",")) {
+        const url = cand.trim().split(/\s+/)[0];
+        if (!url || /^(https?:|data:)/.test(url)) continue;
+        ssChecked++;
+        const target = url.startsWith("/") ? path.join(SITE, url) : path.resolve(path.dirname(f), url);
+        if (!fs.existsSync(target)) { fail(`broken srcset URL in ${rel(f)}: ${url}`); ssBroken++; }
+      }
+    }
+  }
+  if (!ssChecked) fail("no srcset URLs in built HTML — responsive images not wired");
+  else if (!ssBroken) ok(`all ${ssChecked} srcset candidate URLs resolve to built files (responsive images)`);
 }
 
 console.log(`\n${passes} checks passed, ${failures} failed.`);

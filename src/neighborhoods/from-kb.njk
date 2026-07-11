@@ -42,9 +42,10 @@ eleventyComputed:
     <p class="byline">By <strong>{{ n.author }}</strong>, Broker &middot; Updated {{ n.last_verified | longDate }} &middot;
     Stats refresh daily, narrative reviewed by the broker</p>
   </div>
-  {%- if images.neighborhoods[n.slug] %}
+  {%- set nImg = images.neighborhoods[n.slug] %}
+  {%- if nImg %}
   <div class="hero-ed__plate hero-ed__plate--img">
-    <img src="{{ images.neighborhoods[n.slug] }}" alt="{{ n.title }}, St. Petersburg — vintage-postcard-style illustration" loading="eager" fetchpriority="high" decoding="async" width="1600" height="1067">
+    <img src="{{ nImg.src }}" srcset="{{ nImg.srcset }}" sizes="(min-width: 900px) 50vw, 100vw" alt="{{ n.title }}, St. Petersburg — vintage-postcard-style illustration" loading="eager" fetchpriority="high" decoding="async" width="1600" height="1067">
   </div>
   {%- else %}
   <div class="hero-ed__plate" role="img" aria-label="{{ n.plate_note }}">

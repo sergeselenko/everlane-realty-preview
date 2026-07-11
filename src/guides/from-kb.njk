@@ -36,9 +36,10 @@ eleventyComputed:
     Published {{ g.published | longDate }} &middot; Last verified {{ g.last_verified | longDate }}
     &middot; facts re-checked {{ g.review }}</p>
   </div>
-  {%- if images.guides[g.slug] %}
+  {%- set gImg = images.guides[g.slug] %}
+  {%- if gImg %}
   <div class="hero-ed__plate hero-ed__plate--img">
-    <img src="{{ images.guides[g.slug] }}" alt="{{ g.title }} — St. Petersburg, vintage-postcard-style illustration" loading="eager" fetchpriority="high" decoding="async" width="1600" height="1067">
+    <img src="{{ gImg.src }}" srcset="{{ gImg.srcset }}" sizes="(min-width: 900px) 50vw, 100vw" alt="{{ g.title }} — St. Petersburg, vintage-postcard-style illustration" loading="eager" fetchpriority="high" decoding="async" width="1600" height="1067">
   </div>
   {%- else %}
   <div class="hero-ed__plate" role="img" aria-label="{{ g.plate_note }}">
