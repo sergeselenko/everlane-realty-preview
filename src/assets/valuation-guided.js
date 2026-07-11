@@ -32,6 +32,7 @@
   var A = {};              // answers, in memory only — dies with the page
   var idx = 0;
   var reviewing = false;   // editing a single answer from the review card
+  var reviewSeen = false;  // funnel event fires once, not on every edit-return
 
   /* ---- the flow ---- */
   var steps = [
@@ -300,6 +301,11 @@
     youBubble(echo);
     clearAnswer();
     if (reviewing) { reviewing = false; showReview(); return; }
+    /* PII-free funnel event (operator D1 ruling 2026-07-10: keep guided
+       primary + MEASURE the friction assumption): step index + field KEY
+       only — never the answer. Inert until GA4 lights up at cutover; edits
+       from review deliberately don't re-fire. */
+    if (window.elTrack) window.elTrack("valuation_step", { method: "valuation_guided", step: stepIndex(step.key) + 1, of: steps.length, field: step.key });
     idx = stepIndex(step.key) + 1;
     if (idx >= steps.length) showReview();
     else askStep(true);
@@ -328,6 +334,10 @@
 
   function showReview() {
     clearAnswer();
+    /* Funnel: the gap between this and generate_lead = review abandonment.
+       Fires once — edit-returns don't re-count. */
+    if (!reviewSeen && window.elTrack) window.elTrack("valuation_review", { method: "valuation_guided" });
+    reviewSeen = true;
     botBubble("Here’s everything I’ll send. Look it over — you can change any answer.", "Review");
 
     var card = document.createElement("div");
