@@ -3,15 +3,38 @@ permalink: /robots.txt
 layout: false
 eleventyExcludeFromCollections: true
 ---
-{#- BUILD-GENERATED. PREVIEW POLICY: disallow-all. NOTE the interaction (audit
-    §2.1, gap-finder wave-0 finding 1): disallow-all means crawlers never fetch
-    pages, so the per-page noindex meta is unreadable — the two mechanisms
-    partially fight. Both are kept because the charter demands both, but this
-    file deliberately does NOT advertise the sitemap (no URL list handed to
-    crawlers on a containment-first preview). sitemap.xml still builds — it is
-    plumbing proof + a check target, consumed at wave-4, not advertised here.
-    The production robots.txt (open to GPTBot/ClaudeBot/PerplexityBot
-    deliberately — plan §3c) is a wave-4 cutover artifact, not this file with
-    a flag flipped. -#}
+{#- BUILD-GENERATED, gated on the ONE cutover flag (site.preview).
+
+    PREVIEW POLICY: disallow-all. NOTE the interaction (audit §2.1, gap-finder
+    wave-0 finding 1): disallow-all means crawlers never fetch pages, so the
+    per-page noindex meta is unreadable — the two mechanisms partially fight.
+    Both are kept because the charter demands both, and the preview deliberately
+    does NOT advertise the sitemap (no URL list handed to crawlers on a
+    containment-first preview). sitemap.xml still builds — plumbing proof + a
+    check target.
+
+    PRODUCTION POLICY (site.preview:false, at cutover): open to all, with the AI
+    answer engines (GPTBot / ClaudeBot / PerplexityBot / Google-Extended) kept
+    open DELIBERATELY for dual searchability (plan §3c), and the sitemap
+    advertised. This flips WITH the flag — not a separate hand-edit. -#}
+{% if site.preview -%}
 User-agent: *
 Disallow: /
+{% else -%}
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: {{ site.url }}/sitemap.xml
+{% endif -%}

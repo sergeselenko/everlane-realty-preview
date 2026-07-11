@@ -2,15 +2,22 @@
    Ported from production assets/site.js (sergeselenko/everlane-realty-site@main,
    fetched 2026-07-07). No external JS deps (Dynamic-Wrapper safe).
 
-   WAVE-0 PREVIEW GUARD: PREVIEW_MODE hard-disables submission BEFORE any
-   network path. The production endpoint string below is PRESERVED verbatim
-   (so the wave-4 cutover is a flag flip, not a re-wire) but is unreachable:
+   PREVIEW GUARD: PREVIEW_MODE hard-disables submission BEFORE any network
+   path. The production endpoint string below is PRESERVED verbatim (so the
+   cutover is a flag flip, not a re-wire) but is unreachable while in preview:
    (1) PREVIEW_MODE returns first, (2) the form's fields are inside a disabled
-   <fieldset> in the markup, so submit cannot even fire. */
+   <fieldset> in the markup, so submit cannot even fire.
+
+   PREVIEW_MODE is no longer a hand-flipped literal — it is derived from the ONE
+   cutover flag site.preview, which base.njk stamps onto <html data-preview>.
+   Fail-safe: anything but an explicit "false" (missing attribute, typo, stale
+   cache) is treated as preview, so the forms stay inert. At cutover the flag
+   flips to false in one place (src/_data/site.js) and this reads it. */
 (function () {
   "use strict";
 
-  var PREVIEW_MODE = true; /* wave-0 preview: flip only at the operator's wave-4 go-live gate */
+  /* Derived from <html data-preview> (site.preview via base.njk). Fail-safe to preview. */
+  var PREVIEW_MODE = document.documentElement.getAttribute("data-preview") !== "false";
 
   /* ---- FORM LIVE (go-live 2026-06-23): captures to the RLS-locked n8n sink
      (re-floor-store). Flipped after store RLS re-verified GREEN + zero-PII and

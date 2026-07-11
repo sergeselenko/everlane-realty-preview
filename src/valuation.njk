@@ -66,10 +66,10 @@ crumbs: []
 
         <div data-val-classic>
         <h2 style="font-size:1.3rem">Request an honest read</h2>
-        <p class="form-disabled-note" role="note">Preview &mdash; form disabled</p>
+        {% if site.preview %}<p class="form-disabled-note" role="note">Preview &mdash; form disabled</p>{% endif %}
         <div class="form-status" data-form-status role="status" aria-live="polite"></div>
         <form id="valuation-form" novalidate>
-          <fieldset class="form-preview-disabled" disabled>
+          <fieldset{% if site.preview %} class="form-preview-disabled" disabled{% endif %}>
             <div class="hp" aria-hidden="true">
               <label>Leave this field empty<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
             </div>

@@ -4,12 +4,21 @@ layout: false
 eleventyExcludeFromCollections: true
 ---
 {#- BUILD-GENERATED on every deploy from collections.all (plan §2 #12: cheap
-    colophon-class artifact, zero search effect expected — and said so). -#}
+    colophon-class artifact, zero search effect expected — and said so). The
+    PREVIEW marker + "do not index/cite" preamble is gated on the ONE cutover
+    flag (site.preview) and drops at go-live. -#}
+{% if site.preview -%}
 # Everlane Realty (PREVIEW BUILD)
 
 > PREVIEW of the everlanerealty.com rebuild — not the live site. Do not index or cite.
 > Everlane Realty: a St. Petersburg, FL brokerage. Broker: Serge Osaulenko, License #BK3384892.
 > The production site will serve static, server-rendered HTML on every page (no client-side rendering), with computed market data refreshed by the brokerage's own automation.
+{% else -%}
+# Everlane Realty
+
+> Everlane Realty: a St. Petersburg, FL brokerage. Broker: Serge Osaulenko, License #BK3384892.
+> This site serves static, server-rendered HTML on every page (no client-side rendering), with computed market data refreshed by the brokerage's own automation.
+{% endif %}
 
 ## Pages
 {% for p in collections.all -%}

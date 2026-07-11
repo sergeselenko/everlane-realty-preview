@@ -1,12 +1,19 @@
 <!doctype html>
-<html lang="en">
+{#- data-preview carries THE cutover flag (site.preview) to the client: assets/site.js
+    reads it to gate the intake forms' network path, fail-safe to preview when absent.
+    At cutover (site.preview:false) it flips to "false" and the forms go live. -#}
+<html lang="en" data-preview="{{ 'true' if site.preview else 'false' }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if title %}{{ title }} · {% endif %}Everlane Realty — PREVIEW</title>
+  <title>{% if title %}{{ title }} · {% endif %}Everlane Realty{% if site.preview %} — PREVIEW{% endif %}</title>
   <meta name="description" content="{{ description or site.description }}">
-  {#- PREVIEW: unconditional noindex on EVERY page — the preview must never be indexable (charter hard requirement). The production flip is a wave-4 go-live decision, not a toggle here. #}
-  <meta name="robots" content="noindex">
+  {#- INDEXABILITY gated on the ONE cutover flag (site.preview): while preview, an
+      unconditional noindex on EVERY page (the preview must never be indexable — charter
+      hard requirement); at cutover (site.preview:false) it lifts together with the title
+      "— PREVIEW" suffix and the ribbon below. The production open/AI-crawler policy lives
+      in robots.njk (also flag-gated). #}
+  {% if site.preview %}<meta name="robots" content="noindex">{% endif %}
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   <meta property="og:site_name" content="Everlane Realty">
   <meta property="og:title" content="{{ title or site.name }}">
@@ -55,7 +62,9 @@
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="preview-ribbon" role="note">PREVIEW — rebuild in progress. Not the live site. Intake forms disabled &middot; booking calendar live for testing &middot; not indexable &middot; sample data labeled SAMPLE.</div>
+  {#- PREVIEW CONTAINMENT CHROME — gated on the ONE cutover flag (site.preview);
+      disappears at go-live together with the noindex + title suffix above. -#}
+  {% if site.preview %}<div class="preview-ribbon" role="note">PREVIEW — rebuild in progress. Not the live site. Intake forms disabled &middot; booking calendar live for testing &middot; not indexable &middot; sample data labeled SAMPLE.</div>{% endif %}
 
   {#- FEED STALE BANNER (wave 2, plan §5): baked ONLY when the dead-man
       watcher dispatches a feed-stale rebuild at the 12h Rule-11 floor.

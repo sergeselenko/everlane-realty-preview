@@ -21,10 +21,19 @@ const INTAKE_ENDPOINT = "https://selenko.app.n8n.cloud/webhook/intake-everlane";
 const SITE_URL = siteData.url;
 const BASE_PATH = new URL(SITE_URL + "/").pathname; // e.g. "/everlane-realty-preview/"
 
+// THE cutover flag (launch-checklist #8 / cutover-runbook.md). Containment checks
+// (2 noindex · 4 robots · 5 llms marker · 8 intake · 16b valuation fieldset) assert
+// the PREVIEW posture while this is true and the PRODUCTION posture when it flips to
+// false — so `npm run check` VERIFIES the cutover instead of failing red. GA4 (14) is
+// env-driven and independent of this flag.
+const PREVIEW = siteData.preview;
+
 let failures = 0;
 let passes = 0;
 function ok(msg) { passes++; console.log(`  ok  ${msg}`); }
 function fail(msg) { failures++; console.error(`FAIL  ${msg}`); }
+
+console.log(`\n=== containment posture: ${PREVIEW ? "PREVIEW (noindex · disallow-all · forms inert)" : "PRODUCTION (indexable · open robots · forms LIVE)"} — site.preview=${PREVIEW} ===`);
 
 if (!fs.existsSync(SITE)) {
   console.error("_site/ not found — run `npm run build` first (or use `npm run check`).");
@@ -77,17 +86,19 @@ for (const r of required) {
   else fail(`missing required surface: ${r}`);
 }
 
-/* ---- 2 · noindex on EVERY page (preview must not be indexable) ---- */
+/* ---- 2 · indexability, flag-gated: noindex on EVERY page in PREVIEW,
+        noindex on NO page in PRODUCTION (both fail LOUDLY on a half-flip) ---- */
 {
   let bad = 0;
   for (const f of htmlFiles) {
     const html = fs.readFileSync(f, "utf8");
-    if (!html.includes('<meta name="robots" content="noindex">')) {
-      fail(`missing noindex: ${rel(f)}`);
-      bad++;
-    }
+    const hasNoindex = html.includes('<meta name="robots" content="noindex">');
+    if (PREVIEW && !hasNoindex) { fail(`missing noindex (preview): ${rel(f)}`); bad++; }
+    if (!PREVIEW && hasNoindex) { fail(`noindex still present at production go-live: ${rel(f)}`); bad++; }
   }
-  if (!bad) ok(`noindex present in all ${htmlFiles.length} HTML pages`);
+  if (!bad) ok(PREVIEW
+    ? `noindex present in all ${htmlFiles.length} HTML pages (preview)`
+    : `noindex absent from all ${htmlFiles.length} HTML pages (production — indexable)`);
 }
 
 /* ---- 3 · sitemap.xml: well-formed XML, every loc built, no excluded pages ---- */
@@ -133,24 +144,43 @@ for (const r of required) {
   }
 }
 
-/* ---- 4 · robots.txt: preview disallow-all ---- */
+/* ---- 4 · robots.txt, flag-gated: disallow-all in PREVIEW; open + sitemap
+        advertised in PRODUCTION (plan §3c — AI crawlers welcomed) ---- */
 {
   const rPath = path.join(SITE, "robots.txt");
   if (fs.existsSync(rPath)) {
     const robots = fs.readFileSync(rPath, "utf8");
-    if (/^User-agent: \*$/m.test(robots) && /^Disallow: \/$/m.test(robots)) {
-      ok("robots.txt is disallow-all (preview policy)");
-    } else fail("robots.txt is not disallow-all — preview must not be crawlable");
+    const isDisallowAll = /^User-agent: \*$/m.test(robots) && /^Disallow: \/$/m.test(robots);
+    if (PREVIEW) {
+      if (isDisallowAll) ok("robots.txt is disallow-all (preview policy)");
+      else fail("robots.txt is not disallow-all — preview must not be crawlable");
+    } else {
+      if (isDisallowAll) {
+        fail("robots.txt still disallow-all at production go-live — the site would be uncrawlable");
+      } else if (/^Disallow: \/\s*$/m.test(robots)) {
+        fail("robots.txt carries a blanket Disallow: / at production go-live");
+      } else if (!/^Sitemap:\s*\S+\/sitemap\.xml\s*$/m.test(robots)) {
+        fail("production robots.txt does not advertise the sitemap");
+      } else {
+        ok("robots.txt is open + advertises the sitemap (production policy)");
+      }
+    }
   }
 }
 
-/* ---- 5 · llms.txt non-empty and marked preview ---- */
+/* ---- 5 · llms.txt non-empty; PREVIEW marker present in preview, GONE in production ---- */
 {
   const lPath = path.join(SITE, "llms.txt");
   if (fs.existsSync(lPath)) {
     const llms = fs.readFileSync(lPath, "utf8");
-    if (llms.trim().length > 100 && llms.includes("PREVIEW")) ok("llms.txt generated and marked PREVIEW");
-    else fail("llms.txt empty or missing PREVIEW marker");
+    if (llms.trim().length <= 100) fail("llms.txt empty or too short");
+    else if (PREVIEW) {
+      if (llms.includes("PREVIEW")) ok("llms.txt generated and marked PREVIEW");
+      else fail("llms.txt missing PREVIEW marker");
+    } else {
+      if (!llms.includes("PREVIEW") && !/do not index/i.test(llms)) ok("llms.txt production colophon (no PREVIEW/do-not-index marker)");
+      else fail("llms.txt still carries the PREVIEW / do-not-index marker at production go-live");
+    }
   }
 }
 
@@ -219,22 +249,61 @@ for (const r of required) {
   if (!broken) ok(`all ${checked} internal links resolve`);
 }
 
-/* ---- 8 · Intake endpoint: PRESERVED in source, INERT in behavior ---- */
+/* ---- 8 · Intake: endpoint PRESERVED always; the PREVIEW_MODE gate DERIVES from
+        the ONE cutover flag (<html data-preview>), inert in preview / live in
+        production; the two containment layers (JS gate + <fieldset disabled>)
+        must AGREE with site.preview — a half-flip fails loudly ---- */
 {
   const js = fs.readFileSync(path.join(SITE, "assets/site.js"), "utf8");
   if (js.includes(INTAKE_ENDPOINT)) ok("intake endpoint string preserved in built site.js");
   else fail("intake endpoint string missing from built site.js (charter: preserve in source)");
-  const previewIdx = js.indexOf("PREVIEW_MODE = true");
-  const fetchIdx = js.indexOf("fetch(INTAKE_ENDPOINT");
-  if (previewIdx > -1 && fetchIdx > -1 && previewIdx < fetchIdx) {
-    ok("PREVIEW_MODE guard present ahead of the fetch path in built site.js");
-  } else fail("PREVIEW_MODE guard missing or not ahead of fetch in built site.js");
 
+  // The gate is DERIVED, not hand-flipped: site.js reads <html data-preview>,
+  // fail-safe to preview, and its guard sits ahead of BOTH fetch paths.
+  if (/PREVIEW_MODE\s*=\s*document\.documentElement\.getAttribute\("data-preview"\)\s*!==\s*"false"/.test(js)) {
+    ok("PREVIEW_MODE derived from <html data-preview> (fail-safe to preview)");
+  } else fail("PREVIEW_MODE is not derived from <html data-preview> — the client gate must follow the one flag");
+  const fetchIdxs = [...js.matchAll(/fetch\(INTAKE_ENDPOINT/g)].map((m) => m.index);
+  const guardCount = (js.match(/if \(PREVIEW_MODE\)/g) || []).length;
+  // Each fetch needs its OWN nearby guard: a same-handler proximity window (< 2500
+  // chars — measured same-handler distances are 590/1424; cross-handler is ~5000, so
+  // a deleted intake-handler guard can't be "covered" by valuationSend's) AND a guard
+  // count ≥ fetch count (so you can't share one guard across both paths). Closes the
+  // lastIndexOf-anywhere-before hole (gap-finder F3).
+  const nearGuarded = fetchIdxs.every((fi) => {
+    const g = js.lastIndexOf("if (PREVIEW_MODE)", fi);
+    return g > -1 && (fi - g) < 2500;
+  });
+  if (fetchIdxs.length > 0 && guardCount >= fetchIdxs.length && nearGuarded) {
+    ok(`each of the ${fetchIdxs.length} intake fetch path(s) has its own PREVIEW_MODE guard in-handler`);
+  } else fail("a fetch(INTAKE_ENDPOINT) path lacks a dedicated in-handler if (PREVIEW_MODE) guard");
+
+  // <html data-preview> must AGREE with site.preview on every page (catch a half-flip).
+  const want = PREVIEW ? "true" : "false";
+  let mismatched = 0;
+  for (const f of htmlFiles) {
+    const m = fs.readFileSync(f, "utf8").match(/<html[^>]*\sdata-preview="(true|false)"/);
+    if (!m) { fail(`<html data-preview> missing: ${rel(f)}`); mismatched++; }
+    else if (m[1] !== want) { fail(`<html data-preview="${m[1]}"> disagrees with site.preview=${PREVIEW}: ${rel(f)}`); mismatched++; }
+  }
+  if (!mismatched) ok(`<html data-preview="${want}"> on all ${htmlFiles.length} pages (agrees with site.preview)`);
+
+  // Server-side containment: the classic intake fieldset + preview label follow the flag.
   const contact = fs.readFileSync(path.join(SITE, "contact/index.html"), "utf8");
-  if (/<fieldset class="form-preview-disabled" disabled>/.test(contact)) ok("contact form fields wrapped in <fieldset disabled>");
-  else fail("contact form is not rendered disabled");
-  if (contact.includes("Preview — form disabled") || contact.includes("Preview &mdash; form disabled")) ok('visible "Preview — form disabled" label present');
-  else fail('missing visible "Preview — form disabled" label');
+  const contactDisabled = /<fieldset class="form-preview-disabled" disabled>/.test(contact);
+  const contactLabel = contact.includes("Preview — form disabled") || contact.includes("Preview &mdash; form disabled");
+  if (PREVIEW) {
+    if (contactDisabled) ok("contact form fields wrapped in <fieldset disabled> (preview)");
+    else fail("contact form is not rendered disabled in preview");
+    if (contactLabel) ok('visible "Preview — form disabled" label present (preview)');
+    else fail('missing visible "Preview — form disabled" label in preview');
+  } else {
+    if (!contactDisabled) ok("contact form fields enabled (production — form live)");
+    else fail("contact form is still <fieldset disabled> at production go-live");
+    if (!contactLabel) ok("no preview 'form disabled' label at production go-live");
+    else fail("'Preview — form disabled' label still shown at production go-live");
+  }
+
   let actionable = 0;
   for (const f of htmlFiles) {
     if (fs.readFileSync(f, "utf8").includes(`action="${INTAKE_ENDPOINT}`)) actionable++;
@@ -481,9 +550,15 @@ for (const r of required) {
     if (consentCount >= 2) {
       ok(`consent/privacy copy present in the classic form (${consentCount} notes — the guided review clones these)`);
     } else fail("consent-note copy missing from the classic form — the guided review would render with no consent/privacy text");
-    if (/<fieldset class="form-preview-disabled" disabled>/.test(val)) {
-      ok("valuation classic form fields wrapped in <fieldset disabled>");
-    } else fail("valuation classic form is not rendered disabled");
+    // (b) fieldset follows the ONE cutover flag — disabled in preview, live in production.
+    const valDisabled = /<fieldset class="form-preview-disabled" disabled>/.test(val);
+    if (PREVIEW) {
+      if (valDisabled) ok("valuation classic form fields wrapped in <fieldset disabled> (preview)");
+      else fail("valuation classic form is not rendered disabled in preview");
+    } else {
+      if (!valDisabled) ok("valuation classic form fields enabled (production — form live)");
+      else fail("valuation classic form still <fieldset disabled> at production go-live");
+    }
   } else fail("valuation/index.html not built");
 
   // (c) is a FLOOR-ONLY tripwire (catches honest drift, not adversarial
