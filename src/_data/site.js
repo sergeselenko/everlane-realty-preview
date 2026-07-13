@@ -28,7 +28,7 @@ export default {
   // SITE_URL (CI deploy job) always wins; otherwise the base follows the ONE flag.
   url: (process.env.SITE_URL || (preview ? PREVIEW_URL : PRODUCTION_URL)).replace(/\/$/, ""),
   description:
-    "Search every home for sale in St. Petersburg & Tampa Bay, get new-listing alerts the moment they hit, and find out what your home is worth — with Serge Osaulenko at Everlane Realty.",
+    "Search every home for sale in St. Petersburg & Tampa Bay and find out what your home is worth — with Serge Osaulenko at Everlane Realty.",
   broker: {
     name: "Serge Osaulenko",
     title: "Licensed Real Estate Broker",
