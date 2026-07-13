@@ -1,0 +1,15 @@
+{#- Compliance legal block — SHARED between the site footer (components/footer.njk)
+    and the IDX Dynamic Wrapper (layouts/idx-frame.njk). It is LINK-FREE (pure
+    attested compliance text + data-driven attribution), so it carries NO
+    root-relative URLs — safe to include verbatim on the foreign-origin wrapper,
+    and single-sourced so the Fair Housing / Equal Housing / FREC / Rules 22–24
+    prose can never drift between the main site and the indexed IDX listing pages
+    (gap-finder F2). -#}
+<div class="footer__legal">
+  <p><span class="eh">EQUAL HOUSING</span>Equal Housing Opportunity. We are committed to the letter and spirit of U.S. fair housing law.</p>
+  {#- MLS attribution — Rules 22–24 (final icon lands with the native feed). -#}
+  <p>{{ site.mlsAttribution }} All information deemed reliable but not guaranteed.</p>
+  {#- Fair Housing statement SLOT — the bound compliance slot, Plan §2 row 11. -#}
+  <p>Everlane Realty is an Equal Housing Opportunity brokerage. We do not discriminate, and do not facilitate discrimination, on the basis of race, color, religion, sex, disability, familial status, or national origin &mdash; the classes protected by the federal Fair Housing Act &mdash; or any additional class protected under Florida law. All advertised properties are subject to these laws.</p>
+  <p>&copy; <span data-year>2026</span> Everlane Realty. Brokerage identification per FREC 61J2&#8209;10.025. MLS listing content is provided by IDX Broker and the participating MLS, and is the property of the MLS.</p>
+</div>

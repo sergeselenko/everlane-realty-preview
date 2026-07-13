@@ -132,7 +132,7 @@ for (const r of required) {
       if (p.endsWith("/")) p += "index.html";
       return p.replace(/^\//, "");
     }));
-    const sitemapExclude = new Set(["404.html"]);
+    const sitemapExclude = new Set(["404.html", "wrapper.html"]);
     let missing = 0, checked = 0;
     for (const f of htmlFiles) {
       const r = rel(f);

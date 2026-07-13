@@ -1,0 +1,84 @@
+{#- IDX DYNAMIC WRAPPER layout — output at /wrapper.html, registered as the IDX
+    Broker Dynamic URL (account #69322). IDX injects listing content BETWEEN
+    #idxStart and #idxStop; markup above = header wrapper, below = footer wrapper.
+
+    ALL URLs MUST be absolute ({{ site.url }}…): this chrome is injected onto a
+    FOREIGN origin (search.everlanerealty.com / *.idxbroker.com), where any
+    root-relative path would 404. That is why this does NOT reuse base.njk /
+    components/footer.njk (which emit root-relative, HtmlBasePlugin-rewritten
+    links) — it is a deliberately standalone minimal layout that stays flag-aware
+    via site.url. Check-gated: <html data-preview> (check 8), flag-gated noindex
+    (check 2), gated analytics (check 14); excluded from sitemap via the page's
+    eleventyExcludeFromCollections + the check.mjs sitemapExclude entry. -#}
+<!doctype html>
+<html lang="en" data-preview="{{ 'true' if site.preview else 'false' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Property Search &mdash; Everlane Realty</title>
+  {% if site.preview %}<meta name="robots" content="noindex">{% endif %}
+  {#- NO hardcoded canonical here: this <head> is inherited by every IDX-wrapped
+      listing page, so a static canonical would collapse all listings to one URL.
+      IDX owns per-page canonicals inside the injected content (gap-finder F1).
+      The <title> below is likewise a fallback — confirm at cutover whether IDX
+      overrides it per-listing (cutover live-test). -#}
+  <link rel="icon" type="image/svg+xml" href="{{ site.url }}/assets/favicon.svg">
+  <link rel="preconnect" href="https://everlanerealty.idxbroker.com">
+  <link rel="preconnect" href="https://middleware.idxbroker.com">
+  <link rel="stylesheet" href="{{ site.url }}/assets/tokens.css">
+  <link rel="stylesheet" href="{{ site.url }}/assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to listings</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="{{ site.url }}/">
+        <span class="brand__name">Everlane Realty</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" data-nav-toggle>&#9776;</button>
+      <nav class="nav" data-nav aria-label="Main">
+        {%- for item in nav.header %}
+        <a href="{{ site.url }}{{ item.url }}"{% if item.boxed %} class="nav__lane"{% endif %}>{{ item.title }}</a>
+        {%- endfor %}
+        <a class="nav__cta" href="{{ site.url }}{{ nav.headerCta.url }}">{{ nav.headerCta.title }}</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="idx-wrapper-body" id="main">
+    <div class="wrap">
+      <div id="idxStart"></div>
+      <div id="idxStop"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-brandrow">
+        <span class="b">Everlane Realty</span>
+        <nav class="footer-nav" aria-label="Footer">
+          {%- for item in nav.footerExplore %}
+          <a href="{{ site.url }}{{ item.url }}">{{ item.title }}</a>
+          {%- endfor %}
+          {%- for item in nav.footerFinePrint %}
+          <a href="{{ site.url }}{{ item.url }}">{{ item.title }}</a>
+          {%- endfor %}
+        </nav>
+      </div>
+      <p class="footer__studio">Run by Selenko, Everlane&rsquo;s own studio automation &mdash; every client-facing decision is the broker&rsquo;s. <a href="{{ site.url }}/ai/">See how this site runs &rarr;</a></p>
+      <p class="footer__nap">
+        Everlane Realty &middot; {{ site.broker.street }}, {{ site.broker.city }}, {{ site.broker.state }} {{ site.broker.zip }} &middot;
+        <a href="tel:{{ site.broker.phoneHref }}">{{ site.broker.phone }}</a> &middot;
+        <a href="mailto:{{ site.broker.email }}">{{ site.broker.email }}</a> &middot;
+        {{ site.broker.name }}, {{ site.broker.title }} &middot; License #{{ site.broker.license }}
+      </p>
+      {% include "components/footer-legal.njk" %}
+    </div>
+  </footer>
+
+  <script src="{{ site.url }}/assets/site.js" defer></script>
+  {%- if analytics.ga4Id %}
+  <script src="{{ site.url }}/assets/analytics.js" defer data-ga4="{{ analytics.ga4Id }}" data-hosts="{{ analytics.productionHosts | join(',') }}"></script>
+  {%- endif %}
+</body>
+</html>

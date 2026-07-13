@@ -1,0 +1,10 @@
+---
+permalink: /wrapper.html
+layout: layouts/idx-frame.njk
+eleventyExcludeFromCollections: true
+---
+{#- The IDX Dynamic Wrapper page. All chrome + the #idxStart/#idxStop injection
+    markers live in layouts/idx-frame.njk (standalone, absolute-URL). This page
+    only sets the permalink (/wrapper.html — matches the IDX-registered Dynamic
+    URL so it auto-resolves at cutover) and opts out of collections (kept out of
+    nav + sitemap; paired with the check.mjs sitemapExclude entry). No body. -#}
