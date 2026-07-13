@@ -41,6 +41,11 @@ export default {
     state: "FL",
     zip: "33701"
   },
+  // LAUNCH attribution names the LIVE source: at launch, listings display via the
+  // IDX Broker widget (not the native MLS GRID feed, which is license-pending). When
+  // the native feed lands, the feed-finish seat updates this line to the MLS GRID
+  // distribution wording + the Rules 22–24 icon; per-listing attribution is baked into
+  // components/listing-card.njk. (Compliance wording — operator/counsel to bless.)
   mlsAttribution:
-    "Listings courtesy of Stellar MLS as distributed by MLS GRID. Listing data is updated multiple times daily, direct from Stellar MLS."
+    "Listings courtesy of Stellar MLS, provided via IDX Broker."
 };

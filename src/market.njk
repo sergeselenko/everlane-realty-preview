@@ -12,11 +12,19 @@ crumbs: []
 
 <section class="page-hero">
   <div class="wrap">
-    <p class="eyebrow">The numbers, current</p>
+    <p class="eyebrow">The numbers, honestly</p>
     <h1>St. Petersburg market data</h1>
+    {%- if feed.marketStats %}
     <p class="lede lede--wide">Computed from our own copy of the MLS feed and refreshed continuously &mdash;
     with a monthly plain-language read from the broker, not a syndicated report.</p>
     <p class="byline">Maintained by <strong>Serge Osaulenko</strong>, Broker &middot; stats compute automatically &middot; narrative reviewed before it publishes</p>
+    {%- else %}
+    <p class="lede lede--wide">Real market numbers &mdash; median price, days on market, inventory &mdash;
+    computed from Everlane&rsquo;s own copy of the MLS feed, never a syndicated estimate, with a monthly
+    plain-language read from the broker. The data feed is being connected; until it&rsquo;s live, this page
+    shows nothing rather than a guess.</p>
+    <p class="byline">Maintained by <strong>Serge Osaulenko</strong>, Broker &middot; real data or nothing &mdash; never an estimate</p>
+    {%- endif %}
   </div>
 </section>
 
@@ -31,11 +39,20 @@ crumbs: []
   <div class="wrap">
     <div class="sec-head"><div><span class="no">The apparatus</span><h2>Where do these numbers come from?</h2></div></div>
     <div class="prose prose--kb">
+      {%- if feed.marketStats %}
       <p>Most market-stat pages are syndicated widgets. These aren&rsquo;t. Everlane runs its own
       data pipeline: listings flow from <strong>Stellar MLS</strong> (via MLS GRID) into our own
       database several times a day, and the statistics on this page are computed there by
       database queries &mdash; median sale price, days on market, active inventory, months of
       supply &mdash; then baked into this page as plain HTML with the computation timestamp shown.</p>
+      {%- else %}
+      <p>Most market-stat pages are syndicated widgets. This one won&rsquo;t be. Everlane is standing up
+      its own data pipeline: once the MLS data feed is connected, listings will flow from
+      <strong>Stellar MLS</strong> into our own database through the day, and the statistics on this page
+      will be computed there by database queries &mdash; median sale price, days on market, active
+      inventory, months of supply &mdash; then baked into this page as plain HTML with the computation
+      time shown.</p>
+      {%- endif %}
       <p>Three commitments, permanent:</p>
       <ul>
         <li><strong>No AI-generated numbers.</strong> An AI model never computes or estimates a

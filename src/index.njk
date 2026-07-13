@@ -93,8 +93,8 @@ jsonld: ["real-estate-agent"]
       <div class="door">
         <span class="d-eyebrow">Buying</span>
         <h3>Search every listing</h3>
-        <p>Stellar MLS listings across St. Pete and Tampa Bay, refreshed through the day &mdash; map,
-        filters, and saved-search alerts.</p>
+        <p>Stellar MLS listings across St. Pete and Tampa Bay, refreshed through the day &mdash;
+        search the whole market by map and filters.</p>
         {#- BUILD-COUPLING (rationale §6): the plain-English "type it like you'd
             say it" search box mounts HERE only WITH the wave-3 concierge/NL
             layer. Until then the doorway is a normal link — no dead smart box. -#}
@@ -130,29 +130,26 @@ jsonld: ["real-estate-agent"]
 <section class="section" data-sec="listings">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="no">№ 2 &middot; This week</span><h2>Fresh on the market</h2></div>
-      <div>
-        {%- if feed.listingsSyncedAgo %}
-        <span class="synced">listings synced {{ feed.listingsSyncedAgo }} ago</span> &nbsp;
-        {%- endif %}
-        {#- SYNCED-LINE BUILD-COUPLING (rationale §6, grade finding 8): the line
-            above renders the REAL sync age from the feed watcher or nothing.
-            SAMPLE variant for design reference ONLY (never rendered):
-            <span class="synced">listings synced 22 min ago</span> -#}
-        <a class="more" href="/search/">All listings</a>
+      <div><span class="no">№ 2 &middot; Every home on the market</span><h2>Start with the search</h2></div>
+      <a class="more" href="/search/">Open search &rarr;</a>
+    </div>
+    <div class="search-invite">
+      <p class="lede">Every active MLS listing across St.&nbsp;Petersburg and Tampa&nbsp;Bay &mdash; search by map, city, or ZIP. When you find one worth a look, I&rsquo;m one message away.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:22px">
+        <a class="go" href="/search/">Search all listings</a>
+        <a class="btn btn--ghost" href="/ask/">Not sure where to start? Ask Lane &rarr;</a>
       </div>
     </div>
-    <div class="cards">
-      {%- set listing = { mediaVariant: "p1", price: "$1,150,000", status: "Active · SAMPLE listing", address: "Snell Isle · 4 bd · 3 ba · 2,940 sqft", meta: "Waterfront — sample data, not a real listing", courtesyOf: "[listing brokerage — Rule 22 attribution slot]", dataTimestamp: "[feed-mirror sync timestamp — Rule 24 slot]" } %}
-      {%- include "components/listing-card.njk" %}
-      {%- set listing = { mediaVariant: "p2", price: "$489,000", status: "Active · SAMPLE listing", address: "Historic Kenwood · 3 bd · 2 ba · 1,610 sqft", meta: "1925 bungalow — sample data, not a real listing", courtesyOf: "[listing brokerage — Rule 22 attribution slot]", dataTimestamp: "[feed-mirror sync timestamp — Rule 24 slot]" } %}
-      {%- include "components/listing-card.njk" %}
-      {%- set listing = { mediaVariant: "p3", price: "$367,500", status: "Active · SAMPLE listing", address: "Shore Acres · 3 bd · 2 ba · 1,480 sqft", meta: "Flood zone AE — see the guide · sample data, not a real listing", courtesyOf: "[listing brokerage — Rule 22 attribution slot]", dataTimestamp: "[feed-mirror sync timestamp — Rule 24 slot]" } %}
-      {%- include "components/listing-card.njk" %}
-    </div>
-    {#- Wave-1 staged remainder (Feed & Ops, ask #1): the IDX saved-search
-        signup widget mounts HERE (audit P0-3/#4) when IDX access lands.
-        Wave 2 replaces the sample cards above with feed-mirror listings. -#}
+    {#- FEED-FINISH SEAT (native MLS GRID feed): restore the real "Fresh on the
+        market" featured strip HERE — replace the search-invite block above with
+        feed-mirror listing cards (Supabase `listings`) via
+        components/listing-card.njk, and restore the synced-line honesty organ
+        (renders the REAL sync age or nothing while feed.listingsSyncedAgo null):
+          if feed.listingsSyncedAgo -> span.synced "listings synced {age} ago"
+        Card grammar reference (three-card strip, real feed data only — NEVER
+        ship sample/placeholder data to production): p1 Snell Isle, p2 Historic
+        Kenwood, p3 Shore Acres, each include components/listing-card.njk with
+        the Rules 22/24 attribution baked in by the component. -#}
   </div>
 </section>
 
@@ -170,7 +167,7 @@ jsonld: ["real-estate-agent"]
         <div class="story__body">
           <p class="n">Neighborhood 01</p>
           <h3>Old Northeast</h3>
-          <span class="fresh">Stats updated daily</span>
+          {%- if feed.marketStats %}<span class="fresh">Stats updated daily</span>{% endif %}
           <p>Brick streets, granite curbs, hex-block sidewalks &mdash; and the tightest inventory in the city.
           What it takes to buy here in 2026.</p>
           <a class="go" href="/neighborhoods/old-northeast/">Read the guide</a>
@@ -183,7 +180,7 @@ jsonld: ["real-estate-agent"]
         <div class="story__body">
           <p class="n">Neighborhood 02</p>
           <h3>Snell Isle</h3>
-          <span class="fresh">Stats updated daily</span>
+          {%- if feed.marketStats %}<span class="fresh">Stats updated daily</span>{% endif %}
           <p>The island address: Mediterranean revivals and open-water views minutes from the Vinoy.
           Flood insurance is the question to ask first &mdash; we answer it.</p>
           <a class="go" href="/neighborhoods/snell-isle/">Read the guide</a>
@@ -196,7 +193,7 @@ jsonld: ["real-estate-agent"]
         <div class="story__body">
           <p class="n">Neighborhood 03</p>
           <h3>Shore Acres</h3>
-          <span class="fresh">Stats updated daily</span>
+          {%- if feed.marketStats %}<span class="fresh">Stats updated daily</span>{% endif %}
           <p>The value play on the water &mdash; and where the flood-zone conversation matters most.
           What it costs, honestly, before you fall in love.</p>
           <a class="go" href="/neighborhoods/shore-acres/">Read the guide</a>

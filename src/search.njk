@@ -1,6 +1,6 @@
 ---
 title: "Search St. Petersburg & Tampa Bay Listings"
-description: "Every active MLS listing across St. Petersburg and Tampa Bay — search by map, city, or ZIP, and save your search for new-listing alerts."
+description: "Every active MLS listing across St. Petersburg and Tampa Bay — search by map, city, or ZIP with a local broker who actually picks up the phone."
 crumbs: []
 preconnect:
   - "https://everlanerealty.idxbroker.com"
@@ -16,7 +16,7 @@ preconnect:
   <div class="wrap">
     <p class="eyebrow">Every home on the market</p>
     <h1>Search listings</h1>
-    <p class="lede lede--wide">Live MLS listings for St. Petersburg &amp; Tampa Bay, updated continuously. Save a search to turn on new-listing alerts.</p>
+    <p class="lede lede--wide">Live MLS listings for St. Petersburg &amp; Tampa Bay, updated continuously &mdash; search by map, city, or ZIP.</p>
     <p style="margin-top:16px"><a class="btn btn--ghost" href="/ask/">Not sure where to look? Ask Lane &rarr;</a></p>
   </div>
 </section>
@@ -26,27 +26,16 @@ preconnect:
     <div class="idx-slot" id="idx-widget-search-page" style="min-height:520px;padding:0;border-style:solid">
       <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-152208" src="https://everlanerealty.idxbroker.com/idx/widgets/152208"></script>
     </div>
-    <p class="idx-note" style="margin-top:14px">Listing clicks carry Everlane&rsquo;s own chrome end-to-end &mdash; the IDX Dynamic Wrapper is registered on the brokerage account (audit §0.3, closed 2026-07-07). Full server-rendered, AI-crawler-visible listing search arrives with the MLS&nbsp;GRID feed (wave 2).</p>
+    <p class="idx-note" style="margin-top:14px">Listing clicks carry Everlane&rsquo;s own branding end-to-end &mdash; you stay here on our site, not a generic vendor page.</p>
   </div>
 </section>
 
 {% set askLead = "Have a question while you browse? Ask Lane about a neighborhood, flood zones, taxes, or how buying works here &mdash; grounded answers, with a real broker behind them." %}
 {% include "components/ask-lane-module.njk" %}
 
-<section class="section section--mist">
-  <div class="wrap">
-    <p class="eyebrow">Component stub</p>
-    <h2>Server-rendered listing cards (wave 2)</h2>
-    <p class="lede">At wave 2 the feed mirror renders listing cards as static HTML &mdash; AI-crawler-visible, with MLS GRID Rules 22&ndash;24 attribution baked into the component. A demo instance of the component:</p>
-    {% set listing = {
-      price: "$724,900",
-      status: "Active",
-      address: "1234 Demo Ave NE, St. Petersburg, FL 33701",
-      meta: "3 bd · 2 ba · 1,842 sqft",
-      photoNote: "DEMO CARD — placeholder data, not a real listing",
-      courtesyOf: "[listing brokerage — Rule 22 attribution slot]",
-      dataTimestamp: "[feed-mirror sync timestamp — Rule 24 slot]"
-    } %}
-    {% include "components/listing-card.njk" %}
-  </div>
-</section>
+{#- FEED-FINISH SEAT (native MLS GRID feed): the server-rendered feed-mirror
+    listing strip mounts HERE — static, AI-crawler-visible listing cards from
+    Supabase `listings` via components/listing-card.njk, with the MLS GRID
+    Rules 22–24 attribution baked into the component. The DEMO instance was
+    removed for launch (never ship placeholder cards to production); render real
+    feed-mirror listings when the token lands. -#}

@@ -164,7 +164,7 @@ rate. I keep the actual dollars and the Citizens mechanics on the
 the point for a mover is simply this — **quote insurance before you fall for a house, not after.**
 
 (Prices, rents, and days-on-market aren't in this guide on purpose. Those live on the
-neighborhood pages, computed from our own data and refreshed continuously, because a number
+neighborhood pages, shown as real figures from our own data or an honest blank, because a number
 typed into a guide goes stale the week you read it.)
 
 ## How do people get around?

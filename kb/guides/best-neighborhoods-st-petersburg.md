@@ -138,5 +138,5 @@ free, and it's the first thing we run before you offer on anything.
 
 Factual claims above cite the primary sources listed on this page with access dates. Market
 data (prices, days on market, inventory) deliberately does NOT appear in this guide — it lives
-on each neighborhood's chapter page, computed from our MLS pipeline and refreshed continuously,
-because a number in a static guide is a number that goes stale. Re-verified quarterly.
+on each neighborhood's chapter page, shown as real figures from our own copy of the MLS data or
+an honest blank, because a number in a static guide is a number that goes stale. Re-verified quarterly.

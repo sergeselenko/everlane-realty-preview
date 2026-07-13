@@ -47,10 +47,10 @@
       {%- endfor %}
     </div>
     {%- else %}
-    <p class="databand__pending">This band renders real market data &mdash; median sale price, days
-    on market, active inventory &mdash; computed by database queries over our own Stellar MLS feed,
-    with the computation timestamp shown. The feed mirror is being wired now; until it connects,
-    we show you nothing rather than a made-up number.</p>
+    <p class="databand__pending">This band shows real market numbers &mdash; median sale price, days
+    on market, active inventory &mdash; computed over Everlane&rsquo;s own copy of the Stellar MLS data,
+    with the computation time shown. Live numbers publish here as soon as the data feed is connected;
+    until then we show you nothing rather than a made-up number.</p>
     {%- endif %}
     {#- Art. 15.01.A notice — REQUIRED on every stats surface, wired even while
         stats are pending (compliance lane, build/wave-2/compliance/
