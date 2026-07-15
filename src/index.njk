@@ -2,9 +2,6 @@
 title: "Buy & Sell St. Pete Like a Local | Everlane Realty"
 description: "Search every home for sale in St. Petersburg & Tampa Bay, get an honest broker-prepared home valuation, and book a consult — with Serge Osaulenko at Everlane Realty."
 jsonld: ["real-estate-agent"]
-preconnect:
-  - "https://everlanerealty.idxbroker.com"
-  - "https://middleware.idxbroker.com"
 ---
 {#- HOME — THE LOCKED 10-SECTION GRAMMAR (design lock 2026-07-07;
     rationale.md §2 — order is BOUND):
@@ -133,22 +130,16 @@ preconnect:
 <section class="section" data-sec="listings">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="no">№ 2 &middot; Every home on the market</span><h2>Fresh on the market</h2></div>
+      <div><span class="no">№ 2 &middot; Every home on the market</span><h2>Start with the search</h2></div>
       <a class="more" href="/search/">Open search &rarr;</a>
     </div>
-    {#- IDX Broker featured-listings carousel (widget 152207) — real active
-        listings WITH photos, served by IDX Broker (account #69322). PRODUCTION-
-        ONLY: IDX serves listing data/photos to the APPROVED domain, so it renders
-        empty on the github.io preview (domain-auth) — gated to production so the
-        preview never ships an empty box. HARD CUTOVER CHECK: confirm it populates
-        WITH PHOTOS on everlanerealty.com before go-live (gap-finder F5). The
-        native feed-mirror cards (FEED-FINISH SEAT below) replace it if/when the
-        parked MLS GRID feed lands. The search-invite below shows in both states. -#}
-    {%- if not site.preview %}
-    <div class="idx-slot" id="idx-widget-featured" style="padding:0;border-style:solid;margin-bottom:24px">
-      <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-152207" src="https://everlanerealty.idxbroker.com/idx/widgets/152207"></script>
-    </div>
-    {%- endif %}
+    {#- HOME LISTINGS launch state: the honest search-invite (routes to the live IDX
+        search on /search/, which lands on the branded search.everlanerealty.com).
+        The CURATED featured-listings grid (IDX Showcase 152205, St.Pete/Tampa set)
+        + per-neighborhood listings are the FOLLOW-ON (followon-idx-buildout-SEED.md) —
+        do NOT ship an un-curated widget (152207 showed a sparse/odd set). The
+        native feed-mirror cards (FEED-FINISH SEAT below) are the separate parked
+        MLS GRID upgrade. -#}
     <div class="search-invite">
       <p class="lede">Every active MLS listing across St.&nbsp;Petersburg and Tampa&nbsp;Bay &mdash; search by map, city, or ZIP. When you find one worth a look, I&rsquo;m one message away.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:22px">
